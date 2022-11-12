@@ -1,9 +1,9 @@
 package com.habbokt.compiler
 
 import com.mitchellbosecke.pebble.PebbleEngine
+import org.koin.dsl.module
 import java.io.File
 import java.nio.charset.StandardCharsets
-import org.koin.dsl.module
 
 /**
  * @author Jordan Abraham
@@ -14,6 +14,7 @@ fun compilerModule() = module(createdAtStart = true) {
             PebbleEngine.Builder()
                 .strictVariables(false)
                 .autoEscaping(false)
+                .extension(PresentExtension())
                 .build()
                 .also {
                     it.loader.setCharset(StandardCharsets.UTF_8.toString())
