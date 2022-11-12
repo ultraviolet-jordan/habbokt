@@ -9,7 +9,7 @@ import io.ktor.http.Parameters
  */
 class IndexPage(
     private val site: Site,
-): Page {
+) : Page {
     override fun templateName(): String = "index.tpl"
 
     override fun context(parameters: Parameters): Map<String, Any?> = mapOf(

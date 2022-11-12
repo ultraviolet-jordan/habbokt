@@ -1,4 +1,4 @@
-package com.habbokt.asset
+package com.habbokt.page.asset
 
 import io.ktor.server.application.Application
 import io.ktor.server.http.content.files
@@ -11,14 +11,14 @@ import java.io.File
 /**
  * @author Jordan Abraham
  */
-fun Application.installAssets() {
+fun Application.installAssetsRoutes() {
     routing {
-        staticAssetsRoute()
+        staticAssetsRoute("/")
     }
 }
 
-private fun Route.staticAssetsRoute() {
-    static("/") {
+private fun Route.staticAssetsRoute(path: String) {
+    static(path) {
         staticRootFolder = File(this::class.java.classLoader.getResource("www")!!.toURI())
         files(".")
     }

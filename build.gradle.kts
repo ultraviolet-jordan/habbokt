@@ -2,6 +2,7 @@
 plugins {
     alias(deps.plugins.jvm)
     alias(deps.plugins.versions)
+    alias(deps.plugins.ktlint)
 }
 
 group = "org.example"

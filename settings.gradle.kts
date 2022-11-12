@@ -10,6 +10,7 @@ dependencyResolutionManagement {
             version("koin", "3.2.0")
             version("versions", "0.42.0")
             version("pebble", "3.1.5")
+            version("ktlint", "11.0.0")
 
             library("ktor-server-core", "io.ktor", "ktor-server-core").versionRef("ktor")
             library("ktor-server-netty", "io.ktor", "ktor-server-netty").versionRef("ktor")
@@ -24,6 +25,7 @@ dependencyResolutionManagement {
 
             plugin("jvm", "org.jetbrains.kotlin.jvm").versionRef("kotlin")
             plugin("versions", "com.github.ben-manes.versions").versionRef("versions")
+            plugin("ktlint", "org.jlleitschuh.gradle.ktlint").versionRef("ktlint")
         }
     }
 }

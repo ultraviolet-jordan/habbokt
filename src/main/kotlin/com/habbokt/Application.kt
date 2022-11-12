@@ -1,10 +1,12 @@
 package com.habbokt
 
-import com.habbokt.asset.installAssets
 import com.habbokt.compiler.compilerModule
-import com.habbokt.page.index.indexPageModule
-import com.habbokt.page.index.installIndexPage
 import com.habbokt.model.Site
+import com.habbokt.page.asset.installAssetsRoutes
+import com.habbokt.page.index.indexPageModule
+import com.habbokt.page.index.installIndexPageRoutes
+import com.habbokt.page.register.installRegisterPageRoutes
+import com.habbokt.page.register.registerPageModule
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.netty.EngineMain
@@ -25,12 +27,14 @@ fun Application.module() {
     install(Koin) {
         modules(
             compilerModule(),
-            indexPageModule(site)
+            indexPageModule(site),
+            registerPageModule(site)
         )
     }
 
-    installAssets()
-    installIndexPage()
+    installAssetsRoutes()
+    installIndexPageRoutes()
+    installRegisterPageRoutes()
 }
 
 inline fun <reified T : Any> inject(): Lazy<T> = KoinPlatformTools.defaultContext().get().inject(null, KoinPlatformTools.defaultLazyMode(), null)
