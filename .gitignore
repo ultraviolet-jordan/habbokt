@@ -1,0 +1,5 @@
+/.idea/
+/build/
+/.gradle/
+/src/main/resources/www-tpl/default-en/
+/src/main/resources/www/
