@@ -1,7 +1,7 @@
-package com.habbokt.page.register
+package com.habbokt.web.page.register
 
-import com.habbokt.compiler.Compiler
-import com.habbokt.page.PageService
+import com.habbokt.web.compiler.Compiler
+import com.habbokt.web.page.PageService
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.response.respond

@@ -1,4 +1,4 @@
-package com.habbokt.page
+package com.habbokt.web.page
 
 import io.ktor.http.HttpHeaders
 import io.ktor.server.application.ApplicationCall

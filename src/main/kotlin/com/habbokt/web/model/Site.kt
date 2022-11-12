@@ -1,4 +1,4 @@
-package com.habbokt.model
+package com.habbokt.web.model
 
 /**
  * @author Jordan Abraham

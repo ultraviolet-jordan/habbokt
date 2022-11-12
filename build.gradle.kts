@@ -17,6 +17,7 @@ dependencies {
     implementation(deps.bundles.ktor)
     implementation(deps.bundles.koin)
     implementation(deps.pebble)
+    implementation(deps.slf4j.simple)
 }
 
 java {

@@ -1,7 +1,7 @@
-package com.habbokt.page.index
+package com.habbokt.web.page.index
 
-import com.habbokt.compiler.Compiler
-import com.habbokt.model.Site
+import com.habbokt.web.compiler.Compiler
+import com.habbokt.web.model.Site
 import org.koin.dsl.module
 
 /**

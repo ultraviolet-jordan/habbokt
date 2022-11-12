@@ -1,7 +1,7 @@
-package com.habbokt.page.register
+package com.habbokt.web.page.register
 
-import com.habbokt.model.Site
-import com.habbokt.page.Page
+import com.habbokt.web.model.Site
+import com.habbokt.web.page.Page
 import io.ktor.http.Parameters
 import kotlin.random.Random
 
