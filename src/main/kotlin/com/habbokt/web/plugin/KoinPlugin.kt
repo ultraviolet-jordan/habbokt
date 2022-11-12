@@ -1,5 +1,6 @@
 package com.habbokt.web.plugin
 
+import com.habbokt.web.compiler.compilerModule
 import com.habbokt.web.model.Site
 import com.habbokt.web.page.error.errorPageModule
 import com.habbokt.web.page.index.indexPageModule
@@ -19,7 +20,7 @@ fun Application.installKoinPlugin() {
 
     install(Koin) {
         modules(
-            com.habbokt.web.compiler.compilerModule(),
+            compilerModule(),
             indexPageModule(site),
             registerPageModule(site),
             errorPageModule(site)
