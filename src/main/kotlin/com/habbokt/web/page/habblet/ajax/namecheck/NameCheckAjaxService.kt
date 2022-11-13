@@ -1,13 +1,28 @@
 package com.habbokt.web.page.habblet.ajax.namecheck
 
+import com.habbokt.web.common.htmlHeaders
+import com.habbokt.web.common.xjsonHeader
+import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.request.receiveParameters
+import io.ktor.server.response.respond
 
 /**
  * @author Jordan Abraham
  */
 class NameCheckAjaxService {
-    suspend fun getNameCheckFormResponse(call: ApplicationCall): NameCheckStatus = checkUsernameIsValid(call.receiveParameters()["name"])
+    suspend fun respondNameCheck(call: ApplicationCall) {
+        val response = checkUsernameIsValid(call.receiveParameters()["name"])
+        // Respond back with the xjson body of the name check.
+        call.apply {
+            xjsonHeader(
+                """
+                    {"registration_name":"${response.string}"}
+                """.trimIndent()
+            )
+            htmlHeaders(0)
+        }.respond(HttpStatusCode.OK)
+    }
 
     private fun checkUsernameIsValid(username: String?): NameCheckStatus = when (username) {
         null -> NameCheckStatus.Empty

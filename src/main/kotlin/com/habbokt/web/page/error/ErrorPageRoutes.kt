@@ -10,6 +10,9 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
+val errorPage by inject<ErrorPage>()
+val errorPageService by inject<ErrorPageService>()
+
 fun Application.installErrorPageRoutes() {
     routing {
         getErrorPage("/client_error")
@@ -18,9 +21,6 @@ fun Application.installErrorPageRoutes() {
 
 private fun Route.getErrorPage(path: String) {
     get(path) {
-        val errorPage by inject<ErrorPage>()
-        val errorPageService by inject<ErrorPageService>()
-
         errorPageService.respondPage(call, errorPage)
     }
 }

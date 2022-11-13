@@ -2,8 +2,11 @@ package com.habbokt.web.page.captcha
 
 import cn.apiclub.captcha.Captcha
 import cn.apiclub.captcha.text.renderer.DefaultWordRenderer
+import com.habbokt.web.common.pngHeader
 import com.habbokt.web.session.CaptchaSession
+import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
+import io.ktor.server.response.respond
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import io.ktor.server.sessions.set
@@ -17,7 +20,7 @@ import javax.imageio.ImageIO
  * @author Jordan Abraham
  */
 class CaptchaService {
-    fun getCaptchaResponse(call: ApplicationCall): ByteArray {
+    suspend fun respondCaptcha(call: ApplicationCall) {
         val colors = listOf(
             Color.BLACK
         )
@@ -33,8 +36,6 @@ class CaptchaService {
             .addText(wordRenderer)
             .build()
 
-        println("Captcha Service Answer: ${captcha.answer}")
-
         val bytes = try {
             ByteArrayOutputStream().apply {
                 ImageIO.write(captcha.image, "png", this)
@@ -43,6 +44,7 @@ class CaptchaService {
             throw RuntimeException("Captcha threw a RuntimeException when writing the image to the buffer.")
         }
 
+        // Modify or create new captcha session when generating a new captcha to the user.
         val session = call.sessions.get<CaptchaSession>()
         if (session == null) {
             call.sessions.set(CaptchaSession(captcha.answer))
@@ -50,6 +52,9 @@ class CaptchaService {
             call.sessions.set(session.copy(captcha = captcha.answer))
         }
 
-        return bytes
+        // Respond back with the captcha png.
+        call.apply {
+            pngHeader(bytes.size)
+        }.respond(HttpStatusCode.OK, captcha)
     }
 }

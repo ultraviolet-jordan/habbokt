@@ -29,8 +29,6 @@ class RegisterPageService(
     }
 
     suspend fun respondRegistration(call: ApplicationCall) {
-        val parameters = call.receiveParameters()
-
         // If the user never got a Captcha.
         val captchaSession = call.sessions.get<CaptchaSession>()
         if (captchaSession == null) {
@@ -41,6 +39,7 @@ class RegisterPageService(
         // User may or may not have a registration session depending on how many times they typed wrong captcha for example.
         val registrationSession = call.sessions.get<RegistrationSession>()
 
+        val parameters = call.receiveParameters()
         val username = registrationSession?.username ?: parameters["bean.avatarName"]
         val captchaResponse = parameters["bean.captchaResponse"] // There is always a new captcha response when posting to registration.
         val password = registrationSession?.password ?: parameters["retypedPassword"]

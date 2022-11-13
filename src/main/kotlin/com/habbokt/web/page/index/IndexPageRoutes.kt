@@ -10,6 +10,9 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
+val indexPage by inject<IndexPage>()
+val indexPageService by inject<IndexPageService>()
+
 fun Application.installIndexPageRoutes() {
     routing {
         getIndexPage("/")
@@ -20,9 +23,6 @@ fun Application.installIndexPageRoutes() {
 
 private fun Route.getIndexPage(path: String) {
     get(path) {
-        val indexPage by inject<IndexPage>()
-        val indexPageService by inject<IndexPageService>()
-
         indexPageService.respondPage(call, indexPage)
     }
 }
