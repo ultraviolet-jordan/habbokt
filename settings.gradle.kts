@@ -13,6 +13,7 @@ dependencyResolutionManagement {
             version("pebble", "3.1.6")
             version("ktlint", "11.0.0")
             version("slf4j", "2.0.3")
+            version("simplecaptcha", "1.2.2")
 
             // Dependency libraries
             library("ktor-server-core", "io.ktor", "ktor-server-core").versionRef("ktor")
@@ -23,6 +24,7 @@ dependencyResolutionManagement {
             library("koin-ktor", "io.insert-koin", "koin-ktor").versionRef("koin")
             library("pebble", "io.pebbletemplates", "pebble").versionRef("pebble")
             library("slf4j-simple", "org.slf4j", "slf4j-simple").versionRef("slf4j")
+            library("simplecaptcha", "cn.apiclub.tool", "simplecaptcha").versionRef("simplecaptcha")
 
             // Dependency bundles
             bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging"))

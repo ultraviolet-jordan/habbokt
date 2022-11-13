@@ -15,3 +15,8 @@ fun ApplicationCall.htmlHeaders(contentLength: Int) {
 fun ApplicationCall.xjsonHeader(json: String) {
     response.header("X-JSON", json)
 }
+
+fun ApplicationCall.pngHeader(contentLength: Int) {
+    response.header(HttpHeaders.ContentType, "image/png")
+    response.header(HttpHeaders.ContentLength, contentLength)
+}

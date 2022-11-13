@@ -19,6 +19,7 @@ dependencies {
     implementation(deps.bundles.koin)
     implementation(deps.pebble)
     implementation(deps.slf4j.simple)
+    implementation(deps.simplecaptcha)
 }
 
 java {

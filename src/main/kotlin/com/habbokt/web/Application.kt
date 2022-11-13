@@ -1,6 +1,7 @@
 package com.habbokt.web
 
 import com.habbokt.web.page.asset.installAssetsRoutes
+import com.habbokt.web.page.captcha.installCaptchaRoutes
 import com.habbokt.web.page.error.installErrorPageRoutes
 import com.habbokt.web.page.habblet.installHabbletRoutes
 import com.habbokt.web.page.index.installIndexPageRoutes
@@ -29,6 +30,7 @@ fun Application.module() {
     installRegisterPageRoutes()
     installErrorPageRoutes()
     installHabbletRoutes()
+    installCaptchaRoutes()
 }
 
 inline fun <reified T : Any> inject(): Lazy<T> = KoinPlatformTools.defaultContext().get().inject(null, KoinPlatformTools.defaultLazyMode(), null)

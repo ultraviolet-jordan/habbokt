@@ -2,6 +2,7 @@ package com.habbokt.web.plugin
 
 import com.habbokt.web.compiler.compilerModule
 import com.habbokt.web.model.Site
+import com.habbokt.web.page.captcha.captchaModule
 import com.habbokt.web.page.error.errorPageModule
 import com.habbokt.web.page.habblet.habbletModule
 import com.habbokt.web.page.index.indexPageModule
@@ -28,7 +29,9 @@ fun Application.installKoinPlugin() {
             registerPageModule(site),
             errorPageModule(site),
             // Habblet
-            habbletModule()
+            habbletModule(),
+            // Captcha
+            captchaModule()
         )
     }
 }
