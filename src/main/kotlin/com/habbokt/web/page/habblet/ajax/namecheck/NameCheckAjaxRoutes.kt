@@ -14,12 +14,12 @@ val nameCheckAjaxService by inject<NameCheckAjaxService>()
 
 fun Application.installHabbletNameCheckAjaxRoute() {
     routing {
-        postNameCheck("/habblet/ajax/namecheck")
+        postNameCheck()
     }
 }
 
-private fun Route.postNameCheck(path: String) {
-    post(path) {
+private fun Route.postNameCheck() {
+    post("/habblet/ajax/namecheck") {
         nameCheckAjaxService.respondNameCheck(call)
     }
 }
