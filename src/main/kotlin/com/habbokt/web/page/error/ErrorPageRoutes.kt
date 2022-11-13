@@ -12,11 +12,11 @@ import io.ktor.server.routing.routing
  */
 fun Application.installErrorPageRoutes() {
     routing {
-        routeErrorPage("/client_error")
+        getErrorPage("/client_error")
     }
 }
 
-private fun Route.routeErrorPage(path: String) {
+private fun Route.getErrorPage(path: String) {
     get(path) {
         val errorPage by inject<ErrorPage>()
         val errorPageService by inject<ErrorPageService>()
