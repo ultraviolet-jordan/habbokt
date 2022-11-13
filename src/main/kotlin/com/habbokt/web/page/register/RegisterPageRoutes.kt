@@ -12,11 +12,11 @@ import io.ktor.server.routing.routing
  */
 fun Application.installRegisterPageRoutes() {
     routing {
-        routeRegisterPage("/register")
+        getRegisterPage("/register")
     }
 }
 
-private fun Route.routeRegisterPage(path: String) {
+private fun Route.getRegisterPage(path: String) {
     get(path) {
         val registerPage by inject<RegisterPage>()
         val registerPageService by inject<RegisterPageService>()
