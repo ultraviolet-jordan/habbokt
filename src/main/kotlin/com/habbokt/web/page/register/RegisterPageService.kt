@@ -34,13 +34,6 @@ class RegisterPageService(
     }
 
     suspend fun respondRegistration(call: ApplicationCall) {
-        // If the user never got a Captcha.
-        val captchaSession = call.sessions.get<CaptchaSession>()
-        if (captchaSession == null) {
-            call.respondRedirect("/register")
-            return
-        }
-
         // User may or may not have a registration session depending on how many times they typed wrong captcha for example.
         val registrationSession = call.sessions.get<RegistrationSession>()
 
@@ -87,7 +80,8 @@ class RegisterPageService(
 
         // TODO Better validation on the incoming data.
 
-        if (captchaResponse != captchaSession.captcha) {
+        // We do not have to validate if the user has session because this function is authenticated by captcha.
+        if (captchaResponse != call.sessions.get<CaptchaSession>()?.captcha) {
             call.respondRedirect("/register?error=bad_captcha")
             return
         }
