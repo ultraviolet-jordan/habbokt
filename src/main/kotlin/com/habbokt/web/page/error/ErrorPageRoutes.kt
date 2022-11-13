@@ -15,12 +15,12 @@ val errorPageService by inject<ErrorPageService>()
 
 fun Application.installErrorPageRoutes() {
     routing {
-        getErrorPage("/client_error")
+        getErrorPage()
     }
 }
 
-private fun Route.getErrorPage(path: String) {
-    get(path) {
+private fun Route.getErrorPage() {
+    get("/client_error") {
         errorPageService.respondPage(call, errorPage)
     }
 }
