@@ -1,6 +1,7 @@
 package com.habbokt.web.page.welcome
 
 import com.habbokt.web.inject
+import com.habbokt.web.plugin.authentication.Authentications
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.auth.authenticate
@@ -21,7 +22,7 @@ fun Application.installWelcomePageRoutes() {
 }
 
 private fun Route.getWelcomePage() {
-    authenticate("user_session") {
+    authenticate(Authentications.User) {
         get("/welcome") {
             welcomePageService.respondPage(call, welcomePage)
         }

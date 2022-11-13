@@ -1,6 +1,7 @@
 package com.habbokt.web.page.me
 
 import com.habbokt.web.inject
+import com.habbokt.web.plugin.authentication.Authentications
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.auth.authenticate
@@ -21,7 +22,7 @@ fun Application.installMePageRoutes() {
 }
 
 private fun Route.getMePage() {
-    authenticate("user_session") {
+    authenticate(Authentications.User) {
         get("/me") {
             mePageService.respondPage(call, mePage)
         }

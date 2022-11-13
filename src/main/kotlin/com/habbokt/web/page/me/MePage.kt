@@ -11,7 +11,7 @@ import io.ktor.server.sessions.CurrentSession
 class MePage(
     private val site: Site
 ) : Page {
-    override fun templateName(): String  = "me.tpl"
+    override fun templateName(): String = "me.tpl"
 
     override fun context(sessions: CurrentSession, parameters: Parameters): Map<String, Any?> = emptyMap()
 }

@@ -1,14 +1,14 @@
 package com.habbokt.web.page.register
 
 import com.habbokt.web.inject
+import com.habbokt.web.plugin.authentication.Authentications
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
+import io.ktor.server.auth.authenticate
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
-import io.ktor.server.sessions.get
-import io.ktor.server.sessions.set
 
 /**
  * @author Jordan Abraham
@@ -31,8 +31,10 @@ private fun Route.getRegisterPage() {
 }
 
 private fun Route.postRegisterPage() {
-    post("/register") {
-        registerPageService.respondRegistration(call)
+    authenticate(Authentications.Captcha) {
+        post("/register") {
+            registerPageService.respondRegistration(call)
+        }
     }
 }
 
