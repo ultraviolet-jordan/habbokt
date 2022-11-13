@@ -20,6 +20,7 @@ dependencies {
     implementation(deps.pebble)
     implementation(deps.slf4j.simple)
     implementation(deps.simplecaptcha)
+    implementation(deps.argon2)
 }
 
 java {

@@ -30,7 +30,7 @@ class RegisterPage(
         val session = sessions.get<RegistrationSession>()
         if (session != null) {
             it["registerUsername"] = session.username
-            it["registerShowPassword"] = session.password.replace(Regex("(?s)."), "*")
+            it["registerShowPassword"] = "Hidden"
             it["registerEmail"] = session.email
             it["registerDay"] = session.birthDay
             it["registerMonth"] = session.birthMonth

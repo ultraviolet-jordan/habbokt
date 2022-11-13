@@ -2,10 +2,12 @@ package com.habbokt.web.page.register
 
 import com.habbokt.web.common.htmlHeaders
 import com.habbokt.web.compiler.Compiler
+import com.habbokt.web.inject
 import com.habbokt.web.page.PageService
 import com.habbokt.web.session.CaptchaSession
 import com.habbokt.web.session.RegistrationSession
 import com.habbokt.web.session.UserSession
+import de.mkammerer.argon2.Argon2
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.request.receiveParameters
@@ -19,6 +21,8 @@ import io.ktor.server.sessions.set
 /**
  * @author Jordan Abraham
  */
+private val argon2 by inject<Argon2>()
+
 class RegisterPageService(
     private val compiler: Compiler
 ) : PageService<RegisterPage> {
@@ -43,7 +47,7 @@ class RegisterPageService(
         val parameters = call.receiveParameters()
         val username = registrationSession?.username ?: parameters["bean.avatarName"]
         val captchaResponse = parameters["bean.captchaResponse"] // There is always a new captcha response when posting to registration.
-        val password = registrationSession?.password ?: parameters["retypedPassword"]
+        val password = argon2.hash(12, 65536, 1, registrationSession?.password?.toByteArray() ?: parameters["retypedPassword"]?.toByteArray())
         val email = registrationSession?.email ?: parameters["bean.email"]
         val birthDay = registrationSession?.birthDay ?: parameters["bean.day"]
         val birthMonth = registrationSession?.birthMonth ?: parameters["bean.month"]
