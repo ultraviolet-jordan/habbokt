@@ -1,5 +1,6 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+    application
     alias(deps.plugins.jvm)
     alias(deps.plugins.versions)
     alias(deps.plugins.ktlint)
@@ -24,4 +25,8 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
+}
+
+application {
+    mainClass.set("com.habbokt.web.ApplicationKt")
 }
