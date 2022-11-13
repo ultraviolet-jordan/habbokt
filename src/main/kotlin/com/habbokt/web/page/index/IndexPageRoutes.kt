@@ -10,8 +10,8 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
-val indexPage by inject<IndexPage>()
-val indexPageService by inject<IndexPageService>()
+private val indexPage by inject<IndexPage>()
+private val indexPageService by inject<IndexPageService>()
 
 fun Application.installIndexPageRoutes() {
     routing {
