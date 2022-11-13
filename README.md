@@ -18,6 +18,7 @@ _Since Auto-reload detects changes in output files, you need to rebuild a projec
   ```
 
 # Starting the Web-Server
+_Running the auto-reload task and the web-server task in Gradle simultaneously is very powerful for development._
 
 - To start the web server using Gradle, you can run the run task in a terminal:
   ```shell
