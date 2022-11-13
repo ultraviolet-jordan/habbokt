@@ -1,4 +1,4 @@
-package com.habbokt.web.page.asset
+package com.habbokt.web.plugin.koin.asset
 
 import io.ktor.server.application.Application
 import io.ktor.server.http.content.files

@@ -1,6 +1,8 @@
-package com.habbokt.web.page.index
+package com.habbokt.web.plugin.koin.index
 
 import com.habbokt.web.inject
+import com.habbokt.web.page.index.IndexPage
+import com.habbokt.web.page.index.IndexPageService
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.routing.Route

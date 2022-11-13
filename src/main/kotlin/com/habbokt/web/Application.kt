@@ -1,18 +1,18 @@
 package com.habbokt.web
 
-import com.habbokt.web.page.asset.installAssetsRoutes
-import com.habbokt.web.page.captcha.installCaptchaRoutes
-import com.habbokt.web.page.error.installErrorPageRoutes
-import com.habbokt.web.page.habblet.installHabbletRoutes
-import com.habbokt.web.page.index.installIndexPageRoutes
-import com.habbokt.web.page.me.installMePageRoutes
-import com.habbokt.web.page.register.installRegisterPageRoutes
-import com.habbokt.web.page.welcome.installWelcomePageRoutes
 import com.habbokt.web.plugin.installAuthenticationPlugin
 import com.habbokt.web.plugin.installCallLoggingPlugin
 import com.habbokt.web.plugin.installKoinPlugin
 import com.habbokt.web.plugin.installSessionsPlugin
 import com.habbokt.web.plugin.installStatusPagesPlugin
+import com.habbokt.web.plugin.koin.asset.installAssetsRoutes
+import com.habbokt.web.plugin.koin.captcha.installCaptchaRoutes
+import com.habbokt.web.plugin.koin.error.installErrorPageRoutes
+import com.habbokt.web.plugin.koin.habblet.installHabbletRoutes
+import com.habbokt.web.plugin.koin.index.installIndexPageRoutes
+import com.habbokt.web.plugin.koin.me.installMePageRoutes
+import com.habbokt.web.plugin.koin.register.installRegisterPageRoutes
+import com.habbokt.web.plugin.koin.welcome.installWelcomePageRoutes
 import io.ktor.server.application.Application
 import io.ktor.server.netty.EngineMain
 import org.koin.mp.KoinPlatformTools

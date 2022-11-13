@@ -1,7 +1,9 @@
-package com.habbokt.web.page.error
+package com.habbokt.web.plugin.koin.error
 
 import com.habbokt.web.compiler.Compiler
 import com.habbokt.web.model.Site
+import com.habbokt.web.page.error.ErrorPage
+import com.habbokt.web.page.error.ErrorPageService
 import org.koin.dsl.module
 
 /**

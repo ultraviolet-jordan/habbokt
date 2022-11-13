@@ -1,5 +1,7 @@
-package com.habbokt.web.compiler
+package com.habbokt.web.plugin.koin.compiler
 
+import com.habbokt.web.compiler.Compiler
+import com.habbokt.web.compiler.PresentExtension
 import com.mitchellbosecke.pebble.PebbleEngine
 import org.koin.dsl.module
 import java.io.File

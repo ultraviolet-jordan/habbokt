@@ -1,7 +1,9 @@
-package com.habbokt.web.page.register
+package com.habbokt.web.plugin.koin.register
 
 import com.habbokt.web.inject
-import com.habbokt.web.plugin.authentication.Authentications
+import com.habbokt.web.page.register.RegisterPage
+import com.habbokt.web.page.register.RegisterPageService
+import com.habbokt.web.plugin.Authentications
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.auth.authenticate

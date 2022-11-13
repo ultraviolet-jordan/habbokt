@@ -1,14 +1,14 @@
 package com.habbokt.web.plugin
 
-import com.habbokt.web.compiler.compilerModule
 import com.habbokt.web.model.Site
-import com.habbokt.web.page.captcha.captchaModule
-import com.habbokt.web.page.error.errorPageModule
-import com.habbokt.web.page.habblet.habbletModule
-import com.habbokt.web.page.index.indexPageModule
-import com.habbokt.web.page.me.mePageModule
-import com.habbokt.web.page.register.registerPageModule
-import com.habbokt.web.page.welcome.welcomePageModule
+import com.habbokt.web.plugin.koin.captcha.captchaModule
+import com.habbokt.web.plugin.koin.compiler.compilerModule
+import com.habbokt.web.plugin.koin.error.errorPageModule
+import com.habbokt.web.plugin.koin.habblet.habbletModule
+import com.habbokt.web.plugin.koin.index.indexPageModule
+import com.habbokt.web.plugin.koin.me.mePageModule
+import com.habbokt.web.plugin.koin.register.registerPageModule
+import com.habbokt.web.plugin.koin.welcome.welcomePageModule
 import de.mkammerer.argon2.Argon2Factory
 import io.ktor.server.application.Application
 import io.ktor.server.application.install

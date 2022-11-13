@@ -1,6 +1,6 @@
-package com.habbokt.web.page.habblet
+package com.habbokt.web.plugin.koin.habblet
 
-import com.habbokt.web.page.habblet.ajax.namecheck.installHabbletNameCheckAjaxRoute
+import com.habbokt.web.plugin.koin.habblet.ajax.namecheck.installHabbletNameCheckAjaxRoute
 import io.ktor.server.application.Application
 
 /**

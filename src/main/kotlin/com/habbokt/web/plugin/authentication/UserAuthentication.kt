@@ -1,5 +1,6 @@
 package com.habbokt.web.plugin.authentication
 
+import com.habbokt.web.plugin.Authentications
 import com.habbokt.web.session.UserSession
 import io.ktor.server.auth.AuthenticationConfig
 import io.ktor.server.auth.session

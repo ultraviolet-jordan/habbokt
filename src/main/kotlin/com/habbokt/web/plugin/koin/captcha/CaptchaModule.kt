@@ -1,5 +1,6 @@
-package com.habbokt.web.page.captcha
+package com.habbokt.web.plugin.koin.captcha
 
+import com.habbokt.web.page.captcha.CaptchaService
 import org.koin.dsl.module
 
 /**

@@ -15,3 +15,11 @@ fun Application.installAuthenticationPlugin() {
         installUserAuthentication()
     }
 }
+
+sealed class Authentications {
+    companion object {
+        const val Captcha = "captcha_session"
+        const val Registration = "registration_session"
+        const val User = "user_session"
+    }
+}

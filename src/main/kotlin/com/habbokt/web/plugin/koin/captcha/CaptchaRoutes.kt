@@ -1,6 +1,7 @@
-package com.habbokt.web.page.captcha
+package com.habbokt.web.plugin.koin.captcha
 
 import com.habbokt.web.inject
+import com.habbokt.web.page.captcha.CaptchaService
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.routing.Route
