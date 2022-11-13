@@ -8,8 +8,10 @@ import com.habbokt.web.page.habblet.habbletModule
 import com.habbokt.web.page.index.indexPageModule
 import com.habbokt.web.page.register.registerPageModule
 import com.habbokt.web.page.welcome.welcomePageModule
+import de.mkammerer.argon2.Argon2Factory
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
+import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 
 /**
@@ -33,7 +35,11 @@ fun Application.installKoinPlugin() {
             // Habblet
             habbletModule(),
             // Captcha
-            captchaModule()
+            captchaModule(),
+
+            module(createdAtStart = true) {
+                single { Argon2Factory.create() }
+            }
         )
     }
 }
