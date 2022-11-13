@@ -11,6 +11,7 @@ import io.ktor.server.application.call
 import io.ktor.server.request.receiveParameters
 import io.ktor.server.response.respond
 import io.ktor.server.response.respondRedirect
+import io.ktor.server.sessions.clear
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import io.ktor.server.sessions.set
@@ -22,7 +23,16 @@ class RegisterPageService(
     private val compiler: Compiler
 ) : PageService<RegisterPage> {
     override suspend fun respondPage(call: ApplicationCall, page: RegisterPage) {
-        val html = page.html(call.sessions, call.request.queryParameters, compiler)
+        val sessions = call.sessions
+        // Remove these sessions when this page loads since new ones will be created again.
+        if (sessions.get<CaptchaSession>() != null) {
+            sessions.clear<CaptchaSession>()
+        }
+        if (sessions.get<RegistrationSession>() != null) {
+            sessions.clear<RegistrationSession>()
+        }
+
+        val html = page.html(sessions, call.request.queryParameters, compiler)
         call.apply {
             htmlHeaders(html.length)
         }.respond(HttpStatusCode.OK, html)
