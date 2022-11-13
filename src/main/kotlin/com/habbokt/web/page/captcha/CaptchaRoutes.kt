@@ -22,7 +22,7 @@ fun Application.installCaptchaRoutes() {
 private fun Route.getCaptcha(path: String) {
     get(path) {
         val captchaService by inject<CaptchaService>()
-        val captcha = captchaService.getCaptchaResponse()
+        val captcha = captchaService.getCaptchaResponse(call)
 
         call.apply {
             pngHeader(captcha.size)

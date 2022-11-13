@@ -8,6 +8,7 @@ import com.habbokt.web.page.index.installIndexPageRoutes
 import com.habbokt.web.page.register.installRegisterPageRoutes
 import com.habbokt.web.plugin.installCallLoggingPlugin
 import com.habbokt.web.plugin.installKoinPlugin
+import com.habbokt.web.plugin.installSessionsPlugin
 import com.habbokt.web.plugin.installStatusPagesPlugin
 import io.ktor.server.application.Application
 import io.ktor.server.netty.EngineMain
@@ -23,6 +24,7 @@ fun Application.module() {
     installKoinPlugin()
     installStatusPagesPlugin()
     installCallLoggingPlugin()
+    installSessionsPlugin()
 
     // Install web-server routes.
     installAssetsRoutes()

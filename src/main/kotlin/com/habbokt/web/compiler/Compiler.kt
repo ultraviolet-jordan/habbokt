@@ -16,7 +16,7 @@ class Compiler(
             engine.getTemplate(templateName).evaluate(writer, context)
         } catch (exception: PebbleException) {
             // Redirect to status pages.
-            throw RuntimeException("PebbleEngine threw an exception when evaluating the template: $templateName.", exception.cause)
+            throw RuntimeException("PebbleEngine threw a PebbleException when evaluating the template: $templateName.", exception.cause)
         }
     }
 }

@@ -20,6 +20,8 @@ dependencyResolutionManagement {
             library("ktor-server-netty", "io.ktor", "ktor-server-netty").versionRef("ktor")
             library("ktor-server-status-pages", "io.ktor", "ktor-server-status-pages").versionRef("ktor")
             library("ktor-server-call-logging", "io.ktor", "ktor-server-call-logging").versionRef("ktor")
+            library("ktor-server-sessions", "io.ktor", "ktor-server-sessions").versionRef("ktor")
+            library("ktor-server-auth", "io.ktor", "ktor-server-auth").versionRef("ktor")
             library("koin-core", "io.insert-koin", "koin-core").versionRef("koin")
             library("koin-ktor", "io.insert-koin", "koin-ktor").versionRef("koin")
             library("pebble", "io.pebbletemplates", "pebble").versionRef("pebble")
@@ -27,7 +29,7 @@ dependencyResolutionManagement {
             library("simplecaptcha", "cn.apiclub.tool", "simplecaptcha").versionRef("simplecaptcha")
 
             // Dependency bundles
-            bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging"))
+            bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging", "ktor-server-sessions", "ktor-server-auth"))
             bundle("koin", listOf("koin-core", "koin-ktor"))
 
             // Dependency plugins
