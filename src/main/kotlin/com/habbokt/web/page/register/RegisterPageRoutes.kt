@@ -43,9 +43,6 @@ private fun Route.postRegisterPage() {
 
 private fun Route.getCancelRegister() {
     get("/register/cancel") {
-        val sessions = call.sessions
-        sessions.clear<CaptchaSession>()
-        sessions.clear<RegistrationSession>()
-        call.respondRedirect("/") // Homepage
+        registerPageService.respondCancelRegistration(call)
     }
 }
