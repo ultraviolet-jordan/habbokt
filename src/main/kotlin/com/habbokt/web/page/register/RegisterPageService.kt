@@ -1,6 +1,6 @@
 package com.habbokt.web.page.register
 
-import com.habbokt.web.common.htmlHeaders
+import com.habbokt.web.common.htmlHeader
 import com.habbokt.web.compiler.Compiler
 import com.habbokt.web.inject
 import com.habbokt.web.page.PageService
@@ -29,7 +29,7 @@ class RegisterPageService(
     override suspend fun respondPage(call: ApplicationCall, page: RegisterPage) {
         val html = page.html(call.sessions, call.request.queryParameters, compiler)
         call.apply {
-            htmlHeaders(html.length)
+            htmlHeader(html.length)
         }.respond(HttpStatusCode.OK, html)
     }
 

@@ -1,6 +1,6 @@
 package com.habbokt.web.page.habblet.ajax.namecheck
 
-import com.habbokt.web.common.htmlHeaders
+import com.habbokt.web.common.htmlHeader
 import com.habbokt.web.common.xjsonHeader
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
@@ -20,7 +20,7 @@ class NameCheckAjaxService {
                     {"registration_name":"${response.string}"}
                 """.trimIndent()
             )
-            htmlHeaders(0)
+            htmlHeader(0)
         }.respond(HttpStatusCode.OK)
     }
 

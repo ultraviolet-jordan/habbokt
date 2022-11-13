@@ -1,6 +1,6 @@
 package com.habbokt.web.page.index
 
-import com.habbokt.web.common.htmlHeaders
+import com.habbokt.web.common.htmlHeader
 import com.habbokt.web.compiler.Compiler
 import com.habbokt.web.page.PageService
 import com.habbokt.web.session.UserSession
@@ -29,7 +29,7 @@ class IndexPageService(
 
         val html = page.html(sessions, call.request.queryParameters, compiler)
         call.apply {
-            htmlHeaders(html.length)
+            htmlHeader(html.length)
         }.respond(HttpStatusCode.OK, html)
     }
 }
