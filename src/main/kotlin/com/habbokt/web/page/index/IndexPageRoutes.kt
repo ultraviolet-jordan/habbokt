@@ -12,13 +12,13 @@ import io.ktor.server.routing.routing
  */
 fun Application.installIndexPageRoutes() {
     routing {
-        indexPageRoute("/")
-        indexPageRoute("/index")
-        indexPageRoute("/home")
+        routeIndexPage("/")
+        routeIndexPage("/index")
+        routeIndexPage("/home")
     }
 }
 
-private fun Route.indexPageRoute(path: String) {
+private fun Route.routeIndexPage(path: String) {
     get(path) {
         val indexPage by inject<IndexPage>()
         val indexPageService by inject<IndexPageService>()
