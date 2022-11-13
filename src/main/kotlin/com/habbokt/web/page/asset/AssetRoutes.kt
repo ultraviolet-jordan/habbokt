@@ -13,11 +13,11 @@ import java.io.File
  */
 fun Application.installAssetsRoutes() {
     routing {
-        routeStaticAssets("/")
+        getStaticAssets("/")
     }
 }
 
-private fun Route.routeStaticAssets(path: String) {
+private fun Route.getStaticAssets(path: String) {
     static(path) {
         staticRootFolder = File(this::class.java.classLoader.getResource("www")!!.toURI())
         files(".")
