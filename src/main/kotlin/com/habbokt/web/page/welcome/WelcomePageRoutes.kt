@@ -11,8 +11,8 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
-val welcomePage by inject<WelcomePage>()
-val welcomePageService by inject<WelcomePageService>()
+private val welcomePage by inject<WelcomePage>()
+private val welcomePageService by inject<WelcomePageService>()
 
 fun Application.installWelcomePageRoutes() {
     routing {
