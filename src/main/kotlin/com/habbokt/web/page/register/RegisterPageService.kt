@@ -5,6 +5,7 @@ import com.habbokt.web.compiler.Compiler
 import com.habbokt.web.page.PageService
 import com.habbokt.web.session.CaptchaSession
 import com.habbokt.web.session.RegistrationSession
+import com.habbokt.web.session.UserSession
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.request.receiveParameters
@@ -22,7 +23,6 @@ class RegisterPageService(
     private val compiler: Compiler
 ) : PageService<RegisterPage> {
     override suspend fun respondPage(call: ApplicationCall, page: RegisterPage) {
-        call.removeRegisterSessions()
         val html = page.html(call.sessions, call.request.queryParameters, compiler)
         call.apply {
             htmlHeaders(html.length)
@@ -95,7 +95,22 @@ class RegisterPageService(
 
         call.application.environment.log.info("Registered! Username=$username, Password=$password, Email=$email, Appearance=$appearance, Gender=$gender")
 
-        // TODO Welcome page redirect.
+        call.removeRegisterSessions()
+        val sessions = call.sessions
+        if (sessions.get<UserSession>() != null) {
+            sessions.clear<UserSession>()
+        }
+
+        // Set a new authenticated user session.
+        sessions.set(
+            UserSession(
+                true,
+                username,
+                appearance,
+                gender
+            )
+        )
+        call.respondRedirect("/welcome")
     }
 
     suspend fun respondCancelRegistration(call: ApplicationCall) {

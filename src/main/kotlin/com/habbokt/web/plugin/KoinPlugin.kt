@@ -7,6 +7,7 @@ import com.habbokt.web.page.error.errorPageModule
 import com.habbokt.web.page.habblet.habbletModule
 import com.habbokt.web.page.index.indexPageModule
 import com.habbokt.web.page.register.registerPageModule
+import com.habbokt.web.page.welcome.welcomePageModule
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import org.koin.ktor.plugin.Koin
@@ -28,6 +29,7 @@ fun Application.installKoinPlugin() {
             indexPageModule(site),
             registerPageModule(site),
             errorPageModule(site),
+            welcomePageModule(site),
             // Habblet
             habbletModule(),
             // Captcha

@@ -6,6 +6,8 @@ import com.habbokt.web.page.error.installErrorPageRoutes
 import com.habbokt.web.page.habblet.installHabbletRoutes
 import com.habbokt.web.page.index.installIndexPageRoutes
 import com.habbokt.web.page.register.installRegisterPageRoutes
+import com.habbokt.web.page.welcome.installWelcomePageRoutes
+import com.habbokt.web.plugin.installAuthenticationPlugin
 import com.habbokt.web.plugin.installCallLoggingPlugin
 import com.habbokt.web.plugin.installKoinPlugin
 import com.habbokt.web.plugin.installSessionsPlugin
@@ -25,12 +27,14 @@ fun Application.module() {
     installStatusPagesPlugin()
     installCallLoggingPlugin()
     installSessionsPlugin()
+    installAuthenticationPlugin()
 
     // Install web-server routes.
     installAssetsRoutes()
     installIndexPageRoutes()
     installRegisterPageRoutes()
     installErrorPageRoutes()
+    installWelcomePageRoutes()
     installHabbletRoutes()
     installCaptchaRoutes()
 }
