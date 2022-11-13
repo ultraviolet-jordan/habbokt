@@ -6,6 +6,7 @@ import com.habbokt.web.page.captcha.captchaModule
 import com.habbokt.web.page.error.errorPageModule
 import com.habbokt.web.page.habblet.habbletModule
 import com.habbokt.web.page.index.indexPageModule
+import com.habbokt.web.page.me.mePageModule
 import com.habbokt.web.page.register.registerPageModule
 import com.habbokt.web.page.welcome.welcomePageModule
 import de.mkammerer.argon2.Argon2Factory
@@ -32,6 +33,7 @@ fun Application.installKoinPlugin() {
             registerPageModule(site),
             errorPageModule(site),
             welcomePageModule(site),
+            mePageModule(site),
             // Habblet
             habbletModule(),
             // Captcha

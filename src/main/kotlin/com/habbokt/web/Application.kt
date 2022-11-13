@@ -5,6 +5,7 @@ import com.habbokt.web.page.captcha.installCaptchaRoutes
 import com.habbokt.web.page.error.installErrorPageRoutes
 import com.habbokt.web.page.habblet.installHabbletRoutes
 import com.habbokt.web.page.index.installIndexPageRoutes
+import com.habbokt.web.page.me.installMePageRoutes
 import com.habbokt.web.page.register.installRegisterPageRoutes
 import com.habbokt.web.page.welcome.installWelcomePageRoutes
 import com.habbokt.web.plugin.installAuthenticationPlugin
@@ -35,6 +36,7 @@ fun Application.module() {
     installRegisterPageRoutes()
     installErrorPageRoutes()
     installWelcomePageRoutes()
+    installMePageRoutes()
     installHabbletRoutes()
     installCaptchaRoutes()
 }
