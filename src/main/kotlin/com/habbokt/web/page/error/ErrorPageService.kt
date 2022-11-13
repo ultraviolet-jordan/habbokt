@@ -1,5 +1,6 @@
 package com.habbokt.web.page.error
 
+import com.habbokt.web.common.htmlHeaders
 import com.habbokt.web.compiler.Compiler
 import com.habbokt.web.page.PageService
 import io.ktor.http.HttpStatusCode
@@ -14,7 +15,8 @@ class ErrorPageService(
 ) : PageService<ErrorPage> {
     override suspend fun respondPage(call: ApplicationCall, page: ErrorPage) {
         val html = page.html(call.request.queryParameters, compiler)
-        call.addHtmlHeaders(html.length)
-        call.respond(HttpStatusCode.OK, html)
+        call.apply {
+            htmlHeaders(html.length)
+        }.respond(HttpStatusCode.OK, html)
     }
 }

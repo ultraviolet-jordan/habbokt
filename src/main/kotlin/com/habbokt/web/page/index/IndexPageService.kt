@@ -1,5 +1,6 @@
 package com.habbokt.web.page.index
 
+import com.habbokt.web.common.htmlHeaders
 import com.habbokt.web.compiler.Compiler
 import com.habbokt.web.page.PageService
 import io.ktor.http.HttpStatusCode
@@ -14,7 +15,8 @@ class IndexPageService(
 ) : PageService<IndexPage> {
     override suspend fun respondPage(call: ApplicationCall, page: IndexPage) {
         val html = page.html(call.request.queryParameters, compiler)
-        call.addHtmlHeaders(html.length)
-        call.respond(HttpStatusCode.OK, html)
+        call.apply {
+            htmlHeaders(html.length)
+        }.respond(HttpStatusCode.OK, html)
     }
 }

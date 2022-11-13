@@ -3,6 +3,7 @@ package com.habbokt.web.plugin
 import com.habbokt.web.compiler.compilerModule
 import com.habbokt.web.model.Site
 import com.habbokt.web.page.error.errorPageModule
+import com.habbokt.web.page.habblet.habbletModule
 import com.habbokt.web.page.index.indexPageModule
 import com.habbokt.web.page.register.registerPageModule
 import io.ktor.server.application.Application
@@ -20,10 +21,14 @@ fun Application.installKoinPlugin() {
 
     install(Koin) {
         modules(
+            // Web-server
             compilerModule(),
+            // Pages
             indexPageModule(site),
             registerPageModule(site),
-            errorPageModule(site)
+            errorPageModule(site),
+            // Habblet
+            habbletModule()
         )
     }
 }

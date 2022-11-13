@@ -2,6 +2,7 @@ package com.habbokt.web
 
 import com.habbokt.web.page.asset.installAssetsRoutes
 import com.habbokt.web.page.error.installErrorPageRoutes
+import com.habbokt.web.page.habblet.installHabbletRoutes
 import com.habbokt.web.page.index.installIndexPageRoutes
 import com.habbokt.web.page.register.installRegisterPageRoutes
 import com.habbokt.web.plugin.installCallLoggingPlugin
@@ -27,6 +28,7 @@ fun Application.module() {
     installIndexPageRoutes()
     installRegisterPageRoutes()
     installErrorPageRoutes()
+    installHabbletRoutes()
 }
 
 inline fun <reified T : Any> inject(): Lazy<T> = KoinPlatformTools.defaultContext().get().inject(null, KoinPlatformTools.defaultLazyMode(), null)
