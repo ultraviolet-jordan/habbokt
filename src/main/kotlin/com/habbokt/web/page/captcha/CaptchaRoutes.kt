@@ -14,12 +14,12 @@ val captchaService by inject<CaptchaService>()
 
 fun Application.installCaptchaRoutes() {
     routing {
-        getCaptcha("/captcha.jpg")
+        getCaptcha()
     }
 }
 
-private fun Route.getCaptcha(path: String) {
-    get(path) {
+private fun Route.getCaptcha() {
+    get("/captcha.jpg") {
         captchaService.respondCaptcha(call)
     }
 }
