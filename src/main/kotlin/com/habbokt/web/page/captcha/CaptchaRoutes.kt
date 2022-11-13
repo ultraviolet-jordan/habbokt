@@ -10,7 +10,7 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
-val captchaService by inject<CaptchaService>()
+private val captchaService by inject<CaptchaService>()
 
 fun Application.installCaptchaRoutes() {
     routing {
