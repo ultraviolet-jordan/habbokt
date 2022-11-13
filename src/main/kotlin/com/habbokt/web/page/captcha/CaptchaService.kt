@@ -55,6 +55,6 @@ class CaptchaService {
         // Respond back with the captcha png.
         call.apply {
             pngHeader(bytes.size)
-        }.respond(HttpStatusCode.OK, captcha)
+        }.respond(HttpStatusCode.OK, bytes)
     }
 }
