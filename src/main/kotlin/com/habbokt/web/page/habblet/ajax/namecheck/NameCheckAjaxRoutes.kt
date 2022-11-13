@@ -16,12 +16,12 @@ import io.ktor.server.routing.routing
  */
 fun Application.installHabbletNameCheckAjaxRoute() {
     routing {
-        postNameCheck()
+        postNameCheck("/habblet/ajax/namecheck")
     }
 }
 
-private fun Route.postNameCheck() {
-    post("/habblet/ajax/namecheck") {
+private fun Route.postNameCheck(path: String) {
+    post(path) {
         val nameCheckAjaxService by inject<NameCheckAjaxService>()
         val response = nameCheckAjaxService.getNameCheckFormResponse(call)
 
