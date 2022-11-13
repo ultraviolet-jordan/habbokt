@@ -14,14 +14,11 @@ import com.habbokt.web.plugin.koin.me.installMePageRoutes
 import com.habbokt.web.plugin.koin.register.installRegisterPageRoutes
 import com.habbokt.web.plugin.koin.welcome.installWelcomePageRoutes
 import io.ktor.server.application.Application
-import io.ktor.server.netty.EngineMain
 import org.koin.mp.KoinPlatformTools
 
 /**
  * @author Jordan Abraham
  */
-fun main(args: Array<String>): Unit = EngineMain.main(args)
-
 fun Application.module() {
     // Install web-server plugins.
     installKoinPlugin()

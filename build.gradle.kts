@@ -30,5 +30,5 @@ java {
 }
 
 application {
-    mainClass.set("com.habbokt.web.ApplicationKt")
+    mainClass.set("io.ktor.server.netty.EngineMain")
 }
