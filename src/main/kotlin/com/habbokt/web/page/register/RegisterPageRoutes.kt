@@ -18,19 +18,19 @@ val registerPageService by inject<RegisterPageService>()
 
 fun Application.installRegisterPageRoutes() {
     routing {
-        getRegisterPage("/register")
-        postRegisterPage("/register")
+        getRegisterPage()
+        postRegisterPage()
     }
 }
 
-private fun Route.getRegisterPage(path: String) {
-    get(path) {
+private fun Route.getRegisterPage() {
+    get("/register") {
         registerPageService.respondPage(call, registerPage)
     }
 }
 
-private fun Route.postRegisterPage(path: String) {
-    post(path) {
+private fun Route.postRegisterPage() {
+    post("/register") {
         registerPageService.respondRegistration(call)
     }
 }
