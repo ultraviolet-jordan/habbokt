@@ -5,7 +5,6 @@ import com.mitchellbosecke.pebble.extension.Test
 import com.mitchellbosecke.pebble.template.EvaluationContext
 import com.mitchellbosecke.pebble.template.EvaluationContextImpl
 import com.mitchellbosecke.pebble.template.PebbleTemplate
-import java.util.Map
 
 /**
  * @author Jordan Abraham
@@ -18,5 +17,5 @@ class PresentExtension : AbstractExtension(), Test {
         return (context as EvaluationContextImpl).scopeChain.containsKey(input)
     }
 
-    override fun getTests(): MutableMap<String, Test> = Map.of("present", this)
+    override fun getTests(): MutableMap<String, Test> = mutableMapOf("present" to this)
 }
