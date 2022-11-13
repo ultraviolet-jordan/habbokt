@@ -10,7 +10,7 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
-val nameCheckAjaxService by inject<NameCheckAjaxService>()
+private val nameCheckAjaxService by inject<NameCheckAjaxService>()
 
 fun Application.installHabbletNameCheckAjaxRoute() {
     routing {
