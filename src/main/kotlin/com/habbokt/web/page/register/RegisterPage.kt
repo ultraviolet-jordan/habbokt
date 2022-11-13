@@ -30,12 +30,13 @@ class RegisterPage(
         val session = sessions.get<RegistrationSession>()
         if (session != null) {
             it["registerUsername"] = session.username
-            it["registerShowPassword"] = "Hidden"
+            it["registerShowPassword"] = "(Hidden)"
             it["registerEmail"] = session.email
             it["registerDay"] = session.birthDay
             it["registerMonth"] = session.birthMonth
             it["registerYear"] = session.birthYear
-            // TODO Fix the appearance and gender of the character from the session.
+            it["registerFigure"] = session.appearance
+            it["registerGender"] = session.gender
         }
     }
 }
