@@ -13,8 +13,8 @@ import io.ktor.server.sessions.set
 /**
  * @author Jordan Abraham
  */
-val registerPage by inject<RegisterPage>()
-val registerPageService by inject<RegisterPageService>()
+private val registerPage by inject<RegisterPage>()
+private val registerPageService by inject<RegisterPageService>()
 
 fun Application.installRegisterPageRoutes() {
     routing {
