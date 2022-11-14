@@ -1,4 +1,6 @@
-package com.habbokt.web.model
+package com.habbokt.web.dao.site
+
+import java.io.Serializable
 
 /**
  * @author Jordan Abraham
@@ -6,4 +8,4 @@ package com.habbokt.web.model
 data class Site(
     val siteName: String,
     val staticContentPath: String
-)
+) : Serializable

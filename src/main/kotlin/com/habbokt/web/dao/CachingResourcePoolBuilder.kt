@@ -1,4 +1,4 @@
-package com.habbokt.web.dao.persistence
+package com.habbokt.web.dao
 
 import org.ehcache.Cache
 import org.ehcache.config.builders.CacheConfigurationBuilder
@@ -16,7 +16,7 @@ import java.lang.Exception
 fun <T> stringKeyedCacheResourcePool(alias: String, type: Class<T>): Cache<String, T> = try {
     CacheManagerBuilder.newCacheManagerBuilder()
         // TODO Probably move this path out.
-        .with(CacheManagerPersistenceConfiguration(File("build/ehcache")))
+        .with(CacheManagerPersistenceConfiguration(File("build/ehcache/$alias")))
         .withCache(
             alias,
             CacheConfigurationBuilder.newCacheConfigurationBuilder(
@@ -37,7 +37,7 @@ fun <T> stringKeyedCacheResourcePool(alias: String, type: Class<T>): Cache<Strin
 fun <T> intKeyedCacheResourcePool(alias: String, type: Class<T>): Cache<Int, T> = try {
     CacheManagerBuilder.newCacheManagerBuilder()
         // TODO Probably move this path out.
-        .with(CacheManagerPersistenceConfiguration(File("build/ehcache")))
+        .with(CacheManagerPersistenceConfiguration(File("build/ehcache/$alias")))
         .withCache(
             alias,
             CacheConfigurationBuilder.newCacheConfigurationBuilder(

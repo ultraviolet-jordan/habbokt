@@ -1,7 +1,6 @@
 package com.habbokt.web.plugin
 
 import com.habbokt.web.dao.DatabaseFactory
-import com.habbokt.web.model.Site
 import com.habbokt.web.plugin.koin.captcha.captchaModule
 import com.habbokt.web.plugin.koin.compiler.compilerModule
 import com.habbokt.web.plugin.koin.error.errorPageModule
@@ -20,25 +19,21 @@ import org.koin.ktor.plugin.Koin
  * @author Jordan Abraham
  */
 fun Application.installKoinPlugin() {
-    val site = Site(
-        siteName = "Habbo Hotel",
-        staticContentPath = "http://localhost"
-    )
-
     install(Koin) {
         modules(
             module(createdAtStart = true) {
                 single { Argon2Factory.create() }
+                single { DatabaseFactory.createSiteDAO() }
                 single { DatabaseFactory.createPlayersDAO() }
             },
             // Web-server
             compilerModule(),
             // Pages
-            indexPageModule(site),
-            registerPageModule(site),
-            errorPageModule(site),
-            welcomePageModule(site),
-            mePageModule(site),
+            indexPageModule(),
+            registerPageModule(),
+            errorPageModule(),
+            welcomePageModule(),
+            mePageModule(),
             // Habblet
             habbletModule(),
             // Captcha

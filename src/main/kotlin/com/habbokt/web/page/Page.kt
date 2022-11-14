@@ -10,9 +10,9 @@ import java.io.StringWriter
  */
 interface Page {
     fun templateName(): String
-    fun context(sessions: CurrentSession, parameters: Parameters): Map<String, Any?>
+    suspend fun context(sessions: CurrentSession, parameters: Parameters): Map<String, Any?>
 
-    fun html(session: CurrentSession, queryParameters: Parameters, compiler: Compiler): String = StringWriter().apply {
+    suspend fun html(session: CurrentSession, queryParameters: Parameters, compiler: Compiler): String = StringWriter().apply {
         compiler.compile(this, templateName(), context(session, queryParameters))
     }.toString()
 }

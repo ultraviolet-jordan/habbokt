@@ -1,16 +1,20 @@
 package com.habbokt.web.dao
 
-import com.habbokt.web.dao.persistence.CachingAliases
-import com.habbokt.web.dao.persistence.stringKeyedCacheResourcePool
 import com.habbokt.web.dao.players.Player
-import com.habbokt.web.dao.players.Players
 import com.habbokt.web.dao.players.PlayersDAO
 import com.habbokt.web.dao.players.PlayersDAODelegate
 import com.habbokt.web.dao.players.PlayersDAOService
+import com.habbokt.web.dao.players.PlayersTable
+import com.habbokt.web.dao.site.Site
+import com.habbokt.web.dao.site.SiteDAO
+import com.habbokt.web.dao.site.SiteDAODelegate
+import com.habbokt.web.dao.site.SiteDAOService
+import com.habbokt.web.dao.site.SiteTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.config.ApplicationConfig
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import org.h2.tools.Console
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -44,7 +48,18 @@ object DatabaseFactory {
         transaction(database) {
             // Instruct the database to create tables if it doesn't yet exist.
             // H2 is in memory so this is unnecessary for now but will be needed.
-            SchemaUtils.create(Players)
+            SchemaUtils.create(PlayersTable)
+            SchemaUtils.create(SiteTable)
+        }
+    }
+
+    fun createSiteDAO(): SiteDAO = SiteDAOService(
+        delegate = SiteDAODelegate(),
+        cache = intKeyedCacheResourcePool(CachingAliases.SiteTableCache, Site::class.java)
+    ).apply {
+        runBlocking {
+            // TODO This is only for testing purposes for now.
+            createSite("Fuck You", "http://localhost")
         }
     }
 
