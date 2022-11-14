@@ -15,8 +15,8 @@ dependencyResolutionManagement {
             version("slf4j", "2.0.3")
             version("simplecaptcha", "1.2.2")
             version("argon2", "2.11")
-            version("exposed", "0.39.2")
-            version("h2database", "2.1.210")
+            version("exposed", "0.40.1")
+            version("h2database", "2.1.214")
             version("hikaricp", "5.0.1")
             version("ehcache", "3.10.3")
 

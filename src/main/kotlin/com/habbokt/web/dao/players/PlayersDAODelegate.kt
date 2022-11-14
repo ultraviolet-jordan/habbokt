@@ -2,6 +2,7 @@ package com.habbokt.web.dao.players
 
 import com.habbokt.web.dao.DatabaseFactory.query
 import org.jetbrains.exposed.sql.ResultRow
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
