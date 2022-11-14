@@ -27,11 +27,24 @@ private fun createSiteDAO(): SiteDAO = SiteDAOService(
 ).apply {
     runBlocking {
         // TODO This is only for testing purposes for now.
-        createSite("Habbo Hotel", "http://localhost")
+        createSite(
+            siteName = "Habbo Hotel",
+            staticContentPath = "http://localhost"
+        )
     }
 }
 
 private fun createPlayersDAO(): PlayersDAO = PlayersDAOService(
     delegate = PlayersDAODelegate(),
     cache = keyedCacheResourcePool(CachingAliases.PlayersTableCache, Player::class.java)
-)
+).apply {
+    runBlocking {
+        createPlayer(
+            username = "jordan",
+            password = "\$argon2i\$v=19\$m=65536,t=12,p=1\$hk7pQ0uj76PrcB9I+Jc4CQ\$P68lqFBz6xGKACjmdbIuPn0voRyX4shoeTdvNraSLYQ", // "password1"
+            email = "test@gmail.com",
+            appearance = "hr-540-38.hd-627-9.ch-645-74.lg-696-81.sh-725-74.ha-1004-1315.wa-2006-",
+            gender = "F"
+        )
+    }
+}

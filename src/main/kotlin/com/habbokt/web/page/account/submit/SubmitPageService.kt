@@ -1,13 +1,19 @@
 package com.habbokt.web.page.account.submit
 
+import com.habbokt.web.common.encrypt
 import com.habbokt.web.dao.players.PlayersDAO
 import com.habbokt.web.inject
 import com.habbokt.web.page.Page
 import com.habbokt.web.page.PageService
+import com.habbokt.web.session.UserSession
 import de.mkammerer.argon2.Argon2
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.request.receiveParameters
 import io.ktor.server.response.respondRedirect
+import io.ktor.server.sessions.clear
+import io.ktor.server.sessions.get
+import io.ktor.server.sessions.sessions
+import io.ktor.server.sessions.set
 
 /**
  * @author Jordan Abraham
@@ -46,6 +52,18 @@ object SubmitPageService : PageService {
             return
         }
 
+        val sessions = call.sessions
+        if (sessions.get<UserSession>() != null) {
+            sessions.clear<UserSession>()
+        }
+
+        // Set a new authenticated user session.
+        sessions.set(
+            UserSession(
+                authenticated = true,
+                id = player.id.toString().encrypt()
+            )
+        )
         call.respondRedirect("/security_check")
     }
 }
