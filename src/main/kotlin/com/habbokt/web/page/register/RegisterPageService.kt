@@ -1,6 +1,6 @@
 package com.habbokt.web.page.register
 
-import com.habbokt.web.common.Cipher
+import com.habbokt.web.common.encrypt
 import com.habbokt.web.dao.players.PlayersDAO
 import com.habbokt.web.inject
 import com.habbokt.web.page.PageService
@@ -22,7 +22,6 @@ import io.ktor.server.sessions.set
 object RegisterPageService : PageService {
     private val argon2 by inject<Argon2>()
     private val dao by inject<PlayersDAO>()
-    private val cipher by inject<Cipher>()
 
     suspend fun respondRegistration(call: ApplicationCall) {
         // User may or may not have a registration session depending on how many times they typed wrong captcha for example.
@@ -101,7 +100,7 @@ object RegisterPageService : PageService {
         sessions.set(
             UserSession(
                 authenticated = true,
-                id = cipher.encrypt(player.id.toString())
+                id = player.id.toString().encrypt()
             )
         )
         call.respondRedirect("/welcome")
