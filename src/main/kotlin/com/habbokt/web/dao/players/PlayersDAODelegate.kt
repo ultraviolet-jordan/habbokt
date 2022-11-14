@@ -7,10 +7,10 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.update
 
-class PlayersDAOService : PlayersDAO {
-    override suspend fun player(id: Int): Player? = query {
+class PlayersDAODelegate : PlayersDAO {
+    override suspend fun player(username: String): Player? = query {
         Players
-            .select { Players.id eq id }
+            .select { Players.username eq username }
             .map(::resultRowToPlayer)
             .singleOrNull()
     }
@@ -48,11 +48,18 @@ class PlayersDAOService : PlayersDAO {
         } > 0
     }
 
-    override suspend fun deletePlayer(id: Int): Boolean = query {
-        Players.deleteWhere { Players.id eq id } > 0
+    override suspend fun deletePlayer(username: String): Boolean = query {
+        Players.deleteWhere { Players.username eq username } > 0
     }
 
-    override suspend fun exists(id: Int): Boolean = player(id) != null
+    override suspend fun exists(username: String): Boolean = getId(username) != null
+    override suspend fun getId(username: String): Int? = query {
+        Players
+            .select { Players.username eq username }
+            .map(::resultRowToPlayer)
+            .singleOrNull()
+            ?.id
+    }
 
     private fun resultRowToPlayer(row: ResultRow) = Player(
         id = row[Players.id],

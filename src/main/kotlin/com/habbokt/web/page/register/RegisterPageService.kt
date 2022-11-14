@@ -2,6 +2,7 @@ package com.habbokt.web.page.register
 
 import com.habbokt.web.common.htmlHeader
 import com.habbokt.web.compiler.Compiler
+import com.habbokt.web.dao.players.PlayersDAO
 import com.habbokt.web.inject
 import com.habbokt.web.page.PageService
 import com.habbokt.web.session.CaptchaSession
@@ -22,6 +23,7 @@ import io.ktor.server.sessions.set
  * @author Jordan Abraham
  */
 private val argon2 by inject<Argon2>()
+private val dao by inject<PlayersDAO>()
 
 class RegisterPageService(
     private val compiler: Compiler
@@ -99,13 +101,20 @@ class RegisterPageService(
             sessions.clear<UserSession>()
         }
 
+        val player = dao.createPlayer(username, password, email, appearance, gender)
+        // If the new player was not added to the database.
+        if (player == null) {
+            call.respondRedirect("/register")
+            return
+        }
+
         // Set a new authenticated user session.
         sessions.set(
             UserSession(
-                true,
-                username,
-                appearance,
-                gender
+                authenticated = true,
+                username = player.username,
+                appearance = player.appearance,
+                gender = player.gender
             )
         )
         call.respondRedirect("/welcome")

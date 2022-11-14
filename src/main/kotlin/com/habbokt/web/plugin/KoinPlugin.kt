@@ -1,5 +1,6 @@
 package com.habbokt.web.plugin
 
+import com.habbokt.web.dao.DatabaseFactory
 import com.habbokt.web.model.Site
 import com.habbokt.web.plugin.koin.captcha.captchaModule
 import com.habbokt.web.plugin.koin.compiler.compilerModule
@@ -26,6 +27,10 @@ fun Application.installKoinPlugin() {
 
     install(Koin) {
         modules(
+            module(createdAtStart = true) {
+                single { Argon2Factory.create() }
+                single { DatabaseFactory.createPlayersDAO() }
+            },
             // Web-server
             compilerModule(),
             // Pages
@@ -38,10 +43,6 @@ fun Application.installKoinPlugin() {
             habbletModule(),
             // Captcha
             captchaModule(),
-
-            module(createdAtStart = true) {
-                single { Argon2Factory.create() }
-            }
         )
     }
 }

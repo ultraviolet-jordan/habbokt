@@ -2,6 +2,8 @@ package com.habbokt.web.page.habblet.ajax.namecheck
 
 import com.habbokt.web.common.htmlHeader
 import com.habbokt.web.common.xjsonHeader
+import com.habbokt.web.dao.players.PlayersDAO
+import com.habbokt.web.inject
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.request.receiveParameters
@@ -10,6 +12,8 @@ import io.ktor.server.response.respond
 /**
  * @author Jordan Abraham
  */
+private val dao by inject<PlayersDAO>()
+
 class NameCheckAjaxService {
     suspend fun respondNameCheck(call: ApplicationCall) {
         val response = checkUsernameIsValid(call.receiveParameters()["name"])
@@ -24,8 +28,9 @@ class NameCheckAjaxService {
         }.respond(HttpStatusCode.OK)
     }
 
-    private fun checkUsernameIsValid(username: String?): NameCheckStatus = when (username) {
-        null -> NameCheckStatus.Empty
+    private suspend fun checkUsernameIsValid(username: String?): NameCheckStatus = when {
+        username == null -> NameCheckStatus.Empty
+        dao.exists(username) -> NameCheckStatus.NameTaken // Check database for username.
         else -> NameCheckStatus.Successful
     }
 }

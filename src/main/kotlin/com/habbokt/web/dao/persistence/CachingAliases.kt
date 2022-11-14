@@ -1,4 +1,4 @@
-package com.habbokt.web.dao
+package com.habbokt.web.dao.persistence
 
 /**
  * @author Jordan Abraham

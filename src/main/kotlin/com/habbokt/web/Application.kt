@@ -1,5 +1,6 @@
 package com.habbokt.web
 
+import com.habbokt.web.dao.DatabaseFactory
 import com.habbokt.web.plugin.installAuthenticationPlugin
 import com.habbokt.web.plugin.installCallLoggingPlugin
 import com.habbokt.web.plugin.installKoinPlugin
@@ -20,6 +21,9 @@ import org.koin.mp.KoinPlatformTools
  * @author Jordan Abraham
  */
 fun Application.module() {
+    // Load DatabaseFactory.
+    DatabaseFactory.init(environment.config)
+
     // Install web-server plugins.
     installKoinPlugin()
     installStatusPagesPlugin()

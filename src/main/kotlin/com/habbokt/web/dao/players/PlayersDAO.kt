@@ -1,12 +1,10 @@
-package com.habbokt.web.dao
-
-import com.habbokt.web.dao.model.Player
+package com.habbokt.web.dao.players
 
 /**
  * @author Jordan Abraham
  */
-interface DAOFacade {
-    suspend fun player(id: Int): Player?
+interface PlayersDAO {
+    suspend fun player(username: String): Player?
 
     suspend fun createPlayer(
         username: String,
@@ -25,5 +23,9 @@ interface DAOFacade {
         gender: String
     ): Boolean
 
-    suspend fun deletePlayer(id: Int): Boolean
+    suspend fun deletePlayer(username: String): Boolean
+
+    suspend fun exists(username: String): Boolean
+
+    suspend fun getId(username: String): Int?
 }

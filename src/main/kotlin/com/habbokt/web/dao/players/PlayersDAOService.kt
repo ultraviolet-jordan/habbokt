@@ -1,19 +1,15 @@
 package com.habbokt.web.dao.players
 
-import com.habbokt.web.dao.persistence.CachingAliases
-import com.habbokt.web.dao.persistence.buildCacheManager
+import org.ehcache.Cache
 
 /**
  * @author Jordan Abraham
  */
-class PlayersDAOCacheService(
+class PlayersDAOService(
     private val delegate: PlayersDAO,
+    private val cache: Cache<String, Player>
 ) : PlayersDAO {
-    private val cache = buildCacheManager(
-        alias = CachingAliases.PlayersTableCache,
-        type = Player::class
-    ).getCache(CachingAliases.PlayersTableCache, Int::class.javaObjectType, Player::class.java)
-    override suspend fun player(id: Int): Player? = cache[id] ?: delegate.player(id).also { cache.put(id, it) }
+    override suspend fun player(username: String): Player? = cache[username] ?: delegate.player(username)?.also { cache.put(username, it) }
 
     override suspend fun createPlayer(
         username: String,
@@ -21,7 +17,7 @@ class PlayersDAOCacheService(
         email: String,
         appearance: String,
         gender: String
-    ): Player? = delegate.createPlayer(username, password, email, appearance, gender)?.also { cache.put(it.id, it) }
+    ): Player? = delegate.createPlayer(username, password, email, appearance, gender)?.also { cache.put(username, it) }
 
     override suspend fun editPlayer(
         id: Int,
@@ -31,14 +27,15 @@ class PlayersDAOCacheService(
         appearance: String,
         gender: String
     ): Boolean {
-        cache.put(id, Player(id, username, password, email, appearance, gender))
+        cache.put(username, Player(id, username, password, email, appearance, gender))
         return delegate.editPlayer(id, username, password, email, appearance, gender)
     }
 
-    override suspend fun deletePlayer(id: Int): Boolean {
-        cache.remove(id)
-        return delegate.deletePlayer(id)
+    override suspend fun deletePlayer(username: String): Boolean {
+        cache.remove(username)
+        return delegate.deletePlayer(username)
     }
 
-    override suspend fun exists(id: Int): Boolean = player(id) != null
+    override suspend fun exists(username: String): Boolean = getId(username) != null
+    override suspend fun getId(username: String): Int? = cache[username]?.id ?: delegate.getId(username)
 }

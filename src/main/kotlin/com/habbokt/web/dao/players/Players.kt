@@ -1,4 +1,4 @@
-package com.habbokt.web.dao.model
+package com.habbokt.web.dao.players
 
 import org.jetbrains.exposed.sql.Table
 import java.io.Serializable
@@ -6,15 +6,6 @@ import java.io.Serializable
 /**
  * @author Jordan Abraham
  */
-data class Player(
-    val id: Int,
-    val username: String,
-    val password: String,
-    val email: String,
-    val appearance: String,
-    val gender: String
-) : Serializable
-
 object Players : Table() {
     val id = integer("id").autoIncrement()
     val username = varchar("username", 50)
@@ -25,3 +16,12 @@ object Players : Table() {
 
     override val primaryKey = PrimaryKey(id)
 }
+
+data class Player(
+    val id: Int,
+    val username: String,
+    val password: String,
+    val email: String,
+    val appearance: String,
+    val gender: String
+) : Serializable
