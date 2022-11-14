@@ -6,6 +6,7 @@ import com.habbokt.web.plugin.installCallLoggingPlugin
 import com.habbokt.web.plugin.installKoinPlugin
 import com.habbokt.web.plugin.installSessionsPlugin
 import com.habbokt.web.plugin.installStatusPagesPlugin
+import com.habbokt.web.plugin.koin.account.installAccountPageRoutes
 import com.habbokt.web.plugin.koin.asset.installAssetsRoutes
 import com.habbokt.web.plugin.koin.captcha.installCaptchaRoutes
 import com.habbokt.web.plugin.koin.error.installErrorPageRoutes
@@ -40,6 +41,7 @@ fun Application.module() {
     installMePageRoutes()
     installHabbletRoutes()
     installCaptchaRoutes()
+    installAccountPageRoutes()
 }
 
 inline fun <reified T : Any> inject(): Lazy<T> = KoinPlatformTools.defaultContext().get().inject(null, KoinPlatformTools.defaultLazyMode(), null)
