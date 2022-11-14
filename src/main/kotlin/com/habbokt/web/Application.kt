@@ -9,6 +9,7 @@ import com.habbokt.web.plugin.installStatusPagesPlugin
 import com.habbokt.web.plugin.routes.account.installAccountPageRoutes
 import com.habbokt.web.plugin.routes.asset.installAssetsRoutes
 import com.habbokt.web.plugin.routes.captcha.installCaptchaRoutes
+import com.habbokt.web.plugin.routes.community.installCommunityRoutes
 import com.habbokt.web.plugin.routes.error.installErrorPageRoutes
 import com.habbokt.web.plugin.routes.habblet.installHabbletRoutes
 import com.habbokt.web.plugin.routes.index.installIndexPageRoutes
@@ -44,6 +45,7 @@ fun Application.module() {
     installCaptchaRoutes()
     installAccountPageRoutes()
     installPapersRoutes()
+    installCommunityRoutes()
 }
 
 inline fun <reified T : Any> inject(): Lazy<T> = KoinPlatformTools.defaultContext().get().inject(null, KoinPlatformTools.defaultLazyMode(), null)
