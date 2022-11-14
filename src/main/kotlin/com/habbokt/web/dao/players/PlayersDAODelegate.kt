@@ -9,9 +9,9 @@ import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.update
 
 class PlayersDAODelegate : PlayersDAO {
-    override suspend fun player(username: String): Player? = query {
+    override suspend fun player(id: Int): Player? = query {
         PlayersTable
-            .select { PlayersTable.username eq username }
+            .select { PlayersTable.id eq id }
             .map(::resultToPlayer)
             .singleOrNull()
     }
@@ -49,8 +49,8 @@ class PlayersDAODelegate : PlayersDAO {
         } > 0
     }
 
-    override suspend fun deletePlayer(username: String): Boolean = query {
-        PlayersTable.deleteWhere { PlayersTable.username eq username } > 0
+    override suspend fun deletePlayer(id: Int): Boolean = query {
+        PlayersTable.deleteWhere { PlayersTable.id eq id } > 0
     }
 
     override suspend fun exists(username: String): Boolean = getId(username) != null

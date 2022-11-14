@@ -1,7 +1,7 @@
 package com.habbokt.web.plugin.koin.dao
 
 import com.habbokt.web.dao.CachingAliases
-import com.habbokt.web.dao.intKeyedCacheResourcePool
+import com.habbokt.web.dao.keyedCacheResourcePool
 import com.habbokt.web.dao.players.Player
 import com.habbokt.web.dao.players.PlayersDAO
 import com.habbokt.web.dao.players.PlayersDAODelegate
@@ -10,7 +10,6 @@ import com.habbokt.web.dao.site.Site
 import com.habbokt.web.dao.site.SiteDAO
 import com.habbokt.web.dao.site.SiteDAODelegate
 import com.habbokt.web.dao.site.SiteDAOService
-import com.habbokt.web.dao.stringKeyedCacheResourcePool
 import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
 
@@ -24,7 +23,7 @@ fun daoModule() = module(createdAtStart = true) {
 
 private fun createSiteDAO(): SiteDAO = SiteDAOService(
     delegate = SiteDAODelegate(),
-    cache = intKeyedCacheResourcePool(CachingAliases.SiteTableCache, Site::class.java)
+    cache = keyedCacheResourcePool(CachingAliases.SiteTableCache, Site::class.java)
 ).apply {
     runBlocking {
         // TODO This is only for testing purposes for now.
@@ -34,5 +33,5 @@ private fun createSiteDAO(): SiteDAO = SiteDAOService(
 
 private fun createPlayersDAO(): PlayersDAO = PlayersDAOService(
     delegate = PlayersDAODelegate(),
-    cache = stringKeyedCacheResourcePool(CachingAliases.PlayersTableCache, Player::class.java)
+    cache = keyedCacheResourcePool(CachingAliases.PlayersTableCache, Player::class.java)
 )

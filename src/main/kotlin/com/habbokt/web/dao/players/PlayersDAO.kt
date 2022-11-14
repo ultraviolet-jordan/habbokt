@@ -4,7 +4,7 @@ package com.habbokt.web.dao.players
  * @author Jordan Abraham
  */
 interface PlayersDAO {
-    suspend fun player(username: String): Player?
+    suspend fun player(id: Int): Player?
 
     suspend fun createPlayer(
         username: String,
@@ -23,7 +23,7 @@ interface PlayersDAO {
         gender: String
     ): Boolean
 
-    suspend fun deletePlayer(username: String): Boolean
+    suspend fun deletePlayer(id: Int): Boolean
 
     suspend fun exists(username: String): Boolean
 

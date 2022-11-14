@@ -1,6 +1,7 @@
 package com.habbokt.web.plugin
 
 import com.habbokt.web.plugin.koin.argon2.argon2Module
+import com.habbokt.web.plugin.koin.cipher.cipherModule
 import com.habbokt.web.plugin.koin.compiler.compilerModule
 import com.habbokt.web.plugin.koin.dao.daoModule
 import io.ktor.server.application.Application
@@ -13,6 +14,9 @@ import org.koin.ktor.plugin.Koin
 fun Application.installKoinPlugin() {
     install(Koin) {
         modules(
+            // Encryption/Decryption
+            cipherModule(environment.config.property("cipher.secret").getString()),
+            // Argon2 Hashing
             argon2Module(),
             // Dao/Database
             daoModule(),

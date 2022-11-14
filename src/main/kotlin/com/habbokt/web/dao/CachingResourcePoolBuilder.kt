@@ -13,28 +13,7 @@ import java.lang.Exception
 /**
  * @author Jordan Abraham
  */
-fun <T> stringKeyedCacheResourcePool(alias: String, type: Class<T>): Cache<String, T> = try {
-    CacheManagerBuilder.newCacheManagerBuilder()
-        // TODO Probably move this path out.
-        .with(CacheManagerPersistenceConfiguration(File("build/ehcache/$alias")))
-        .withCache(
-            alias,
-            CacheConfigurationBuilder.newCacheConfigurationBuilder(
-                String::class.javaObjectType,
-                type,
-                ResourcePoolsBuilder.newResourcePoolsBuilder()
-                    .heap(1000, EntryUnit.ENTRIES)
-                    .offheap(10, MemoryUnit.MB)
-                    .disk(100, MemoryUnit.MB, true)
-            )
-        )
-        .build(true)
-        .getCache(alias, String::class.javaObjectType, type)
-} catch (exception: Exception) {
-    throw RuntimeException("CachingResourcePoolBuilder threw a RuntimeException when attempting to build a new cache pool configuration.")
-}
-
-fun <T> intKeyedCacheResourcePool(alias: String, type: Class<T>): Cache<Int, T> = try {
+fun <T> keyedCacheResourcePool(alias: String, type: Class<T>): Cache<Int, T> = try {
     CacheManagerBuilder.newCacheManagerBuilder()
         // TODO Probably move this path out.
         .with(CacheManagerPersistenceConfiguration(File("build/ehcache/$alias")))

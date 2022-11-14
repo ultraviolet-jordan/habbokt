@@ -7,7 +7,5 @@ import io.ktor.server.auth.Principal
  */
 data class UserSession(
     val authenticated: Boolean,
-    val username: String,
-    val appearance: String,
-    val gender: String
+    val id: String
 ) : Principal

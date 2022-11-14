@@ -7,9 +7,9 @@ import org.ehcache.Cache
  */
 class PlayersDAOService(
     private val delegate: PlayersDAO,
-    private val cache: Cache<String, Player>
+    private val cache: Cache<Int, Player>
 ) : PlayersDAO {
-    override suspend fun player(username: String): Player? = cache[username] ?: delegate.player(username)?.also { cache.put(username, it) }
+    override suspend fun player(id: Int): Player? = cache[id] ?: delegate.player(id)?.also { cache.put(id, it) }
 
     override suspend fun createPlayer(
         username: String,
@@ -17,7 +17,7 @@ class PlayersDAOService(
         email: String,
         appearance: String,
         gender: String
-    ): Player? = delegate.createPlayer(username, password, email, appearance, gender)?.also { cache.put(username, it) }
+    ): Player? = delegate.createPlayer(username, password, email, appearance, gender)?.also { cache.put(it.id, it) }
 
     override suspend fun editPlayer(
         id: Int,
@@ -27,15 +27,15 @@ class PlayersDAOService(
         appearance: String,
         gender: String
     ): Boolean {
-        cache.put(username, Player(id, username, password, email, appearance, gender))
+        cache.put(id, Player(id, username, password, email, appearance, gender))
         return delegate.editPlayer(id, username, password, email, appearance, gender)
     }
 
-    override suspend fun deletePlayer(username: String): Boolean {
-        cache.remove(username)
-        return delegate.deletePlayer(username)
+    override suspend fun deletePlayer(id: Int): Boolean {
+        cache.remove(id)
+        return delegate.deletePlayer(id)
     }
 
     override suspend fun exists(username: String): Boolean = getId(username) != null
-    override suspend fun getId(username: String): Int? = cache[username]?.id ?: delegate.getId(username)
+    override suspend fun getId(username: String): Int? = cache.firstOrNull { it.value.username == username }?.value?.id ?: delegate.getId(username)
 }
