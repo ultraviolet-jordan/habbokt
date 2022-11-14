@@ -1,6 +1,5 @@
 package com.habbokt.web.plugin.koin.error
 
-import com.habbokt.web.inject
 import com.habbokt.web.page.error.ErrorPage
 import com.habbokt.web.page.error.ErrorPageService
 import io.ktor.server.application.Application
@@ -12,9 +11,6 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
-private val errorPage by inject<ErrorPage>()
-private val errorPageService by inject<ErrorPageService>()
-
 fun Application.installErrorPageRoutes() {
     routing {
         getErrorPage()
@@ -23,6 +19,6 @@ fun Application.installErrorPageRoutes() {
 
 private fun Route.getErrorPage() {
     get("/client_error") {
-        errorPageService.respondPage(call, errorPage)
+        ErrorPageService.respondPage(call, ErrorPage)
     }
 }

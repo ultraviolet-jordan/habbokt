@@ -1,6 +1,5 @@
 package com.habbokt.web.plugin.koin.register
 
-import com.habbokt.web.inject
 import com.habbokt.web.page.register.RegisterPage
 import com.habbokt.web.page.register.RegisterPageService
 import com.habbokt.web.plugin.Authentications
@@ -15,9 +14,6 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
-private val registerPage by inject<RegisterPage>()
-private val registerPageService by inject<RegisterPageService>()
-
 fun Application.installRegisterPageRoutes() {
     routing {
         getRegisterPage()
@@ -28,20 +24,20 @@ fun Application.installRegisterPageRoutes() {
 
 private fun Route.getRegisterPage() {
     get("/register") {
-        registerPageService.respondPage(call, registerPage)
+        RegisterPageService.respondPage(call, RegisterPage)
     }
 }
 
 private fun Route.postRegisterPage() {
     authenticate(Authentications.Captcha) {
         post("/register") {
-            registerPageService.respondRegistration(call)
+            RegisterPageService.respondRegistration(call)
         }
     }
 }
 
 private fun Route.getCancelRegister() {
     get("/register/cancel") {
-        registerPageService.respondCancelRegistration(call)
+        RegisterPageService.respondCancelRegistration(call)
     }
 }

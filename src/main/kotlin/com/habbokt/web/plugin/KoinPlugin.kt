@@ -1,15 +1,8 @@
 package com.habbokt.web.plugin
 
 import com.habbokt.web.plugin.koin.argon2.argon2Module
-import com.habbokt.web.plugin.koin.captcha.captchaModule
 import com.habbokt.web.plugin.koin.compiler.compilerModule
 import com.habbokt.web.plugin.koin.dao.daoModule
-import com.habbokt.web.plugin.koin.error.errorPageModule
-import com.habbokt.web.plugin.koin.habblet.habbletModule
-import com.habbokt.web.plugin.koin.index.indexPageModule
-import com.habbokt.web.plugin.koin.me.mePageModule
-import com.habbokt.web.plugin.koin.register.registerPageModule
-import com.habbokt.web.plugin.koin.welcome.welcomePageModule
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import org.koin.ktor.plugin.Koin
@@ -25,16 +18,6 @@ fun Application.installKoinPlugin() {
             daoModule(),
             // Web-server
             compilerModule(),
-            // Pages
-            indexPageModule(),
-            registerPageModule(),
-            errorPageModule(),
-            welcomePageModule(),
-            mePageModule(),
-            // Habblet
-            habbletModule(),
-            // Captcha
-            captchaModule(),
         )
     }
 }

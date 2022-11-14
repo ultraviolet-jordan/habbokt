@@ -9,7 +9,7 @@ import io.ktor.server.sessions.CurrentSession
 /**
  * @author Jordan Abraham
  */
-class IndexPage : Page {
+object IndexPage : Page {
     private val dao by inject<SiteDAO>()
 
     override fun templateName(): String = "index.tpl"

@@ -7,7 +7,7 @@ import io.ktor.server.sessions.CurrentSession
 /**
  * @author Jordan Abraham
  */
-class MePage : Page {
+object MePage : Page {
     override fun templateName(): String = "me.tpl"
 
     override suspend fun context(sessions: CurrentSession, parameters: Parameters): Map<String, Any?> = emptyMap()

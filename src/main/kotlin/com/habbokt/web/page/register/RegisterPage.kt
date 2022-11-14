@@ -13,7 +13,7 @@ import kotlin.random.Random
 /**
  * @author Jordan Abraham
  */
-class RegisterPage : Page {
+object RegisterPage : Page {
     private val dao by inject<SiteDAO>()
 
     override fun templateName(): String = "register.tpl"

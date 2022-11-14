@@ -1,7 +1,5 @@
 package com.habbokt.web.page.register
 
-import com.habbokt.web.common.htmlHeader
-import com.habbokt.web.compiler.Compiler
 import com.habbokt.web.dao.players.PlayersDAO
 import com.habbokt.web.inject
 import com.habbokt.web.page.PageService
@@ -9,10 +7,8 @@ import com.habbokt.web.session.CaptchaSession
 import com.habbokt.web.session.RegistrationSession
 import com.habbokt.web.session.UserSession
 import de.mkammerer.argon2.Argon2
-import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.request.receiveParameters
-import io.ktor.server.response.respond
 import io.ktor.server.response.respondRedirect
 import io.ktor.server.sessions.clear
 import io.ktor.server.sessions.get
@@ -22,18 +18,9 @@ import io.ktor.server.sessions.set
 /**
  * @author Jordan Abraham
  */
-private val argon2 by inject<Argon2>()
-private val dao by inject<PlayersDAO>()
-
-class RegisterPageService(
-    private val compiler: Compiler
-) : PageService<RegisterPage> {
-    override suspend fun respondPage(call: ApplicationCall, page: RegisterPage) {
-        val html = page.html(call.sessions, call.request.queryParameters, compiler)
-        call.apply {
-            htmlHeader(html.length)
-        }.respond(HttpStatusCode.OK, html)
-    }
+object RegisterPageService : PageService {
+    private val argon2 by inject<Argon2>()
+    private val dao by inject<PlayersDAO>()
 
     suspend fun respondRegistration(call: ApplicationCall) {
         // User may or may not have a registration session depending on how many times they typed wrong captcha for example.

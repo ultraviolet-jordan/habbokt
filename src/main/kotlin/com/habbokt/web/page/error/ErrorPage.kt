@@ -9,7 +9,7 @@ import io.ktor.server.sessions.CurrentSession
 /**
  * @author Jordan Abraham
  */
-class ErrorPage : Page {
+object ErrorPage : Page {
     private val dao by inject<SiteDAO>()
 
     override fun templateName(): String = "client_error.tpl"

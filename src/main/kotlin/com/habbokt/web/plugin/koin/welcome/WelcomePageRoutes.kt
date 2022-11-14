@@ -14,7 +14,6 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
-private val welcomePage by inject<WelcomePage>()
 private val welcomePageService by inject<WelcomePageService>()
 
 fun Application.installWelcomePageRoutes() {
@@ -26,7 +25,7 @@ fun Application.installWelcomePageRoutes() {
 private fun Route.getWelcomePage() {
     authenticate(Authentications.User) {
         get("/welcome") {
-            welcomePageService.respondPage(call, welcomePage)
+            WelcomePageService.respondPage(call, WelcomePage)
         }
     }
 }

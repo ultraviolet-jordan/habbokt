@@ -12,9 +12,9 @@ import io.ktor.server.response.respond
 /**
  * @author Jordan Abraham
  */
-private val dao by inject<PlayersDAO>()
+object NameCheckAjaxService {
+    private val dao by inject<PlayersDAO>()
 
-class NameCheckAjaxService {
     suspend fun respondNameCheck(call: ApplicationCall) {
         val response = checkUsernameIsValid(call.receiveParameters()["name"])
         // Respond back with the xjson body of the name check.

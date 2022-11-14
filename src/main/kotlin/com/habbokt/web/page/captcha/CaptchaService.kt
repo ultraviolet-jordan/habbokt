@@ -19,7 +19,7 @@ import javax.imageio.ImageIO
 /**
  * @author Jordan Abraham
  */
-class CaptchaService {
+object CaptchaService {
     suspend fun respondCaptcha(call: ApplicationCall) {
         val colors = listOf(
             Color.BLACK
