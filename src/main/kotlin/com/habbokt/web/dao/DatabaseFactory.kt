@@ -1,20 +1,11 @@
 package com.habbokt.web.dao
 
-import com.habbokt.web.dao.players.Player
-import com.habbokt.web.dao.players.PlayersDAO
-import com.habbokt.web.dao.players.PlayersDAODelegate
-import com.habbokt.web.dao.players.PlayersDAOService
 import com.habbokt.web.dao.players.PlayersTable
-import com.habbokt.web.dao.site.Site
-import com.habbokt.web.dao.site.SiteDAO
-import com.habbokt.web.dao.site.SiteDAODelegate
-import com.habbokt.web.dao.site.SiteDAOService
 import com.habbokt.web.dao.site.SiteTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.config.ApplicationConfig
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 import org.h2.tools.Console
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -52,21 +43,6 @@ object DatabaseFactory {
             SchemaUtils.create(SiteTable)
         }
     }
-
-    fun createSiteDAO(): SiteDAO = SiteDAOService(
-        delegate = SiteDAODelegate(),
-        cache = intKeyedCacheResourcePool(CachingAliases.SiteTableCache, Site::class.java)
-    ).apply {
-        runBlocking {
-            // TODO This is only for testing purposes for now.
-            createSite("Fuck You", "http://localhost")
-        }
-    }
-
-    fun createPlayersDAO(): PlayersDAO = PlayersDAOService(
-        delegate = PlayersDAODelegate(),
-        cache = stringKeyedCacheResourcePool(CachingAliases.PlayersTableCache, Player::class.java)
-    )
 
     suspend fun <T> query(block: suspend () -> T): T =
         newSuspendedTransaction(Dispatchers.IO) { block() }
