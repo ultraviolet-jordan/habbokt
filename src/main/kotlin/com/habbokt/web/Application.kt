@@ -13,6 +13,7 @@ import com.habbokt.web.plugin.koin.error.installErrorPageRoutes
 import com.habbokt.web.plugin.koin.habblet.installHabbletRoutes
 import com.habbokt.web.plugin.koin.index.installIndexPageRoutes
 import com.habbokt.web.plugin.koin.me.installMePageRoutes
+import com.habbokt.web.plugin.koin.papers.installPapersRoutes
 import com.habbokt.web.plugin.koin.register.installRegisterPageRoutes
 import com.habbokt.web.plugin.koin.welcome.installWelcomePageRoutes
 import io.ktor.server.application.Application
@@ -42,6 +43,7 @@ fun Application.module() {
     installHabbletRoutes()
     installCaptchaRoutes()
     installAccountPageRoutes()
+    installPapersRoutes()
 }
 
 inline fun <reified T : Any> inject(): Lazy<T> = KoinPlatformTools.defaultContext().get().inject(null, KoinPlatformTools.defaultLazyMode(), null)
