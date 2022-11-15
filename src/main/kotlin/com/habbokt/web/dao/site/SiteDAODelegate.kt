@@ -19,26 +19,31 @@ class SiteDAODelegate : SiteDAO {
 
     override suspend fun createSite(
         siteName: String,
-        staticContentPath: String
+        staticContentPath: String,
+        serverOnline: Boolean
     ): Site? = query {
         SiteTable.insert {
             it[SiteTable.siteName] = siteName
             it[SiteTable.staticContentPath] = staticContentPath
+            it[SiteTable.serverOnline] = serverOnline
         }.resultedValues?.singleOrNull()?.let(::resultToSite)
     }
 
     override suspend fun editSite(
         siteName: String,
-        staticContentPath: String
+        staticContentPath: String,
+        serverOnline: Boolean
     ): Boolean = query {
         SiteTable.update({ SiteTable.id eq 1 }) {
             it[SiteTable.siteName] = siteName
             it[SiteTable.staticContentPath] = staticContentPath
+            it[SiteTable.serverOnline] = serverOnline
         } > 0
     }
 
     private fun resultToSite(row: ResultRow) = Site(
         siteName = row[SiteTable.siteName],
-        staticContentPath = row[SiteTable.staticContentPath]
+        staticContentPath = row[SiteTable.staticContentPath],
+        serverOnline = row[SiteTable.serverOnline]
     )
 }

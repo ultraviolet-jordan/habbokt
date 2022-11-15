@@ -13,14 +13,16 @@ class SiteDAOService(
 
     override suspend fun createSite(
         siteName: String,
-        staticContentPath: String
-    ): Site? = delegate.createSite(siteName, staticContentPath)?.also { cache.put(1, it) }
+        staticContentPath: String,
+        serverOnline: Boolean
+    ): Site? = delegate.createSite(siteName, staticContentPath, serverOnline)?.also { cache.put(1, it) }
 
     override suspend fun editSite(
         siteName: String,
-        staticContentPath: String
+        staticContentPath: String,
+        serverOnline: Boolean
     ): Boolean {
-        cache.put(1, Site(siteName, staticContentPath))
-        return delegate.editSite(siteName, staticContentPath)
+        cache.put(1, Site(siteName, staticContentPath, serverOnline))
+        return delegate.editSite(siteName, staticContentPath, serverOnline)
     }
 }

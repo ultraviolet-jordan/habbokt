@@ -8,11 +8,13 @@ interface SiteDAO {
 
     suspend fun createSite(
         siteName: String,
-        staticContentPath: String
+        staticContentPath: String,
+        serverOnline: Boolean
     ): Site?
 
     suspend fun editSite(
         siteName: String,
-        staticContentPath: String
+        staticContentPath: String,
+        serverOnline: Boolean
     ): Boolean
 }

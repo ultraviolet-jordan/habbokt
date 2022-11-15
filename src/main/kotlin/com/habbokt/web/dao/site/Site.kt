@@ -7,5 +7,6 @@ import java.io.Serializable
  */
 data class Site(
     val siteName: String,
-    val staticContentPath: String
+    val staticContentPath: String,
+    val serverOnline: Boolean
 ) : Serializable
