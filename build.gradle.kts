@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    application
     alias(deps.plugins.jvm)
     alias(deps.plugins.versions)
     alias(deps.plugins.ktlint)
@@ -9,27 +11,27 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
+allprojects {
+    plugins.withType<KotlinPluginWrapper> {
+        dependencies {
+            implementation(kotlin("stdlib"))
+            implementation(deps.bundles.database)
+        }
+    }
 
-dependencies {
-    implementation(kotlin("stdlib"))
-    implementation(deps.bundles.ktor)
-    implementation(deps.bundles.koin)
-    implementation(deps.bundles.database)
-    implementation(deps.pebble)
-    implementation(deps.slf4j.simple)
-    implementation(deps.simplecaptcha)
-    implementation(deps.argon2)
+    tasks.withType<Test> {
+        dependencies {
+            testImplementation(kotlin("test"))
+        }
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "17"
+    }
 }
 
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
-}
-
-application {
-    mainClass.set("io.ktor.server.netty.EngineMain")
 }

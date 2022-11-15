@@ -1,5 +1,8 @@
 /.idea/
 /build/
 /.gradle/
-/src/main/resources/www-tpl/default-en/
-/src/main/resources/www/
+
+/web/build/
+/dao/build/
+/web/src/main/resources/www/
+/web/src/main/resources/www-tpl/default-en/
