@@ -14,15 +14,25 @@ class SiteDAOService(
     override suspend fun createSite(
         siteName: String,
         staticContentPath: String,
-        serverOnline: Boolean
-    ): Site? = delegate.createSite(siteName, staticContentPath, serverOnline)?.also { cache.put(1, it) }
+        serverOnline: Boolean,
+        loaderGameIp: String,
+        loaderGamePort: String,
+        loaderDcr: String,
+        loaderVariables: String,
+        loaderTexts: String
+    ): Site? = delegate.createSite(siteName, staticContentPath, serverOnline, loaderGameIp, loaderGamePort, loaderDcr, loaderVariables, loaderTexts)?.also { cache.put(1, it) }
 
     override suspend fun editSite(
         siteName: String,
         staticContentPath: String,
-        serverOnline: Boolean
+        serverOnline: Boolean,
+        loaderGameIp: String,
+        loaderGamePort: String,
+        loaderDcr: String,
+        loaderVariables: String,
+        loaderTexts: String
     ): Boolean {
-        cache.put(1, Site(siteName, staticContentPath, serverOnline))
-        return delegate.editSite(siteName, staticContentPath, serverOnline)
+        cache.put(1, Site(siteName, staticContentPath, serverOnline, loaderGameIp, loaderGamePort, loaderDcr, loaderVariables, loaderTexts))
+        return delegate.editSite(siteName, staticContentPath, serverOnline, loaderGameIp, loaderGamePort, loaderDcr, loaderVariables, loaderTexts)
     }
 }

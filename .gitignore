@@ -4,5 +4,6 @@
 
 /web/build/
 /dao/build/
+/game/build/
 /web/src/main/resources/www/
 /web/src/main/resources/www-tpl/default-en/

@@ -30,7 +30,12 @@ private fun createSiteDAO(): SiteDAO = SiteDAOService(
         createSite(
             siteName = "Habbo Hotel",
             staticContentPath = "http://localhost",
-            serverOnline = true
+            serverOnline = true,
+            loaderGameIp = "127.0.0.1",
+            loaderGamePort = "43594",
+            loaderDcr = "http://localhost/dcr/v31/habbo.dcr?",
+            loaderVariables = "http://localhost/dcr/v31/gamedata/external_variables.txt?",
+            loaderTexts = "http://localhost/dcr/v31/gamedata/external_texts.txt?"
         )
     }
 }

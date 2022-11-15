@@ -9,12 +9,22 @@ interface SiteDAO {
     suspend fun createSite(
         siteName: String,
         staticContentPath: String,
-        serverOnline: Boolean
+        serverOnline: Boolean,
+        loaderGameIp: String,
+        loaderGamePort: String,
+        loaderDcr: String,
+        loaderVariables: String,
+        loaderTexts: String
     ): Site?
 
     suspend fun editSite(
         siteName: String,
         staticContentPath: String,
-        serverOnline: Boolean
+        serverOnline: Boolean,
+        loaderGameIp: String,
+        loaderGamePort: String,
+        loaderDcr: String,
+        loaderVariables: String,
+        loaderTexts: String
     ): Boolean
 }

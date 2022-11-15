@@ -60,4 +60,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(listOf("dao", "web"))
+include(listOf("dao", "game", "web"))

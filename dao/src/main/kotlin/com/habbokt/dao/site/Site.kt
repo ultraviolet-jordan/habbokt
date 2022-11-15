@@ -8,5 +8,10 @@ import java.io.Serializable
 data class Site(
     val siteName: String,
     val staticContentPath: String,
-    val serverOnline: Boolean
+    val serverOnline: Boolean,
+    val loaderGameIp: String,
+    val loaderGamePort: String,
+    val loaderDcr: String,
+    val loaderVariables: String,
+    val loaderTexts: String
 ) : Serializable
