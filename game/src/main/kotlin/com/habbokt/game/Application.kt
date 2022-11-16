@@ -6,7 +6,6 @@ import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
 import io.ktor.server.application.Application
 import io.ktor.server.application.log
-import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.core.ByteReadPacket
 import io.ktor.utils.io.core.readBytes
@@ -14,7 +13,6 @@ import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
 import java.util.concurrent.Executors
 import kotlin.math.abs
-import kotlin.math.pow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -85,7 +83,7 @@ suspend fun Application.InitDiffieHandshakeEvent(writeChannel: ByteWriteChannel)
     writeChannel.apply {
         // Start packet with ID 277
         writePacket(ByteReadPacket(base64Encode(277, 2)))
-        val random = randomNumber(32)
+        val random = uuid(32)
         log.info("Set Key = $random")
         // writeString
         writePacket(ByteReadPacket(random.toByteArray(StandardCharsets.UTF_8)))
@@ -104,7 +102,7 @@ suspend fun Application.CompleteDiffieHandshakeEvent(read: ByteReadPacket, write
         log.info("Key = $key")
         // Start packet with ID 277
         writePacket(ByteReadPacket(base64Encode(1, 2)))
-        val random = randomNumber(24)
+        val random = uuid(24)
         log.info("Set Key = $random")
         writePacket(ByteReadPacket(random.toByteArray(StandardCharsets.UTF_8)))
         // End  packet
@@ -112,26 +110,30 @@ suspend fun Application.CompleteDiffieHandshakeEvent(read: ByteReadPacket, write
     }.flush()
 }
 
-fun base64Encode(id: Int, size: Int): ByteArray {
-    val encodedArray = ByteArray(size)
-    for (index in 1..size) {
-        val k = (size - index) * 6
-        encodedArray[index - 1] = (0x40 + (id shr k and 0x3f)).toByte()
-    }
-    return encodedArray
-}
+fun base64Encode(value: Int, size: Int): ByteArray = ByteArray(size) { (((value shr 6 * (size - 1 - it)) and 0x3f) + 0x40).toByte() }
 
-fun base64Decode(encodedArray: ByteArray): Int {
-    var value = 0
-    for ((j, k) in encodedArray.indices.reversed().withIndex()) {
-        var x = encodedArray[k] - 0x40
-        if (j > 0) x *= 64.0.pow(j.toDouble()).toInt()
-        value += x
-    }
-    return value
-}
+//fun base64Encode(id: Int, size: Int): ByteArray {
+//    val encodedArray = ByteArray(size)
+//    for (index in 1..size) {
+//        val k = (size - index) * 6
+//        encodedArray[index - 1] = (0x40 + (id shr k and 0x3f)).toByte()
+//    }
+//    return encodedArray
+//}
 
-fun randomNumber(length: Int) = buildString {
+fun base64Decode(value: ByteArray): Int = value.fold(0) { sum, x -> sum + ((x - 0x40) shl 6 * (value.size - 1 - value.indexOf(x))) }
+
+//fun base64Decode(encodedArray: ByteArray): Int {
+//    var value = 0
+//    for ((j, k) in encodedArray.indices.reversed().withIndex()) {
+//        var x = encodedArray[k] - 0x40
+//        if (j > 0) x *= 64.0.pow(j.toDouble()).toInt()
+//        value += x
+//    }
+//    return value
+//}
+
+fun uuid(length: Int) = buildString {
     val numbers = charArrayOf('1', '2', '3', '4', '5', '6', '7', '8', '9', '0')
     repeat(length) {
         append(numbers[SecureRandom().nextInt(numbers.size)].toString())
@@ -141,23 +143,24 @@ fun randomNumber(length: Int) = buildString {
 fun vl64Encode(value: Int): ByteArray {
     val vlEncoded = ByteArray(6)
 
-    var byteCount = 1
+    var size = 1
     var absoluteValue = abs(value)
 
+    // Negative or not.
     vlEncoded[0] = (0x40 + (absoluteValue and 3)).also { if (value < 0) it or 4 else it or 0 }.toByte()
 
     absoluteValue = absoluteValue shr 2
 
     while (absoluteValue != 0) {
-        byteCount += 1
-        vlEncoded[byteCount] = ((0x40 + (absoluteValue and 0x3f)).toByte())
+        size += 1
+        vlEncoded[size] = ((0x40 + (absoluteValue and 0x3f)).toByte())
         absoluteValue = absoluteValue shr 6
     }
 
-    vlEncoded[0] = (vlEncoded[0].toInt() or byteCount shl 3).toByte()
+    vlEncoded[0] = (vlEncoded[0].toInt() or size shl 3).toByte()
 
-    return ByteArray(byteCount).apply {
-        System.arraycopy(vlEncoded, 0, this, 0, byteCount)
+    return ByteArray(size).apply {
+        System.arraycopy(vlEncoded, 0, this, 0, size)
     }
 
 //    val array = ByteArray(6)
@@ -178,3 +181,27 @@ fun vl64Encode(value: Int): ByteArray {
 //    System.arraycopy(array, 0, encoded, 0, numBytes)
 //    return encoded
 }
+
+fun vl64Decode(value: ByteArray): Int {
+    val first = value[0].toInt()
+    var result = first and 3
+    repeat(first shr 3 and 7) {
+        result = result or (value[it + 2].toInt() and 0x3) shl 2 + (it * 6)
+    }
+    return if (first and 4 == 4) result else -result
+}
+
+//fun vl64Decode(value: ByteArray): Int {
+//    val isNegative = value[0].toInt() and 4 == 4
+//    val size = value[0].toInt() shr 3 and 7
+//
+//    var result = value[0].toInt() and 3
+//    var shiftAmount = 2
+//
+//    for (b in 1..size) {
+//        result = result or (value[b + 1].toInt() and 0x3) shl shiftAmount
+//        shiftAmount += 6
+//    }
+//
+//    return if (isNegative) result else -result
+//}
