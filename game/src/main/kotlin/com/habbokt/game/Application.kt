@@ -11,6 +11,7 @@ import io.ktor.utils.io.core.ByteReadPacket
 import io.ktor.utils.io.core.readBytes
 import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
+import java.util.UUID
 import java.util.concurrent.Executors
 import kotlin.math.abs
 import kotlinx.coroutines.Dispatchers
@@ -70,6 +71,10 @@ fun Application.module() {
                             id == 206 && header == "CN" -> InitDiffieHandshakeEvent(writeChannel)
                             // Incoming CompleteDiffieHandshakeMessageComposer
                             id == 2002 && header == "_R" -> CompleteDiffieHandshakeEvent(buffer, writeChannel)
+                            // Incoming InfoRetrieveMessageComposer
+                            id == 1817 && header == "\\Y" -> InfoRetrieveMessageEvent(writeChannel)
+                            // Incoming SSOTicketMessageComposer
+                            id == 204 && header == "CL" -> SSOTicketMessageEvent(buffer, writeChannel)
                         }
                     }
                 }
@@ -90,7 +95,7 @@ suspend fun Application.InitDiffieHandshakeEvent(writeChannel: ByteWriteChannel)
         writeByte(2)
         // writeInt
         writePacket(ByteReadPacket(vl64Encode(0)))
-        // End  packet
+        // End packet
         writeByte(1)
     }.flush()
 }
@@ -100,12 +105,130 @@ suspend fun Application.CompleteDiffieHandshakeEvent(read: ByteReadPacket, write
     writeChannel.apply {
         val key = String(read.readBytes(base64Decode(ByteArray(2) { read.readByte() })), StandardCharsets.UTF_8)
         log.info("Key = $key")
-        // Start packet with ID 277
+        // Start packet with ID 1
         writePacket(ByteReadPacket(base64Encode(1, 2)))
         val random = uuid(24)
         log.info("Set Key = $random")
         writePacket(ByteReadPacket(random.toByteArray(StandardCharsets.UTF_8)))
-        // End  packet
+        // End packet
+        writeByte(1)
+    }.flush()
+}
+
+suspend fun Application.InfoRetrieveMessageEvent(writeChannel: ByteWriteChannel) {
+    log.info("InfoRetrieveMessageEvent")
+    writeChannel.apply {
+        // Start packet with ID 257
+        writePacket(ByteReadPacket(base64Encode(257, 2)))
+
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(9))) // Size
+
+        // Vouchers
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(1))) // Id
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(1))) // True
+
+        // Parent email address
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(2))) // Id
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(0))) // False
+
+        // Parent email address registered
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(3))) // Id
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(0))) // False
+
+        // Allow direct mail
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(4))) // Id
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(0))) // False
+
+        // Date format
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(5)))
+        // writeString
+        writePacket(ByteReadPacket("yyyy-MM-dd".toByteArray(StandardCharsets.UTF_8)))
+        writeByte(2)
+
+        // Partner integration
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(6)))
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(0))) // False
+
+        // Allow profile editing
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(7)))
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(1))) // True
+
+        // Tracking header
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(8)))
+        // writeString
+        writePacket(ByteReadPacket("".toByteArray(StandardCharsets.UTF_8)))
+        writeByte(2)
+
+        // Tutorial enabled
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(9)))
+        // writeInt
+        writePacket(ByteReadPacket(vl64Encode(0))) // False
+
+        // End packet
+        writeByte(1)
+    }.flush()
+}
+
+suspend fun Application.SSOTicketMessageEvent(read: ByteReadPacket, writeChannel: ByteWriteChannel) {
+    writeChannel.apply {
+        val key = String(read.readBytes(base64Decode(ByteArray(2) { read.readByte() })), StandardCharsets.UTF_8)
+        log.info("SSO = $key")
+
+        // UniqueMachineIDEvent
+        UniqueMachineIDEvent(writeChannel)
+        // UserRightsMessageEvent
+        UserRightsMessageEvent(writeChannel)
+        // AuthenticationOKMessageEvent
+        AuthenticationOKMessageEvent(writeChannel)
+    }.flush()
+}
+
+suspend fun Application.UniqueMachineIDEvent(writeChannel: ByteWriteChannel) {
+    log.info("UniqueMachineIDEvent")
+    writeChannel.apply {
+        // Start packet with ID 439
+        writePacket(ByteReadPacket(base64Encode(439, 2)))
+        val uniqueMachineId = "#${UUID.randomUUID().toString().uppercase().replace("-", "")}"
+        // writeString
+        writePacket(ByteReadPacket(uniqueMachineId.toByteArray(StandardCharsets.UTF_8)))
+        writeByte(2)
+        // End packet
+        writeByte(1)
+    }.flush()
+}
+
+suspend fun Application.UserRightsMessageEvent(writeChannel: ByteWriteChannel) {
+    log.info("UserRightsMessageEvent")
+    writeChannel.apply {
+        // Start packet with ID 2
+        writePacket(ByteReadPacket(base64Encode(2, 2)))
+        // End packet
+        writeByte(1)
+    }.flush()
+}
+
+suspend fun Application.AuthenticationOKMessageEvent(writeChannel: ByteWriteChannel) {
+    log.info("AuthenticationOKMessageEvent")
+    writeChannel.apply {
+        // Start packet with ID 3
+        writePacket(ByteReadPacket(base64Encode(3, 2)))
+        // End packet
         writeByte(1)
     }.flush()
 }
@@ -146,18 +269,17 @@ fun vl64Encode(value: Int): ByteArray {
     var size = 1
     var absoluteValue = abs(value)
 
-    // Negative or not.
-    vlEncoded[0] = (0x40 + (absoluteValue and 3)).also { if (value < 0) it or 4 else it or 0 }.toByte()
+    vlEncoded[0] = (64 + (absoluteValue and 3)).toByte()
 
     absoluteValue = absoluteValue shr 2
 
     while (absoluteValue != 0) {
-        size += 1
-        vlEncoded[size] = ((0x40 + (absoluteValue and 0x3f)).toByte())
+        size++
+        vlEncoded[size - 1] = (64 + (absoluteValue and 0x3f)).toByte()
         absoluteValue = absoluteValue shr 6
     }
 
-    vlEncoded[0] = (vlEncoded[0].toInt() or size shl 3).toByte()
+    vlEncoded[0] = (vlEncoded[0].toInt() or (size shl 3) or if (value >= 0) 0 else 4).toByte()
 
     return ByteArray(size).apply {
         System.arraycopy(vlEncoded, 0, this, 0, size)
