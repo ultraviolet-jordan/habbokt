@@ -7,10 +7,11 @@ import java.io.Serializable
  */
 data class Site(
     val siteName: String,
+    val sitePath: String,
     val staticContentPath: String,
     val serverOnline: Boolean,
     val loaderGameIp: String,
-    val loaderGamePort: String,
+    val loaderGamePort: Int,
     val loaderDcr: String,
     val loaderVariables: String,
     val loaderTexts: String

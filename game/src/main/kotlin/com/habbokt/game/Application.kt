@@ -1,5 +1,13 @@
 package com.habbokt.game
 
+import com.habbokt.game.buffer.base64
+import com.habbokt.game.buffer.getStringHabbo
+import com.habbokt.game.buffer.putIntHabbo
+import com.habbokt.game.buffer.putStringHabbo
+import com.habbokt.game.client.habbo.HabboClient
+import com.habbokt.game.packet.PacketFactory
+import com.habbokt.game.packet.handler.PacketHandler
+import com.habbokt.game.packet.handler.PacketHandlerListener
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.aSocket
 import io.ktor.network.sockets.openReadChannel
@@ -8,12 +16,10 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.log
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.core.ByteReadPacket
-import io.ktor.utils.io.core.readBytes
+import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
-import java.util.UUID
 import java.util.concurrent.Executors
-import kotlin.math.abs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -22,9 +28,11 @@ import kotlinx.coroutines.runBlocking
 /**
  * @author Jordan Abraham
  */
+private val dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
+private val selector = ActorSelectorManager(dispatcher)
+
 fun Application.module() {
-    val dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
-    val selector = ActorSelectorManager(dispatcher)
+    PacketFactory.init()
 
     val hostname = "127.0.0.1"
     val port = 43594
@@ -40,73 +48,98 @@ fun Application.module() {
         while (true) {
             val socket = server.accept()
 
-            // TODO
-            val readChannel = socket.openReadChannel()
-            val writeChannel = socket.openWriteChannel()
-
             launch(Dispatchers.IO) {
-                while (true) {
-                    val numBytes = readChannel.availableForRead
+                val client = HabboClient(
+                    readChannel = socket.openReadChannel(),
+                    writeChannel = socket.openWriteChannel()
+                )
 
-
-                    if (numBytes < 5) {
-                        continue
+                try {
+                    while (true) {
+                        val readPacket = client.awaitPacket() ?: continue
+                        val handler = PacketHandler(client, readPacket)
+                        PacketHandlerListener[handler.packet::class]?.invoke(handler)
                     }
-                    log.info("ReadChannel NumBytes=$numBytes")
-
-                    val size = base64Decode(ByteArray(3) { readChannel.readByte() })
-                    if (readChannel.availableForRead < size) {
-                        continue
-                    }
-
-                    if (size >= 0) {
-                        val buffer = readChannel.readPacket(size)
-                        val header = String(ByteArray(2) { buffer.readByte() })
-                        val id = base64Decode(header.toByteArray())
-
-                        log.info("Incoming: Header=$header, Id=$id, Size=$size")
-
-                        when {
-                            // Incoming InitDiffieHandshakeMessageComposer
-                            id == 206 && header == "CN" -> InitDiffieHandshakeEvent(writeChannel)
-                            // Incoming CompleteDiffieHandshakeMessageComposer
-                            id == 2002 && header == "_R" -> CompleteDiffieHandshakeEvent(buffer, writeChannel)
-                            // Incoming InfoRetrieveMessageComposer
-                            id == 1817 && header == "\\Y" -> InfoRetrieveMessageEvent(writeChannel)
-                            // Incoming SSOTicketMessageComposer
-                            id == 204 && header == "CL" -> SSOTicketMessageEvent(buffer, writeChannel)
-                        }
-                    }
+                } catch (exception: Exception) {
+                    log.error("Exception caught by connected client. Disconnecting...", exception)
+                    socket.close()
                 }
             }
+
+//            launch(Dispatchers.IO) {
+//                while (true) {
+//                    val numBytes = readChannel.availableForRead
+//
+//
+//                    if (numBytes < 5) {
+//                        continue
+//                    }
+//                    log.info("ReadChannel NumBytes=$numBytes")
+//
+//                    val size = ByteArray(3) { readChannel.readByte() }.base64()
+//                    if (readChannel.availableForRead < size) {
+//                        continue
+//                    }
+//
+//                    if (size >= 0) {
+//                        val buffer = ByteBuffer.wrap(readChannel.readPacket(size).readBytes())
+//                        val header = String(ByteArray(2) { buffer.get() })
+//                        val id = header.toByteArray().base64()
+//
+//                        log.info("Incoming: Header=$header, Id=$id, Size=$size")
+//
+//                        when {
+//                            // Incoming InitDiffieHandshakeMessageComposer
+//                            id == 206 && header == "CN" -> InitDiffieHandshakeEvent(writeChannel)
+//                            // Incoming CompleteDiffieHandshakeMessageComposer
+////                            id == 2002 && header == "_R" -> CompleteDiffieHandshakeEvent(buffer, writeChannel)
+////                            // Incoming InfoRetrieveMessageComposer
+////                            id == 1817 && header == "\\Y" -> InfoRetrieveMessageEvent(writeChannel)
+////                            // Incoming SSOTicketMessageComposer
+////                            id == 204 && header == "CL" -> SSOTicketMessageEvent(buffer, writeChannel)
+////                            // Incoming VersionCheckMessageComposer
+////                            id == 1170 && header == "RR" -> VersionCheckMessageComposer(buffer)
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 }
 
 suspend fun Application.InitDiffieHandshakeEvent(writeChannel: ByteWriteChannel) {
     log.info("InitDiffieHandshakeEvent")
-    writeChannel.apply {
-        // Start packet with ID 277
-        writePacket(ByteReadPacket(base64Encode(277, 2)))
+    writeChannel.writeFully(writePacket(277, 2) {
         val random = uuid(32)
         log.info("Set Key = $random")
-        // writeString
-        writePacket(ByteReadPacket(random.toByteArray(StandardCharsets.UTF_8)))
-        writeByte(2)
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(0)))
-        // End packet
-        writeByte(1)
-    }.flush()
+        ByteBuffer.allocate(random.length + 2).apply {
+            putStringHabbo(random)
+            putIntHabbo(0)
+        }
+    })
+
+//    writeChannel.apply {
+//        // Start packet with ID 277
+//        writePacket(ByteReadPacket(base64Encode(277, 2)))
+//        val random = uuid(32)
+//        log.info("Set Key = $random")
+//        // writeString
+//        writePacket(ByteReadPacket(random.toByteArray(StandardCharsets.UTF_8)))
+//        writeByte(2)
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(0)))
+//        // End packet
+//        writeByte(1)
+//    }.flush()
 }
 
-suspend fun Application.CompleteDiffieHandshakeEvent(read: ByteReadPacket, writeChannel: ByteWriteChannel) {
+suspend fun Application.CompleteDiffieHandshakeEvent(read: ByteBuffer, writeChannel: ByteWriteChannel) {
     log.info("CompleteDiffieHandshakeEvent")
     writeChannel.apply {
-        val key = String(read.readBytes(base64Decode(ByteArray(2) { read.readByte() })), StandardCharsets.UTF_8)
+        val key = read.getStringHabbo()
         log.info("Key = $key")
         // Start packet with ID 1
-        writePacket(ByteReadPacket(base64Encode(1, 2)))
+        writePacket(ByteReadPacket(1.base64(2)))
         val random = uuid(24)
         log.info("Set Key = $random")
         writePacket(ByteReadPacket(random.toByteArray(StandardCharsets.UTF_8)))
@@ -115,125 +148,168 @@ suspend fun Application.CompleteDiffieHandshakeEvent(read: ByteReadPacket, write
     }.flush()
 }
 
-suspend fun Application.InfoRetrieveMessageEvent(writeChannel: ByteWriteChannel) {
-    log.info("InfoRetrieveMessageEvent")
-    writeChannel.apply {
-        // Start packet with ID 257
-        writePacket(ByteReadPacket(base64Encode(257, 2)))
+//suspend fun Application.InfoRetrieveMessageEvent(writeChannel: ByteWriteChannel) {
+//    log.info("InfoRetrieveMessageEvent")
+//    writeChannel.apply {
+//        // Start packet with ID 257
+//        writePacket(ByteReadPacket(base64Encode(257, 2)))
+//
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(9))) // Size
+//
+//        // Vouchers
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(1))) // Id
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(1))) // True
+//
+//        // Parent email address
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(2))) // Id
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(0))) // False
+//
+//        // Parent email address registered
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(3))) // Id
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(0))) // False
+//
+//        // Allow direct mail
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(4))) // Id
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(0))) // False
+//
+//        // Date format
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(5)))
+//        // writeString
+//        writePacket(ByteReadPacket("yyyy-MM-dd".toByteArray(StandardCharsets.UTF_8)))
+//        writeByte(2)
+//
+//        // Partner integration
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(6)))
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(0))) // False
+//
+//        // Allow profile editing
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(7)))
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(1))) // True
+//
+//        // Tracking header
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(8)))
+//        // writeString
+//        writePacket(ByteReadPacket("".toByteArray(StandardCharsets.UTF_8)))
+//        writeByte(2)
+//
+//        // Tutorial enabled
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(9)))
+//        // writeInt
+//        writePacket(ByteReadPacket(vl64Encode(0))) // False
+//
+//        // End packet
+//        writeByte(1)
+//    }.flush()
+//}
 
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(9))) // Size
+//suspend fun Application.SSOTicketMessageEvent(read: ByteBuffer, writeChannel: ByteWriteChannel) {
+//    writeChannel.apply {
+//        val key = read.readStringHabbo()
+//        log.info("SSO = $key")
+//
+//        // UniqueMachineIDEvent
+//        UniqueMachineIDEvent(writeChannel)
+//        // UserRightsMessageEvent
+//        UserRightsMessageEvent(writeChannel)
+//        // AuthenticationOKMessageEvent
+//        AuthenticationOKMessageEvent(writeChannel)
+//    }.flush()
+//}
 
-        // Vouchers
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(1))) // Id
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(1))) // True
+//suspend fun Application.UniqueMachineIDEvent(writeChannel: ByteWriteChannel) {
+//    log.info("UniqueMachineIDEvent")
+//    writeChannel.apply {
+//        // Start packet with ID 439
+//        writePacket(ByteReadPacket(base64Encode(439, 2)))
+//        val uniqueMachineId = "#${UUID.randomUUID().toString().uppercase().replace("-", "")}"
+//        // writeString
+//        writePacket(ByteReadPacket(uniqueMachineId.toByteArray(StandardCharsets.UTF_8)))
+//        writeByte(2)
+//        // End packet
+//        writeByte(1)
+//    }.flush()
+//}
 
-        // Parent email address
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(2))) // Id
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(0))) // False
-
-        // Parent email address registered
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(3))) // Id
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(0))) // False
-
-        // Allow direct mail
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(4))) // Id
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(0))) // False
-
-        // Date format
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(5)))
-        // writeString
-        writePacket(ByteReadPacket("yyyy-MM-dd".toByteArray(StandardCharsets.UTF_8)))
-        writeByte(2)
-
-        // Partner integration
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(6)))
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(0))) // False
-
-        // Allow profile editing
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(7)))
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(1))) // True
-
-        // Tracking header
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(8)))
-        // writeString
-        writePacket(ByteReadPacket("".toByteArray(StandardCharsets.UTF_8)))
-        writeByte(2)
-
-        // Tutorial enabled
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(9)))
-        // writeInt
-        writePacket(ByteReadPacket(vl64Encode(0))) // False
-
-        // End packet
-        writeByte(1)
-    }.flush()
-}
-
-suspend fun Application.SSOTicketMessageEvent(read: ByteReadPacket, writeChannel: ByteWriteChannel) {
-    writeChannel.apply {
-        val key = String(read.readBytes(base64Decode(ByteArray(2) { read.readByte() })), StandardCharsets.UTF_8)
-        log.info("SSO = $key")
-
-        // UniqueMachineIDEvent
-        UniqueMachineIDEvent(writeChannel)
-        // UserRightsMessageEvent
-        UserRightsMessageEvent(writeChannel)
-        // AuthenticationOKMessageEvent
-        AuthenticationOKMessageEvent(writeChannel)
-    }.flush()
-}
-
-suspend fun Application.UniqueMachineIDEvent(writeChannel: ByteWriteChannel) {
-    log.info("UniqueMachineIDEvent")
-    writeChannel.apply {
-        // Start packet with ID 439
-        writePacket(ByteReadPacket(base64Encode(439, 2)))
-        val uniqueMachineId = "#${UUID.randomUUID().toString().uppercase().replace("-", "")}"
-        // writeString
-        writePacket(ByteReadPacket(uniqueMachineId.toByteArray(StandardCharsets.UTF_8)))
-        writeByte(2)
-        // End packet
-        writeByte(1)
-    }.flush()
-}
-
-suspend fun Application.UserRightsMessageEvent(writeChannel: ByteWriteChannel) {
-    log.info("UserRightsMessageEvent")
-    writeChannel.apply {
-        // Start packet with ID 2
-        writePacket(ByteReadPacket(base64Encode(2, 2)))
-        // End packet
-        writeByte(1)
-    }.flush()
-}
+//suspend fun Application.UserRightsMessageEvent(writeChannel: ByteWriteChannel) {
+//    log.info("UserRightsMessageEvent")
+//    writeChannel.apply {
+//        // Start packet with ID 2
+//        writePacket(ByteReadPacket(base64Encode(2, 2)))
+//        // End packet
+//        writeByte(1)
+//    }.flush()
+//}
 
 suspend fun Application.AuthenticationOKMessageEvent(writeChannel: ByteWriteChannel) {
     log.info("AuthenticationOKMessageEvent")
-    writeChannel.apply {
-        // Start packet with ID 3
-        writePacket(ByteReadPacket(base64Encode(3, 2)))
-        // End packet
-        writeByte(1)
-    }.flush()
+    writeChannel.writeAvailable(writePacket(3, 2) {null})
+//    writeChannel.apply {
+//        // Start packet with ID 3
+//        writePacket(ByteReadPacket(base64Encode(3, 2)))
+//        // End packet
+//        writeByte(1)
+//    }.flush()
 }
 
-fun base64Encode(value: Int, size: Int): ByteArray = ByteArray(size) { (((value shr 6 * (size - 1 - it)) and 0x3f) + 0x40).toByte() }
+//fun Application.VersionCheckMessageComposer(buffer: ByteBuffer) {
+//    val versionId = buffer.readIntHabbo()
+//    log.info("Client VersionId = $versionId")
+//    val clientUrl = buffer.readStringHabbo()
+//    log.info("Client URL = $clientUrl")
+//    val varsUrl = buffer.readStringHabbo()
+//    log.info("Vars URL = $varsUrl")
+//    buffer.putin
+//}
+
+//fun ByteBuffer.readIntHabbo(): Int = vl64Decode(moveToByteArray(this[position()].toInt() shr 3 and 7))
+//
+//fun ByteBuffer.moveToByteArray(amount: Int): ByteArray = ByteArray(amount) { get() }
+
+//fun ByteReadPacket.readIntHabbo(): Int {
+//    val copy = copy().readBytes()
+//    val size = copy[0].toInt() shr 3 and 7
+//    val result = vl64Decode(copy)
+//    discard(size)
+//    return result
+//    return vl64Decode(readBytes(tryPeek() shr 3 and 7))
+//}
+
+//fun ByteBuffer.readStringHabbo(): String = String(moveToByteArray(base64Decode(ByteArray(2) { get() })), StandardCharsets.UTF_8)
+
+//fun ByteReadPacket.readStringHabbo(): String {
+//    return String(readBytes(base64Decode(ByteArray(2) { readByte() })), StandardCharsets.UTF_8)
+//}
+
+fun writePacket(id: Int, size: Int, block: () -> ByteBuffer?): ByteBuffer {
+    val buffer = block.invoke()
+    return ByteBuffer.allocate(2 + (buffer?.position() ?: 0)).apply {
+        put(id.base64(size))
+        put(buffer)
+        put(1)
+    }.flip()
+}
+
+//fun ByteBuffer.writeInt(value: Int): ByteBuffer = put(vl64Encode(value))
+
+//fun ByteBuffer.writeString(value: String): ByteBuffer = put(value.toByteArray(StandardCharsets.UTF_8)).put(2)
+
+//fun base64Encode(value: Int, size: Int): ByteArray = ByteArray(size) { (((value shr 6 * (size - 1 - it)) and 0x3f) + 0x40).toByte() }
 
 //fun base64Encode(id: Int, size: Int): ByteArray {
 //    val encodedArray = ByteArray(size)
@@ -244,7 +320,7 @@ fun base64Encode(value: Int, size: Int): ByteArray = ByteArray(size) { (((value 
 //    return encodedArray
 //}
 
-fun base64Decode(value: ByteArray): Int = value.fold(0) { sum, x -> sum + ((x - 0x40) shl 6 * (value.size - 1 - value.indexOf(x))) }
+//fun base64Decode(value: ByteArray): Int = value.foldIndexed(0) { index, sum, x -> sum + ((x - 0x40) shl 6 * (value.size - 1 - index)) }
 
 //fun base64Decode(encodedArray: ByteArray): Int {
 //    var value = 0
@@ -263,27 +339,27 @@ fun uuid(length: Int) = buildString {
     }
 }
 
-fun vl64Encode(value: Int): ByteArray {
-    val vlEncoded = ByteArray(6)
-
-    var size = 1
-    var absoluteValue = abs(value)
-
-    vlEncoded[0] = (64 + (absoluteValue and 3)).toByte()
-
-    absoluteValue = absoluteValue shr 2
-
-    while (absoluteValue != 0) {
-        size++
-        vlEncoded[size - 1] = (64 + (absoluteValue and 0x3f)).toByte()
-        absoluteValue = absoluteValue shr 6
-    }
-
-    vlEncoded[0] = (vlEncoded[0].toInt() or (size shl 3) or if (value >= 0) 0 else 4).toByte()
-
-    return ByteArray(size).apply {
-        System.arraycopy(vlEncoded, 0, this, 0, size)
-    }
+//fun vl64Encode(value: Int): ByteArray {
+//    val vlEncoded = ByteArray(6)
+//
+//    var size = 1
+//    var absoluteValue = abs(value)
+//
+//    vlEncoded[0] = (64 + (absoluteValue and 3)).toByte()
+//
+//    absoluteValue = absoluteValue shr 2
+//
+//    while (absoluteValue != 0) {
+//        size++
+//        vlEncoded[size - 1] = (64 + (absoluteValue and 0x3f)).toByte()
+//        absoluteValue = absoluteValue shr 6
+//    }
+//
+//    vlEncoded[0] = (vlEncoded[0].toInt() or (size shl 3) or if (value >= 0) 0 else 4).toByte()
+//
+//    return ByteArray(size).apply {
+//        System.arraycopy(vlEncoded, 0, this, 0, size)
+//    }
 
 //    val array = ByteArray(6)
 //    var position = 0
@@ -302,16 +378,32 @@ fun vl64Encode(value: Int): ByteArray {
 //    val encoded = ByteArray(numBytes)
 //    System.arraycopy(array, 0, encoded, 0, numBytes)
 //    return encoded
-}
+//}
 
-fun vl64Decode(value: ByteArray): Int {
-    val first = value[0].toInt()
-    var result = first and 3
-    repeat(first shr 3 and 7) {
-        result = result or (value[it + 2].toInt() and 0x3) shl 2 + (it * 6)
-    }
-    return if (first and 4 == 4) result else -result
-}
+//fun vl64Decode(value: ByteArray): Int {
+//    val first = value[0].toInt()
+//    var result = first and 3
+//    repeat(first shr 3 and 7) {
+//        result = result or (value[it + 2].toInt() and 0x3) shl 2 + (it * 6)
+//    }
+//    return if (first and 4 == 4) result else -result
+//}
+
+//fun vl64Decode(value: ByteArray): Int {
+//    val negative = value[0].toInt() and 4 == 4
+//    val size = value[0].toInt() shr 3 and 7
+//
+//    var result = value[0].toInt() and 3
+//
+//    var shiftAmount = 2
+//
+//    for (b in 1 until size) {
+//        result = result or (value[b].toInt() and 0x3f shl shiftAmount)
+//        shiftAmount = 2 + 6 * b
+//    }
+//
+//    return if (negative) -result else result
+//}
 
 //fun vl64Decode(value: ByteArray): Int {
 //    val isNegative = value[0].toInt() and 4 == 4

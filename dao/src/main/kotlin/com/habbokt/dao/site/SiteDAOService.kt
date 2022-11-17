@@ -13,26 +13,58 @@ class SiteDAOService(
 
     override suspend fun createSite(
         siteName: String,
+        sitePath: String,
         staticContentPath: String,
         serverOnline: Boolean,
         loaderGameIp: String,
-        loaderGamePort: String,
+        loaderGamePort: Int,
         loaderDcr: String,
         loaderVariables: String,
         loaderTexts: String
-    ): Site? = delegate.createSite(siteName, staticContentPath, serverOnline, loaderGameIp, loaderGamePort, loaderDcr, loaderVariables, loaderTexts)?.also { cache.put(1, it) }
+    ): Site? = delegate.createSite(
+        siteName,
+        sitePath,
+        staticContentPath,
+        serverOnline,
+        loaderGameIp,
+        loaderGamePort,
+        loaderDcr,
+        loaderVariables,
+        loaderTexts
+    )?.also { cache.put(1, it) }
 
     override suspend fun editSite(
         siteName: String,
+        sitePath: String,
         staticContentPath: String,
         serverOnline: Boolean,
         loaderGameIp: String,
-        loaderGamePort: String,
+        loaderGamePort: Int,
         loaderDcr: String,
         loaderVariables: String,
         loaderTexts: String
     ): Boolean {
-        cache.put(1, Site(siteName, staticContentPath, serverOnline, loaderGameIp, loaderGamePort, loaderDcr, loaderVariables, loaderTexts))
-        return delegate.editSite(siteName, staticContentPath, serverOnline, loaderGameIp, loaderGamePort, loaderDcr, loaderVariables, loaderTexts)
+        cache.put(1, Site(
+            siteName,
+            sitePath,
+            staticContentPath,
+            serverOnline,
+            loaderGameIp,
+            loaderGamePort,
+            loaderDcr,
+            loaderVariables,
+            loaderTexts
+        ))
+        return delegate.editSite(
+            siteName,
+            sitePath,
+            staticContentPath,
+            serverOnline,
+            loaderGameIp,
+            loaderGamePort,
+            loaderDcr,
+            loaderVariables,
+            loaderTexts
+        )
     }
 }

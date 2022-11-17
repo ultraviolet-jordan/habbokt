@@ -19,16 +19,18 @@ class SiteDAODelegate : SiteDAO {
 
     override suspend fun createSite(
         siteName: String,
+        sitePath: String,
         staticContentPath: String,
         serverOnline: Boolean,
         loaderGameIp: String,
-        loaderGamePort: String,
+        loaderGamePort: Int,
         loaderDcr: String,
         loaderVariables: String,
         loaderTexts: String
     ): Site? = query {
         SiteTable.insert {
             it[SiteTable.siteName] = siteName
+            it[SiteTable.sitePath] = sitePath
             it[SiteTable.staticContentPath] = staticContentPath
             it[SiteTable.serverOnline] = serverOnline
             it[SiteTable.loaderGameIp] = loaderGameIp
@@ -41,16 +43,18 @@ class SiteDAODelegate : SiteDAO {
 
     override suspend fun editSite(
         siteName: String,
+        sitePath: String,
         staticContentPath: String,
         serverOnline: Boolean,
         loaderGameIp: String,
-        loaderGamePort: String,
+        loaderGamePort: Int,
         loaderDcr: String,
         loaderVariables: String,
         loaderTexts: String
     ): Boolean = query {
         SiteTable.update({ SiteTable.id eq 1 }) {
             it[SiteTable.siteName] = siteName
+            it[SiteTable.sitePath] = sitePath
             it[SiteTable.staticContentPath] = staticContentPath
             it[SiteTable.serverOnline] = serverOnline
             it[SiteTable.loaderGameIp] = loaderGameIp
@@ -63,6 +67,7 @@ class SiteDAODelegate : SiteDAO {
 
     private fun resultToSite(row: ResultRow) = Site(
         siteName = row[SiteTable.siteName],
+        sitePath = row[SiteTable.sitePath],
         staticContentPath = row[SiteTable.staticContentPath],
         serverOnline = row[SiteTable.serverOnline],
         loaderGameIp = row[SiteTable.loaderGameIp],
