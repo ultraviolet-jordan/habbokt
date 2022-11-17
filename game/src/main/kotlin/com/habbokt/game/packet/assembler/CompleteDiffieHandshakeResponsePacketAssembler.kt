@@ -1,6 +1,7 @@
 package com.habbokt.game.packet.assembler
 
-import com.habbokt.game.buffer.putStringHabbo
+import com.habbokt.api.buffer.putStringHabbo
+import com.habbokt.api.packet.assembler.PacketAssemblerListener
 import com.habbokt.game.packet.CompleteDiffieHandshakeResponsePacket
 
 /**

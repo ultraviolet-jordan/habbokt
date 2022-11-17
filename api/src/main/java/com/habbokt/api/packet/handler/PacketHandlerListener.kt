@@ -1,6 +1,6 @@
-package com.habbokt.game.packet.handler
+package com.habbokt.api.packet.handler
 
-import com.habbokt.game.packet.Packet
+import com.habbokt.api.packet.Packet
 import kotlin.reflect.KClass
 
 /**

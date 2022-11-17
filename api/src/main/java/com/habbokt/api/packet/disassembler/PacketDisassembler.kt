@@ -1,6 +1,6 @@
-package com.habbokt.game.packet.disassembler
+package com.habbokt.api.packet.disassembler
 
-import com.habbokt.game.packet.Packet
+import com.habbokt.api.packet.Packet
 import java.nio.ByteBuffer
 
 /**

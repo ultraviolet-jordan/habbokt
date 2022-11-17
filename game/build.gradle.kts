@@ -11,6 +11,7 @@ dependencies {
     implementation(deps.bundles.ktor)
     implementation(deps.slf4j.simple)
 
+    implementation(project(":api"))
     implementation(project(":dao"))
 }
 

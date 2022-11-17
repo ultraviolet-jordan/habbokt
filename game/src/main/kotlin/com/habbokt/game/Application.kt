@@ -1,13 +1,12 @@
 package com.habbokt.game
 
-import com.habbokt.game.buffer.base64
-import com.habbokt.game.buffer.getStringHabbo
-import com.habbokt.game.buffer.putIntHabbo
-import com.habbokt.game.buffer.putStringHabbo
-import com.habbokt.game.client.habbo.HabboClient
+import com.habbokt.api.buffer.base64
+import com.habbokt.api.buffer.getStringHabbo
+import com.habbokt.api.buffer.putIntHabbo
+import com.habbokt.api.buffer.putStringHabbo
 import com.habbokt.game.packet.PacketFactory
-import com.habbokt.game.packet.handler.PacketHandler
-import com.habbokt.game.packet.handler.PacketHandlerListener
+import com.habbokt.api.packet.handler.PacketHandler
+import com.habbokt.api.packet.handler.PacketHandlerListener
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.aSocket
 import io.ktor.network.sockets.openReadChannel
@@ -49,7 +48,7 @@ fun Application.module() {
             val socket = server.accept()
 
             launch(Dispatchers.IO) {
-                val client = HabboClient(
+                val client = GameClient(
                     readChannel = socket.openReadChannel(),
                     writeChannel = socket.openWriteChannel()
                 )

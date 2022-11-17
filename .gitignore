@@ -2,6 +2,7 @@
 /build/
 /.gradle/
 
+/api/build/
 /web/build/
 /dao/build/
 /game/build/

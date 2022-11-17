@@ -1,10 +1,10 @@
-package com.habbokt.game.client.habbo
+package com.habbokt.game
 
-import com.habbokt.game.buffer.base64
-import com.habbokt.game.client.Client
-import com.habbokt.game.packet.Packet
-import com.habbokt.game.packet.assembler.PacketAssemblerListener
-import com.habbokt.game.packet.disassembler.PacketDisassemblerListener
+import com.habbokt.api.buffer.base64
+import com.habbokt.api.client.Client
+import com.habbokt.api.packet.Packet
+import com.habbokt.api.packet.assembler.PacketAssemblerListener
+import com.habbokt.api.packet.disassembler.PacketDisassemblerListener
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.core.readBytes
@@ -15,7 +15,7 @@ import kotlinx.coroutines.runBlocking
 /**
  * @author Jordan Abraham
  */
-class HabboClient(
+class GameClient(
     private val readChannel: ByteReadChannel,
     private val writeChannel: ByteWriteChannel
 ) : Client {

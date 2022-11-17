@@ -1,7 +1,8 @@
 package com.habbokt.game.packet.disassembler
 
-import com.habbokt.game.buffer.getIntHabbo
-import com.habbokt.game.buffer.getStringHabbo
+import com.habbokt.api.buffer.getIntHabbo
+import com.habbokt.api.buffer.getStringHabbo
+import com.habbokt.api.packet.disassembler.PacketDisassemblerListener
 import com.habbokt.game.packet.VersionCheckPacket
 
 /**

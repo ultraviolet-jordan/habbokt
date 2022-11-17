@@ -1,6 +1,7 @@
 package com.habbokt.game.packet.handler
 
-import com.habbokt.game.packet.DisconnectReason
+import com.habbokt.api.etc.DisconnectReason
+import com.habbokt.api.packet.handler.PacketHandlerListener
 import com.habbokt.game.packet.DisconnectReasonPacket
 import com.habbokt.game.packet.VersionCheckPacket
 

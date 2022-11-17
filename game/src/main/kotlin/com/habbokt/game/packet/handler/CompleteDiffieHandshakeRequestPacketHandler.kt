@@ -1,5 +1,6 @@
 package com.habbokt.game.packet.handler
 
+import com.habbokt.api.packet.handler.PacketHandlerListener
 import com.habbokt.game.packet.CompleteDiffieHandshakeRequestPacket
 import com.habbokt.game.packet.CompleteDiffieHandshakeResponsePacket
 import com.habbokt.game.uuid

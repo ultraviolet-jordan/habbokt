@@ -1,6 +1,6 @@
-package com.habbokt.game.client
+package com.habbokt.api.client
 
-import com.habbokt.game.packet.Packet
+import com.habbokt.api.packet.Packet
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import java.nio.ByteBuffer
