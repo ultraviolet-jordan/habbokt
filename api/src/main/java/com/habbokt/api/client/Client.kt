@@ -13,5 +13,6 @@ interface Client {
     fun writeChannel(): ByteWriteChannel
     fun bufferPool(): ByteBuffer
     suspend fun awaitPacket(): Packet?
+    fun handlePacket(packet: Packet)
     fun writePacket(packet: Packet)
 }

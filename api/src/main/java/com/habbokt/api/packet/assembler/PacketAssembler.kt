@@ -6,7 +6,7 @@ import java.nio.ByteBuffer
 /**
  * @author Jordan Abraham
  */
-data class PacketAssembler(
+data class PacketAssembler<in P : Packet>(
     val id: Int,
-    val packet: Packet.(ByteBuffer) -> Unit
+    val packet: P.(ByteBuffer) -> Unit
 )

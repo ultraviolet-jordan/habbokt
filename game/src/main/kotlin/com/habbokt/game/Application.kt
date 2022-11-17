@@ -4,9 +4,12 @@ import com.habbokt.api.buffer.base64
 import com.habbokt.api.buffer.getStringHabbo
 import com.habbokt.api.buffer.putIntHabbo
 import com.habbokt.api.buffer.putStringHabbo
-import com.habbokt.game.packet.PacketFactory
-import com.habbokt.api.packet.handler.PacketHandler
-import com.habbokt.api.packet.handler.PacketHandlerListener
+import com.habbokt.api.plugin.PacketAssemblerPluginKey
+import com.habbokt.api.plugin.PacketDisassemblerPluginKey
+import com.habbokt.api.plugin.PacketHandlerPluginKey
+import com.habbokt.game.plugin.installPacketAssemblerPlugin
+import com.habbokt.game.plugin.installPacketDisassemblerPlugin
+import com.habbokt.game.plugin.installPacketHandlerPlugin
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.aSocket
 import io.ktor.network.sockets.openReadChannel
@@ -31,7 +34,9 @@ private val dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
 private val selector = ActorSelectorManager(dispatcher)
 
 fun Application.module() {
-    PacketFactory.init()
+    installPacketAssemblerPlugin()
+    installPacketDisassemblerPlugin()
+    installPacketHandlerPlugin()
 
     val hostname = "127.0.0.1"
     val port = 43594
@@ -50,14 +55,16 @@ fun Application.module() {
             launch(Dispatchers.IO) {
                 val client = GameClient(
                     readChannel = socket.openReadChannel(),
-                    writeChannel = socket.openWriteChannel()
+                    writeChannel = socket.openWriteChannel(),
+                    assemblers = attributes[PacketAssemblerPluginKey],
+                    disassemblers = attributes[PacketDisassemblerPluginKey],
+                    handlers = attributes[PacketHandlerPluginKey]
                 )
 
                 try {
                     while (true) {
                         val readPacket = client.awaitPacket() ?: continue
-                        val handler = PacketHandler(client, readPacket)
-                        PacketHandlerListener[handler.packet::class]?.invoke(handler)
+                        client.handlePacket(readPacket)
                     }
                 } catch (exception: Exception) {
                     log.error("Exception caught by connected client. Disconnecting...", exception)

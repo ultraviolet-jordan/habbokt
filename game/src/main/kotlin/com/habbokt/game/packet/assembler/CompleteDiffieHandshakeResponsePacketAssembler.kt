@@ -1,14 +1,15 @@
 package com.habbokt.game.packet.assembler
 
 import com.habbokt.api.buffer.putStringHabbo
-import com.habbokt.api.packet.assembler.PacketAssemblerListener
+import com.habbokt.api.packet.assembler.PacketAssemblerConfig
+import com.habbokt.api.packet.assembler.packet
 import com.habbokt.game.packet.CompleteDiffieHandshakeResponsePacket
 
 /**
  * @author Jordan Abraham
  */
-fun PacketAssemblerListener.completeDiffieHandshakePacket() {
-    assemblePacket<CompleteDiffieHandshakeResponsePacket>(1) {
+fun PacketAssemblerConfig.installCompleteDiffieHandshakePacket() {
+    packet<CompleteDiffieHandshakeResponsePacket>(id = 1) {
         it.putStringHabbo(secretKey)
     }
 }
