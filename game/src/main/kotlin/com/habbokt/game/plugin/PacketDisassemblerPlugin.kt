@@ -4,6 +4,7 @@ import com.habbokt.api.plugin.PacketDisassemblerPlugin
 import com.habbokt.game.packet.disassembler.installCompleteDiffieHandshakePacket
 import com.habbokt.game.packet.disassembler.installInfoRetrieveRequestPacket
 import com.habbokt.game.packet.disassembler.installInitDiffieHandshakePacket
+import com.habbokt.game.packet.disassembler.installSSOTicketPacket
 import com.habbokt.game.packet.disassembler.installUniqueMachineIDPacket
 import com.habbokt.game.packet.disassembler.installVersionCheckPacket
 import io.ktor.server.application.Application
@@ -19,5 +20,6 @@ fun Application.installPacketDisassemblerPlugin() {
         installUniqueMachineIDPacket()
         installVersionCheckPacket()
         installInfoRetrieveRequestPacket()
+        installSSOTicketPacket()
     }
 }

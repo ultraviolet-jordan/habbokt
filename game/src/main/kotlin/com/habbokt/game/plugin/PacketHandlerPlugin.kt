@@ -4,6 +4,7 @@ import com.habbokt.api.plugin.PacketHandlerPlugin
 import com.habbokt.game.packet.handler.installCompleteDiffieHandshakePacket
 import com.habbokt.game.packet.handler.installInfoRetrieveRequestPacket
 import com.habbokt.game.packet.handler.installInitDiffieHandshakePacket
+import com.habbokt.game.packet.handler.installSSOTicketPacket
 import com.habbokt.game.packet.handler.installUniqueMachineIDPacket
 import com.habbokt.game.packet.handler.installVersionCheckPacket
 import io.ktor.server.application.Application
@@ -19,5 +20,6 @@ fun Application.installPacketHandlerPlugin() {
         installUniqueMachineIDPacket()
         installVersionCheckPacket()
         installInfoRetrieveRequestPacket()
+        installSSOTicketPacket()
     }
 }
