@@ -5,8 +5,7 @@ import com.habbokt.api.buffer.putStringHabbo
 import com.habbokt.api.buffer.toInt
 import com.habbokt.api.packet.assembler.PacketAssemblerConfig
 import com.habbokt.api.packet.assembler.packet
-import com.habbokt.game.packet.InfoRetrieveResponsePacket
-import com.habbokt.game.packet.UniqueMachineIDPacket
+import com.habbokt.api.packet.InfoRetrieveResponsePacket
 
 /**
  * @author Jordan Abraham

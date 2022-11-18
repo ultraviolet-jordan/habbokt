@@ -1,4 +1,4 @@
-package com.habbokt.game.packet
+package com.habbokt.api.packet
 
 import com.habbokt.api.client.handshake.SessionParameters
 import com.habbokt.api.packet.Packet

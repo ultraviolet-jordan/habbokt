@@ -5,8 +5,8 @@ import com.habbokt.api.client.handshake.SessionParameterId.*
 import com.habbokt.api.client.handshake.SessionParameters
 import com.habbokt.api.packet.handler.PacketHandlerConfig
 import com.habbokt.api.packet.handler.packet
-import com.habbokt.game.packet.InfoRetrieveRequestPacket
-import com.habbokt.game.packet.InfoRetrieveResponsePacket
+import com.habbokt.api.packet.InfoRetrieveRequestPacket
+import com.habbokt.api.packet.InfoRetrieveResponsePacket
 
 /**
  * @author Jordan Abraham

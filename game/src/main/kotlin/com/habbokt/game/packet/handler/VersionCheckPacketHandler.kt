@@ -3,8 +3,8 @@ package com.habbokt.game.packet.handler
 import com.habbokt.api.etc.DisconnectReason
 import com.habbokt.api.packet.handler.PacketHandlerConfig
 import com.habbokt.api.packet.handler.packet
-import com.habbokt.game.packet.DisconnectReasonPacket
-import com.habbokt.game.packet.VersionCheckPacket
+import com.habbokt.api.packet.DisconnectReasonPacket
+import com.habbokt.api.packet.VersionCheckPacket
 
 /**
  * @author Jordan Abraham
