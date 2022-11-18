@@ -1,9 +1,9 @@
 package com.habbokt.game.packet.disassembler
 
 import com.habbokt.api.buffer.getIntHabbo
+import com.habbokt.api.packet.InitDiffieHandshakeRequestPacket
 import com.habbokt.api.packet.disassembler.PacketDisassemblerConfig
 import com.habbokt.api.packet.disassembler.packet
-import com.habbokt.api.packet.InitDiffieHandshakeRequestPacket
 
 /**
  * @author Jordan Abraham

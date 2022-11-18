@@ -3,9 +3,9 @@ package com.habbokt.web.plugin.koin.compiler
 import com.habbokt.web.compiler.Compiler
 import com.habbokt.web.compiler.PresentExtension
 import com.mitchellbosecke.pebble.PebbleEngine
-import org.koin.dsl.module
 import java.io.File
 import java.nio.charset.StandardCharsets
+import org.koin.dsl.module
 
 /**
  * @author Jordan Abraham

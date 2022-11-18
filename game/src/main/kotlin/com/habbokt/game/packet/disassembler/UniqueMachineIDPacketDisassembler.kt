@@ -1,9 +1,9 @@
 package com.habbokt.game.packet.disassembler
 
 import com.habbokt.api.buffer.getStringHabbo
+import com.habbokt.api.packet.UniqueMachineIDPacket
 import com.habbokt.api.packet.disassembler.PacketDisassemblerConfig
 import com.habbokt.api.packet.disassembler.packet
-import com.habbokt.api.packet.UniqueMachineIDPacket
 
 /**
  * @author Jordan Abraham

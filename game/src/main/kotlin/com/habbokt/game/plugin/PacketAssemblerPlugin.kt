@@ -7,8 +7,8 @@ import com.habbokt.game.packet.assembler.installInfoRetrieveResponsePacket
 import com.habbokt.game.packet.assembler.installInitDiffieHandshakePacket
 import com.habbokt.game.packet.assembler.installUniqueMachineIDPacket
 import com.habbokt.game.packet.assembler.installUserRightsPacket
-import io.ktor.server.application.*
 import io.ktor.server.application.Application
+import io.ktor.server.application.install
 
 /**
  * @author Jordan Abraham

@@ -13,7 +13,6 @@ import io.ktor.server.sessions.set
 import java.awt.Color
 import java.awt.Font
 import java.io.ByteArrayOutputStream
-import java.lang.RuntimeException
 import javax.imageio.ImageIO
 
 /**

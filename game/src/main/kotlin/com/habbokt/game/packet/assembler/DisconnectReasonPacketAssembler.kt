@@ -1,9 +1,9 @@
 package com.habbokt.game.packet.assembler
 
 import com.habbokt.api.buffer.putIntHabbo
+import com.habbokt.api.packet.DisconnectReasonPacket
 import com.habbokt.api.packet.assembler.PacketAssemblerConfig
 import com.habbokt.api.packet.assembler.packet
-import com.habbokt.api.packet.DisconnectReasonPacket
 
 /**
  * @author Jordan Abraham

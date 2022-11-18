@@ -1,7 +1,5 @@
 package com.habbokt.web.exception
 
-import java.lang.Exception
-
 /**
  * @author Jordan Abraham
  */

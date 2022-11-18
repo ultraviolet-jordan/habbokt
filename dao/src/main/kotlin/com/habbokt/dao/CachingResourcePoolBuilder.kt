@@ -1,5 +1,6 @@
 package com.habbokt.dao
 
+import java.io.File
 import org.ehcache.Cache
 import org.ehcache.config.builders.CacheConfigurationBuilder
 import org.ehcache.config.builders.CacheManagerBuilder
@@ -7,8 +8,6 @@ import org.ehcache.config.builders.ResourcePoolsBuilder
 import org.ehcache.config.units.EntryUnit
 import org.ehcache.config.units.MemoryUnit
 import org.ehcache.impl.config.persistence.CacheManagerPersistenceConfiguration
-import java.io.File
-import java.lang.Exception
 
 /**
  * @author Jordan Abraham
