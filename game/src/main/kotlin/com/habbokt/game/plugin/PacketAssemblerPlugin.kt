@@ -6,6 +6,7 @@ import com.habbokt.game.packet.assembler.installDisconnectReasonPacket
 import com.habbokt.game.packet.assembler.installInfoRetrieveResponsePacket
 import com.habbokt.game.packet.assembler.installInitDiffieHandshakePacket
 import com.habbokt.game.packet.assembler.installUniqueMachineIDPacket
+import com.habbokt.game.packet.assembler.installUserRightsPacket
 import io.ktor.server.application.*
 import io.ktor.server.application.Application
 
@@ -19,5 +20,6 @@ fun Application.installPacketAssemblerPlugin() {
         installInitDiffieHandshakePacket()
         installUniqueMachineIDPacket()
         installInfoRetrieveResponsePacket()
+        installUserRightsPacket()
     }
 }
