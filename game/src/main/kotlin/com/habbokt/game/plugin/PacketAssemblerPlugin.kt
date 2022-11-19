@@ -1,6 +1,7 @@
 package com.habbokt.game.plugin
 
 import com.habbokt.api.plugin.PacketAssemblerPlugin
+import com.habbokt.game.packet.assembler.installAuthenticationOKPacket
 import com.habbokt.game.packet.assembler.installCompleteDiffieHandshakePacket
 import com.habbokt.game.packet.assembler.installDisconnectReasonPacket
 import com.habbokt.game.packet.assembler.installInfoRetrieveResponsePacket
@@ -21,5 +22,6 @@ fun Application.installPacketAssemblerPlugin() {
         installUniqueMachineIDPacket()
         installInfoRetrieveResponsePacket()
         installUserRightsPacket()
+        installAuthenticationOKPacket()
     }
 }
