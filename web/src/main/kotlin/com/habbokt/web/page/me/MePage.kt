@@ -10,7 +10,7 @@ import io.ktor.server.sessions.CurrentSession
  * @author Jordan Abraham
  */
 object MePage : Page {
-    private val siteService by com.habbokt.api.inject<SiteService>()
+    private val siteService by inject<SiteService>()
 
     override fun templateName(): String = "me.tpl"
 

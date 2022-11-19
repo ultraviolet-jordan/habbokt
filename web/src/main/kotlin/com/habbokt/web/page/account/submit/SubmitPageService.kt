@@ -19,8 +19,8 @@ import io.ktor.server.sessions.set
  * @author Jordan Abraham
  */
 object SubmitPageService : PageService {
-    private val playersService by com.habbokt.api.inject<PlayersService>()
-    private val argon2 by com.habbokt.api.inject<Argon2>()
+    private val playersService by inject<PlayersService>()
+    private val argon2 by inject<Argon2>()
 
     override suspend fun respondPage(call: ApplicationCall, page: Page) {
         val parameters = call.receiveParameters()

@@ -11,7 +11,7 @@ import com.habbokt.dao.players.PlayersService
 /**
  * @author Jordan Abraham
  */
-private val playersService by com.habbokt.api.inject<PlayersService>()
+private val playersService by inject<PlayersService>()
 
 fun PacketHandlerConfig.installSSOTicketPacket() {
     packet<SSOTicketPacket> {

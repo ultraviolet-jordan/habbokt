@@ -10,7 +10,7 @@ import io.ktor.server.sessions.CurrentSession
  * @author Jordan Abraham
  */
 object CommunityPage : Page {
-    private val dao by com.habbokt.api.inject<SiteService>()
+    private val dao by inject<SiteService>()
 
     override fun templateName(): String = "community.tpl"
 

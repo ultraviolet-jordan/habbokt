@@ -14,7 +14,7 @@ import kotlin.random.Random
  * @author Jordan Abraham
  */
 object RegisterPage : Page {
-    private val siteService by com.habbokt.api.inject<SiteService>()
+    private val siteService by inject<SiteService>()
 
     override fun templateName(): String = "register.tpl"
 
