@@ -28,15 +28,7 @@ class PlayersDAOService(
     )?.also { cache.put(it.id, it) }
 
     override suspend fun editPlayer(player: Player): Boolean {
-        cache.put(player.id, Player(
-            player.id,
-            player.username,
-            player.password,
-            player.email,
-            player.appearance,
-            player.gender,
-            player.ssoTicket
-        ))
+        cache.put(player.id, player)
         return delegate.editPlayer(player)
     }
 
