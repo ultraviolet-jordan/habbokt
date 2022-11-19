@@ -1,7 +1,7 @@
 package com.habbokt.web.page
 
-import com.habbokt.web.compiler.Compiler
-import com.habbokt.web.inject
+import com.habbokt.api.inject
+import com.habbokt.templating.Compiler
 import io.ktor.http.Parameters
 import io.ktor.server.sessions.CurrentSession
 import java.io.StringWriter

@@ -1,6 +1,5 @@
 package com.habbokt.web.plugin.routes.welcome
 
-import com.habbokt.web.inject
 import com.habbokt.web.page.welcome.WelcomePage
 import com.habbokt.web.page.welcome.WelcomePageService
 import com.habbokt.web.plugin.Authentications
@@ -14,8 +13,6 @@ import io.ktor.server.routing.routing
 /**
  * @author Jordan Abraham
  */
-private val welcomePageService by inject<WelcomePageService>()
-
 fun Application.installWelcomePageRoutes() {
     routing {
         getWelcomePage()

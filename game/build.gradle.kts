@@ -8,9 +8,6 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 
 dependencies {
-    implementation(deps.bundles.ktor)
-    implementation(deps.slf4j.simple)
-
     implementation(project(":api"))
     implementation(project(":dao"))
 }

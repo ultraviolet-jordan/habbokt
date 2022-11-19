@@ -1,8 +1,8 @@
 package com.habbokt.web.plugin
 
-import com.habbokt.web.plugin.koin.argon2.argon2Module
-import com.habbokt.web.plugin.koin.compiler.compilerModule
-import com.habbokt.web.plugin.koin.dao.daoModule
+import com.habbokt.dao.DAOModule
+import com.habbokt.templating.CompilerModule
+import com.habbokt.web.plugin.koin.argon2.Argon2Module
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import org.koin.ktor.plugin.Koin
@@ -13,12 +13,9 @@ import org.koin.ktor.plugin.Koin
 fun Application.installKoinPlugin() {
     install(Koin) {
         modules(
-            // Argon2 Hashing
-            argon2Module(),
-            // Dao/Database
-            daoModule(),
-            // Web-server
-            compilerModule(),
+            Argon2Module,
+            DAOModule,
+            CompilerModule
         )
     }
 }

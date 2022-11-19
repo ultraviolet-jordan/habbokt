@@ -11,7 +11,6 @@ import io.ktor.server.response.respondRedirect
 import io.ktor.server.sessions.clear
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
-import java.lang.Exception
 
 /**
  * @author Jordan Abraham

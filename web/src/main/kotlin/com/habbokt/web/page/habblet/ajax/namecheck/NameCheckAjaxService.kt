@@ -1,9 +1,9 @@
 package com.habbokt.web.page.habblet.ajax.namecheck
 
+import com.habbokt.api.inject
 import com.habbokt.dao.players.PlayersService
 import com.habbokt.web.common.htmlHeader
 import com.habbokt.web.common.xjsonHeader
-import com.habbokt.web.inject
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.request.receiveParameters

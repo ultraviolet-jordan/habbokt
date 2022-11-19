@@ -1,7 +1,5 @@
-package com.habbokt.web.plugin.koin.compiler
+package com.habbokt.templating
 
-import com.habbokt.web.compiler.Compiler
-import com.habbokt.web.compiler.PresentExtension
 import com.mitchellbosecke.pebble.PebbleEngine
 import java.io.File
 import java.nio.charset.StandardCharsets
@@ -20,7 +18,7 @@ val CompilerModule = module(createdAtStart = true) {
                 .build()
                 .also {
                     it.loader.setCharset(StandardCharsets.UTF_8.toString())
-                    it.loader.setPrefix(File(this::class.java.classLoader.getResource("www-tpl/default-en")!!.toURI()).absolutePath)
+                    it.loader.setPrefix(File(object{}::class.java.classLoader.getResource("www-tpl/default-en")!!.toURI()).absolutePath)
                 }
         )
     }

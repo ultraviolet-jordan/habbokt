@@ -1,7 +1,7 @@
 package com.habbokt.web.page.register
 
+import com.habbokt.api.inject
 import com.habbokt.dao.site.SiteService
-import com.habbokt.web.inject
 import com.habbokt.web.page.Page
 import com.habbokt.web.session.RegistrationSession
 import io.ktor.http.Parameters
@@ -14,12 +14,12 @@ import kotlin.random.Random
  * @author Jordan Abraham
  */
 object RegisterPage : Page {
-    private val dao by inject<SiteService>()
+    private val siteService by inject<SiteService>()
 
     override fun templateName(): String = "register.tpl"
 
     override suspend fun context(sessions: CurrentSession, parameters: Parameters): Map<String, Any?> = mutableMapOf(
-        "site" to dao.site(),
+        "site" to siteService.site(),
         "randomNum" to Random.nextInt(0, 10000).toString()
     ).also {
         if (parameters["error"].equals("bad_captcha")) {

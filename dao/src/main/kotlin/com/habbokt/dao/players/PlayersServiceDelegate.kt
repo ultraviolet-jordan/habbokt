@@ -60,6 +60,13 @@ class PlayersServiceDelegate : PlayersService {
             ?.id
     }
 
+    override suspend fun ssoTicket(ssoTicket: String): PlayerDAO? = query {
+        PlayersTable
+            .select { PlayersTable.ssoTicket eq ssoTicket }
+            .map(::resultToPlayer)
+            .singleOrNull()
+    }
+
     private fun resultToPlayer(row: ResultRow) = PlayerDAO(
         id = row[PlayersTable.id],
         username = row[PlayersTable.username],

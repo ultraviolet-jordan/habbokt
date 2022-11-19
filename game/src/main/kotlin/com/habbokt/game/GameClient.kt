@@ -22,7 +22,7 @@ class GameClient(
     private val writeChannel: ByteWriteChannel,
     private val assemblers: Map<KClass<*>, PacketAssembler<Packet>>,
     private val disassemblers: Map<Int, PacketDisassembler>,
-    private val handlers: Map<KClass<*>, PacketHandler<Packet>.() -> Unit>
+    private val handlers: Map<KClass<*>, suspend PacketHandler<Packet>.() -> Unit>
 ) : Client {
     private val writePool = ByteBuffer.allocateDirect(256)
 
@@ -50,7 +50,7 @@ class GameClient(
         return disassemblers[id]?.packet?.invoke(buffer)
     }
 
-    override fun handlePacket(packet: Packet) {
+    override suspend fun handlePacket(packet: Packet) {
         val handler = PacketHandler(this, packet)
         handlers[handler.packet::class]?.invoke(handler)
     }

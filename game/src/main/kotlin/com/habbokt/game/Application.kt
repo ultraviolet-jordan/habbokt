@@ -7,6 +7,8 @@ import com.habbokt.api.buffer.putStringHabbo
 import com.habbokt.api.plugin.PacketAssemblerPluginKey
 import com.habbokt.api.plugin.PacketDisassemblerPluginKey
 import com.habbokt.api.plugin.PacketHandlerPluginKey
+import com.habbokt.dao.DatabaseFactory
+import com.habbokt.game.plugin.installKoinPlugin
 import com.habbokt.game.plugin.installPacketAssemblerPlugin
 import com.habbokt.game.plugin.installPacketDisassemblerPlugin
 import com.habbokt.game.plugin.installPacketHandlerPlugin
@@ -34,6 +36,14 @@ private val dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
 private val selector = ActorSelectorManager(dispatcher)
 
 fun Application.module() {
+    // Load DatabaseFactory.
+    DatabaseFactory.init(
+        driverClassName = environment.config.property("storage.driverClassName").getString(),
+        jdbcUrl = environment.config.property("storage.jdbcURL").getString(),
+        useConsole = environment.config.property("h2.console.enabled").getString().toBoolean()
+    )
+
+    installKoinPlugin()
     installPacketAssemblerPlugin()
     installPacketDisassemblerPlugin()
     installPacketHandlerPlugin()

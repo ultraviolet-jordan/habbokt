@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
 /**
  * @author Jordan Abraham
  */
-val PacketHandlerPluginKey = AttributeKey<Map<KClass<*>, PacketHandler<Packet>.() -> Unit>>("PacketHandlerPluginKey")
+val PacketHandlerPluginKey = AttributeKey<Map<KClass<*>, suspend PacketHandler<Packet>.() -> Unit>>("PacketHandlerPluginKey")
 
 val PacketHandlerPlugin: ApplicationPlugin<PacketHandlerConfig> = createApplicationPlugin("PacketHandlerPlugin", ::PacketHandlerConfig) {
     application.attributes.put(PacketHandlerPluginKey, pluginConfig.handlers)

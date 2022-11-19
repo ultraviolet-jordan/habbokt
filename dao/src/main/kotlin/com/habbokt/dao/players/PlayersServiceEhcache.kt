@@ -39,4 +39,5 @@ class PlayersServiceEhcache(
 
     override suspend fun exists(username: String): Boolean = getId(username) != null
     override suspend fun getId(username: String): Int? = cache.firstOrNull { it.value.username == username }?.value?.id ?: delegate.getId(username)
+    override suspend fun ssoTicket(ssoTicket: String): PlayerDAO? = cache.firstOrNull { it.value.ssoTicket == ssoTicket }?.value ?: delegate.ssoTicket(ssoTicket)
 }

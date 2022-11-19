@@ -1,4 +1,4 @@
-package com.habbokt.web.compiler
+package com.habbokt.templating
 
 import com.mitchellbosecke.pebble.extension.AbstractExtension
 import com.mitchellbosecke.pebble.extension.Test

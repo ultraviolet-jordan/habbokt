@@ -1,4 +1,4 @@
-package com.habbokt.web.compiler
+package com.habbokt.templating
 
 import com.mitchellbosecke.pebble.PebbleEngine
 import com.mitchellbosecke.pebble.error.PebbleException

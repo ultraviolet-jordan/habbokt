@@ -20,8 +20,7 @@ interface PlayersService {
     ): Boolean
 
     suspend fun deletePlayer(id: Int): Boolean
-
     suspend fun exists(username: String): Boolean
-
     suspend fun getId(username: String): Int?
+    suspend fun ssoTicket(ssoTicket: String): PlayerDAO?
 }

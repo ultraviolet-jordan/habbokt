@@ -15,6 +15,9 @@ allprojects {
     plugins.withType<KotlinPluginWrapper> {
         dependencies {
             implementation(kotlin("stdlib"))
+            implementation(deps.bundles.ktor)
+            implementation(deps.bundles.koin)
+            implementation(deps.slf4j.simple)
             implementation(deps.bundles.database)
         }
     }

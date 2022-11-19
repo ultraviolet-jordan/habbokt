@@ -8,14 +8,12 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 
 dependencies {
-    implementation(deps.bundles.ktor)
-    implementation(deps.bundles.koin)
-    implementation(deps.pebble)
-    implementation(deps.slf4j.simple)
     implementation(deps.simplecaptcha)
     implementation(deps.argon2)
 
+    implementation(project(":api"))
     implementation(project(":dao"))
+    implementation(project(":templating"))
 }
 
 application {

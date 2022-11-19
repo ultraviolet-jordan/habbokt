@@ -1,7 +1,7 @@
 package com.habbokt.web.page.error
 
+import com.habbokt.api.inject
 import com.habbokt.dao.site.SiteService
-import com.habbokt.web.inject
 import com.habbokt.web.page.Page
 import io.ktor.http.Parameters
 import io.ktor.server.sessions.CurrentSession

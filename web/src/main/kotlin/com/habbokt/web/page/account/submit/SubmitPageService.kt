@@ -1,8 +1,8 @@
 package com.habbokt.web.page.account.submit
 
+import com.habbokt.api.inject
 import com.habbokt.dao.players.PlayersService
 import com.habbokt.web.common.encrypt
-import com.habbokt.web.inject
 import com.habbokt.web.page.Page
 import com.habbokt.web.page.PageService
 import com.habbokt.web.session.UserSession

@@ -3,8 +3,10 @@
 /.gradle/
 
 /api/build/
-/web/build/
 /dao/build/
 /game/build/
+/templating/build/
+/web/build/
+
 /web/src/main/resources/www/
 /web/src/main/resources/www-tpl/default-en/

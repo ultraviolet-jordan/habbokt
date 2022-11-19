@@ -6,6 +6,6 @@ import org.koin.dsl.module
 /**
  * @author Jordan Abraham
  */
-fun argon2Module() = module(createdAtStart = true) {
+val Argon2Module = module(createdAtStart = true) {
     single { Argon2Factory.create() }
 }
