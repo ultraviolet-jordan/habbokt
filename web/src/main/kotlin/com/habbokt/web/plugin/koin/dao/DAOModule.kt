@@ -27,7 +27,7 @@ private fun createSiteDAO(): SiteDAO = SiteDAOService(
 ).apply {
     runBlocking {
         // TODO This is only for testing purposes for now.
-        createSite(
+        createSite(Site(
             siteName = "Habbo Hotel",
             sitePath = "http://localhost",
             staticContentPath = "http://localhost",
@@ -37,7 +37,7 @@ private fun createSiteDAO(): SiteDAO = SiteDAOService(
             loaderDcr = "http://localhost/dcr/v31/habbo.dcr?",
             loaderVariables = "http://localhost/dcr/v31/gamedata/external_variables.txt?",
             loaderTexts = "http://localhost/dcr/v31/gamedata/external_texts.txt?"
-        )
+        ))
     }
 }
 
@@ -52,7 +52,8 @@ private fun createPlayersDAO(): PlayersDAO = PlayersDAOService(
             password = "\$argon2i\$v=19\$m=65536,t=12,p=1\$hk7pQ0uj76PrcB9I+Jc4CQ\$P68lqFBz6xGKACjmdbIuPn0voRyX4shoeTdvNraSLYQ", // "password1"
             email = "test@gmail.com",
             appearance = "hr-540-38.hd-627-9.ch-645-74.lg-696-81.sh-725-74.ha-1004-1315.wa-2006-",
-            gender = "F"
+            gender = "F",
+            ssoTicket = ""
         )
     }
 }

@@ -61,7 +61,7 @@ object SubmitPageService : PageService {
         sessions.set(
             UserSession(
                 authenticated = true,
-                id = player.id.toString().encrypt()
+                playerId = player.id.toString().encrypt()
             )
         )
         call.respondRedirect("/security_check")

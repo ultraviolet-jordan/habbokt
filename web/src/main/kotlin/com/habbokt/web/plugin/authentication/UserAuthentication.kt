@@ -15,7 +15,7 @@ import io.ktor.server.sessions.sessions
 fun AuthenticationConfig.installUserAuthentication() {
     session<UserSession>(Authentications.User) {
         validate { session ->
-            if (session.id.decrypt().toIntOrNull() != 0) session // Validate session cipher.
+            if (session.playerId.decrypt().toIntOrNull() != 0) session // Validate session cipher.
             else if (session.authenticated) session // Validate user session flag.
             else null
         }

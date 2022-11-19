@@ -89,7 +89,15 @@ object RegisterPageService : PageService {
             sessions.clear<UserSession>()
         }
 
-        val player = dao.createPlayer(username, password, email, appearance, gender)
+        val player = dao.createPlayer(
+            username = username,
+            password = password,
+            email = email,
+            appearance = appearance,
+            gender = gender,
+            ssoTicket = ""
+        )
+
         // If the new player was not added to the database.
         if (player == null) {
             call.respondRedirect("/register")
@@ -100,7 +108,7 @@ object RegisterPageService : PageService {
         sessions.set(
             UserSession(
                 authenticated = true,
-                id = player.id.toString().encrypt()
+                playerId = player.id.toString().encrypt()
             )
         )
         call.respondRedirect("/welcome")

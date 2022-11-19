@@ -7,5 +7,5 @@ import io.ktor.server.auth.Principal
  */
 data class UserSession(
     val authenticated: Boolean,
-    val id: String
+    val playerId: String
 ) : Principal

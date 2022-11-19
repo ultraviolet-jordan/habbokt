@@ -1,6 +1,6 @@
 package com.habbokt.web.common
 
-import com.habbokt.web.exception.CipherException
+import com.habbokt.web.exception.ExpiredCookieException
 import java.security.SecureRandom
 import java.util.Base64
 import javax.crypto.Cipher
@@ -25,7 +25,7 @@ fun String.decrypt(): String = try {
     cipher.init(Cipher.DECRYPT_MODE, key, ivParameterSpec)
     String(cipher.doFinal(Base64.getDecoder().decode(this)))
 } catch (exception: Exception) {
-    throw CipherException
+    throw ExpiredCookieException
 }
 
 fun String.encrypt(): String = try {
@@ -33,5 +33,5 @@ fun String.encrypt(): String = try {
     cipher.init(Cipher.ENCRYPT_MODE, key, ivParameterSpec)
     Base64.getEncoder().encodeToString(cipher.doFinal(toByteArray()))
 } catch (exception: Exception) {
-    throw CipherException
+    throw ExpiredCookieException
 }
