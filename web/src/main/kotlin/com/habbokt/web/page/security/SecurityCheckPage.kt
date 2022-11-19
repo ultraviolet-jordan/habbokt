@@ -10,7 +10,7 @@ import io.ktor.server.sessions.CurrentSession
  * @author Jordan Abraham
  */
 object SecurityCheckPage : Page {
-    private val siteService by inject<SiteService>()
+    private val siteService by com.habbokt.api.inject<SiteService>()
 
     override fun templateName(): String = "security_check.tpl"
 

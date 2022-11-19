@@ -10,7 +10,7 @@ import io.ktor.server.sessions.CurrentSession
  * @author Jordan Abraham
  */
 object ErrorPage : Page {
-    private val dao by inject<SiteService>()
+    private val dao by com.habbokt.api.inject<SiteService>()
 
     override fun templateName(): String = "client_error.tpl"
 

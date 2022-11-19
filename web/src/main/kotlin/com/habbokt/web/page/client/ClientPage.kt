@@ -15,8 +15,8 @@ import java.util.UUID
  * @author Jordan Abraham
  */
 object ClientPage : Page {
-    private val siteService by inject<SiteService>()
-    private val playersService by inject<PlayersService>()
+    private val siteService by com.habbokt.api.inject<SiteService>()
+    private val playersService by com.habbokt.api.inject<PlayersService>()
 
     override fun templateName(): String = "client.tpl"
 

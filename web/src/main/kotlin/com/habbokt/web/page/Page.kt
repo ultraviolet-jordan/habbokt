@@ -14,6 +14,6 @@ interface Page {
     suspend fun context(sessions: CurrentSession, parameters: Parameters): Map<String, Any?>
 
     suspend fun html(session: CurrentSession, queryParameters: Parameters): String = StringWriter().apply {
-        inject<Compiler>().value.compile(this, templateName(), context(session, queryParameters))
+        com.habbokt.api.inject<Compiler>().value.compile(this, templateName(), context(session, queryParameters))
     }.toString()
 }

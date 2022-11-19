@@ -13,7 +13,7 @@ import io.ktor.server.response.respond
  * @author Jordan Abraham
  */
 object NameCheckAjaxService {
-    private val playersService by inject<PlayersService>()
+    private val playersService by com.habbokt.api.inject<PlayersService>()
 
     suspend fun respondNameCheck(call: ApplicationCall) {
         val response = checkUsernameIsValid(call.receiveParameters()["name"])

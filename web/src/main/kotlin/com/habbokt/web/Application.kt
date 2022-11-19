@@ -60,7 +60,7 @@ fun Application.module() {
     installClientPageRoutes()
 
     // ====================== Temporary Database Setup ====================== //
-    val siteService by inject<SiteService>()
+    val siteService by com.habbokt.api.inject<SiteService>()
     runBlocking {
         siteService.createSite(
             SiteDAO(
@@ -77,7 +77,7 @@ fun Application.module() {
         )
     }
 
-    val playersService by inject<PlayersService>()
+    val playersService by com.habbokt.api.inject<PlayersService>()
     runBlocking {
         playersService.createPlayer(
             username = "jordan",

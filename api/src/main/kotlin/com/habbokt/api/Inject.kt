@@ -8,7 +8,7 @@ import org.koin.mp.KoinPlatformTools.defaultLazyMode
 /**
  * @author Jordan Abraham
  */
-inline fun <reified T : Any> inject(): Lazy<T> = lazyInject()
+inline fun <reified T : Any> inject(): Lazy<T> = com.habbokt.api.lazyInject()
 
 @PublishedApi
 internal inline fun <reified T : Any> lazyInject(

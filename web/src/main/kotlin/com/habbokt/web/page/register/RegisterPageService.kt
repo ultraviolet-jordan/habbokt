@@ -20,8 +20,8 @@ import io.ktor.server.sessions.set
  * @author Jordan Abraham
  */
 object RegisterPageService : PageService {
-    private val argon2 by inject<Argon2>()
-    private val playersService by inject<PlayersService>()
+    private val argon2 by com.habbokt.api.inject<Argon2>()
+    private val playersService by com.habbokt.api.inject<PlayersService>()
 
     suspend fun respondRegistration(call: ApplicationCall) {
         // User may or may not have a registration session depending on how many times they typed wrong captcha for example.
