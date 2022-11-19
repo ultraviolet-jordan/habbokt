@@ -4,6 +4,7 @@ import com.habbokt.api.buffer.base64
 import com.habbokt.api.buffer.getStringHabbo
 import com.habbokt.api.buffer.putIntHabbo
 import com.habbokt.api.buffer.putStringHabbo
+import com.habbokt.api.packet.ClientHelloPacket
 import com.habbokt.api.plugin.PacketAssemblerPluginKey
 import com.habbokt.api.plugin.PacketDisassemblerPluginKey
 import com.habbokt.api.plugin.PacketHandlerPluginKey
@@ -70,6 +71,8 @@ fun Application.module() {
                     disassemblers = attributes[PacketDisassemblerPluginKey],
                     handlers = attributes[PacketHandlerPluginKey]
                 )
+
+                client.writePacket(ClientHelloPacket())
 
                 try {
                     while (true) {

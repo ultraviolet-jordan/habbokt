@@ -35,7 +35,7 @@ fun PacketHandlerConfig.installSSOTicketPacket() {
             return@packet
         }
 
-        client.writePacket(AuthenticationOKPacket())
         client.writePacket(UserRightsPacket())
+        client.writePacket(AuthenticationOKPacket())
     }
 }
