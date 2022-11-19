@@ -8,7 +8,7 @@ import org.koin.dsl.module
 /**
  * @author Jordan Abraham
  */
-val CompilerModule = module(createdAtStart = true) {
+val TemplatingModule = module(createdAtStart = true) {
     single {
         Compiler(
             PebbleEngine.Builder()
