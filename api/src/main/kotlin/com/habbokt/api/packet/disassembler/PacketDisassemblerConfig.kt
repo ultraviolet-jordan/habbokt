@@ -4,14 +4,15 @@ package com.habbokt.api.packet.disassembler
  * @author Jordan Abraham
  */
 class PacketDisassemblerConfig {
-    private val registered = HashMap<Int, PacketDisassembler>()
+    private val registered = HashMap<Int, PacketDisassemblerDeclaration>()
 
-    val disassemblers: Map<Int, PacketDisassembler> get() = registered.toMap()
+    val declarations: Map<Int, PacketDisassemblerDeclaration> get() = registered.toMap()
 
-    fun register(id: Int, assembler: PacketDisassembler) {
-        if (registered.containsKey(id)) {
-            throw IllegalArgumentException("There is already a registered packet disassembler with id $id.")
+    @PublishedApi
+    internal fun register(declaration: PacketDisassemblerDeclaration) {
+        if (registered.containsKey(declaration.id)) {
+            throw IllegalArgumentException("There is already a registered packet disassembler with id ${declaration.id}.")
         }
-        registered[id] = assembler
+        registered[declaration.id] = declaration
     }
 }

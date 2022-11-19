@@ -6,8 +6,7 @@ import com.habbokt.api.packet.AuthenticationOKPacket
 import com.habbokt.api.packet.DisconnectReasonPacket
 import com.habbokt.api.packet.SSOTicketPacket
 import com.habbokt.api.packet.UserRightsPacket
-import com.habbokt.api.packet.handler.PacketHandlerConfig
-import com.habbokt.api.packet.handler.packet
+import com.habbokt.api.packet.handler.*
 import com.habbokt.dao.players.PlayersService
 
 /**
@@ -15,27 +14,25 @@ import com.habbokt.dao.players.PlayersService
  */
 private val playersService by inject<PlayersService>()
 
-fun PacketHandlerConfig.installSSOTicketPacket() {
-    packet<SSOTicketPacket> {
-        val ssoTicket = packet.ssoTicket
+val SSOTicketPacketHandler = handler<SSOTicketPacket> {
+    val ssoTicket = packet.ssoTicket
 
-        val player = playersService.ssoTicket(ssoTicket)
-        if (player == null) {
-            client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
-            return@packet
-        }
-
-        if (player.ssoTicket != ssoTicket) {
-            client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
-            return@packet
-        }
-
-        if (!playersService.editPlayer(player.copy(ssoTicket = ""))) {
-            client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
-            return@packet
-        }
-
-        client.writePacket(UserRightsPacket())
-        client.writePacket(AuthenticationOKPacket())
+    val player = playersService.ssoTicket(ssoTicket)
+    if (player == null) {
+        client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
+        return@handler
     }
+
+    if (player.ssoTicket != ssoTicket) {
+        client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
+        return@handler
+    }
+
+    if (!playersService.editPlayer(player.copy(ssoTicket = ""))) {
+        client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
+        return@handler
+    }
+
+    client.writePacket(UserRightsPacket())
+    client.writePacket(AuthenticationOKPacket())
 }

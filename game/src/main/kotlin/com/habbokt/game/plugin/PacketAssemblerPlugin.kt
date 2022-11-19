@@ -1,14 +1,8 @@
 package com.habbokt.game.plugin
 
+import com.habbokt.api.packet.assembler.assemblers
 import com.habbokt.api.plugin.PacketAssemblerPlugin
-import com.habbokt.game.packet.assembler.installAuthenticationOKPacket
-import com.habbokt.game.packet.assembler.installClientHelloPacket
-import com.habbokt.game.packet.assembler.installCompleteDiffieHandshakePacket
-import com.habbokt.game.packet.assembler.installDisconnectReasonPacket
-import com.habbokt.game.packet.assembler.installInfoRetrieveResponsePacket
-import com.habbokt.game.packet.assembler.installInitDiffieHandshakePacket
-import com.habbokt.game.packet.assembler.installUniqueMachineIDPacket
-import com.habbokt.game.packet.assembler.installUserRightsPacket
+import com.habbokt.game.packet.assembler.*
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 
@@ -17,13 +11,15 @@ import io.ktor.server.application.install
  */
 fun Application.installPacketAssemblerPlugin() {
     install(PacketAssemblerPlugin) {
-        installCompleteDiffieHandshakePacket()
-        installDisconnectReasonPacket()
-        installInitDiffieHandshakePacket()
-        installUniqueMachineIDPacket()
-        installInfoRetrieveResponsePacket()
-        installUserRightsPacket()
-        installAuthenticationOKPacket()
-        installClientHelloPacket()
+        assemblers(
+            CompleteDiffieHandshakeResponsePacketAssembler,
+            DisconnectReasonPacketAssembler,
+            InitDiffieHandshakePacketAssembler,
+            UniqueMachineIDPacketAssembler,
+            InfoRetrieveResponsePacketAssembler,
+            UserRightsPacketAssembler,
+            AuthenticationOKPacketAssembler,
+            ClientHelloPacketAssembler
+        )
     }
 }

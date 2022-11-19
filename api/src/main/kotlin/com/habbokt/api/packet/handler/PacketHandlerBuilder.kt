@@ -5,7 +5,10 @@ import com.habbokt.api.packet.Packet
 /**
  * @author Jordan Abraham
  */
-@Suppress("UNCHECKED_CAST")
-inline fun <reified P : Packet> PacketHandlerConfig.packet(noinline assembler: suspend PacketHandler<P>.() -> Unit) {
-    register(P::class, assembler as suspend PacketHandler<Packet>.() -> Unit)
+inline fun <reified P : Packet> handler(
+    noinline handler: suspend PacketHandler<P>.() -> Unit
+): PacketHandlerDeclaration<P> = PacketHandlerDeclaration(P::class, handler)
+
+fun <T : PacketHandlerDeclaration<*>> PacketHandlerConfig.handlers(vararg handlers: T) {
+    handlers.forEach(::register)
 }

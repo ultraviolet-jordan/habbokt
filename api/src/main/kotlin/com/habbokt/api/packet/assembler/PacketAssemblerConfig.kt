@@ -1,19 +1,22 @@
 package com.habbokt.api.packet.assembler
 
+import com.habbokt.api.packet.*
 import kotlin.reflect.KClass
 
 /**
  * @author Jordan Abraham
  */
 class PacketAssemblerConfig {
-    private val registered = HashMap<KClass<*>, PacketAssembler<*>>()
+    private val registered = HashMap<KClass<*>, PacketAssemblerDeclaration<Packet>>()
 
-    val assemblers: Map<KClass<*>, PacketAssembler<*>> get() = registered.toMap()
+    val declarations: Map<KClass<*>, PacketAssemblerDeclaration<Packet>> get() = registered.toMap()
 
-    fun register(clazz: KClass<*>, assembler: PacketAssembler<*>) {
-        registered.values.firstOrNull { it.id == assembler.id }?.let {
-            throw IllegalArgumentException("There is already a registered packet assembler with id ${assembler.id}.")
+    @PublishedApi
+    internal fun <P : Packet> register(declaration: PacketAssemblerDeclaration<P>) {
+        registered.values.firstOrNull { it.clazz == declaration.clazz }?.let {
+            throw IllegalArgumentException("There is already a registered packet assembler with type: ${declaration.clazz}.")
         }
-        registered[clazz] = assembler
+        @Suppress("UNCHECKED_CAST")
+        registered[declaration.clazz] = declaration as PacketAssemblerDeclaration<Packet>
     }
 }

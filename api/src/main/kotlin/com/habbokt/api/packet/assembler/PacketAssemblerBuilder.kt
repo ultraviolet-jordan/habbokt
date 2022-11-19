@@ -6,15 +6,11 @@ import java.nio.ByteBuffer
 /**
  * @author Jordan Abraham
  */
-inline fun <reified P : Packet> PacketAssemblerConfig.packet(
+inline fun <reified P : Packet> assembler(
     id: Int,
     noinline block: P.(ByteBuffer) -> Unit
-) {
-    val assembler = PacketAssembler(id, block)
-    packet(assembler)
-}
+): PacketAssemblerDeclaration<P> = PacketAssemblerDeclaration(P::class, PacketAssembler(id, block))
 
-@PublishedApi
-internal inline fun <reified P : Packet> PacketAssemblerConfig.packet(assembler: PacketAssembler<P>) {
-    register(P::class, assembler)
+fun <T : PacketAssemblerDeclaration<*>> PacketAssemblerConfig.assemblers(vararg assemblers: T) {
+    assemblers.forEach(::register)
 }

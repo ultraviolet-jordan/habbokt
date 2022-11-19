@@ -1,12 +1,8 @@
 package com.habbokt.game.plugin
 
+import com.habbokt.api.packet.handler.*
 import com.habbokt.api.plugin.PacketHandlerPlugin
-import com.habbokt.game.packet.handler.installCompleteDiffieHandshakePacket
-import com.habbokt.game.packet.handler.installInfoRetrieveRequestPacket
-import com.habbokt.game.packet.handler.installInitDiffieHandshakePacket
-import com.habbokt.game.packet.handler.installSSOTicketPacket
-import com.habbokt.game.packet.handler.installUniqueMachineIDPacket
-import com.habbokt.game.packet.handler.installVersionCheckPacket
+import com.habbokt.game.packet.handler.*
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 
@@ -15,11 +11,13 @@ import io.ktor.server.application.install
  */
 fun Application.installPacketHandlerPlugin() {
     install(PacketHandlerPlugin) {
-        installCompleteDiffieHandshakePacket()
-        installInitDiffieHandshakePacket()
-        installUniqueMachineIDPacket()
-        installVersionCheckPacket()
-        installInfoRetrieveRequestPacket()
-        installSSOTicketPacket()
+        handlers(
+            CompleteDiffieHandshakeRequestPacketHandler,
+            InitDiffieHandshakeRequestPacketHandler,
+            UniqueMachineIDPacketHandler,
+            VersionCheckPacketHandler,
+            InfoRetrieveRequestPacketHandler,
+            SSOTicketPacketHandler
+        )
     }
 }

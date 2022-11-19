@@ -1,20 +1,22 @@
 package com.habbokt.api.packet.handler
 
-import com.habbokt.api.packet.Packet
+import com.habbokt.api.packet.*
 import kotlin.reflect.KClass
 
 /**
  * @author Jordan Abraham
  */
 class PacketHandlerConfig {
-    private val registered = HashMap<KClass<*>, suspend PacketHandler<Packet>.() -> Unit>()
+    private val registered = HashMap<KClass<*>, PacketHandlerDeclaration<Packet>>()
 
-    val handlers: Map<KClass<*>, suspend PacketHandler<Packet>.() -> Unit> get() = registered.toMap()
+    val declarations: Map<KClass<*>, PacketHandlerDeclaration<Packet>> get() = registered.toMap()
 
-    fun register(clazz: KClass<*>, assembler: suspend PacketHandler<Packet>.() -> Unit) {
-        registered.keys.firstOrNull { it == clazz }?.let {
-            throw IllegalArgumentException("There is already a registered packet handler for class type: ${clazz}.")
+    @PublishedApi
+    internal fun register(declaration: PacketHandlerDeclaration<*>) {
+        registered.values.firstOrNull { it.clazz == declaration.clazz }?.let {
+            throw IllegalArgumentException("There is already a registered packet handler for class type: ${declaration.clazz}.")
         }
-        registered[clazz] = assembler
+        @Suppress("UNCHECKED_CAST")
+        registered[declaration.clazz] = declaration as PacketHandlerDeclaration<Packet>
     }
 }

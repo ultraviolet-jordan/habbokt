@@ -6,15 +6,11 @@ import java.nio.ByteBuffer
 /**
  * @author Jordan Abraham
  */
-inline fun <reified P : Packet> PacketDisassemblerConfig.packet(
+inline fun <reified P : Packet> disassembler(
     id: Int,
     noinline block: (ByteBuffer) -> P
-) {
-    val disassembler = PacketDisassembler(block)
-    packet(id, disassembler)
-}
+): PacketDisassemblerDeclaration = PacketDisassemblerDeclaration(id, PacketDisassembler(block))
 
-@PublishedApi
-internal fun PacketDisassemblerConfig.packet(id: Int, assembler: PacketDisassembler) {
-    register(id, assembler)
+fun PacketDisassemblerConfig.disassemblers(vararg disassemblers: PacketDisassemblerDeclaration) {
+    disassemblers.forEach(::register)
 }
