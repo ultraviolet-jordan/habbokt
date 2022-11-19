@@ -10,7 +10,7 @@ import org.koin.dsl.module
 /**
  * @author Jordan Abraham
  */
-fun compilerModule() = module(createdAtStart = true) {
+val CompilerModule = module(createdAtStart = true) {
     single {
         Compiler(
             PebbleEngine.Builder()
