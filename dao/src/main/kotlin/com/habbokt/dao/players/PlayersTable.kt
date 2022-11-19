@@ -12,6 +12,7 @@ object PlayersTable : Table() {
     val email = varchar("email", 255)
     val appearance = varchar("appearance", 255)
     val gender = char("gender", 1)
+    val ssoTicket = text("ssoTicket")
 
     override val primaryKey = PrimaryKey(id)
 }

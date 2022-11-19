@@ -11,5 +11,6 @@ data class Player(
     val password: String,
     val email: String,
     val appearance: String,
-    val gender: String
+    val gender: String,
+    val ssoTicket: String
 ) : Serializable

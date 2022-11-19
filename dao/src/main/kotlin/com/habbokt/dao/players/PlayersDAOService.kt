@@ -16,19 +16,28 @@ class PlayersDAOService(
         password: String,
         email: String,
         appearance: String,
-        gender: String
-    ): Player? = delegate.createPlayer(username, password, email, appearance, gender)?.also { cache.put(it.id, it) }
+        gender: String,
+        ssoTicket: String
+    ): Player? = delegate.createPlayer(
+        username,
+        password,
+        email,
+        appearance,
+        gender,
+        ssoTicket
+    )?.also { cache.put(it.id, it) }
 
-    override suspend fun editPlayer(
-        id: Int,
-        username: String,
-        password: String,
-        email: String,
-        appearance: String,
-        gender: String
-    ): Boolean {
-        cache.put(id, Player(id, username, password, email, appearance, gender))
-        return delegate.editPlayer(id, username, password, email, appearance, gender)
+    override suspend fun editPlayer(player: Player): Boolean {
+        cache.put(player.id, Player(
+            player.id,
+            player.username,
+            player.password,
+            player.email,
+            player.appearance,
+            player.gender,
+            player.ssoTicket
+        ))
+        return delegate.editPlayer(player)
     }
 
     override suspend fun deletePlayer(id: Int): Boolean {

@@ -21,7 +21,8 @@ class PlayersDAODelegate : PlayersDAO {
         password: String,
         email: String,
         appearance: String,
-        gender: String
+        gender: String,
+        ssoTicket: String
     ): Player? = query {
         PlayersTable.insert {
             it[PlayersTable.username] = username
@@ -29,23 +30,20 @@ class PlayersDAODelegate : PlayersDAO {
             it[PlayersTable.email] = email
             it[PlayersTable.appearance] = appearance
             it[PlayersTable.gender] = gender
+            it[PlayersTable.ssoTicket] = ssoTicket
         }.resultedValues?.singleOrNull()?.let(::resultToPlayer)
     }
 
     override suspend fun editPlayer(
-        id: Int,
-        username: String,
-        password: String,
-        email: String,
-        appearance: String,
-        gender: String
+        player: Player
     ): Boolean = query {
-        PlayersTable.update({ PlayersTable.id eq id }) {
-            it[PlayersTable.username] = username
-            it[PlayersTable.password] = password
-            it[PlayersTable.email] = email
-            it[PlayersTable.appearance] = appearance
-            it[PlayersTable.gender] = gender
+        PlayersTable.update({ PlayersTable.id eq player.id }) {
+            it[username] = player.username
+            it[password] = player.password
+            it[email] = player.email
+            it[appearance] = player.appearance
+            it[gender] = player.gender
+            it[ssoTicket] = player.ssoTicket
         } > 0
     }
 
@@ -68,6 +66,7 @@ class PlayersDAODelegate : PlayersDAO {
         password = row[PlayersTable.password],
         email = row[PlayersTable.email],
         appearance = row[PlayersTable.appearance],
-        gender = row[PlayersTable.gender]
+        gender = row[PlayersTable.gender],
+        ssoTicket = row[PlayersTable.ssoTicket]
     )
 }

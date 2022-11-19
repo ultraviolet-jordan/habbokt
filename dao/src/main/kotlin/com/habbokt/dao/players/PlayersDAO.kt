@@ -11,16 +11,12 @@ interface PlayersDAO {
         password: String,
         email: String,
         appearance: String,
-        gender: String
+        gender: String,
+        ssoTicket: String
     ): Player?
 
     suspend fun editPlayer(
-        id: Int,
-        username: String,
-        password: String,
-        email: String,
-        appearance: String,
-        gender: String
+        player: Player
     ): Boolean
 
     suspend fun deletePlayer(id: Int): Boolean
