@@ -1,6 +1,6 @@
 package com.habbokt.web.page.client
 
-import com.habbokt.dao.players.PlayersDAO
+import com.habbokt.dao.players.PlayersService
 import com.habbokt.dao.site.SiteService
 import com.habbokt.web.common.decrypt
 import com.habbokt.web.inject
@@ -16,7 +16,7 @@ import java.util.UUID
  */
 object ClientPage : Page {
     private val siteService by inject<SiteService>()
-    private val playerDAO by inject<PlayersDAO>()
+    private val playersService by inject<PlayersService>()
 
     override fun templateName(): String = "client.tpl"
 
@@ -27,12 +27,12 @@ object ClientPage : Page {
         val session = sessions.get<UserSession>()!! // This call is authenticated by this session.
 
         val playerId = session.playerId.decrypt().toInt()
-        val player = playerDAO.player(playerId) ?: throw Exception("Player not found with ID: $playerId") // Redirects back to "/".
+        val player = playersService.player(playerId) ?: throw Exception("Player not found with ID: $playerId") // Redirects back to "/".
         require(playerId == player.id)
 
         val ssoTicket = UUID.randomUUID().toString()
         // Edit player in DB with new ssoTicket when they launch client.
-        if (playerDAO.editPlayer(player.copy(ssoTicket = ssoTicket))) {
+        if (playersService.editPlayer(player.copy(ssoTicket = ssoTicket))) {
             it["ssoTicket"] = ssoTicket // Update client with ssoTicket.
         }
     }

@@ -5,7 +5,7 @@ import java.io.Serializable
 /**
  * @author Jordan Abraham
  */
-data class Player(
+data class PlayerDAO(
     val id: Int,
     val username: String,
     val password: String,

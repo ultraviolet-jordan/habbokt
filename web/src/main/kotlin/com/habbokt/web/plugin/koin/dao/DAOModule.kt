@@ -2,10 +2,10 @@ package com.habbokt.web.plugin.koin.dao
 
 import com.habbokt.dao.CachingAliases
 import com.habbokt.dao.keyedCacheResourcePool
-import com.habbokt.dao.players.Player
-import com.habbokt.dao.players.PlayersDAO
-import com.habbokt.dao.players.PlayersDAODelegate
-import com.habbokt.dao.players.PlayersDAOService
+import com.habbokt.dao.players.PlayerDAO
+import com.habbokt.dao.players.PlayersService
+import com.habbokt.dao.players.PlayersServiceDelegate
+import com.habbokt.dao.players.PlayersServiceEhcache
 import com.habbokt.dao.site.SiteDAO
 import com.habbokt.dao.site.SiteService
 import com.habbokt.dao.site.SiteServiceDelegate
@@ -17,11 +17,11 @@ import org.koin.dsl.module
  * @author Jordan Abraham
  */
 fun daoModule() = module(createdAtStart = true) {
-    single { createSiteDAO() }
-    single { createPlayersDAO() }
+    single { createSiteService() }
+    single { createPlayersService() }
 }
 
-private fun createSiteDAO(): SiteService = SiteServiceEhcache(
+private fun createSiteService(): SiteService = SiteServiceEhcache(
     delegate = SiteServiceDelegate(),
     cache = keyedCacheResourcePool(CachingAliases.SiteTableCache, SiteDAO::class.java)
 ).apply {
@@ -41,9 +41,9 @@ private fun createSiteDAO(): SiteService = SiteServiceEhcache(
     }
 }
 
-private fun createPlayersDAO(): PlayersDAO = PlayersDAOService(
-    delegate = PlayersDAODelegate(),
-    cache = keyedCacheResourcePool(CachingAliases.PlayersTableCache, Player::class.java)
+private fun createPlayersService(): PlayersService = PlayersServiceEhcache(
+    delegate = PlayersServiceDelegate(),
+    cache = keyedCacheResourcePool(CachingAliases.PlayersTableCache, PlayerDAO::class.java)
 ).apply {
     runBlocking {
         // TODO This is only for testing purposes for now.

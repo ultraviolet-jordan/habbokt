@@ -8,8 +8,8 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.update
 
-class PlayersDAODelegate : PlayersDAO {
-    override suspend fun player(id: Int): Player? = query {
+class PlayersServiceDelegate : PlayersService {
+    override suspend fun player(id: Int): PlayerDAO? = query {
         PlayersTable
             .select { PlayersTable.id eq id }
             .map(::resultToPlayer)
@@ -23,7 +23,7 @@ class PlayersDAODelegate : PlayersDAO {
         appearance: String,
         gender: String,
         ssoTicket: String
-    ): Player? = query {
+    ): PlayerDAO? = query {
         PlayersTable.insert {
             it[PlayersTable.username] = username
             it[PlayersTable.password] = password
@@ -35,15 +35,15 @@ class PlayersDAODelegate : PlayersDAO {
     }
 
     override suspend fun editPlayer(
-        player: Player
+        playerDAO: PlayerDAO
     ): Boolean = query {
-        PlayersTable.update({ PlayersTable.id eq player.id }) {
-            it[username] = player.username
-            it[password] = player.password
-            it[email] = player.email
-            it[appearance] = player.appearance
-            it[gender] = player.gender
-            it[ssoTicket] = player.ssoTicket
+        PlayersTable.update({ PlayersTable.id eq playerDAO.id }) {
+            it[username] = playerDAO.username
+            it[password] = playerDAO.password
+            it[email] = playerDAO.email
+            it[appearance] = playerDAO.appearance
+            it[gender] = playerDAO.gender
+            it[ssoTicket] = playerDAO.ssoTicket
         } > 0
     }
 
@@ -60,7 +60,7 @@ class PlayersDAODelegate : PlayersDAO {
             ?.id
     }
 
-    private fun resultToPlayer(row: ResultRow) = Player(
+    private fun resultToPlayer(row: ResultRow) = PlayerDAO(
         id = row[PlayersTable.id],
         username = row[PlayersTable.username],
         password = row[PlayersTable.password],

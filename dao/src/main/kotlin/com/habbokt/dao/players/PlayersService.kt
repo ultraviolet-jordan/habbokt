@@ -3,8 +3,8 @@ package com.habbokt.dao.players
 /**
  * @author Jordan Abraham
  */
-interface PlayersDAO {
-    suspend fun player(id: Int): Player?
+interface PlayersService {
+    suspend fun player(id: Int): PlayerDAO?
 
     suspend fun createPlayer(
         username: String,
@@ -13,10 +13,10 @@ interface PlayersDAO {
         appearance: String,
         gender: String,
         ssoTicket: String
-    ): Player?
+    ): PlayerDAO?
 
     suspend fun editPlayer(
-        player: Player
+        playerDAO: PlayerDAO
     ): Boolean
 
     suspend fun deletePlayer(id: Int): Boolean

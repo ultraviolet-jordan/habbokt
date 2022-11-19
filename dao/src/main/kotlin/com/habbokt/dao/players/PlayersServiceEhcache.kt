@@ -5,11 +5,11 @@ import org.ehcache.Cache
 /**
  * @author Jordan Abraham
  */
-class PlayersDAOService(
-    private val delegate: PlayersDAO,
-    private val cache: Cache<Int, Player>
-) : PlayersDAO {
-    override suspend fun player(id: Int): Player? = cache[id] ?: delegate.player(id)?.also { cache.put(id, it) }
+class PlayersServiceEhcache(
+    private val delegate: PlayersService,
+    private val cache: Cache<Int, PlayerDAO>
+) : PlayersService {
+    override suspend fun player(id: Int): PlayerDAO? = cache[id] ?: delegate.player(id)?.also { cache.put(id, it) }
 
     override suspend fun createPlayer(
         username: String,
@@ -18,7 +18,7 @@ class PlayersDAOService(
         appearance: String,
         gender: String,
         ssoTicket: String
-    ): Player? = delegate.createPlayer(
+    ): PlayerDAO? = delegate.createPlayer(
         username,
         password,
         email,
@@ -27,9 +27,9 @@ class PlayersDAOService(
         ssoTicket
     )?.also { cache.put(it.id, it) }
 
-    override suspend fun editPlayer(player: Player): Boolean {
-        cache.put(player.id, player)
-        return delegate.editPlayer(player)
+    override suspend fun editPlayer(playerDAO: PlayerDAO): Boolean {
+        cache.put(playerDAO.id, playerDAO)
+        return delegate.editPlayer(playerDAO)
     }
 
     override suspend fun deletePlayer(id: Int): Boolean {
