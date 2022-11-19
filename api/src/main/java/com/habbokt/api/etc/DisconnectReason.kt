@@ -6,7 +6,7 @@ package com.habbokt.api.etc
 sealed class DisconnectReason(
     val id: Int
 ) {
-    object Default : DisconnectReason(-1)
+    object Disconnect : DisconnectReason(-1)
     object UrlLoggedOut : DisconnectReason(1)
     object UrlLoggedOutConcurrent : DisconnectReason(2)
     object UrlLogoutTimeout : DisconnectReason(3)
