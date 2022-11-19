@@ -5,28 +5,6 @@ package com.habbokt.dao.site
  */
 interface SiteDAO {
     suspend fun site(): Site
-
-    suspend fun createSite(
-        siteName: String,
-        sitePath: String,
-        staticContentPath: String,
-        serverOnline: Boolean,
-        loaderGameIp: String,
-        loaderGamePort: Int,
-        loaderDcr: String,
-        loaderVariables: String,
-        loaderTexts: String
-    ): Site?
-
-    suspend fun editSite(
-        siteName: String,
-        sitePath: String,
-        staticContentPath: String,
-        serverOnline: Boolean,
-        loaderGameIp: String,
-        loaderGamePort: Int,
-        loaderDcr: String,
-        loaderVariables: String,
-        loaderTexts: String
-    ): Boolean
+    suspend fun createSite(site: Site): Site?
+    suspend fun editSite(site: Site): Boolean
 }

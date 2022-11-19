@@ -17,51 +17,31 @@ class SiteDAODelegate : SiteDAO {
             .single()
     }
 
-    override suspend fun createSite(
-        siteName: String,
-        sitePath: String,
-        staticContentPath: String,
-        serverOnline: Boolean,
-        loaderGameIp: String,
-        loaderGamePort: Int,
-        loaderDcr: String,
-        loaderVariables: String,
-        loaderTexts: String
-    ): Site? = query {
+    override suspend fun createSite(site: Site): Site? = query {
         SiteTable.insert {
-            it[SiteTable.siteName] = siteName
-            it[SiteTable.sitePath] = sitePath
-            it[SiteTable.staticContentPath] = staticContentPath
-            it[SiteTable.serverOnline] = serverOnline
-            it[SiteTable.loaderGameIp] = loaderGameIp
-            it[SiteTable.loaderGamePort] = loaderGamePort
-            it[SiteTable.loaderDcr] = loaderDcr
-            it[SiteTable.loaderVariables] = loaderVariables
-            it[SiteTable.loaderTexts] = loaderTexts
+            it[siteName] = site.siteName
+            it[sitePath] = site.sitePath
+            it[staticContentPath] = site.staticContentPath
+            it[serverOnline] = site.serverOnline
+            it[loaderGameIp] = site.loaderGameIp
+            it[loaderGamePort] = site.loaderGamePort
+            it[loaderDcr] = site.loaderDcr
+            it[loaderVariables] = site.loaderVariables
+            it[loaderTexts] = site.loaderTexts
         }.resultedValues?.singleOrNull()?.let(::resultToSite)
     }
 
-    override suspend fun editSite(
-        siteName: String,
-        sitePath: String,
-        staticContentPath: String,
-        serverOnline: Boolean,
-        loaderGameIp: String,
-        loaderGamePort: Int,
-        loaderDcr: String,
-        loaderVariables: String,
-        loaderTexts: String
-    ): Boolean = query {
+    override suspend fun editSite(site: Site): Boolean = query {
         SiteTable.update({ SiteTable.id eq 1 }) {
-            it[SiteTable.siteName] = siteName
-            it[SiteTable.sitePath] = sitePath
-            it[SiteTable.staticContentPath] = staticContentPath
-            it[SiteTable.serverOnline] = serverOnline
-            it[SiteTable.loaderGameIp] = loaderGameIp
-            it[SiteTable.loaderGamePort] = loaderGamePort
-            it[SiteTable.loaderDcr] = loaderDcr
-            it[SiteTable.loaderVariables] = loaderVariables
-            it[SiteTable.loaderTexts] = loaderTexts
+            it[siteName] = site.siteName
+            it[sitePath] = site.sitePath
+            it[staticContentPath] = site.staticContentPath
+            it[serverOnline] = site.serverOnline
+            it[loaderGameIp] = site.loaderGameIp
+            it[loaderGamePort] = site.loaderGamePort
+            it[loaderDcr] = site.loaderDcr
+            it[loaderVariables] = site.loaderVariables
+            it[loaderTexts] = site.loaderTexts
         } > 0
     }
 
