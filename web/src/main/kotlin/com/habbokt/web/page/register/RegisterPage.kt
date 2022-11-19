@@ -1,6 +1,6 @@
 package com.habbokt.web.page.register
 
-import com.habbokt.dao.site.SiteDAO
+import com.habbokt.dao.site.SiteService
 import com.habbokt.web.inject
 import com.habbokt.web.page.Page
 import com.habbokt.web.session.RegistrationSession
@@ -14,7 +14,7 @@ import kotlin.random.Random
  * @author Jordan Abraham
  */
 object RegisterPage : Page {
-    private val dao by inject<SiteDAO>()
+    private val dao by inject<SiteService>()
 
     override fun templateName(): String = "register.tpl"
 

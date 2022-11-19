@@ -6,10 +6,10 @@ import com.habbokt.dao.players.Player
 import com.habbokt.dao.players.PlayersDAO
 import com.habbokt.dao.players.PlayersDAODelegate
 import com.habbokt.dao.players.PlayersDAOService
-import com.habbokt.dao.site.Site
 import com.habbokt.dao.site.SiteDAO
-import com.habbokt.dao.site.SiteDAODelegate
-import com.habbokt.dao.site.SiteDAOService
+import com.habbokt.dao.site.SiteService
+import com.habbokt.dao.site.SiteServiceDelegate
+import com.habbokt.dao.site.SiteServiceEhcache
 import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
 
@@ -21,13 +21,13 @@ fun daoModule() = module(createdAtStart = true) {
     single { createPlayersDAO() }
 }
 
-private fun createSiteDAO(): SiteDAO = SiteDAOService(
-    delegate = SiteDAODelegate(),
-    cache = keyedCacheResourcePool(CachingAliases.SiteTableCache, Site::class.java)
+private fun createSiteDAO(): SiteService = SiteServiceEhcache(
+    delegate = SiteServiceDelegate(),
+    cache = keyedCacheResourcePool(CachingAliases.SiteTableCache, SiteDAO::class.java)
 ).apply {
     runBlocking {
         // TODO This is only for testing purposes for now.
-        createSite(Site(
+        createSite(SiteDAO(
             siteName = "Habbo Hotel",
             sitePath = "http://localhost",
             staticContentPath = "http://localhost",

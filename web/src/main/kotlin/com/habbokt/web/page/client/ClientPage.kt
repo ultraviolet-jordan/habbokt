@@ -1,7 +1,7 @@
 package com.habbokt.web.page.client
 
 import com.habbokt.dao.players.PlayersDAO
-import com.habbokt.dao.site.SiteDAO
+import com.habbokt.dao.site.SiteService
 import com.habbokt.web.common.decrypt
 import com.habbokt.web.inject
 import com.habbokt.web.page.Page
@@ -15,13 +15,13 @@ import java.util.UUID
  * @author Jordan Abraham
  */
 object ClientPage : Page {
-    private val siteDAO by inject<SiteDAO>()
+    private val siteService by inject<SiteService>()
     private val playerDAO by inject<PlayersDAO>()
 
     override fun templateName(): String = "client.tpl"
 
     override suspend fun context(sessions: CurrentSession, parameters: Parameters): Map<String, Any?> = mutableMapOf(
-        "site" to siteDAO.site(),
+        "site" to siteService.site(),
         "forwardRoom" to false
     ).also {
         val session = sessions.get<UserSession>()!! // This call is authenticated by this session.
