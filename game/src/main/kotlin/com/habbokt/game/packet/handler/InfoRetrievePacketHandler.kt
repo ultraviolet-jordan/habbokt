@@ -11,10 +11,10 @@ val InfoRetrievePacketHandler = handler<InfoRetrievePacket> {
     val player = client.getPlayer() ?: return@handler
 
     client.writePacket(UserObjectPacket(
-        userId = player.id().toString(),
-        name = player.username(),
-        figure = player.appearance(),
-        sex = player.gender(),
+        userId = player.id().toString(), // "1"
+        name = player.username(), // "jordan"
+        figure = player.appearance(), // "hr-540-38.hd-627-9.ch-645-74.lg-696-81.sh-725-74.ha-1004-1315.wa-2006-"
+        sex = player.gender(), // "F"
         customData = "Test Motto",
         phTickets = 0,
         phFigure = "",

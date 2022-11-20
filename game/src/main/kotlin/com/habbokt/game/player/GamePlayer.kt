@@ -27,6 +27,7 @@ class GamePlayer(
         this.email = information.email
         this.appearance = information.appearance
         this.gender = information.gender
+        // TODO More specific validation on these fields here.
         return if (password.isEmpty() || email.isEmpty() || appearance.isEmpty() || gender.isEmpty()) null else this
     }
 }
