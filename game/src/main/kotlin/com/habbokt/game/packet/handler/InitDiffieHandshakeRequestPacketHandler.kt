@@ -1,9 +1,9 @@
 package com.habbokt.game.packet.handler
 
+import com.habbokt.api.etc.uuid
 import com.habbokt.api.packet.InitDiffieHandshakeRequestPacket
 import com.habbokt.api.packet.InitDiffieHandshakeResponsePacket
 import com.habbokt.api.packet.handler.*
-import com.habbokt.game.uuid
 
 /**
  * @author Jordan Abraham
