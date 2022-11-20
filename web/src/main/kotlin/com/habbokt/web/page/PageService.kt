@@ -1,6 +1,6 @@
 package com.habbokt.web.page
 
-import com.habbokt.web.common.htmlHeader
+import com.habbokt.web.htmlHeader
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.response.respond

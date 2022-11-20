@@ -1,7 +1,8 @@
 package com.habbokt.api.plugin
 
 import com.habbokt.api.packet.Packet
-import com.habbokt.api.packet.handler.*
+import com.habbokt.api.packet.handler.PacketHandlerConfig
+import com.habbokt.api.packet.handler.PacketHandlerDeclaration
 import io.ktor.server.application.ApplicationPlugin
 import io.ktor.server.application.createApplicationPlugin
 import io.ktor.util.AttributeKey

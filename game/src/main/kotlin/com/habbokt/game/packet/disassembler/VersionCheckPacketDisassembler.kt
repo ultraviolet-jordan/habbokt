@@ -1,9 +1,9 @@
 package com.habbokt.game.packet.disassembler
 
-import com.habbokt.api.buffer.getIntHabbo
-import com.habbokt.api.buffer.getStringHabbo
+import com.habbokt.api.common.getIntHabbo
+import com.habbokt.api.common.getStringHabbo
 import com.habbokt.api.packet.VersionCheckPacket
-import com.habbokt.api.packet.disassembler.*
+import com.habbokt.api.packet.disassembler.disassembler
 
 /**
  * @author Jordan Abraham

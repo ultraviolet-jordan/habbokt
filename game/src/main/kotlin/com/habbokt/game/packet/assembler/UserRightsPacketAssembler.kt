@@ -1,7 +1,7 @@
 package com.habbokt.game.packet.assembler
 
 import com.habbokt.api.packet.UserRightsPacket
-import com.habbokt.api.packet.assembler.*
+import com.habbokt.api.packet.assembler.assembler
 
 /**
  * @author Jordan Abraham

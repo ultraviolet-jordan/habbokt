@@ -1,4 +1,4 @@
-package com.habbokt.web.exception
+package com.habbokt.api.exception
 
 /**
  * @author Jordan Abraham

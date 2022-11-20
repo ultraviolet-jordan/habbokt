@@ -1,6 +1,6 @@
 package com.habbokt.api.packet
 
-import com.habbokt.api.etc.DisconnectReason
+import com.habbokt.api.client.DisconnectReason
 
 /**
  * @author Jordan Abraham

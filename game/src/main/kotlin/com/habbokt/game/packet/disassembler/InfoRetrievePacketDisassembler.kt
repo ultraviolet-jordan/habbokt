@@ -1,7 +1,7 @@
 package com.habbokt.game.packet.disassembler
 
-import com.habbokt.api.packet.*
-import com.habbokt.api.packet.disassembler.*
+import com.habbokt.api.packet.InfoRetrievePacket
+import com.habbokt.api.packet.disassembler.disassembler
 
 /**
  * @author Jordan Abraham

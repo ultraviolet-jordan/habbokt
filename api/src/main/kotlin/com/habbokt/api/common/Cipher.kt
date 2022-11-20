@@ -1,6 +1,6 @@
-package com.habbokt.web.common
+package com.habbokt.api.common
 
-import com.habbokt.web.exception.ExpiredCookieException
+import com.habbokt.api.exception.ExpiredCookieException
 import java.security.SecureRandom
 import java.util.Base64
 import javax.crypto.Cipher

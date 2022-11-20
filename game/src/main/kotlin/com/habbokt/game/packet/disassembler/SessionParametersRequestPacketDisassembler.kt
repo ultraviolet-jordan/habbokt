@@ -1,7 +1,7 @@
 package com.habbokt.game.packet.disassembler
 
 import com.habbokt.api.packet.SessionParametersRequestPacket
-import com.habbokt.api.packet.disassembler.*
+import com.habbokt.api.packet.disassembler.disassembler
 
 /**
  * @author Jordan Abraham

@@ -1,8 +1,8 @@
 package com.habbokt.game.packet.disassembler
 
-import com.habbokt.api.buffer.*
-import com.habbokt.api.packet.*
-import com.habbokt.api.packet.disassembler.*
+import com.habbokt.api.common.getStringHabbo
+import com.habbokt.api.packet.ScrGetUserInfoPacket
+import com.habbokt.api.packet.disassembler.disassembler
 
 /**
  * @author Jordan Abraham

@@ -1,6 +1,6 @@
 package com.habbokt.web.plugin
 
-import com.habbokt.web.exception.ExpiredCookieException
+import com.habbokt.api.exception.ExpiredCookieException
 import com.habbokt.web.session.UserSession
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application

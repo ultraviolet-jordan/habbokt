@@ -1,4 +1,4 @@
-package com.habbokt.api.etc
+package com.habbokt.api.client
 
 /**
  * @author Jordan Abraham

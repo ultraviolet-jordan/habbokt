@@ -1,6 +1,7 @@
 package com.habbokt.api.plugin
 
-import com.habbokt.api.packet.disassembler.*
+import com.habbokt.api.packet.disassembler.PacketDisassemblerConfig
+import com.habbokt.api.packet.disassembler.PacketDisassemblerDeclaration
 import io.ktor.server.application.ApplicationPlugin
 import io.ktor.server.application.createApplicationPlugin
 import io.ktor.util.AttributeKey

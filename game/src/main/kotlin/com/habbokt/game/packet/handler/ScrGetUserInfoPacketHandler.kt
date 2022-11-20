@@ -1,7 +1,8 @@
 package com.habbokt.game.packet.handler
 
-import com.habbokt.api.packet.*
-import com.habbokt.api.packet.handler.*
+import com.habbokt.api.packet.ScrGetUserInfoPacket
+import com.habbokt.api.packet.ScrSendUserInfoPacket
+import com.habbokt.api.packet.handler.handler
 
 /**
  * @author Jordan Abraham

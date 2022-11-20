@@ -1,7 +1,7 @@
 package com.habbokt.api.packet.handler
 
-import com.habbokt.api.packet.*
-import kotlin.reflect.*
+import com.habbokt.api.packet.Packet
+import kotlin.reflect.KClass
 
 /**
  * @author Jordan Abraham

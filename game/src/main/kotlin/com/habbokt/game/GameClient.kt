@@ -1,11 +1,12 @@
 package com.habbokt.game
 
-import com.habbokt.api.buffer.base64
+import com.habbokt.api.common.base64
 import com.habbokt.api.client.Client
 import com.habbokt.api.packet.Packet
-import com.habbokt.api.packet.assembler.*
-import com.habbokt.api.packet.disassembler.*
-import com.habbokt.api.packet.handler.*
+import com.habbokt.api.packet.assembler.PacketAssemblerDeclaration
+import com.habbokt.api.packet.disassembler.PacketDisassemblerDeclaration
+import com.habbokt.api.packet.handler.PacketHandler
+import com.habbokt.api.packet.handler.PacketHandlerDeclaration
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.core.readBytes

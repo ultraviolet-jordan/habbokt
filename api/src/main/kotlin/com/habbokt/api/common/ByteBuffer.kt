@@ -1,4 +1,4 @@
-package com.habbokt.api.buffer
+package com.habbokt.api.common
 
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets

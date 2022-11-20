@@ -1,6 +1,6 @@
-package com.habbokt.api.etc
+package com.habbokt.api.common
 
-import java.security.*
+import java.security.SecureRandom
 
 /**
  * @author Jordan Abraham

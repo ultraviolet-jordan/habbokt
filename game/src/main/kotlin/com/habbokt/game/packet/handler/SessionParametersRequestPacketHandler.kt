@@ -14,7 +14,7 @@ import com.habbokt.api.client.handshake.SessionParameterId.Voucher
 import com.habbokt.api.client.handshake.SessionParameters
 import com.habbokt.api.packet.SessionParametersRequestPacket
 import com.habbokt.api.packet.SessionParametersResponsePacket
-import com.habbokt.api.packet.handler.*
+import com.habbokt.api.packet.handler.handler
 
 /**
  * @author Jordan Abraham

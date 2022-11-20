@@ -1,9 +1,9 @@
 package com.habbokt.game.packet.handler
 
-import com.habbokt.api.etc.DisconnectReason
+import com.habbokt.api.client.DisconnectReason
 import com.habbokt.api.packet.DisconnectReasonPacket
 import com.habbokt.api.packet.VersionCheckPacket
-import com.habbokt.api.packet.handler.*
+import com.habbokt.api.packet.handler.handler
 
 /**
  * @author Jordan Abraham

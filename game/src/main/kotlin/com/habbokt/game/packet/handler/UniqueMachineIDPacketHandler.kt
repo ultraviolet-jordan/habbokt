@@ -1,7 +1,7 @@
 package com.habbokt.game.packet.handler
 
 import com.habbokt.api.packet.UniqueMachineIDPacket
-import com.habbokt.api.packet.handler.*
+import com.habbokt.api.packet.handler.handler
 import java.util.UUID
 
 /**

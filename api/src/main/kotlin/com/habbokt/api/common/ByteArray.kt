@@ -1,4 +1,4 @@
-package com.habbokt.api.buffer
+package com.habbokt.api.common
 
 /**
  * @author Jordan Abraham

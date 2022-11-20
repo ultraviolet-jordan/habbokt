@@ -2,7 +2,7 @@ package com.habbokt.web.page.captcha
 
 import cn.apiclub.captcha.Captcha
 import cn.apiclub.captcha.text.renderer.DefaultWordRenderer
-import com.habbokt.web.common.pngHeader
+import com.habbokt.web.pngHeader
 import com.habbokt.web.session.CaptchaSession
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
