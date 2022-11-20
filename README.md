@@ -17,13 +17,17 @@ _Since Auto-reload detects changes in output files, you need to rebuild a projec
   ./gradlew -t build -x test -x jar -x distZip -x distTar
   ```
 
-# Starting the Web-Server
+# Starting the Web Server
 _Running the auto-reload task and the web-server task in Gradle simultaneously is very powerful for development._
 
 - To start the web server using Gradle, you can run the run task in a terminal:
   ```shell
-  ./gradlew run
+  ./gradlew :web:run
   ```
 
-# Starting the Game-Server
-_Coming soon..._
+# Starting the Game Server
+- To start the game server using Gradle, you can run the run task in a terminal:
+  ```shell
+  ./gradlew :game:run
+  ```
+  *Note: The game server relies on the web-server to be online.*
