@@ -8,11 +8,13 @@ import com.habbokt.api.packet.handler.handler
  * @author Jordan Abraham
  */
 val InfoRetrievePacketHandler = handler<InfoRetrievePacket> {
+    val player = client.getPlayer() ?: return@handler
+
     client.writePacket(UserObjectPacket(
-        userId = "1",
-        name = "Jordan",
-        figure = "",
-        sex = "F",
+        userId = player.id().toString(),
+        name = player.username(),
+        figure = player.appearance(),
+        sex = player.gender(),
         customData = "Test Motto",
         phTickets = 0,
         phFigure = "",

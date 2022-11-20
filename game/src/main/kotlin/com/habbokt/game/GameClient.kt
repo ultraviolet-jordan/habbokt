@@ -2,11 +2,16 @@ package com.habbokt.game
 
 import com.habbokt.api.common.base64
 import com.habbokt.api.client.Client
+import com.habbokt.api.client.handshake.LoginInformation
+import com.habbokt.api.packet.AuthenticationOKPacket
 import com.habbokt.api.packet.Packet
+import com.habbokt.api.packet.UserRightsPacket
 import com.habbokt.api.packet.assembler.PacketAssemblerDeclaration
 import com.habbokt.api.packet.disassembler.PacketDisassemblerDeclaration
 import com.habbokt.api.packet.handler.PacketHandler
 import com.habbokt.api.packet.handler.PacketHandlerDeclaration
+import com.habbokt.api.player.Player
+import com.habbokt.game.player.GamePlayer
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.core.readBytes
@@ -26,6 +31,8 @@ class GameClient(
     private val handlers: Map<KClass<*>, PacketHandlerDeclaration<Packet>>
 ) : Client {
     private val writePool = ByteBuffer.allocateDirect(256)
+
+    private lateinit var gamePlayer: GamePlayer
 
     override fun readChannel(): ByteReadChannel = readChannel
     override fun writeChannel(): ByteWriteChannel = writeChannel
@@ -73,5 +80,28 @@ class GameClient(
             }
         }.flush()
         writePool.clear()
+    }
+
+    override fun getPlayer(): Player? {
+        if (!::gamePlayer.isInitialized) return null
+        return gamePlayer
+    }
+
+    override fun login(information: LoginInformation) {
+        this.gamePlayer = GamePlayer(
+            id = information.id,
+            username = information.username,
+            password = information.password,
+            email = information.email,
+            appearance = information.appearance,
+            gender = information.gender
+        )
+
+        writePacket(UserRightsPacket())
+        writePacket(AuthenticationOKPacket())
+    }
+
+    override fun logout() {
+        TODO("Not yet implemented")
     }
 }
