@@ -9,6 +9,6 @@ import com.habbokt.api.packet.disassembler.*
  */
 val ScrGetUserInfoPacketDisassembler = disassembler(id = 26) {
     ScrGetUserInfoPacket(
-        key = it.getStringHabbo()
+        productName = it.getStringHabbo()
     )
 }

@@ -12,14 +12,14 @@ import com.habbokt.api.client.handshake.SessionParameterId.TrackingHeader
 import com.habbokt.api.client.handshake.SessionParameterId.TutorialEnabled
 import com.habbokt.api.client.handshake.SessionParameterId.Voucher
 import com.habbokt.api.client.handshake.SessionParameters
-import com.habbokt.api.packet.InfoRetrieveRequestPacket
-import com.habbokt.api.packet.InfoRetrieveResponsePacket
+import com.habbokt.api.packet.SessionParametersRequestPacket
+import com.habbokt.api.packet.SessionParametersResponsePacket
 import com.habbokt.api.packet.handler.*
 
 /**
  * @author Jordan Abraham
  */
-val InfoRetrieveRequestPacketHandler = handler<InfoRetrieveRequestPacket> {
+val SessionParametersRequestPacketHandler = handler<SessionParametersRequestPacket> {
     val sessionParameters = SessionParameters(
         SessionParameter(Coppa, false),
         SessionParameter(Voucher, true),
@@ -33,5 +33,5 @@ val InfoRetrieveRequestPacketHandler = handler<InfoRetrieveRequestPacket> {
         SessionParameter(TutorialEnabled, false)
     )
 
-    client.writePacket(InfoRetrieveResponsePacket(sessionParameters))
+    client.writePacket(SessionParametersResponsePacket(sessionParameters))
 }

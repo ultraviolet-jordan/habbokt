@@ -16,10 +16,11 @@ fun Application.installPacketAssemblerPlugin() {
             DisconnectReasonPacketAssembler,
             InitDiffieHandshakePacketAssembler,
             UniqueMachineIDPacketAssembler,
-            InfoRetrieveResponsePacketAssembler,
+            SessionParametersResponsePacketAssembler,
             UserRightsPacketAssembler,
             AuthenticationOKPacketAssembler,
-            ClientHelloPacketAssembler
+            ClientHelloPacketAssembler,
+            ScrSendUserInfoPacketAssembler
         )
     }
 }

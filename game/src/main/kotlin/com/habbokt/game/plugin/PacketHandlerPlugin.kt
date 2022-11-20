@@ -16,7 +16,7 @@ fun Application.installPacketHandlerPlugin() {
             InitDiffieHandshakeRequestPacketHandler,
             UniqueMachineIDPacketHandler,
             VersionCheckPacketHandler,
-            InfoRetrieveRequestPacketHandler,
+            SessionParametersRequestPacketHandler,
             SSOTicketPacketHandler,
             ScrGetUserInfoPacketHandler
         )

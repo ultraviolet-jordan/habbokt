@@ -5,6 +5,6 @@ import com.habbokt.api.client.handshake.SessionParameters
 /**
  * @author Jordan Abraham
  */
-data class InfoRetrieveResponsePacket(
+data class SessionParametersResponsePacket(
     val sessionParameters: SessionParameters
 ) : Packet

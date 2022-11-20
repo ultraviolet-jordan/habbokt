@@ -3,13 +3,13 @@ package com.habbokt.game.packet.assembler
 import com.habbokt.api.buffer.putIntHabbo
 import com.habbokt.api.buffer.putStringHabbo
 import com.habbokt.api.buffer.toInt
-import com.habbokt.api.packet.InfoRetrieveResponsePacket
+import com.habbokt.api.packet.SessionParametersResponsePacket
 import com.habbokt.api.packet.assembler.*
 
 /**
  * @author Jordan Abraham
  */
-val InfoRetrieveResponsePacketAssembler = assembler<InfoRetrieveResponsePacket>(id = 257) {
+val SessionParametersResponsePacketAssembler = assembler<SessionParametersResponsePacket>(id = 257) {
     it.putIntHabbo(sessionParameters.size)
     sessionParameters.forEach { param ->
         require(param.parameterValue is String || param.parameterValue is Boolean)

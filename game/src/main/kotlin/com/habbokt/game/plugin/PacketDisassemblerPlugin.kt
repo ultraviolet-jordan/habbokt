@@ -16,7 +16,7 @@ fun Application.installPacketDisassemblerPlugin() {
             InitDiffieHandshakePacketDisassembler,
             UniqueMachineIDPacketDisassembler,
             VersionCheckPacketDisassembler,
-            InfoRetrieveRequestPacketDisassembler,
+            SessionParametersRequestPacketDisassembler,
             SSOTicketPacketDisassembler,
             ScrGetUserInfoPacketDisassembler
         )
