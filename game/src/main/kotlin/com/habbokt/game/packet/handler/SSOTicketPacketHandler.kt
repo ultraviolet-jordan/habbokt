@@ -3,6 +3,7 @@ package com.habbokt.game.packet.handler
 import com.habbokt.api.client.DisconnectReason
 import com.habbokt.api.client.handshake.LoginInformation
 import com.habbokt.api.inject
+import com.habbokt.api.packet.AuthenticationOKPacket
 import com.habbokt.api.packet.DisconnectReasonPacket
 import com.habbokt.api.packet.SSOTicketPacket
 import com.habbokt.api.packet.UserRightsPacket
@@ -17,28 +18,35 @@ private val playersService by inject<PlayersService>()
 val SSOTicketPacketHandler = handler<SSOTicketPacket> {
     val ssoTicket = packet.ssoTicket
 
-    val player = playersService.ssoTicket(ssoTicket)
-    if (player == null) {
+    val playerDAO = playersService.ssoTicket(ssoTicket)
+    if (playerDAO == null) {
         client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
         return@handler
     }
 
-    if (player.ssoTicket != ssoTicket) {
+    if (playerDAO.ssoTicket != ssoTicket) {
         client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
         return@handler
     }
 
-    if (!playersService.editPlayer(player.copy(ssoTicket = ""))) {
+    if (!playersService.editPlayer(playerDAO.copy(ssoTicket = ""))) {
         client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
         return@handler
     }
 
-    client.authenticate(LoginInformation(
-        id = player.id,
-        username = player.username,
-        password = player.password,
-        email = player.email,
-        appearance = player.appearance,
-        gender = player.gender
-    ))
+    client.validateLogin(
+        LoginInformation(
+            id = playerDAO.id,
+            username = playerDAO.username,
+            password = playerDAO.password,
+            email = playerDAO.email,
+            appearance = playerDAO.appearance,
+            gender = playerDAO.gender
+        )
+    )?.let {
+        client.writePacket(UserRightsPacket())
+        client.writePacket(AuthenticationOKPacket())
+    } ?: run {
+        client.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
+    }
 }

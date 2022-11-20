@@ -89,18 +89,9 @@ class GameClient(
         return gamePlayer
     }
 
-    override fun authenticate(information: LoginInformation) {
-        GamePlayer(information.id, information.username)
-            .validateLogin(information)
-            ?.also { this.gamePlayer = it }
-            ?.let {
-                writePacket(UserRightsPacket())
-                writePacket(AuthenticationOKPacket())
-            }
-            ?: run {
-                writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
-            }
-    }
+    override fun validateLogin(information: LoginInformation): Player? = GamePlayer(information.id, information.username)
+        .validateLogin(information)
+        ?.also { this.gamePlayer = it }
 
     override fun logout() {
         TODO("Not yet implemented")
