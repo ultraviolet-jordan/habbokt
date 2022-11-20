@@ -20,7 +20,8 @@ fun Application.installPacketAssemblerPlugin() {
             UserRightsPacketAssembler,
             AuthenticationOKPacketAssembler,
             ClientHelloPacketAssembler,
-            ScrSendUserInfoPacketAssembler
+            ScrSendUserInfoPacketAssembler,
+            UserObjectPacketAssembler
         )
     }
 }
