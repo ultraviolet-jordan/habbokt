@@ -18,7 +18,8 @@ fun Application.installPacketHandlerPlugin() {
             VersionCheckPacketHandler,
             SessionParametersRequestPacketHandler,
             SSOTicketPacketHandler,
-            ScrGetUserInfoPacketHandler
+            ScrGetUserInfoPacketHandler,
+            InfoRetrievePacketHandler
         )
     }
 }

@@ -18,7 +18,8 @@ fun Application.installPacketDisassemblerPlugin() {
             VersionCheckPacketDisassembler,
             SessionParametersRequestPacketDisassembler,
             SSOTicketPacketDisassembler,
-            ScrGetUserInfoPacketDisassembler
+            ScrGetUserInfoPacketDisassembler,
+            InfoRetrievePacketDisassembler
         )
     }
 }
