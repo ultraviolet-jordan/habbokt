@@ -2,8 +2,10 @@ package com.habbokt.game
 
 import com.habbokt.api.common.base64
 import com.habbokt.api.client.Client
+import com.habbokt.api.client.DisconnectReason
 import com.habbokt.api.client.handshake.LoginInformation
 import com.habbokt.api.packet.AuthenticationOKPacket
+import com.habbokt.api.packet.DisconnectReasonPacket
 import com.habbokt.api.packet.Packet
 import com.habbokt.api.packet.UserRightsPacket
 import com.habbokt.api.packet.assembler.PacketAssemblerDeclaration
@@ -32,7 +34,7 @@ class GameClient(
 ) : Client {
     private val writePool = ByteBuffer.allocateDirect(256)
 
-    private lateinit var gamePlayer: GamePlayer
+    private lateinit var gamePlayer: Player
 
     override fun readChannel(): ByteReadChannel = readChannel
     override fun writeChannel(): ByteWriteChannel = writeChannel
@@ -87,18 +89,17 @@ class GameClient(
         return gamePlayer
     }
 
-    override fun login(information: LoginInformation) {
-        this.gamePlayer = GamePlayer(
-            id = information.id,
-            username = information.username,
-            password = information.password,
-            email = information.email,
-            appearance = information.appearance,
-            gender = information.gender
-        )
-
-        writePacket(UserRightsPacket())
-        writePacket(AuthenticationOKPacket())
+    override fun authenticate(information: LoginInformation) {
+        GamePlayer(information.id, information.username)
+            .validateLogin(information)
+            ?.also { this.gamePlayer = it }
+            ?.let {
+                writePacket(UserRightsPacket())
+                writePacket(AuthenticationOKPacket())
+            }
+            ?: run {
+                writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect))
+            }
     }
 
     override fun logout() {

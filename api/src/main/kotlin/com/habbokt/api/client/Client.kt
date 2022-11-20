@@ -18,6 +18,6 @@ interface Client {
     suspend fun handlePacket(packet: Packet)
     fun writePacket(packet: Packet)
     fun getPlayer(): Player?
-    fun login(information: LoginInformation)
+    fun authenticate(information: LoginInformation)
     fun logout()
 }

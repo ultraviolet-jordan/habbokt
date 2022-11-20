@@ -3,7 +3,6 @@ package com.habbokt.game.packet.handler
 import com.habbokt.api.client.DisconnectReason
 import com.habbokt.api.client.handshake.LoginInformation
 import com.habbokt.api.inject
-import com.habbokt.api.packet.AuthenticationOKPacket
 import com.habbokt.api.packet.DisconnectReasonPacket
 import com.habbokt.api.packet.SSOTicketPacket
 import com.habbokt.api.packet.UserRightsPacket
@@ -34,7 +33,7 @@ val SSOTicketPacketHandler = handler<SSOTicketPacket> {
         return@handler
     }
 
-    client.login(LoginInformation(
+    client.authenticate(LoginInformation(
         id = player.id,
         username = player.username,
         password = player.password,

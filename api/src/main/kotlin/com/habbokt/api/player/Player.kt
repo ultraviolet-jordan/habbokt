@@ -1,5 +1,7 @@
 package com.habbokt.api.player
 
+import com.habbokt.api.client.handshake.LoginInformation
+
 /**
  * @author Jordan Abraham
  */
@@ -10,4 +12,5 @@ interface Player {
     fun email(): String
     fun appearance(): String
     fun gender(): String
+    fun validateLogin(information: LoginInformation): Player?
 }
