@@ -61,8 +61,12 @@ class GameClient(
     }
 
     override suspend fun handlePacket(packet: Packet) {
-        val handler = PacketHandler(this, packet)
-        handlers[handler.packet::class]?.handler?.invoke(handler)
+        handlers[packet::class]?.handler?.invoke(
+            PacketHandler(
+                client = this,
+                packet = packet
+            )
+        )
     }
 
     override fun writePacket(packet: Packet) {
