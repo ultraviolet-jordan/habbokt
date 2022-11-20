@@ -17,7 +17,8 @@ fun Application.installPacketHandlerPlugin() {
             UniqueMachineIDPacketHandler,
             VersionCheckPacketHandler,
             InfoRetrieveRequestPacketHandler,
-            SSOTicketPacketHandler
+            SSOTicketPacketHandler,
+            ScrGetUserInfoPacketHandler
         )
     }
 }
