@@ -13,7 +13,7 @@ import io.ktor.server.request.receiveParameters
 @Singleton
 class NameCheckAjaxService @Inject constructor(
     page: AjaxPage
-) : AjaxService<AjaxPage>(page) {
+) : AjaxService(page) {
     override suspend fun handlePostRequest(call: ApplicationCall) {
         val response = checkUsernameIsValid(call.receiveParameters()["name"])
         // Respond back with the xjson body of the name check.
