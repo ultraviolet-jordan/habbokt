@@ -7,7 +7,6 @@ import io.ktor.server.application.ApplicationCall
 import io.ktor.server.response.header
 import io.ktor.server.response.respond
 import io.ktor.server.sessions.sessions
-import java.io.StringWriter
 
 /**
  * @author Jordan Abraham
@@ -24,9 +23,7 @@ abstract class PageService<P : Page<*>>(
             sessions = sessions,
             parameters = request.queryParameters
         ).block.invoke()
-        val html = StringWriter().apply {
-            compiler.compile(this, template.path, template)
-        }.toString()
+        val html = compiler.compile(template.path, template)
         htmlHeader(html.length)
         respond(HttpStatusCode.OK, html)
     }

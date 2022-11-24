@@ -4,6 +4,7 @@ import com.habbokt.dao.DAOModule
 import com.habbokt.page.asset.AssetPageRouting
 import com.habbokt.page.index.IndexPageRouting
 import com.habbokt.page.me.MePageRouting
+import com.habbokt.page.register.RegisterPageRouting
 import com.habbokt.templating.TemplatingModule
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMultibinder
@@ -20,5 +21,6 @@ object PageModule : KotlinModule() {
         routes.addBinding().to<AssetPageRouting>()
         routes.addBinding().to<IndexPageRouting>()
         routes.addBinding().to<MePageRouting>()
+        routes.addBinding().to<RegisterPageRouting>()
     }
 }

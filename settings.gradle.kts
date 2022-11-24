@@ -19,7 +19,6 @@ dependencyResolutionManagement {
             version("hikaricp", "5.0.1")
             version("ehcache", "3.10.8")
             version("guice", "1.6.0")
-            version("ktor-routing", "0.3.1-beta")
 
             // Dependency libraries
             // Ktor Dependencies
@@ -59,4 +58,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(listOf("api", "dao", "game", "page", "templating", "web"))
+include(listOf("api", "dao", "game", "page", "session", "templating", "web"))

@@ -8,13 +8,15 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 
 dependencies {
+    implementation(deps.bundles.ktor)
+    implementation(deps.slf4j.simple)
+    implementation(deps.guice)
     implementation(deps.simplecaptcha)
     implementation(deps.argon2)
 
     implementation(project(":api"))
-    implementation(project(":dao"))
     implementation(project(":page"))
-    implementation(project(":templating"))
+    implementation(project(":session"))
 }
 
 application {
