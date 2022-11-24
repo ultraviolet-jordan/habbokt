@@ -13,6 +13,7 @@ dependencies {
 
     implementation(project(":api"))
     implementation(project(":dao"))
+    implementation(project(":page"))
     implementation(project(":templating"))
 }
 

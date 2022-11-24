@@ -1,5 +1,7 @@
 package com.habbokt.templating
 
+import com.google.inject.Inject
+import com.google.inject.Singleton
 import com.mitchellbosecke.pebble.PebbleEngine
 import com.mitchellbosecke.pebble.error.PebbleException
 import java.io.StringWriter
@@ -7,7 +9,8 @@ import java.io.StringWriter
 /**
  * @author Jordan Abraham
  */
-class Compiler(
+@Singleton
+class Compiler @Inject constructor(
     private val engine: PebbleEngine
 ) {
     fun compile(writer: StringWriter, templateName: String, context: Map<String, Any?>) {
