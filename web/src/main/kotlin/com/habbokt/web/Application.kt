@@ -14,13 +14,15 @@ import io.ktor.server.routing.routing
  * @author Jordan Abraham
  */
 fun Application.module() {
+    // Ktor Plugins
+    installCallLoggingPlugin()
+    installSessionsPlugin()
+    installAuthenticationPlugin()
+
+    // Guice Injector
     Guice.createInjector(
         PageModule
     ).findBindingsByType<PageRouting>()
         .map { it.provider.get().route() }
         .forEach { it.block.invoke(this@module.routing{}) }
-
-    installCallLoggingPlugin()
-    installSessionsPlugin()
-    installAuthenticationPlugin()
 }
