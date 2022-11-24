@@ -6,15 +6,16 @@ import com.habbokt.page.PageRouting
 import com.habbokt.web.plugin.installSessionsPlugin
 import dev.misfitlabs.kotlinguice4.findBindingsByType
 import io.ktor.server.application.Application
+import io.ktor.server.routing.routing
 
 /**
  * @author Jordan Abraham
  */
 fun Application.module() {
     Guice.createInjector(
-        PageModule(this)
+        PageModule
     ).findBindingsByType<PageRouting>().forEach {
-        it.provider.get().configure()
+        it.provider.get().route().block.invoke(this@module.routing {})
     }
 
     installSessionsPlugin()

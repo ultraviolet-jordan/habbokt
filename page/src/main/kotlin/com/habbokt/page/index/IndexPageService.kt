@@ -11,10 +11,10 @@ import io.ktor.server.application.ApplicationCall
  * @author Jordan Abraham
  */
 @Singleton
-class IndexPageService<P : Page<*>> @Inject constructor(
-    page: P,
+class IndexPageService @Inject constructor(
+    page: IndexPage,
     compiler: Compiler
-) : PageService<P>(page, compiler) {
+) : PageService<IndexPage>(page, compiler) {
     override suspend fun handleGetRequest(call: ApplicationCall) {
         call.respondHtmlPage()
     }

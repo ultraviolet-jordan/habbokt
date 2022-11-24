@@ -9,3 +9,7 @@ open class BaseTemplate constructor(
     val path: String,
     site: SiteDAO
 ) : MutableMap<String, Any?> by mutableMapOf("site" to site)
+
+data class Template<out T : BaseTemplate>(
+    val block: suspend () -> T
+)

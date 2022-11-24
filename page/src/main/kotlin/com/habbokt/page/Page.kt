@@ -6,6 +6,9 @@ import io.ktor.server.sessions.CurrentSession
 /**
  * @author Jordan Abraham
  */
-interface Page<T : BaseTemplate> {
-    suspend fun template(sessions: CurrentSession, parameters: Parameters): T
+interface Page<out T : BaseTemplate> {
+    /**
+     * Generates the necessary template to be interpreted when the page loads.
+     */
+    suspend fun template(sessions: CurrentSession, parameters: Parameters): Template<T>
 }

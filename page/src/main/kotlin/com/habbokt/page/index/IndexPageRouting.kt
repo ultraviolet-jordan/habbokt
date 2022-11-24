@@ -3,9 +3,8 @@ package com.habbokt.page.index
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.page.PageRouting
-import com.habbokt.page.PageService
+import com.habbokt.page.PageRoute
 import io.ktor.server.application.call
-import io.ktor.server.routing.Routing
 import io.ktor.server.routing.get
 
 /**
@@ -13,10 +12,9 @@ import io.ktor.server.routing.get
  */
 @Singleton
 class IndexPageRouting @Inject constructor(
-    private val routing: Routing,
-    private val service: PageService<IndexPage>
+    private val service: IndexPageService
 ) : PageRouting {
-    override fun configure() = routing {
+    override fun route(): PageRoute = PageRoute {
         get("/") {
             service.handleGetRequest(call)
         }

@@ -20,7 +20,10 @@ abstract class PageService<P : Page<*>>(
     open suspend fun handlePostRequest(call: ApplicationCall) {}
 
     protected suspend fun ApplicationCall.respondHtmlPage() {
-        val template = page.template(sessions, request.queryParameters)
+        val template = page.template(
+            sessions = sessions,
+            parameters = request.queryParameters
+        ).block.invoke()
         val html = StringWriter().apply {
             compiler.compile(this, template.path, template)
         }.toString()
