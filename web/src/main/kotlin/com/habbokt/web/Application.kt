@@ -11,12 +11,10 @@ import io.ktor.server.application.Application
  * @author Jordan Abraham
  */
 fun Application.module() {
-    val injector = Guice.createInjector(
+    Guice.createInjector(
         PageModule(this)
-    )
-
-    injector.findBindingsByType<PageRouting>().forEach {
-        it.provider.get().bindRouting()
+    ).findBindingsByType<PageRouting>().forEach {
+        it.provider.get().configure()
     }
 
     installSessionsPlugin()

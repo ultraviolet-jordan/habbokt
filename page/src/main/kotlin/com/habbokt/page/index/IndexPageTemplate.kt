@@ -1,7 +1,7 @@
 package com.habbokt.page.index
 
 import com.habbokt.dao.site.SiteDAO
-import com.habbokt.page.Template
+import com.habbokt.page.BaseTemplate
 
 /**
  * @author Jordan Abraham
@@ -10,9 +10,9 @@ class IndexPageTemplate(
     site: SiteDAO,
     rememberMe: Boolean,
     username: String?
-) : Template(path = "index.tpl", site) {
+) : BaseTemplate(path = "index.tpl", site) {
     init {
-        put("rememberMe", rememberMe)
-        put("username", username)
+        this["rememberMe"] to rememberMe
+        this["username"] to username
     }
 }

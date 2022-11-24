@@ -5,7 +5,7 @@ import com.habbokt.dao.site.SiteDAO
 /**
  * @author Jordan Abraham
  */
-open class Template constructor(
+open class BaseTemplate constructor(
     val path: String,
-    siteDAO: SiteDAO
-) : MutableMap<String, Any?> by mutableMapOf("site" to siteDAO)
+    site: SiteDAO
+) : MutableMap<String, Any?> by mutableMapOf("site" to site)

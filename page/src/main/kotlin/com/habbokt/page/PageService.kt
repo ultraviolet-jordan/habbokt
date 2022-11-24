@@ -13,12 +13,13 @@ import java.io.StringWriter
  * @author Jordan Abraham
  */
 abstract class PageService<P : Page<*>>(
+    private val page: P,
     private val compiler: Compiler
 ) {
     open suspend fun handleGetRequest(call: ApplicationCall) {}
     open suspend fun handlePostRequest(call: ApplicationCall) {}
 
-    protected suspend fun ApplicationCall.respondHtmlPage(page: P) {
+    protected suspend fun ApplicationCall.respondHtmlPage() {
         val template = page.template(sessions, request.queryParameters)
         val html = StringWriter().apply {
             compiler.compile(this, template.path, template)

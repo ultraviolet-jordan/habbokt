@@ -35,9 +35,9 @@ class PageModule(
         bind<PageService<IndexPage>>().to<IndexPageService<IndexPage>>()
         bind<PageService<MePage>>().to<MePageService<MePage>>()
 
-        val routingBinder = KotlinMultibinder.newSetBinder<PageRouting>(binder())
-        routingBinder.addBinding().to<AssetPageRouting>()
-        routingBinder.addBinding().to<IndexPageRouting>()
-        routingBinder.addBinding().to<MePageRouting>()
+        val routes = KotlinMultibinder.newSetBinder<PageRouting>(binder())
+        routes.addBinding().to<AssetPageRouting>()
+        routes.addBinding().to<IndexPageRouting>()
+        routes.addBinding().to<MePageRouting>()
     }
 }

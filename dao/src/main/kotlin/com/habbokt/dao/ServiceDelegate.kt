@@ -6,6 +6,6 @@ import javax.inject.Qualifier
  * @author Jordan Abraham
  */
 @Qualifier
-@Target(AnnotationTarget.FIELD, AnnotationTarget.PROPERTY, AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ServiceDelegate
