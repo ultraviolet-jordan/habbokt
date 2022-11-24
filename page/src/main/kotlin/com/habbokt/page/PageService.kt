@@ -13,19 +13,27 @@ import io.ktor.server.sessions.sessions
  */
 abstract class PageService<P : Page<*>>(
     private val page: P,
-    private val compiler: Compiler
+    private val compiler: Compiler?
 ) {
     open suspend fun handleGetRequest(call: ApplicationCall) {}
     open suspend fun handlePostRequest(call: ApplicationCall) {}
 
     protected suspend fun ApplicationCall.respondHtmlPage() {
+        require(compiler != null)
         val template = page.template(
             sessions = sessions,
             parameters = request.queryParameters
         ).block.invoke()
+        require(template.path.isNotEmpty())
         val html = compiler.compile(template.path, template)
         htmlHeader(html.length)
         respond(HttpStatusCode.OK, html)
+    }
+
+    protected suspend fun ApplicationCall.respondAjax(json: String) {
+        xjsonHeader(json)
+        htmlHeader(0)
+        respond(HttpStatusCode.OK)
     }
 
     private fun ApplicationCall.htmlHeader(contentLength: Int) {

@@ -1,8 +1,8 @@
-package com.habbokt.page.habblet.ajax.namecheck
+package com.habbokt.page.habblet.ajax
 
 import com.habbokt.page.BaseTemplate
 
 /**
  * @author Jordan Abraham
  */
-class AjaxTemplate : BaseTemplate("", null)
+object AjaxTemplate : BaseTemplate("", null)

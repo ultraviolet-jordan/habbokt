@@ -2,6 +2,7 @@ package com.habbokt.page
 
 import com.habbokt.dao.DAOModule
 import com.habbokt.page.asset.AssetPageRouting
+import com.habbokt.page.habblet.ajax.namecheck.NameCheckAjaxRouting
 import com.habbokt.page.index.IndexPageRouting
 import com.habbokt.page.me.MePageRouting
 import com.habbokt.page.register.RegisterPageRouting
@@ -22,5 +23,6 @@ object PageModule : KotlinModule() {
         routes.addBinding().to<IndexPageRouting>()
         routes.addBinding().to<MePageRouting>()
         routes.addBinding().to<RegisterPageRouting>()
+        routes.addBinding().to<NameCheckAjaxRouting>()
     }
 }

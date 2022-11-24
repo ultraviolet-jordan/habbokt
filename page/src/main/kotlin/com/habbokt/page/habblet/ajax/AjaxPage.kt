@@ -1,4 +1,4 @@
-package com.habbokt.page.habblet.ajax.namecheck
+package com.habbokt.page.habblet.ajax
 
 import com.habbokt.page.Page
 import com.habbokt.page.Template
@@ -10,6 +10,6 @@ import io.ktor.server.sessions.CurrentSession
  */
 class AjaxPage : Page<AjaxTemplate> {
     override suspend fun template(sessions: CurrentSession, parameters: Parameters): Template<AjaxTemplate> = Template {
-        AjaxTemplate()
+        AjaxTemplate
     }
 }
