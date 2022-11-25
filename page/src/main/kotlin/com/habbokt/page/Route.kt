@@ -5,6 +5,6 @@ import io.ktor.server.routing.Routing
 /**
  * @author Jordan Abraham
  */
-data class PageRoute(
+data class Route(
     val block: Routing.() -> Unit
 )
