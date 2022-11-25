@@ -5,6 +5,7 @@ import com.habbokt.dao.DAOModule
 import com.habbokt.page.account.submit.AccountSubmitPageRouting
 import com.habbokt.page.asset.AssetPageRouting
 import com.habbokt.page.captcha.CaptchaRouting
+import com.habbokt.page.client.ClientPageRouting
 import com.habbokt.page.habblet.ajax.namecheck.NameCheckAjaxRouting
 import com.habbokt.page.index.IndexPageRouting
 import com.habbokt.page.me.MePageRouting
@@ -32,6 +33,8 @@ object PageModule : KotlinModule() {
         routes.addBinding().to<AssetPageRouting>()
         // Captcha
         routes.addBinding().to<CaptchaRouting>()
+        // Client
+        routes.addBinding().to<ClientPageRouting>()
         // Habblet
         routes.addBinding().to<NameCheckAjaxRouting>()
         // Index
