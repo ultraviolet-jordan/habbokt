@@ -3,4 +3,4 @@ package com.habbokt.page
 /**
  * @author Jordan Abraham
  */
-object BlankTemplate : BaseTemplate("", null)
+object BlankTemplate : PageTemplate("", null)

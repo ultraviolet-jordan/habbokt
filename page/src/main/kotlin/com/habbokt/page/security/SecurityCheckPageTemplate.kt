@@ -1,7 +1,7 @@
 package com.habbokt.page.security
 
 import com.habbokt.dao.site.SiteDAO
-import com.habbokt.page.BaseTemplate
+import com.habbokt.page.PageTemplate
 
 /**
  * @author Jordan Abraham
@@ -9,7 +9,7 @@ import com.habbokt.page.BaseTemplate
 class SecurityCheckPageTemplate(
     site: SiteDAO?,
     redirectPath: String
-) : BaseTemplate(path = "security_check.tpl", site) {
+) : PageTemplate(path = "security_check.tpl", site) {
     init {
         this["redirectPath"] to redirectPath
     }

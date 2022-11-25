@@ -1,7 +1,7 @@
 package com.habbokt.page.register
 
 import com.habbokt.dao.site.SiteDAO
-import com.habbokt.page.BaseTemplate
+import com.habbokt.page.PageTemplate
 
 /**
  * @author Jordan Abraham
@@ -19,7 +19,7 @@ class RegisterPageTemplate(
     registerYear: String?,
     registerFigure: String?,
     registerGender: String?
-) : BaseTemplate(path = "register.tpl", site) {
+) : PageTemplate(path = "register.tpl", site) {
     init {
         this["randomNum"] to randomNum
         this["registerCaptchaInvalid"] to registerCaptchaInvalid

@@ -1,11 +1,11 @@
 package com.habbokt.page.welcome
 
 import com.habbokt.dao.site.SiteDAO
-import com.habbokt.page.BaseTemplate
+import com.habbokt.page.PageTemplate
 
 /**
  * @author Jordan Abraham
  */
 class WelcomePageTemplate(
     site: SiteDAO?
-) : BaseTemplate(path = "welcome.tpl", site)
+) : PageTemplate(path = "welcome.tpl", site)
