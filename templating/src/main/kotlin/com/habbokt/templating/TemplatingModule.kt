@@ -1,7 +1,7 @@
 package com.habbokt.templating
 
-import com.mitchellbosecke.pebble.PebbleEngine
 import dev.misfitlabs.kotlinguice4.KotlinModule
+import io.pebbletemplates.pebble.PebbleEngine
 import java.io.File
 import java.nio.charset.StandardCharsets
 

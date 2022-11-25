@@ -2,8 +2,8 @@ package com.habbokt.templating
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import com.mitchellbosecke.pebble.PebbleEngine
-import com.mitchellbosecke.pebble.error.PebbleException
+import io.pebbletemplates.pebble.PebbleEngine
+import io.pebbletemplates.pebble.error.PebbleException
 import java.io.StringWriter
 
 /**
