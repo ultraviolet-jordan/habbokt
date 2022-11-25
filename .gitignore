@@ -3,6 +3,7 @@
 /.gradle/
 
 /api/build/
+/argon2/build/
 /dao/build/
 /db/build/
 /game/build/
