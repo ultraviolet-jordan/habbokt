@@ -7,6 +7,7 @@ import com.habbokt.page.PageRouting
 import com.habbokt.web.plugin.installAuthenticationPlugin
 import com.habbokt.web.plugin.installCallLoggingPlugin
 import com.habbokt.web.plugin.installSessionsPlugin
+import com.habbokt.web.plugin.installStatusPagesPlugin
 import dev.misfitlabs.kotlinguice4.findBindingsByType
 import io.ktor.server.application.Application
 import io.ktor.server.routing.routing
@@ -19,6 +20,7 @@ fun Application.web() {
     installCallLoggingPlugin()
     installSessionsPlugin()
     installAuthenticationPlugin()
+    installStatusPagesPlugin()
 
     // Guice Injector
     Guice.createInjector(
