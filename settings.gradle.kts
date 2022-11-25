@@ -9,7 +9,7 @@ dependencyResolutionManagement {
             version("kotlin", "1.7.21")
             version("ktor", "2.1.3")
             version("versions", "0.44.0")
-            version("pebble", "3.1.6")
+            version("pebble", "3.2.0")
             version("ktlint", "11.0.0")
             version("slf4j", "2.0.4")
             version("simplecaptcha", "1.2.2")
