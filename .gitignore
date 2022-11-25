@@ -4,6 +4,7 @@
 
 /api/build/
 /dao/build/
+/db/build/
 /game/build/
 /page/build/
 /session/build/
