@@ -1,7 +1,7 @@
 /.idea/
-/build/
 /.gradle/
 
+/build/
 /api/build/
 /argon2/build/
 /dao/build/
