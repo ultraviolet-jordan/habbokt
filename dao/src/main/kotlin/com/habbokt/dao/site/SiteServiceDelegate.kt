@@ -13,11 +13,11 @@ import org.jetbrains.exposed.sql.update
  */
 @Singleton
 class SiteServiceDelegate : SiteService {
-    override suspend fun site(): SiteDAO = query {
+    override suspend fun site(): SiteDAO? = query {
         SiteTable
             .select { SiteTable.id eq 1 }
             .map(::resultToSite)
-            .single()
+            .singleOrNull()
     }
 
     override suspend fun createSite(siteDAO: SiteDAO): SiteDAO? = query {
