@@ -9,6 +9,7 @@ import com.habbokt.page.index.IndexPageRouting
 import com.habbokt.page.me.MePageRouting
 import com.habbokt.page.register.RegisterPageRouting
 import com.habbokt.page.test.TestPageRouting
+import com.habbokt.page.welcome.WelcomePageRouting
 import com.habbokt.templating.TemplatingModule
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMultibinder
@@ -30,5 +31,6 @@ object PageModule : KotlinModule() {
         routes.addBinding().to<NameCheckAjaxRouting>()
         routes.addBinding().to<TestPageRouting>()
         routes.addBinding().to<CaptchaRouting>()
+        routes.addBinding().to<WelcomePageRouting>()
     }
 }
