@@ -7,7 +7,12 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
-dependencies {}
+dependencies {
+    implementation(deps.bundles.ktor)
+
+    implementation(project(":api"))
+    implementation(project(":db"))
+}
 
 application {
     mainClass.set("io.ktor.server.netty.EngineMain")
