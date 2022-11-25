@@ -25,7 +25,7 @@ class RegisterPageService @Inject constructor(
     page: RegisterPage,
     compiler: Compiler,
     private val playersService: PlayersService,
-    private val argon2: Argon2Service
+    private val argon2Service: Argon2Service
 ) : PageService<RegisterPage>(page, compiler) {
     override suspend fun handleGetRequest(call: ApplicationCall) {
         call.respondHtmlPage()
@@ -38,7 +38,7 @@ class RegisterPageService @Inject constructor(
         val parameters = call.receiveParameters()
         val username = registrationSession?.username ?: parameters["bean.avatarName"]
         val captchaResponse = parameters["bean.captchaResponse"] // There is always a new captcha response when posting to registration.
-        val password = argon2.hash(12, 65536, 1, registrationSession?.password?.toByteArray() ?: parameters["retypedPassword"]?.toByteArray())
+        val password = argon2Service.hash(12, 65536, 1, registrationSession?.password?.toByteArray() ?: parameters["retypedPassword"]?.toByteArray())
         val email = registrationSession?.email ?: parameters["bean.email"]
         val birthDay = registrationSession?.birthDay ?: parameters["bean.day"]
         val birthMonth = registrationSession?.birthMonth ?: parameters["bean.month"]

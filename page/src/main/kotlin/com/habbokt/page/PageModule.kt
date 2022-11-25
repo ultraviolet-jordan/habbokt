@@ -2,6 +2,7 @@ package com.habbokt.page
 
 import com.habbokt.argon2.Argon2Module
 import com.habbokt.dao.DAOModule
+import com.habbokt.page.account.submit.AccountSubmitPageRouting
 import com.habbokt.page.asset.AssetPageRouting
 import com.habbokt.page.captcha.CaptchaRouting
 import com.habbokt.page.habblet.ajax.namecheck.NameCheckAjaxRouting
@@ -24,13 +25,24 @@ object PageModule : KotlinModule() {
         install(Argon2Module)
 
         val routes = KotlinMultibinder.newSetBinder<PageRouting>(binder())
+        // Account
+        routes.addBinding().to<AccountSubmitPageRouting>()
+        // Asset
         routes.addBinding().to<AssetPageRouting>()
-        routes.addBinding().to<IndexPageRouting>()
-        routes.addBinding().to<MePageRouting>()
-        routes.addBinding().to<RegisterPageRouting>()
-        routes.addBinding().to<NameCheckAjaxRouting>()
-        routes.addBinding().to<TestPageRouting>()
+        // Captcha
         routes.addBinding().to<CaptchaRouting>()
+        // Habblet
+        routes.addBinding().to<NameCheckAjaxRouting>()
+        // Index
+        routes.addBinding().to<IndexPageRouting>()
+        // Me
+        routes.addBinding().to<MePageRouting>()
+        // Register
+        routes.addBinding().to<RegisterPageRouting>()
+        // Test
+        routes.addBinding().to<TestPageRouting>()
+        // Welcome
         routes.addBinding().to<WelcomePageRouting>()
+
     }
 }

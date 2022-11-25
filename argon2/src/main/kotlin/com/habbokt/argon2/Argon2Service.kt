@@ -17,4 +17,9 @@ class Argon2Service @Inject constructor(
         parallelism: Int,
         data: ByteArray?
     ): String? = argon2.hash(iterations, memory, parallelism, data)
+
+    fun verify(
+        hash: String,
+        data: ByteArray?
+    ): Boolean = argon2.verify(hash, data)
 }
