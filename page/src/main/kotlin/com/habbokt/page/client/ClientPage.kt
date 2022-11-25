@@ -33,7 +33,7 @@ class ClientPage @Inject constructor(
     private suspend fun ssoTicket(session: UserSession): String? {
         val playerId = session.userId.toInt()
         val player = playersService.player(playerId) ?: throw Exception("Player not found with ID: $playerId") // Redirects back to "/".
-        require(playerId == player.id)
+        require(playerId == player.id) // Redirects back to "/".
         val ssoTicket = UUID.randomUUID().toString()
         return if (playersService.editPlayer(player.copy(ssoTicket = ssoTicket))) ssoTicket else null
     }
