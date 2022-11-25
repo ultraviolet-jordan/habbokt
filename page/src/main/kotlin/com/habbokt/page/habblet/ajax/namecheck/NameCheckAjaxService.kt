@@ -2,6 +2,7 @@ package com.habbokt.page.habblet.ajax.namecheck
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import com.habbokt.dao.players.PlayersService
 import com.habbokt.page.habblet.ajax.AjaxPage
 import com.habbokt.page.habblet.ajax.AjaxService
 import io.ktor.server.application.ApplicationCall
@@ -12,7 +13,8 @@ import io.ktor.server.request.receiveParameters
  */
 @Singleton
 class NameCheckAjaxService @Inject constructor(
-    page: AjaxPage
+    page: AjaxPage,
+    private val playersService: PlayersService
 ) : AjaxService(page) {
     override suspend fun handlePostRequest(call: ApplicationCall) {
         val response = checkUsernameIsValid(call.receiveParameters()["name"])
@@ -26,7 +28,7 @@ class NameCheckAjaxService @Inject constructor(
 
     private suspend fun checkUsernameIsValid(username: String?): NameCheckStatus = when {
         username == null -> NameCheckStatus.Empty
-        // playersService.exists(username) -> NameCheckStatus.NameTaken // Check database for username.
+        playersService.exists(username) -> NameCheckStatus.NameTaken // Check database for username.
         else -> NameCheckStatus.Successful
     }
 }

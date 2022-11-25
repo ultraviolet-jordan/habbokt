@@ -7,6 +7,7 @@ import io.ktor.server.application.ApplicationCall
 import io.ktor.server.response.header
 import io.ktor.server.response.respond
 import io.ktor.server.sessions.sessions
+import java.lang.RuntimeException
 
 /**
  * @author Jordan Abraham
@@ -15,8 +16,12 @@ abstract class PageService<P : Page<*>>(
     private val page: P,
     private val compiler: Compiler?
 ) {
-    open suspend fun handleGetRequest(call: ApplicationCall) {}
-    open suspend fun handlePostRequest(call: ApplicationCall) {}
+    open suspend fun handleGetRequest(call: ApplicationCall) {
+        throw RuntimeException("Unhandled GET request.")
+    }
+    open suspend fun handlePostRequest(call: ApplicationCall) {
+        throw RuntimeException("Unhandled POST request.")
+    }
 
     protected suspend fun ApplicationCall.respondHtmlPage() {
         require(compiler != null)
