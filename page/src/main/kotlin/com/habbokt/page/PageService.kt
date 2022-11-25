@@ -9,7 +9,6 @@ import io.ktor.server.response.respond
 import io.ktor.server.sessions.sessions
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
-import java.lang.RuntimeException
 import javax.imageio.ImageIO
 
 /**

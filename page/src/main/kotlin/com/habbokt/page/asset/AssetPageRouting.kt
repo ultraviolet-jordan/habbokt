@@ -1,8 +1,8 @@
 package com.habbokt.page.asset
 
 import com.google.inject.Singleton
-import com.habbokt.page.PageRouting
 import com.habbokt.page.PageRoute
+import com.habbokt.page.PageRouting
 import io.ktor.server.http.content.files
 import io.ktor.server.http.content.static
 import io.ktor.server.http.content.staticRootFolder
