@@ -58,4 +58,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(listOf("api", "dao", "game", "page", "session", "templating", "web"))
+include(listOf("api", "dao", "db", "game", "page", "session", "templating", "web"))
