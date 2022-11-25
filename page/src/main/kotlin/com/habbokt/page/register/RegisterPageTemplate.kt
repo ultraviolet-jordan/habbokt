@@ -19,9 +19,8 @@ class RegisterPageTemplate(
     registerYear: String?,
     registerFigure: String?,
     registerGender: String?
-) : PageTemplate("register.tpl") {
+) : PageTemplate(path = "register.tpl", site) {
     init {
-        this["site"] to site
         this["randomNum"] to randomNum
         this["registerCaptchaInvalid"] to registerCaptchaInvalid
         this["registerEmailInvalid"] to registerEmailInvalid

@@ -10,9 +10,8 @@ class IndexPageTemplate(
     site: SiteDAO?,
     rememberMe: Boolean,
     username: String?
-) : PageTemplate("index.tpl") {
+) : PageTemplate(path = "index.tpl", site) {
     init {
-        this["site"] to site
         this["rememberMe"] to rememberMe
         this["username"] to username
     }

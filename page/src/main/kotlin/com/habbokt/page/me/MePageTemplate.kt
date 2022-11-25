@@ -8,8 +8,4 @@ import com.habbokt.page.PageTemplate
  */
 class MePageTemplate(
     site: SiteDAO?
-) : PageTemplate("me.tpl") {
-    init {
-        this["site"] to site
-    }
-}
+) : PageTemplate(path = "me.tpl", site)
