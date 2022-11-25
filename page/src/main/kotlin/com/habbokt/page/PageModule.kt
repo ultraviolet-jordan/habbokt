@@ -9,6 +9,7 @@ import com.habbokt.page.habblet.ajax.namecheck.NameCheckAjaxRouting
 import com.habbokt.page.index.IndexPageRouting
 import com.habbokt.page.me.MePageRouting
 import com.habbokt.page.register.RegisterPageRouting
+import com.habbokt.page.security.SecurityCheckPageRouting
 import com.habbokt.page.test.TestPageRouting
 import com.habbokt.page.welcome.WelcomePageRouting
 import com.habbokt.templating.TemplatingModule
@@ -39,6 +40,8 @@ object PageModule : KotlinModule() {
         routes.addBinding().to<MePageRouting>()
         // Register
         routes.addBinding().to<RegisterPageRouting>()
+        // Security
+        routes.addBinding().to<SecurityCheckPageRouting>()
         // Test
         routes.addBinding().to<TestPageRouting>()
         // Welcome
