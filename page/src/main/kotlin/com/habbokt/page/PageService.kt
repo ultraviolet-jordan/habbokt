@@ -7,7 +7,10 @@ import io.ktor.server.application.ApplicationCall
 import io.ktor.server.response.header
 import io.ktor.server.response.respond
 import io.ktor.server.sessions.sessions
+import java.awt.image.BufferedImage
+import java.io.ByteArrayOutputStream
 import java.lang.RuntimeException
+import javax.imageio.ImageIO
 
 /**
  * @author Jordan Abraham
@@ -39,6 +42,18 @@ abstract class PageService<P : Page<*>>(
         xjsonHeader(json)
         htmlHeader(0)
         respond(HttpStatusCode.OK)
+    }
+
+    protected suspend fun ApplicationCall.respondPng(image: BufferedImage) {
+        val bytes = try {
+            ByteArrayOutputStream().apply {
+                ImageIO.write(image, "png", this)
+            }.toByteArray()
+        } catch (exception: Exception) {
+            throw RuntimeException("RuntimeException when writing the image to the buffer.")
+        }
+        pngHeader(bytes.size)
+        respond(HttpStatusCode.OK, bytes)
     }
 
     private fun ApplicationCall.htmlHeader(contentLength: Int) {

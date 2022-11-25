@@ -3,8 +3,8 @@ package com.habbokt.page.habblet.ajax.namecheck
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.dao.players.PlayersService
-import com.habbokt.page.habblet.ajax.AjaxPage
-import com.habbokt.page.habblet.ajax.AjaxService
+import com.habbokt.page.BlankPage
+import com.habbokt.page.BlankPageService
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.request.receiveParameters
 
@@ -13,9 +13,9 @@ import io.ktor.server.request.receiveParameters
  */
 @Singleton
 class NameCheckAjaxService @Inject constructor(
-    page: AjaxPage,
+    page: BlankPage,
     private val playersService: PlayersService
-) : AjaxService(page) {
+) : BlankPageService(page) {
     override suspend fun handlePostRequest(call: ApplicationCall) {
         val response = checkUsernameIsValid(call.receiveParameters()["name"])
         // Respond back with the xjson body of the name check.
