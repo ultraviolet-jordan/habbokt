@@ -3,4 +3,6 @@ package com.habbokt.page
 /**
  * @author Jordan Abraham
  */
-object BlankTemplate : PageTemplate("", null)
+object BlankTemplate : PageTemplate("") {
+    override fun configure() {}
+}

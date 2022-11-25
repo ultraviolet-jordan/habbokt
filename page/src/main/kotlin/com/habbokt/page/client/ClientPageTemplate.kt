@@ -7,12 +7,13 @@ import com.habbokt.page.PageTemplate
  * @author Jordan Abraham
  */
 class ClientPageTemplate(
-    site: SiteDAO?,
-    forwardRoom: Boolean,
-    ssoTicket: String?
-) : PageTemplate(path = "client.tpl", site) {
-    init {
-        this["forwardRoom"] to forwardRoom
-        this["ssoTicket"] to ssoTicket
+    private val site: SiteDAO?,
+    private val forwardRoom: Boolean,
+    private val ssoTicket: String?
+) : PageTemplate("client.tpl") {
+    override fun configure() {
+        bind("site" to site)
+        bind("forwardRoom" to forwardRoom)
+        bind("ssoTicket" to ssoTicket)
     }
 }

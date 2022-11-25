@@ -7,12 +7,13 @@ import com.habbokt.page.PageTemplate
  * @author Jordan Abraham
  */
 class IndexPageTemplate(
-    site: SiteDAO?,
-    rememberMe: Boolean,
-    username: String?
-) : PageTemplate(path = "index.tpl", site) {
-    init {
-        this["rememberMe"] to rememberMe
-        this["username"] to username
+    private val site: SiteDAO?,
+    private val rememberMe: Boolean,
+    private val username: String?
+) : PageTemplate("index.tpl") {
+    override fun configure() {
+        bind("site" to site)
+        bind("rememberMe" to rememberMe)
+        bind("username" to username)
     }
 }

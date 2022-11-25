@@ -16,6 +16,14 @@ import io.ktor.server.routing.routing
  * @author Jordan Abraham
  */
 fun Application.web() {
+    // Database
+    DatabaseResourceBuilder.connect {
+        driverClassName = environment.config.property("storage.driverClassName").getString()
+        jdbcUrl = environment.config.property("storage.jdbcUrl").getString()
+        enableConsole = environment.config.property("storage.consoleEnabled").getString().toBoolean()
+        maximumPoolSize = 2
+    }
+
     // Ktor Plugins
     installCallLoggingPlugin()
     installSessionsPlugin()
@@ -28,12 +36,4 @@ fun Application.web() {
     ).findBindingsByType<PageRouting>()
         .map { it.provider.get().route() }
         .forEach { it.block.invoke(this@web.routing{}) }
-
-    // Database
-    DatabaseResourceBuilder.connect {
-        driverClassName = environment.config.property("storage.driverClassName").getString()
-        jdbcUrl = environment.config.property("storage.jdbcUrl").getString()
-        enableConsole = environment.config.property("storage.consoleEnabled").getString().toBoolean()
-        maximumPoolSize = 4
-    }
 }

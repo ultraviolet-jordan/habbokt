@@ -7,30 +7,31 @@ import com.habbokt.page.PageTemplate
  * @author Jordan Abraham
  */
 class RegisterPageTemplate(
-    site: SiteDAO?,
-    randomNum: String,
-    registerCaptchaInvalid: Boolean?,
-    registerEmailInvalid: Boolean?,
-    registerUsername: String?,
-    registerShowPassword: String?,
-    registerEmail: String?,
-    registerDay: String?,
-    registerMonth: String?,
-    registerYear: String?,
-    registerFigure: String?,
-    registerGender: String?
-) : PageTemplate(path = "register.tpl", site) {
-    init {
-        this["randomNum"] to randomNum
-        this["registerCaptchaInvalid"] to registerCaptchaInvalid
-        this["registerEmailInvalid"] to registerEmailInvalid
-        this["registerUsername"] to registerUsername
-        this["registerShowPassword"] to registerShowPassword
-        this["registerEmail"] to registerEmail
-        this["registerDay"] to registerDay
-        this["registerMonth"] to registerMonth
-        this["registerYear"] to registerYear
-        this["registerFigure"] to registerFigure
-        this["registerGender"] to registerGender
+    private val site: SiteDAO?,
+    private val randomNum: String,
+    private val registerCaptchaInvalid: Boolean?,
+    private val registerEmailInvalid: Boolean?,
+    private val registerUsername: String?,
+    private val registerShowPassword: String?,
+    private val registerEmail: String?,
+    private val registerDay: String?,
+    private val registerMonth: String?,
+    private val registerYear: String?,
+    private val registerFigure: String?,
+    private val registerGender: String?
+) : PageTemplate("register.tpl") {
+    override fun configure() {
+        bind("site" to site)
+        bind("randomNum" to randomNum)
+        bind("registerCaptchaInvalid" to registerCaptchaInvalid)
+        bind("registerEmailInvalid" to registerEmailInvalid)
+        bind("registerUsername" to registerUsername)
+        bind("registerShowPassword" to registerShowPassword)
+        bind("registerEmail" to registerEmail)
+        bind("registerDay" to registerDay)
+        bind("registerMonth" to registerMonth)
+        bind("registerYear" to registerYear)
+        bind("registerFigure" to registerFigure)
+        bind("registerGender" to registerGender)
     }
 }

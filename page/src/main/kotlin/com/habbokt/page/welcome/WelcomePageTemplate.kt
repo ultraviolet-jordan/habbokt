@@ -7,5 +7,9 @@ import com.habbokt.page.PageTemplate
  * @author Jordan Abraham
  */
 class WelcomePageTemplate(
-    site: SiteDAO?
-) : PageTemplate(path = "welcome.tpl", site)
+    private val site: SiteDAO?
+) : PageTemplate("welcome.tpl") {
+    override fun configure() {
+        bind("site" to site)
+    }
+}

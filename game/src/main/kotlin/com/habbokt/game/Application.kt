@@ -3,6 +3,8 @@ package com.habbokt.game
 import com.habbokt.db.DatabaseResourceBuilder
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.aSocket
+import io.ktor.network.sockets.openReadChannel
+import io.ktor.network.sockets.openWriteChannel
 import io.ktor.server.application.Application
 import io.ktor.server.application.log
 import io.ktor.server.application.port
@@ -22,7 +24,7 @@ fun Application.game() {
     DatabaseResourceBuilder.connect {
         driverClassName = environment.config.property("storage.driverClassName").getString()
         jdbcUrl = environment.config.property("storage.jdbcUrl").getString()
-        maximumPoolSize = 4
+        maximumPoolSize = 2
     }
 
     runBlocking {
@@ -36,7 +38,24 @@ fun Application.game() {
             val socket = server.accept()
 
             launch(Dispatchers.IO) {
+                log.info("Connection from ${socket.remoteAddress}")
 
+                val client = GameClient(
+                    readChannel = socket.openReadChannel(),
+                    writeChannel = socket.openWriteChannel()
+                )
+
+                // client.writePacket(ClientHelloPacket())
+
+                try {
+                    while (true) {
+                        val readPacket = client.awaitPacket() ?: continue
+                        client.handlePacket(readPacket)
+                    }
+                } catch (exception: Exception) {
+                    log.error("Exception caught by connected client. Closing connection with client...", exception)
+                    socket.close()
+                }
             }
         }
     }

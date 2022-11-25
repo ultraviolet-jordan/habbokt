@@ -6,7 +6,7 @@ import io.ktor.server.sessions.CurrentSession
 /**
  * @author Jordan Abraham
  */
-interface Page<out T : PageTemplate> {
+interface Page<T : PageTemplate> {
     /**
      * Generates the necessary template to be interpreted when the page loads.
      */

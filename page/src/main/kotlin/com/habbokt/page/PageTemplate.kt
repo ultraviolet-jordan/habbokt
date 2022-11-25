@@ -1,15 +1,17 @@
 package com.habbokt.page
 
-import com.habbokt.dao.site.SiteDAO
-
 /**
  * @author Jordan Abraham
  */
-open class PageTemplate constructor(
+abstract class PageTemplate constructor(
     val path: String,
-    site: SiteDAO?
-) : MutableMap<String, Any?> by mutableMapOf("site" to site)
+) : MutableMap<String, Any?> by mutableMapOf() {
+    abstract fun configure()
 
-data class Template<out T : PageTemplate>(
+    protected fun bind(context: Pair<String, Any?>) = put(context.first, context.second)
+    protected infix fun String.to(value: Any?): Pair<String, Any?> = Pair(this, value)
+}
+
+data class Template<T>(
     val block: suspend () -> T
 )
