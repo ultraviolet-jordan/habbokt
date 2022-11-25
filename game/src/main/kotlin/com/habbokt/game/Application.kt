@@ -1,6 +1,12 @@
 package com.habbokt.game
 
+import com.google.inject.Guice
 import com.habbokt.db.DatabaseResourceBuilder
+import com.habbokt.packet.ClientHelloPacket
+import com.habbokt.packet.Packet
+import com.habbokt.packet.PacketModule
+import com.habbokt.packet.asm.AssemblerListener
+import dev.misfitlabs.kotlinguice4.findBindingsByType
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.aSocket
 import io.ktor.network.sockets.openReadChannel
@@ -21,11 +27,19 @@ private val dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
 private val selector = ActorSelectorManager(dispatcher)
 
 fun Application.game() {
+    // Database
     DatabaseResourceBuilder.connect {
         driverClassName = environment.config.property("storage.driverClassName").getString()
         jdbcUrl = environment.config.property("storage.jdbcUrl").getString()
         maximumPoolSize = 2
     }
+
+    // Guice
+    val injector = Guice.createInjector(
+        PacketModule
+    )
+
+    val assemblers = injector.findBindingsByType<AssemblerListener<*>>().map { it.provider.get() }.toList() as List<AssemblerListener<Packet>>
 
     runBlocking {
         val server = aSocket(selector).tcp().bind("127.0.0.1", environment.config.port) {
@@ -42,10 +56,11 @@ fun Application.game() {
 
                 val client = GameClient(
                     readChannel = socket.openReadChannel(),
-                    writeChannel = socket.openWriteChannel()
+                    writeChannel = socket.openWriteChannel(),
+                    assemblers = assemblers
                 )
 
-                // client.writePacket(ClientHelloPacket())
+                client.writePacket(ClientHelloPacket())
 
                 try {
                     while (true) {

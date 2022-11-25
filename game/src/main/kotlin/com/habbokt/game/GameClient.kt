@@ -1,19 +1,22 @@
 package com.habbokt.game
 
-import com.habbokt.api.client.Client
-import com.habbokt.api.common.base64
-import com.habbokt.api.packet.Packet
+import com.habbokt.game.common.base64
+import com.habbokt.packet.Packet
+import com.habbokt.packet.asm.AssemblerListener
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 
 /**
  * @author Jordan Abraham
  */
 class GameClient(
     private val readChannel: ByteReadChannel,
-    private val writeChannel: ByteWriteChannel
+    private val writeChannel: ByteWriteChannel,
+    private val assemblers: List<AssemblerListener<Packet>>
 ) : Client {
     private val writePool = ByteBuffer.allocateDirect(256)
 
@@ -42,6 +45,21 @@ class GameClient(
     }
 
     override fun writePacket(packet: Packet) {
-        TODO("Not yet implemented")
+        // TODO Use the write pool properly. For now I am just writing back to client immediately.
+        // TODO It should be pooling the data from multiple packets if possible then writing to client.
+        val declaration = assemblers.firstOrNull { it.declaration.kClass == packet::class }?.declaration ?: return
+        val packetId = declaration.assembler.id
+        println("DEBUG Outgoing Packet: ID = $packetId, ASSEMBLER=${declaration.assembler}")
+        writePool.put(packetId.base64(2)) // Write packet id.
+        declaration.assembler.block.invoke(packet, writePool) // Invoke packet body.
+        writePool.put(1) // End packet.
+
+        if (writeChannel.isClosedForWrite) return
+        writeChannel.apply {
+            runBlocking(Dispatchers.IO) {
+                writeFully(writePool.flip())
+            }
+        }.flush()
+        writePool.clear()
     }
 }

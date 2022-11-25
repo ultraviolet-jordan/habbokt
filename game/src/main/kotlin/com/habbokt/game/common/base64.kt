@@ -1,4 +1,4 @@
-package com.habbokt.api.common
+package com.habbokt.game.common
 
 /**
  * @author Jordan Abraham
