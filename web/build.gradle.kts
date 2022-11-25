@@ -15,6 +15,7 @@ dependencies {
     implementation(deps.argon2)
 
     implementation(project(":api"))
+    implementation(project(":db"))
     implementation(project(":page"))
     implementation(project(":session"))
 }
