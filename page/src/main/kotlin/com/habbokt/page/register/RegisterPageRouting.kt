@@ -2,9 +2,11 @@ package com.habbokt.page.register
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import com.habbokt.page.Authentications
 import com.habbokt.page.PageRoute
 import com.habbokt.page.PageRouting
 import io.ktor.server.application.call
+import io.ktor.server.auth.authenticate
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 
@@ -19,8 +21,10 @@ class RegisterPageRouting @Inject constructor(
         get("/register") {
             service.handleGetRequest(call)
         }
-        post("/register") {
-            service.handlePostRequest(call)
+        authenticate(Authentications.Captcha) {
+            post("/register") {
+                service.handlePostRequest(call)
+            }
         }
         get("/register/cancel") {
             service.handleCancelRequest(call)
