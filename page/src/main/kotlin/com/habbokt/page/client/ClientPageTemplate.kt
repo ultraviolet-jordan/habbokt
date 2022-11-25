@@ -10,8 +10,9 @@ class ClientPageTemplate(
     site: SiteDAO?,
     forwardRoom: Boolean,
     ssoTicket: String?
-) : PageTemplate(path = "client.tpl", site) {
+) : PageTemplate("client.tpl") {
     init {
+        this["site"] to site
         this["forwardRoom"] to forwardRoom
         this["ssoTicket"] to ssoTicket
     }

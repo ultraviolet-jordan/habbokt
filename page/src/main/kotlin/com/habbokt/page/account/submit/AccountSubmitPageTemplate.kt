@@ -8,4 +8,8 @@ import com.habbokt.page.PageTemplate
  */
 class AccountSubmitPageTemplate(
     site: SiteDAO?
-) : PageTemplate(path = "account/submit.tpl", site)
+) : PageTemplate(path = "account/submit.tpl") {
+    init {
+        this["site"] to site
+    }
+}

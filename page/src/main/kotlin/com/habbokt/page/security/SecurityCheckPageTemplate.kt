@@ -9,8 +9,9 @@ import com.habbokt.page.PageTemplate
 class SecurityCheckPageTemplate(
     site: SiteDAO?,
     redirectPath: String
-) : PageTemplate(path = "security_check.tpl", site) {
+) : PageTemplate("security_check.tpl") {
     init {
+        this["site"] to site
         this["redirectPath"] to redirectPath
     }
 }
