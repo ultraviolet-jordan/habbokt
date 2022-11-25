@@ -7,7 +7,7 @@ import com.habbokt.page.BaseTemplate
  * @author Jordan Abraham
  */
 class IndexPageTemplate(
-    site: SiteDAO,
+    site: SiteDAO?,
     rememberMe: Boolean,
     username: String?
 ) : BaseTemplate(path = "index.tpl", site) {

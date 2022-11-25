@@ -6,6 +6,7 @@ import com.habbokt.page.PageRoute
 import com.habbokt.page.PageRouting
 import io.ktor.server.application.call
 import io.ktor.server.routing.get
+import io.ktor.server.routing.post
 
 /**
  * @author Jordan Abraham
@@ -17,6 +18,12 @@ class RegisterPageRouting @Inject constructor(
     override fun route(): PageRoute = PageRoute {
         get("/register") {
             service.handleGetRequest(call)
+        }
+        post("/register") {
+            service.handlePostRequest(call)
+        }
+        get("/register/cancel") {
+            service.handleCancelRequest(call)
         }
     }
 }

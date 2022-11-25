@@ -7,7 +7,7 @@ import com.habbokt.page.BaseTemplate
  * @author Jordan Abraham
  */
 class RegisterPageTemplate(
-    site: SiteDAO,
+    site: SiteDAO?,
     randomNum: String,
     registerCaptchaInvalid: Boolean?,
     registerEmailInvalid: Boolean?,

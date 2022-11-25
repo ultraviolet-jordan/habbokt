@@ -1,5 +1,6 @@
 package com.habbokt.page
 
+import com.habbokt.argon2.Argon2Module
 import com.habbokt.dao.DAOModule
 import com.habbokt.page.asset.AssetPageRouting
 import com.habbokt.page.captcha.CaptchaRouting
@@ -19,6 +20,7 @@ object PageModule : KotlinModule() {
     override fun configure() {
         install(DAOModule)
         install(TemplatingModule)
+        install(Argon2Module)
 
         val routes = KotlinMultibinder.newSetBinder<PageRouting>(binder())
         routes.addBinding().to<AssetPageRouting>()

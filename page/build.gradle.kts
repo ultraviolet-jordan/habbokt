@@ -11,6 +11,7 @@ dependencies {
     implementation(deps.guice)
     implementation(deps.simplecaptcha)
 
+    implementation(project(":argon2"))
     implementation(project(":dao"))
     implementation(project(":session"))
     implementation(project(":templating"))

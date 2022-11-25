@@ -7,5 +7,5 @@ import com.habbokt.page.BaseTemplate
  * @author Jordan Abraham
  */
 class MePageTemplate(
-    site: SiteDAO
+    site: SiteDAO?
 ) : BaseTemplate(path = "me.tpl", site)

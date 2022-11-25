@@ -6,7 +6,11 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.page.BlankPage
 import com.habbokt.page.BlankPageService
+import com.habbokt.session.CaptchaSession
 import io.ktor.server.application.ApplicationCall
+import io.ktor.server.sessions.get
+import io.ktor.server.sessions.sessions
+import io.ktor.server.sessions.set
 import java.awt.Color
 import java.awt.Font
 
@@ -31,6 +35,14 @@ class CaptchaService @Inject constructor(
             .Builder(200, 50)
             .addText(DefaultWordRenderer(colors, fonts))
             .build()
+
+        // Modify or create new captcha session when generating a new captcha to the user.
+        val session = call.sessions.get<CaptchaSession>()
+        if (session == null) {
+            call.sessions.set(CaptchaSession(captcha.answer))
+        } else {
+            call.sessions.set(session.copy(captcha = captcha.answer))
+        }
 
         call.respondPng(captcha.image)
     }
