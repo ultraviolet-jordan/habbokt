@@ -15,4 +15,3 @@ fun Application.installAuthenticationPlugin() {
         installUserAuthentication()
     }
 }
-
