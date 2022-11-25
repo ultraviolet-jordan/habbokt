@@ -34,6 +34,6 @@ fun Application.web() {
     Guice.createInjector(
         PageModule
     ).findBindingsByType<PageRouting>()
-        .map { it.provider.get().route() }
-        .forEach { it.block.invoke(this@web.routing{}) }
+        .map { it.provider.get().route.block }
+        .forEach { it.invoke(this@web.routing{}) }
 }
