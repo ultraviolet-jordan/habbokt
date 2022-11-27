@@ -3,6 +3,7 @@ package com.habbokt.packet
 import com.habbokt.packet.asm.AssemblerListener
 import com.habbokt.packet.asm.handshake.ClientHelloAssembler
 import com.habbokt.packet.asm.handshake.CompleteDiffieHandshakeResponseAssembler
+import com.habbokt.packet.asm.handshake.DisconnectReasonAssembler
 import com.habbokt.packet.asm.handshake.InitDiffieHandshakeResponseAssembler
 import com.habbokt.packet.dasm.DisassemblerListener
 import com.habbokt.packet.dasm.handshake.CompleteDiffieHandshakeRequestDisassembler
@@ -25,6 +26,7 @@ object PacketModule : KotlinModule() {
         assemblers.addBinding().to<ClientHelloAssembler>()
         assemblers.addBinding().to<InitDiffieHandshakeResponseAssembler>()
         assemblers.addBinding().to<CompleteDiffieHandshakeResponseAssembler>()
+        assemblers.addBinding().to<DisconnectReasonAssembler>()
 
         // Disassemblers
         val disassemblers = KotlinMultibinder.newSetBinder<DisassemblerListener>(kotlinBinder)
