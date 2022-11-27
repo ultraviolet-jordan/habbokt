@@ -6,6 +6,7 @@ import com.habbokt.api.client.DisconnectReason
 import com.habbokt.dao.players.PlayersService
 import com.habbokt.packet.DisconnectReasonPacket
 import com.habbokt.packet.SSOTicketPacket
+import com.habbokt.packet.UserRightsPacket
 import com.habbokt.packet.handler.Handler
 import com.habbokt.packet.handler.HandlerListener
 
@@ -32,4 +33,7 @@ class SSOTicketHandler @Inject constructor(
         it.writePacket(DisconnectReasonPacket(DisconnectReason.Disconnect.id))
         return@Handler
     }
+
+    // Login Here
+    it.writePacket(UserRightsPacket())
 })
