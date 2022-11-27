@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.api.client.DisconnectReason
 import com.habbokt.dao.players.PlayersService
+import com.habbokt.packet.AuthenticationOKPacket
 import com.habbokt.packet.DisconnectReasonPacket
 import com.habbokt.packet.SSOTicketPacket
 import com.habbokt.packet.UserRightsPacket
@@ -36,4 +37,5 @@ class SSOTicketHandler @Inject constructor(
 
     // Login Here
     it.writePacket(UserRightsPacket())
+    it.writePacket(AuthenticationOKPacket())
 })

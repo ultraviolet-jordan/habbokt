@@ -2,6 +2,7 @@ package com.habbokt.packet
 
 import com.habbokt.dao.DAOModule
 import com.habbokt.packet.asm.AssemblerListener
+import com.habbokt.packet.asm.handshake.AuthenticationOKAssembler
 import com.habbokt.packet.asm.handshake.ClientHelloAssembler
 import com.habbokt.packet.asm.handshake.CompleteDiffieHandshakeResponseAssembler
 import com.habbokt.packet.asm.handshake.DisconnectReasonAssembler
@@ -42,6 +43,7 @@ object PacketModule : KotlinModule() {
         assemblers.addBinding().to<UniqueMachineIdAssembler>()
         assemblers.addBinding().to<SessionParametersResponseAssembler>()
         assemblers.addBinding().to<UserRightsAssembler>()
+        assemblers.addBinding().to<AuthenticationOKAssembler>()
 
         // Disassemblers
         val disassemblers = KotlinMultibinder.newSetBinder<DisassemblerListener>(kotlinBinder)
