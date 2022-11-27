@@ -10,4 +10,5 @@ dependencies {
     implementation(deps.guice)
 
     implementation(project(":api"))
+    implementation(project(":dao"))
 }

@@ -7,5 +7,5 @@ import com.habbokt.api.packet.Packet
  * @author Jordan Abraham
  */
 data class Handler<in P : Packet>(
-    val block: P.(Client) -> Unit
+    val block: suspend P.(Client) -> Unit
 )

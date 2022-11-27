@@ -53,11 +53,13 @@ class GameClient(
     }
 
     override fun handlePacket(packet: Packet) {
-        handlers
-            .firstOrNull { it.typeOf(packet) }
-            ?.handler
-            ?.block
-            ?.invoke(packet, this)
+        runBlocking {
+            handlers
+                .firstOrNull { it.typeOf(packet) }
+                ?.handler
+                ?.block
+                ?.invoke(packet, this@GameClient)
+        }
     }
 
     override fun writePacket(packet: Packet) {
