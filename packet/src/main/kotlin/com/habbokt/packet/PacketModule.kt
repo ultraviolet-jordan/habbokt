@@ -13,6 +13,7 @@ import com.habbokt.packet.asm.handshake.UniqueMachineIdAssembler
 import com.habbokt.packet.asm.handshake.UserRightsAssembler
 import com.habbokt.packet.dasm.DisassemblerListener
 import com.habbokt.packet.dasm.handshake.CompleteDiffieHandshakeRequestDisassembler
+import com.habbokt.packet.dasm.handshake.InfoRetrieveDisassembler
 import com.habbokt.packet.dasm.handshake.InitDiffieHandshakeDisassembler
 import com.habbokt.packet.dasm.handshake.SSOTicketDisassembler
 import com.habbokt.packet.dasm.handshake.ScrGetUserInfoDisassembler
@@ -21,6 +22,7 @@ import com.habbokt.packet.dasm.handshake.UniqueMachineIdDisassembler
 import com.habbokt.packet.dasm.handshake.VersionCheckDisassembler
 import com.habbokt.packet.handler.HandlerListener
 import com.habbokt.packet.handler.handshake.CompleteDiffieHandshakeRequestHandler
+import com.habbokt.packet.handler.handshake.InfoRetrieveHandler
 import com.habbokt.packet.handler.handshake.InitDiffieHandshakeRequestHandler
 import com.habbokt.packet.handler.handshake.SSOTicketHandler
 import com.habbokt.packet.handler.handshake.ScrGetUserInfoHandler
@@ -58,6 +60,7 @@ object PacketModule : KotlinModule() {
         disassemblers.addBinding().to<SessionParametersRequestDisassembler>()
         disassemblers.addBinding().to<SSOTicketDisassembler>()
         disassemblers.addBinding().to<ScrGetUserInfoDisassembler>()
+        disassemblers.addBinding().to<InfoRetrieveDisassembler>()
 
         // Handlers
         val handlers = KotlinMultibinder.newSetBinder<HandlerListener<*>>(kotlinBinder)
@@ -68,5 +71,6 @@ object PacketModule : KotlinModule() {
         handlers.addBinding().to<SessionParametersRequestHandler>()
         handlers.addBinding().to<SSOTicketHandler>()
         handlers.addBinding().to<ScrGetUserInfoHandler>()
+        handlers.addBinding().to<InfoRetrieveHandler>()
     }
 }
