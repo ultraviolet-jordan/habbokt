@@ -6,6 +6,7 @@ import com.habbokt.packet.asm.handshake.CompleteDiffieHandshakeResponseAssembler
 import com.habbokt.packet.asm.handshake.DisconnectReasonAssembler
 import com.habbokt.packet.asm.handshake.InitDiffieHandshakeResponseAssembler
 import com.habbokt.packet.asm.handshake.SessionParametersResponseAssembler
+import com.habbokt.packet.asm.handshake.UniqueMachineIdAssembler
 import com.habbokt.packet.dasm.DisassemblerListener
 import com.habbokt.packet.dasm.handshake.CompleteDiffieHandshakeRequestDisassembler
 import com.habbokt.packet.dasm.handshake.InitDiffieHandshakeDisassembler
@@ -32,6 +33,7 @@ object PacketModule : KotlinModule() {
         assemblers.addBinding().to<InitDiffieHandshakeResponseAssembler>()
         assemblers.addBinding().to<CompleteDiffieHandshakeResponseAssembler>()
         assemblers.addBinding().to<DisconnectReasonAssembler>()
+        assemblers.addBinding().to<UniqueMachineIdAssembler>()
         assemblers.addBinding().to<SessionParametersResponseAssembler>()
 
         // Disassemblers
