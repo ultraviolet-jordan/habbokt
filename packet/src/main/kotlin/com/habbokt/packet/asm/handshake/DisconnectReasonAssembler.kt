@@ -11,5 +11,5 @@ import com.habbokt.packet.buf.putIntHabbo
  */
 @Singleton
 class DisconnectReasonAssembler : AssemblerListener<DisconnectReasonPacket>(Assembler(id = 287) {
-    it.putIntHabbo(reason.id)
+    it.putIntHabbo(reason)
 })
