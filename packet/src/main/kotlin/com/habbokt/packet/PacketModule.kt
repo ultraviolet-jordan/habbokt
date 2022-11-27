@@ -7,6 +7,7 @@ import com.habbokt.packet.asm.handshake.ClientHelloAssembler
 import com.habbokt.packet.asm.handshake.CompleteDiffieHandshakeResponseAssembler
 import com.habbokt.packet.asm.handshake.DisconnectReasonAssembler
 import com.habbokt.packet.asm.handshake.InitDiffieHandshakeResponseAssembler
+import com.habbokt.packet.asm.handshake.ScrSendUserInfoAssembler
 import com.habbokt.packet.asm.handshake.SessionParametersResponseAssembler
 import com.habbokt.packet.asm.handshake.UniqueMachineIdAssembler
 import com.habbokt.packet.asm.handshake.UserRightsAssembler
@@ -46,6 +47,7 @@ object PacketModule : KotlinModule() {
         assemblers.addBinding().to<SessionParametersResponseAssembler>()
         assemblers.addBinding().to<UserRightsAssembler>()
         assemblers.addBinding().to<AuthenticationOKAssembler>()
+        assemblers.addBinding().to<ScrSendUserInfoAssembler>()
 
         // Disassemblers
         val disassemblers = KotlinMultibinder.newSetBinder<DisassemblerListener>(kotlinBinder)
