@@ -12,7 +12,7 @@ open class AssemblerListener<in P : Packet>(
     /**
      * Weird solution of checking if a packet is of type of this assembler since assemblers are basically keyed by class type.
      */
-    fun typeOf(packet: Packet) = (this::class.java.genericSuperclass as ParameterizedType)
+    fun typeOf(packet: P) = (this::class.java.genericSuperclass as ParameterizedType)
         .actualTypeArguments
         .firstOrNull()
         ?.typeName == packet::class.java.typeName
