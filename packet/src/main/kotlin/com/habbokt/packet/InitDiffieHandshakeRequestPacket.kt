@@ -5,4 +5,6 @@ import com.habbokt.api.packet.Packet
 /**
  * @author Jordan Abraham
  */
-class ClientHelloPacket : Packet
+data class InitDiffieHandshakeRequestPacket(
+    val value: Int
+) : Packet

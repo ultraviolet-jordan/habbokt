@@ -1,4 +1,4 @@
-package com.habbokt.packet.asm
+package com.habbokt.packet.dasm
 
 import com.habbokt.api.packet.Packet
 import java.nio.ByteBuffer
@@ -6,7 +6,7 @@ import java.nio.ByteBuffer
 /**
  * @author Jordan Abraham
  */
-data class Assembler<in P : Packet>(
+data class Disassembler(
     val id: Int,
-    val block: P.(ByteBuffer) -> Unit
+    val packet: (ByteBuffer) -> Packet
 )

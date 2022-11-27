@@ -1,6 +1,6 @@
-package com.habbokt.game
+package com.habbokt.api.client
 
-import com.habbokt.packet.Packet
+import com.habbokt.api.packet.Packet
 
 /**
  * @author Jordan Abraham

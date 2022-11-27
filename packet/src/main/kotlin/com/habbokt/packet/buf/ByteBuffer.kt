@@ -1,4 +1,4 @@
-package com.habbokt.game.common
+package com.habbokt.packet.buf
 
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
