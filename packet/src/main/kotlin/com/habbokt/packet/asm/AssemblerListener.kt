@@ -1,16 +1,19 @@
 package com.habbokt.packet.asm
 
 import com.habbokt.packet.Packet
-import java.nio.ByteBuffer
+import java.lang.reflect.ParameterizedType
 
 /**
  * @author Jordan Abraham
  */
 abstract class AssemblerListener<P : Packet>(
-    val declaration: PacketAssemblerDeclaration<P>
-)
-
-internal inline fun <reified P : Packet> asm(
-    id: Int,
-    noinline block: P.(ByteBuffer) -> Unit
-): PacketAssemblerDeclaration<P> = PacketAssemblerDeclaration(P::class, Assembler(id, block))
+    val assembler: Assembler<P>
+) {
+    /**
+     * Weird solution of checking if a packet is of type of this assembler since assemblers are basically keyed by class type.
+     */
+    fun typeOf(packet: Packet) = (this::class.java.genericSuperclass as ParameterizedType)
+        .actualTypeArguments
+        .firstOrNull()
+        ?.typeName == packet::class.java.typeName
+}

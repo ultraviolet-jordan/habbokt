@@ -47,11 +47,10 @@ class GameClient(
     override fun writePacket(packet: Packet) {
         // TODO Use the write pool properly. For now I am just writing back to client immediately.
         // TODO It should be pooling the data from multiple packets if possible then writing to client.
-        val declaration = assemblers.firstOrNull { it.declaration.kClass == packet::class }?.declaration ?: return
-        val packetId = declaration.assembler.id
-        println("DEBUG Outgoing Packet: ID = $packetId, ASSEMBLER=${declaration.assembler}")
-        writePool.put(packetId.base64(2)) // Write packet id.
-        declaration.assembler.block.invoke(packet, writePool) // Invoke packet body.
+        val assembler = assemblers.firstOrNull { it.typeOf(packet) }?.assembler ?: return
+        println("DEBUG Outgoing Packet: ID = ${assembler.id}, ASSEMBLER=${assembler}")
+        writePool.put(assembler.id.base64(2)) // Write packet id.
+        assembler.block.invoke(packet, writePool) // Invoke packet body.
         writePool.put(1) // End packet.
 
         if (writeChannel.isClosedForWrite) return
