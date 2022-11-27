@@ -26,7 +26,7 @@ object PageModule : KotlinModule() {
         install(TemplatingModule)
         install(Argon2Module)
 
-        val routes = KotlinMultibinder.newSetBinder<PageRouting>(binder())
+        val routes = KotlinMultibinder.newSetBinder<PageRouting>(kotlinBinder)
         // Account
         routes.addBinding().to<AccountSubmitPageRouting>()
         // Asset
@@ -49,6 +49,5 @@ object PageModule : KotlinModule() {
         routes.addBinding().to<TestPageRouting>()
         // Welcome
         routes.addBinding().to<WelcomePageRouting>()
-
     }
 }
