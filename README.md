@@ -5,6 +5,11 @@ A Habbo Hotel Private Server Written in Kotlin.
   <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/image.jpg?raw=true" alt="Habbo Hotel Registration"/>
 </p>
 
+# Dependencies
+
+- Gradle 7.6
+- Kotlin 1.7.21
+
 # Autoreloading/Continuous Development
 _Since Auto-reload detects changes in output files, you need to rebuild a project. You can do this manually in IntelliJ IDEA or enable continuous build execution in Gradle using the -t command-line option._
 
