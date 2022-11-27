@@ -11,7 +11,7 @@ dependencyResolutionManagement {
             version("versions", "0.44.0")
             version("pebble", "3.2.0")
             version("ktlint", "11.0.0")
-            version("slf4j", "2.0.4")
+            version("slf4j", "2.0.5")
             version("simplecaptcha", "1.2.2")
             version("argon2", "2.11")
             version("exposed", "0.41.1")
