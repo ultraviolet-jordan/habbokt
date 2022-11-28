@@ -9,7 +9,7 @@ import com.habbokt.page.PageTemplate
 class SecurityCheckPageTemplate(
     private val site: SiteDAO?,
     private val redirectPath: String
-) : PageTemplate("security_check.tpl") {
+) : PageTemplate(path = "security_check.tpl") {
     override fun configure() {
         bind("site" to site)
         bind("redirectPath" to redirectPath)

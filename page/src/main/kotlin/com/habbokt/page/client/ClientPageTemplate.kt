@@ -10,7 +10,7 @@ class ClientPageTemplate(
     private val site: SiteDAO?,
     private val forwardRoom: Boolean,
     private val ssoTicket: String?
-) : PageTemplate("client.tpl") {
+) : PageTemplate(path = "client.tpl") {
     override fun configure() {
         bind("site" to site)
         bind("forwardRoom" to forwardRoom)

@@ -10,7 +10,7 @@ class IndexPageTemplate(
     private val site: SiteDAO?,
     private val rememberMe: Boolean,
     private val username: String?
-) : PageTemplate("index.tpl") {
+) : PageTemplate(path = "index.tpl") {
     override fun configure() {
         bind("site" to site)
         bind("rememberMe" to rememberMe)

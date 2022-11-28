@@ -19,7 +19,7 @@ class RegisterPageTemplate(
     private val registerYear: String?,
     private val registerFigure: String?,
     private val registerGender: String?
-) : PageTemplate("register.tpl") {
+) : PageTemplate(path = "register.tpl") {
     override fun configure() {
         bind("site" to site)
         bind("randomNum" to randomNum)

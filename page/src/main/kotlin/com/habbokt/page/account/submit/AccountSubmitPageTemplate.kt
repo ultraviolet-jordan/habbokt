@@ -8,7 +8,7 @@ import com.habbokt.page.PageTemplate
  */
 class AccountSubmitPageTemplate(
     private val site: SiteDAO?
-) : PageTemplate("account/submit.tpl") {
+) : PageTemplate(path = "account/submit.tpl") {
     override fun configure() {
         bind("site" to site)
     }
