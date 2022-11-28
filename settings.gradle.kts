@@ -8,17 +8,17 @@ dependencyResolutionManagement {
             // Dependency versions.
             version("kotlin", "1.7.21")
             version("ktor", "2.1.3")
-            version("koin", "3.2.2")
             version("versions", "0.44.0")
-            version("pebble", "3.1.6")
+            version("pebble", "3.2.0")
             version("ktlint", "11.0.0")
-            version("slf4j", "2.0.4")
+            version("slf4j", "2.0.5")
             version("simplecaptcha", "1.2.2")
             version("argon2", "2.11")
             version("exposed", "0.41.1")
             version("h2database", "2.1.214")
             version("hikaricp", "5.0.1")
-            version("ehcache", "3.10.6")
+            version("ehcache", "3.10.8")
+            version("guice", "1.6.0")
 
             // Dependency libraries
             // Ktor Dependencies
@@ -29,10 +29,6 @@ dependencyResolutionManagement {
             library("ktor-server-sessions", "io.ktor", "ktor-server-sessions").versionRef("ktor")
             library("ktor-server-auth", "io.ktor", "ktor-server-auth").versionRef("ktor")
 
-            // Koin Dependencies
-            library("koin-core", "io.insert-koin", "koin-core").versionRef("koin")
-            library("koin-ktor", "io.insert-koin", "koin-ktor").versionRef("koin")
-
             // Database Dependencies
             library("exposed-core", "org.jetbrains.exposed", "exposed-core").versionRef("exposed")
             library("exposed-dao", "org.jetbrains.exposed", "exposed-dao").versionRef("exposed")
@@ -40,6 +36,9 @@ dependencyResolutionManagement {
             library("h2database", "com.h2database", "h2").versionRef("h2database")
             library("hikaricp", "com.zaxxer", "HikariCP").versionRef("hikaricp")
             library("ehcache", "org.ehcache", "ehcache").versionRef("ehcache")
+
+            // Guice
+            library("guice", "dev.misfitlabs.kotlinguice4", "kotlin-guice").versionRef("guice")
 
             // Misc Dependencies
             library("pebble", "io.pebbletemplates", "pebble").versionRef("pebble")
@@ -49,7 +48,6 @@ dependencyResolutionManagement {
 
             // Dependency bundles
             bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging", "ktor-server-sessions", "ktor-server-auth"))
-            bundle("koin", listOf("koin-core", "koin-ktor"))
             bundle("database", listOf("exposed-core", "exposed-dao", "exposed-jdbc", "h2database", "hikaricp", "ehcache"))
 
             // Dependency plugins
@@ -60,4 +58,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(listOf("api", "dao", "game", "templating", "web"))
+include(listOf("api", "argon2", "dao", "db", "game", "packet", "page", "session", "templating", "web"))

@@ -1,20 +1,21 @@
 package com.habbokt.game
 
-import com.habbokt.api.packet.ClientHelloPacket
-import com.habbokt.api.plugin.PacketAssemblerPluginKey
-import com.habbokt.api.plugin.PacketDisassemblerPluginKey
-import com.habbokt.api.plugin.PacketHandlerPluginKey
-import com.habbokt.dao.DatabaseFactory
-import com.habbokt.game.plugin.installKoinPlugin
-import com.habbokt.game.plugin.installPacketAssemblerPlugin
-import com.habbokt.game.plugin.installPacketDisassemblerPlugin
-import com.habbokt.game.plugin.installPacketHandlerPlugin
+import com.google.inject.Guice
+import com.habbokt.api.packet.Packet
+import com.habbokt.db.DatabaseResourceBuilder
+import com.habbokt.packet.ClientHelloPacket
+import com.habbokt.packet.PacketModule
+import com.habbokt.packet.asm.PacketAssembler
+import com.habbokt.packet.dasm.PacketDisassembler
+import com.habbokt.packet.handler.PacketHandler
+import dev.misfitlabs.kotlinguice4.findBindingsByType
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.aSocket
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
 import io.ktor.server.application.Application
 import io.ktor.server.application.log
+import io.ktor.server.application.port
 import java.util.concurrent.Executors
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
@@ -27,40 +28,42 @@ import kotlinx.coroutines.runBlocking
 private val dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
 private val selector = ActorSelectorManager(dispatcher)
 
-fun Application.module() {
-    // Load DatabaseFactory.
-    DatabaseFactory.init(
-        driverClassName = environment.config.property("storage.driverClassName").getString(),
-        jdbcUrl = environment.config.property("storage.jdbcURL").getString(),
-        useConsole = environment.config.property("h2.console.enabled").getString().toBoolean()
+fun Application.game() {
+    // Database
+    DatabaseResourceBuilder.connect {
+        driverClassName = environment.config.property("storage.driverClassName").getString()
+        jdbcUrl = environment.config.property("storage.jdbcUrl").getString()
+        maximumPoolSize = 2
+    }
+
+    // Guice
+    val injector = Guice.createInjector(
+        PacketModule
     )
 
-    installKoinPlugin()
-    installPacketAssemblerPlugin()
-    installPacketDisassemblerPlugin()
-    installPacketHandlerPlugin()
-
-    val hostname = "127.0.0.1"
-    val port = 43594
+    val assemblers = injector.findBindingsByType<PacketAssembler<*>>().map { it.provider.get() } as List<PacketAssembler<Packet>>
+    val disassemblers = injector.findBindingsByType<PacketDisassembler>().map { it.provider.get() }
+    val handlers = injector.findBindingsByType<PacketHandler<*>>().map { it.provider.get() } as List<PacketHandler<Packet>>
 
     runBlocking {
-        val server = aSocket(selector).tcp().bind(hostname, port) {
-            backlogSize = 1000
+        val server = aSocket(selector).tcp().bind("127.0.0.1", environment.config.port) {
             reuseAddress = true
         }
 
-        log.info("Responding at http://$hostname:$port")
+        log.info("Responding at http://127.0.0.1:${environment.config.port}")
 
         while (true) {
             val socket = server.accept()
 
             launch(Dispatchers.IO) {
+                log.info("Connection from ${socket.remoteAddress}")
+
                 val client = GameClient(
                     readChannel = socket.openReadChannel(),
                     writeChannel = socket.openWriteChannel(),
-                    assemblers = attributes[PacketAssemblerPluginKey],
-                    disassemblers = attributes[PacketDisassemblerPluginKey],
-                    handlers = attributes[PacketHandlerPluginKey]
+                    assemblers = assemblers,
+                    disassemblers = disassemblers,
+                    handlers = handlers
                 )
 
                 client.writePacket(ClientHelloPacket())
@@ -71,7 +74,7 @@ fun Application.module() {
                         client.handlePacket(readPacket)
                     }
                 } catch (exception: Exception) {
-                    log.error("Exception caught by connected client. Disconnecting...", exception)
+                    log.error("Exception caught by connected client. Closing connection with client...", exception)
                     socket.close()
                 }
             }

@@ -1,7 +1,7 @@
 package com.habbokt.web.plugin.cookie
 
-import com.habbokt.web.plugin.Authentications
-import com.habbokt.web.session.CaptchaSession
+import com.habbokt.page.Authentications
+import com.habbokt.session.CaptchaSession
 import io.ktor.server.sessions.SessionTransportTransformerEncrypt
 import io.ktor.server.sessions.SessionsConfig
 import io.ktor.server.sessions.cookie

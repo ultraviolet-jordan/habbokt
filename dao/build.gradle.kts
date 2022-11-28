@@ -6,4 +6,8 @@ plugins {
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
-dependencies {}
+dependencies {
+    implementation(deps.guice)
+    implementation(deps.bundles.database)
+    implementation(project(":db"))
+}

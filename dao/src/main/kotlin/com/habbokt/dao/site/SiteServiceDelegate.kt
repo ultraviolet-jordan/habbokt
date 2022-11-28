@@ -1,6 +1,8 @@
 package com.habbokt.dao.site
 
-import com.habbokt.dao.DatabaseFactory.query
+import com.google.inject.Singleton
+import com.habbokt.db.query
+import com.habbokt.db.site.SiteTable
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
@@ -9,12 +11,13 @@ import org.jetbrains.exposed.sql.update
 /**
  * @author Jordan Abraham
  */
+@Singleton
 class SiteServiceDelegate : SiteService {
-    override suspend fun site(): SiteDAO = query {
+    override suspend fun site(): SiteDAO? = query {
         SiteTable
             .select { SiteTable.id eq 1 }
             .map(::resultToSite)
-            .single()
+            .singleOrNull()
     }
 
     override suspend fun createSite(siteDAO: SiteDAO): SiteDAO? = query {

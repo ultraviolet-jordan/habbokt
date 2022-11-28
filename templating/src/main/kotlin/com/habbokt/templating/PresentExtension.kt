@@ -1,10 +1,10 @@
 package com.habbokt.templating
 
-import com.mitchellbosecke.pebble.extension.AbstractExtension
-import com.mitchellbosecke.pebble.extension.Test
-import com.mitchellbosecke.pebble.template.EvaluationContext
-import com.mitchellbosecke.pebble.template.EvaluationContextImpl
-import com.mitchellbosecke.pebble.template.PebbleTemplate
+import io.pebbletemplates.pebble.extension.AbstractExtension
+import io.pebbletemplates.pebble.extension.Test
+import io.pebbletemplates.pebble.template.EvaluationContext
+import io.pebbletemplates.pebble.template.EvaluationContextImpl
+import io.pebbletemplates.pebble.template.PebbleTemplate
 
 /**
  * @author Jordan Abraham

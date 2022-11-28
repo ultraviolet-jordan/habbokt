@@ -1,10 +1,15 @@
 /.idea/
-/build/
 /.gradle/
 
+/build/
 /api/build/
+/argon2/build/
 /dao/build/
+/db/build/
 /game/build/
+/packet/build/
+/page/build/
+/session/build/
 /templating/build/
 /web/build/
 

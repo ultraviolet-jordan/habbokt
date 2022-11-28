@@ -1,12 +1,15 @@
 package com.habbokt.dao.players
 
+import com.google.inject.Inject
+import com.google.inject.Singleton
 import org.ehcache.Cache
 
 /**
  * @author Jordan Abraham
  */
-class PlayersServiceEhcache(
-    private val delegate: PlayersService,
+@Singleton
+class PlayersServiceEhcache @Inject constructor(
+    private val delegate: PlayersServiceDelegate,
     private val cache: Cache<Int, PlayerDAO>
 ) : PlayersService {
     override suspend fun player(id: Int): PlayerDAO? = cache[id] ?: delegate.player(id)?.also { cache.put(id, it) }

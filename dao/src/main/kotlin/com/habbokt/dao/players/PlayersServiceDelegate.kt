@@ -1,6 +1,8 @@
 package com.habbokt.dao.players
 
-import com.habbokt.dao.DatabaseFactory.query
+import com.google.inject.Singleton
+import com.habbokt.db.players.PlayersTable
+import com.habbokt.db.query
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
@@ -8,6 +10,10 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.update
 
+/**
+ * @author Jordan Abraham
+ */
+@Singleton
 class PlayersServiceDelegate : PlayersService {
     override suspend fun player(id: Int): PlayerDAO? = query {
         PlayersTable

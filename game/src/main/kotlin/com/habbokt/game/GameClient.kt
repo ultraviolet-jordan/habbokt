@@ -1,24 +1,15 @@
 package com.habbokt.game
 
-import com.habbokt.api.common.base64
 import com.habbokt.api.client.Client
-import com.habbokt.api.client.DisconnectReason
-import com.habbokt.api.client.handshake.LoginInformation
-import com.habbokt.api.packet.AuthenticationOKPacket
-import com.habbokt.api.packet.DisconnectReasonPacket
 import com.habbokt.api.packet.Packet
-import com.habbokt.api.packet.UserRightsPacket
-import com.habbokt.api.packet.assembler.PacketAssemblerDeclaration
-import com.habbokt.api.packet.disassembler.PacketDisassemblerDeclaration
-import com.habbokt.api.packet.handler.PacketHandler
-import com.habbokt.api.packet.handler.PacketHandlerDeclaration
-import com.habbokt.api.player.Player
-import com.habbokt.game.player.GamePlayer
+import com.habbokt.packet.asm.PacketAssembler
+import com.habbokt.packet.buf.base64
+import com.habbokt.packet.dasm.PacketDisassembler
+import com.habbokt.packet.handler.PacketHandler
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
-import kotlin.reflect.KClass
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 
@@ -28,17 +19,11 @@ import kotlinx.coroutines.runBlocking
 class GameClient(
     private val readChannel: ByteReadChannel,
     private val writeChannel: ByteWriteChannel,
-    private val assemblers: Map<KClass<*>, PacketAssemblerDeclaration<Packet>>,
-    private val disassemblers: Map<Int, PacketDisassemblerDeclaration>,
-    private val handlers: Map<KClass<*>, PacketHandlerDeclaration<Packet>>
+    private val assemblers: List<PacketAssembler<Packet>>,
+    private val disassemblers: List<PacketDisassembler>,
+    private val handlers: List<PacketHandler<Packet>>
 ) : Client {
     private val writePool = ByteBuffer.allocateDirect(256)
-
-    private lateinit var gamePlayer: Player
-
-    override fun readChannel(): ByteReadChannel = readChannel
-    override fun writeChannel(): ByteWriteChannel = writeChannel
-    override fun bufferPool(): ByteBuffer = writePool
 
     override suspend fun awaitPacket(): Packet? {
         if (readChannel.isClosedForRead) {
@@ -54,29 +39,38 @@ class GameClient(
             }
             return null
         }
+
         val buffer = ByteBuffer.wrap(readChannel.readPacket(size).readBytes())
         val id = String(ByteArray(2) { buffer.get() }).toByteArray().base64()
+
         println("DEBUG Incoming Packet: ID=$id, SIZE=$size, REMAINING=${buffer.remaining()}")
-        return disassemblers[id]?.packetDisassembler?.packet?.invoke(buffer)
+
+        return disassemblers
+            .firstOrNull { it.disassembler.id == id }
+            ?.disassembler
+            ?.packet
+            ?.invoke(buffer)
     }
 
-    override suspend fun handlePacket(packet: Packet) {
-        handlers[packet::class]?.handler?.invoke(
-            PacketHandler(
-                client = this,
-                packet = packet
-            )
-        )
+    override fun handlePacket(packet: Packet) {
+        runBlocking {
+            handlers
+                .firstOrNull { it.typeOf(packet) }
+                ?.handler
+                ?.block
+                ?.invoke(packet, this@GameClient)
+        }
     }
 
     override fun writePacket(packet: Packet) {
         // TODO Use the write pool properly. For now I am just writing back to client immediately.
         // TODO It should be pooling the data from multiple packets if possible then writing to client.
-        val declaration = assemblers[packet::class] ?: return
-        val packetId = declaration.assembler.id
-        println("DEBUG Outgoing Packet: ID = $packetId, ASSEMBLER=${declaration.assembler}")
-        writePool.put(packetId.base64(2)) // Write packet id.
-        declaration.assembler.packet.invoke(packet, writePool) // Invoke packet body.
+        val assembler = assemblers.firstOrNull { it.typeOf(packet) }?.assembler ?: return
+
+        println("DEBUG Outgoing Packet: ID = ${assembler.id}, ASSEMBLER=${assembler}")
+
+        writePool.put(assembler.id.base64(2)) // Write packet id.
+        assembler.block.invoke(packet, writePool) // Invoke packet body.
         writePool.put(1) // End packet.
 
         if (writeChannel.isClosedForWrite) return
@@ -86,18 +80,5 @@ class GameClient(
             }
         }.flush()
         writePool.clear()
-    }
-
-    override fun getPlayer(): Player? {
-        if (!::gamePlayer.isInitialized) return null
-        return gamePlayer
-    }
-
-    override fun validateLogin(information: LoginInformation): Player? = GamePlayer(information.id, information.username)
-        .validateLogin(information)
-        ?.also { this.gamePlayer = it }
-
-    override fun logout() {
-        TODO("Not yet implemented")
     }
 }
