@@ -16,13 +16,13 @@ import com.habbokt.api.client.handshake.SessionParameters
 import com.habbokt.packet.SessionParametersRequestPacket
 import com.habbokt.packet.SessionParametersResponsePacket
 import com.habbokt.packet.handler.Handler
-import com.habbokt.packet.handler.HandlerListener
+import com.habbokt.packet.handler.PacketHandler
 
 /**
  * @author Jordan Abraham
  */
 @Singleton
-class SessionParametersRequestHandler : HandlerListener<SessionParametersRequestPacket>(Handler {
+class SessionParametersRequestPacketHandler : PacketHandler<SessionParametersRequestPacket>(Handler {
     val sessionParameters = SessionParameters(
         SessionParameter(Coppa, false),
         SessionParameter(Voucher, true),

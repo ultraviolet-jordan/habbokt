@@ -1,35 +1,35 @@
 package com.habbokt.packet
 
 import com.habbokt.dao.DAOModule
-import com.habbokt.packet.asm.AssemblerListener
-import com.habbokt.packet.asm.handshake.AuthenticationOKAssembler
-import com.habbokt.packet.asm.handshake.ClientHelloAssembler
-import com.habbokt.packet.asm.handshake.CompleteDiffieHandshakeResponseAssembler
-import com.habbokt.packet.asm.handshake.DisconnectReasonAssembler
-import com.habbokt.packet.asm.handshake.InitDiffieHandshakeResponseAssembler
-import com.habbokt.packet.asm.handshake.ScrSendUserInfoAssembler
-import com.habbokt.packet.asm.handshake.SessionParametersResponseAssembler
-import com.habbokt.packet.asm.handshake.UniqueMachineIdAssembler
-import com.habbokt.packet.asm.handshake.UserObjectAssembler
-import com.habbokt.packet.asm.handshake.UserRightsAssembler
-import com.habbokt.packet.dasm.DisassemblerListener
-import com.habbokt.packet.dasm.handshake.CompleteDiffieHandshakeRequestDisassembler
-import com.habbokt.packet.dasm.handshake.InfoRetrieveDisassembler
-import com.habbokt.packet.dasm.handshake.InitDiffieHandshakeDisassembler
-import com.habbokt.packet.dasm.handshake.SSOTicketDisassembler
-import com.habbokt.packet.dasm.handshake.ScrGetUserInfoDisassembler
-import com.habbokt.packet.dasm.handshake.SessionParametersRequestDisassembler
-import com.habbokt.packet.dasm.handshake.UniqueMachineIdDisassembler
-import com.habbokt.packet.dasm.handshake.VersionCheckDisassembler
-import com.habbokt.packet.handler.HandlerListener
-import com.habbokt.packet.handler.handshake.CompleteDiffieHandshakeRequestHandler
-import com.habbokt.packet.handler.handshake.InfoRetrieveHandler
-import com.habbokt.packet.handler.handshake.InitDiffieHandshakeRequestHandler
-import com.habbokt.packet.handler.handshake.SSOTicketHandler
-import com.habbokt.packet.handler.handshake.ScrGetUserInfoHandler
-import com.habbokt.packet.handler.handshake.SessionParametersRequestHandler
-import com.habbokt.packet.handler.handshake.UniqueMachineIdHandler
-import com.habbokt.packet.handler.handshake.VersionCheckHandler
+import com.habbokt.packet.asm.PacketAssembler
+import com.habbokt.packet.asm.handshake.AuthenticationOKPacketAssembler
+import com.habbokt.packet.asm.handshake.ClientHelloPacketAssembler
+import com.habbokt.packet.asm.handshake.CompleteDiffieHandshakeResponsePacketAssembler
+import com.habbokt.packet.asm.handshake.DisconnectReasonPacketAssembler
+import com.habbokt.packet.asm.handshake.InitDiffieHandshakeResponsePacketAssembler
+import com.habbokt.packet.asm.handshake.ScrSendUserInfoPacketAssembler
+import com.habbokt.packet.asm.handshake.SessionParametersResponsePacketAssembler
+import com.habbokt.packet.asm.handshake.UniqueMachineIdPacketAssembler
+import com.habbokt.packet.asm.handshake.UserObjectPacketAssembler
+import com.habbokt.packet.asm.handshake.UserRightsPacketAssembler
+import com.habbokt.packet.dasm.PacketDisassembler
+import com.habbokt.packet.dasm.handshake.CompleteDiffieHandshakeRequestPacketDisassembler
+import com.habbokt.packet.dasm.handshake.InfoRetrievePacketDisassembler
+import com.habbokt.packet.dasm.handshake.InitDiffieHandshakePacketDisassembler
+import com.habbokt.packet.dasm.handshake.SSOTicketPacketDisassembler
+import com.habbokt.packet.dasm.handshake.ScrGetUserInfoPacketDisassembler
+import com.habbokt.packet.dasm.handshake.SessionParametersRequestPacketDisassembler
+import com.habbokt.packet.dasm.handshake.UniqueMachineIdPacketDisassembler
+import com.habbokt.packet.dasm.handshake.VersionCheckPacketDisassembler
+import com.habbokt.packet.handler.PacketHandler
+import com.habbokt.packet.handler.handshake.CompleteDiffieHandshakeRequestPacketHandler
+import com.habbokt.packet.handler.handshake.InfoRetrievePacketHandler
+import com.habbokt.packet.handler.handshake.InitDiffieHandshakeRequestPacketHandler
+import com.habbokt.packet.handler.handshake.SSOTicketPacketHandler
+import com.habbokt.packet.handler.handshake.ScrGetUserInfoPacketHandler
+import com.habbokt.packet.handler.handshake.SessionParametersRequestPacketHandler
+import com.habbokt.packet.handler.handshake.UniqueMachineIdPacketHandler
+import com.habbokt.packet.handler.handshake.VersionCheckPacketHandler
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMultibinder
 
@@ -41,38 +41,38 @@ object PacketModule : KotlinModule() {
         install(DAOModule)
 
         // Assemblers
-        val assemblers = KotlinMultibinder.newSetBinder<AssemblerListener<*>>(kotlinBinder)
-        assemblers.addBinding().to<ClientHelloAssembler>()
-        assemblers.addBinding().to<InitDiffieHandshakeResponseAssembler>()
-        assemblers.addBinding().to<CompleteDiffieHandshakeResponseAssembler>()
-        assemblers.addBinding().to<DisconnectReasonAssembler>()
-        assemblers.addBinding().to<UniqueMachineIdAssembler>()
-        assemblers.addBinding().to<SessionParametersResponseAssembler>()
-        assemblers.addBinding().to<UserRightsAssembler>()
-        assemblers.addBinding().to<AuthenticationOKAssembler>()
-        assemblers.addBinding().to<ScrSendUserInfoAssembler>()
-        assemblers.addBinding().to<UserObjectAssembler>()
+        val assemblers = KotlinMultibinder.newSetBinder<PacketAssembler<*>>(kotlinBinder)
+        assemblers.addBinding().to<ClientHelloPacketAssembler>()
+        assemblers.addBinding().to<InitDiffieHandshakeResponsePacketAssembler>()
+        assemblers.addBinding().to<CompleteDiffieHandshakeResponsePacketAssembler>()
+        assemblers.addBinding().to<DisconnectReasonPacketAssembler>()
+        assemblers.addBinding().to<UniqueMachineIdPacketAssembler>()
+        assemblers.addBinding().to<SessionParametersResponsePacketAssembler>()
+        assemblers.addBinding().to<UserRightsPacketAssembler>()
+        assemblers.addBinding().to<AuthenticationOKPacketAssembler>()
+        assemblers.addBinding().to<ScrSendUserInfoPacketAssembler>()
+        assemblers.addBinding().to<UserObjectPacketAssembler>()
 
         // Disassemblers
-        val disassemblers = KotlinMultibinder.newSetBinder<DisassemblerListener>(kotlinBinder)
-        disassemblers.addBinding().to<InitDiffieHandshakeDisassembler>()
-        disassemblers.addBinding().to<CompleteDiffieHandshakeRequestDisassembler>()
-        disassemblers.addBinding().to<VersionCheckDisassembler>()
-        disassemblers.addBinding().to<UniqueMachineIdDisassembler>()
-        disassemblers.addBinding().to<SessionParametersRequestDisassembler>()
-        disassemblers.addBinding().to<SSOTicketDisassembler>()
-        disassemblers.addBinding().to<ScrGetUserInfoDisassembler>()
-        disassemblers.addBinding().to<InfoRetrieveDisassembler>()
+        val disassemblers = KotlinMultibinder.newSetBinder<PacketDisassembler>(kotlinBinder)
+        disassemblers.addBinding().to<InitDiffieHandshakePacketDisassembler>()
+        disassemblers.addBinding().to<CompleteDiffieHandshakeRequestPacketDisassembler>()
+        disassemblers.addBinding().to<VersionCheckPacketDisassembler>()
+        disassemblers.addBinding().to<UniqueMachineIdPacketDisassembler>()
+        disassemblers.addBinding().to<SessionParametersRequestPacketDisassembler>()
+        disassemblers.addBinding().to<SSOTicketPacketDisassembler>()
+        disassemblers.addBinding().to<ScrGetUserInfoPacketDisassembler>()
+        disassemblers.addBinding().to<InfoRetrievePacketDisassembler>()
 
         // Handlers
-        val handlers = KotlinMultibinder.newSetBinder<HandlerListener<*>>(kotlinBinder)
-        handlers.addBinding().to<InitDiffieHandshakeRequestHandler>()
-        handlers.addBinding().to<CompleteDiffieHandshakeRequestHandler>()
-        handlers.addBinding().to<VersionCheckHandler>()
-        handlers.addBinding().to<UniqueMachineIdHandler>()
-        handlers.addBinding().to<SessionParametersRequestHandler>()
-        handlers.addBinding().to<SSOTicketHandler>()
-        handlers.addBinding().to<ScrGetUserInfoHandler>()
-        handlers.addBinding().to<InfoRetrieveHandler>()
+        val handlers = KotlinMultibinder.newSetBinder<PacketHandler<*>>(kotlinBinder)
+        handlers.addBinding().to<InitDiffieHandshakeRequestPacketHandler>()
+        handlers.addBinding().to<CompleteDiffieHandshakeRequestPacketHandler>()
+        handlers.addBinding().to<VersionCheckPacketHandler>()
+        handlers.addBinding().to<UniqueMachineIdPacketHandler>()
+        handlers.addBinding().to<SessionParametersRequestPacketHandler>()
+        handlers.addBinding().to<SSOTicketPacketHandler>()
+        handlers.addBinding().to<ScrGetUserInfoPacketHandler>()
+        handlers.addBinding().to<InfoRetrievePacketHandler>()
     }
 }

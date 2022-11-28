@@ -6,7 +6,7 @@ import java.lang.reflect.ParameterizedType
 /**
  * @author Jordan Abraham
  */
-open class AssemblerListener<in P : Packet>(
+open class PacketAssembler<in P : Packet>(
     val assembler: Assembler<P>
 ) {
     /**

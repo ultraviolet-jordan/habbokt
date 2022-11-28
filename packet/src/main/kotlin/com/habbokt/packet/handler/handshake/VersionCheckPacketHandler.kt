@@ -5,13 +5,13 @@ import com.habbokt.api.client.DisconnectReason.Disconnect
 import com.habbokt.packet.DisconnectReasonPacket
 import com.habbokt.packet.VersionCheckPacket
 import com.habbokt.packet.handler.Handler
-import com.habbokt.packet.handler.HandlerListener
+import com.habbokt.packet.handler.PacketHandler
 
 /**
  * @author Jordan Abraham
  */
 @Singleton
-class VersionCheckHandler : HandlerListener<VersionCheckPacket>(Handler {
+class VersionCheckPacketHandler : PacketHandler<VersionCheckPacket>(Handler {
     // TODO Real validation against the local file instead of hard code.
     when {
         clientVersionId != 401 -> Disconnect

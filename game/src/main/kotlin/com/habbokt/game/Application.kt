@@ -5,9 +5,9 @@ import com.habbokt.api.packet.Packet
 import com.habbokt.db.DatabaseResourceBuilder
 import com.habbokt.packet.ClientHelloPacket
 import com.habbokt.packet.PacketModule
-import com.habbokt.packet.asm.AssemblerListener
-import com.habbokt.packet.dasm.DisassemblerListener
-import com.habbokt.packet.handler.HandlerListener
+import com.habbokt.packet.asm.PacketAssembler
+import com.habbokt.packet.dasm.PacketDisassembler
+import com.habbokt.packet.handler.PacketHandler
 import dev.misfitlabs.kotlinguice4.findBindingsByType
 import io.ktor.network.selector.ActorSelectorManager
 import io.ktor.network.sockets.aSocket
@@ -41,9 +41,9 @@ fun Application.game() {
         PacketModule
     )
 
-    val assemblers = injector.findBindingsByType<AssemblerListener<*>>().map { it.provider.get() } as List<AssemblerListener<Packet>>
-    val disassemblers = injector.findBindingsByType<DisassemblerListener>().map { it.provider.get() }
-    val handlers = injector.findBindingsByType<HandlerListener<*>>().map { it.provider.get() } as List<HandlerListener<Packet>>
+    val assemblers = injector.findBindingsByType<PacketAssembler<*>>().map { it.provider.get() } as List<PacketAssembler<Packet>>
+    val disassemblers = injector.findBindingsByType<PacketDisassembler>().map { it.provider.get() }
+    val handlers = injector.findBindingsByType<PacketHandler<*>>().map { it.provider.get() } as List<PacketHandler<Packet>>
 
     runBlocking {
         val server = aSocket(selector).tcp().bind("127.0.0.1", environment.config.port) {

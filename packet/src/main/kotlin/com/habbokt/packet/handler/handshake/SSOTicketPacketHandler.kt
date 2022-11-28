@@ -2,7 +2,6 @@ package com.habbokt.packet.handler.handshake
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import com.habbokt.api.client.DisconnectReason
 import com.habbokt.api.client.DisconnectReason.Disconnect
 import com.habbokt.dao.players.PlayersService
 import com.habbokt.packet.AuthenticationOKPacket
@@ -10,15 +9,15 @@ import com.habbokt.packet.DisconnectReasonPacket
 import com.habbokt.packet.SSOTicketPacket
 import com.habbokt.packet.UserRightsPacket
 import com.habbokt.packet.handler.Handler
-import com.habbokt.packet.handler.HandlerListener
+import com.habbokt.packet.handler.PacketHandler
 
 /**
  * @author Jordan Abraham
  */
 @Singleton
-class SSOTicketHandler @Inject constructor(
+class SSOTicketPacketHandler @Inject constructor(
     private val playersService: PlayersService
-) : HandlerListener<SSOTicketPacket>(Handler {
+) : PacketHandler<SSOTicketPacket>(Handler {
     val playerDAO = playersService.ssoTicket(ssoTicket)
     when {
         playerDAO == null -> Disconnect

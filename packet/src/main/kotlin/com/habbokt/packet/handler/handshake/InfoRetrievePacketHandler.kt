@@ -4,13 +4,13 @@ import com.google.inject.Singleton
 import com.habbokt.packet.InfoRetrievePacket
 import com.habbokt.packet.UserObjectPacket
 import com.habbokt.packet.handler.Handler
-import com.habbokt.packet.handler.HandlerListener
+import com.habbokt.packet.handler.PacketHandler
 
 /**
  * @author Jordan Abraham
  */
 @Singleton
-class InfoRetrieveHandler : HandlerListener<InfoRetrievePacket>(Handler {
+class InfoRetrievePacketHandler : PacketHandler<InfoRetrievePacket>(Handler {
     it.writePacket(
         UserObjectPacket(
             userId = "1", // "1"

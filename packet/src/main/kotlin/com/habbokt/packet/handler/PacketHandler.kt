@@ -6,7 +6,7 @@ import java.lang.reflect.ParameterizedType
 /**
  * @author Jordan Abraham
  */
-open class HandlerListener<in P : Packet>(
+open class PacketHandler<in P : Packet>(
     val handler: Handler<P>
 ) {
     /**

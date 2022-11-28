@@ -5,8 +5,8 @@ import com.google.inject.Singleton
 import com.habbokt.dao.players.PlayersService
 import com.habbokt.dao.site.SiteDAO
 import com.habbokt.dao.site.SiteService
-import com.habbokt.page.Route
 import com.habbokt.page.PageRouting
+import com.habbokt.page.Route
 import io.ktor.server.application.call
 import io.ktor.server.response.respondRedirect
 import io.ktor.server.routing.get

@@ -2,10 +2,10 @@ package com.habbokt.game
 
 import com.habbokt.api.client.Client
 import com.habbokt.api.packet.Packet
-import com.habbokt.packet.asm.AssemblerListener
+import com.habbokt.packet.asm.PacketAssembler
 import com.habbokt.packet.buf.base64
-import com.habbokt.packet.dasm.DisassemblerListener
-import com.habbokt.packet.handler.HandlerListener
+import com.habbokt.packet.dasm.PacketDisassembler
+import com.habbokt.packet.handler.PacketHandler
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.ByteWriteChannel
 import io.ktor.utils.io.core.readBytes
@@ -19,9 +19,9 @@ import kotlinx.coroutines.runBlocking
 class GameClient(
     private val readChannel: ByteReadChannel,
     private val writeChannel: ByteWriteChannel,
-    private val assemblers: List<AssemblerListener<Packet>>,
-    private val disassemblers: List<DisassemblerListener>,
-    private val handlers: List<HandlerListener<Packet>>
+    private val assemblers: List<PacketAssembler<Packet>>,
+    private val disassemblers: List<PacketDisassembler>,
+    private val handlers: List<PacketHandler<Packet>>
 ) : Client {
     private val writePool = ByteBuffer.allocateDirect(256)
 
