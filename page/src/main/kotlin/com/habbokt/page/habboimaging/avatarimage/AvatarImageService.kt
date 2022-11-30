@@ -43,27 +43,86 @@ class AvatarImageService @Inject constructor(
         val waist = figureParts?.filter { it.startsWith("wa-") }
         // TODO
 
+        // ========================================================================
+
+        val color1 = Color(
+            id = 1,
+            index = 0,
+            club = 0,
+            selectable = 1,
+            hex = "FFCB98"
+        )
+
+        val color2 = Color(
+            id = 2,
+            index = 0,
+            club = 0,
+            selectable = 1,
+            hex = "E3AE7D"
+        )
+
         val palette1 = Palette(
             id = 1,
-            listOf(
-                Color(1, 0, 0, 1, "FFCB98"),
-                Color(1, 0, 0, 1, "FFCB98")
-            )
+            listOf(color1, color2)
         )
 
         val colors = Colors(
             palettes = listOf(palette1)
         )
 
-        val figureData = FigureData(colors)
+        // ========================================================================
 
-        XmlMapper().writeValue(File("idk.xml"), figureData)
+        val part996 = Part(
+            id = 996,
+            type = "hr",
+            colorable = 0,
+            index = 0
+        )
+
+        val part458 = Part(
+            id = 458,
+            type = "hr",
+            colorable = 0,
+            index = 0
+        )
+
+        val set175 = Set(
+            id = 175,
+            gender = "M",
+            club = 0,
+            colorable = 0,
+            selectable = 0,
+            part = part996
+        )
+
+        val set177 = Set(
+            id = 177,
+            gender = "M",
+            club = 0,
+            colorable = 0,
+            selectable = 0,
+            part = part458
+        )
+
+        val setType = SetType(
+            type = "hr",
+            paletteId = 2,
+            mandatory = 0,
+            sets = listOf(set175, set177)
+        )
+
+        val sets = Sets(listOf(setType))
+
+        val figureData = FigureData(colors, sets)
+
+        XmlMapper().writeValue(File("figuredata.xml"), figureData)
     }
 }
 
 @JacksonXmlRootElement(localName = "figuredata")
 data class FigureData(
-    val colors: Colors
+    val colors: Colors,
+    val sets: Sets
 )
 
 data class Colors(
@@ -91,4 +150,47 @@ data class Color(
     val selectable: Int,
     @field:JacksonXmlText
     val hex: String
+)
+
+data class Sets(
+    @field:JacksonXmlElementWrapper(useWrapping = false)
+    @field:JacksonXmlProperty(localName = "settype")
+    val setTypes: List<SetType>
+)
+
+data class SetType(
+    @field:JacksonXmlProperty(isAttribute = true)
+    val type: String,
+    @field:JacksonXmlProperty(localName = "paletteid", isAttribute = true)
+    val paletteId: Int,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val mandatory: Int,
+    @field:JacksonXmlElementWrapper(useWrapping = false)
+    @field:JacksonXmlProperty(localName = "set")
+    val sets: List<Set>
+)
+
+data class Set(
+    @field:JacksonXmlProperty(isAttribute = true)
+    val id: Int,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val gender: String,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val club: Int,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val colorable: Int,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val selectable: Int,
+    val part: Part
+)
+
+data class Part(
+    @field:JacksonXmlProperty(isAttribute = true)
+    val id: Int,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val type: String,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val colorable: Int,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val index: Int
 )
