@@ -19,6 +19,7 @@ dependencyResolutionManagement {
             version("hikaricp", "5.0.1")
             version("ehcache", "3.10.8")
             version("guice", "1.6.0")
+            version("jackson", "2.14.+")
 
             // Dependency libraries
             // Ktor Dependencies
@@ -40,6 +41,10 @@ dependencyResolutionManagement {
             // Guice
             library("guice", "dev.misfitlabs.kotlinguice4", "kotlin-guice").versionRef("guice")
 
+            // Jackson
+            library("jackson-module-kotlin", "com.fasterxml.jackson.module", "jackson-module-kotlin").versionRef("jackson")
+            library("jackson-dataformat-xml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-xml").versionRef("jackson")
+
             // Misc Dependencies
             library("pebble", "io.pebbletemplates", "pebble").versionRef("pebble")
             library("slf4j-simple", "org.slf4j", "slf4j-simple").versionRef("slf4j")
@@ -49,6 +54,7 @@ dependencyResolutionManagement {
             // Dependency bundles
             bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging", "ktor-server-sessions", "ktor-server-auth"))
             bundle("database", listOf("exposed-core", "exposed-dao", "exposed-jdbc", "h2database", "hikaricp", "ehcache"))
+            bundle("jackson", listOf("jackson-module-kotlin", "jackson-dataformat-xml"))
 
             // Dependency plugins
             plugin("jvm", "org.jetbrains.kotlin.jvm").versionRef("kotlin")

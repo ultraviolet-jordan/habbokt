@@ -1,10 +1,16 @@
 package com.habbokt.page.habboimaging.avatarimage
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.page.BlankPage
 import com.habbokt.page.BlankPageService
 import io.ktor.server.application.ApplicationCall
+import java.io.File
 
 /**
  * @author Jordan Abraham
@@ -36,5 +42,53 @@ class AvatarImageService @Inject constructor(
         val shoes = figureParts?.filter { it.startsWith("sh-") }
         val waist = figureParts?.filter { it.startsWith("wa-") }
         // TODO
+
+        val palette1 = Palette(
+            id = 1,
+            listOf(
+                Color(1, 0, 0, 1, "FFCB98"),
+                Color(1, 0, 0, 1, "FFCB98")
+            )
+        )
+
+        val colors = Colors(
+            palettes = listOf(palette1)
+        )
+
+        val figureData = FigureData(colors)
+
+        XmlMapper().writeValue(File("idk.xml"), figureData)
     }
 }
+
+@JacksonXmlRootElement(localName = "figuredata")
+data class FigureData(
+    val colors: Colors
+)
+
+data class Colors(
+    @field:JacksonXmlElementWrapper(useWrapping = false)
+    @field:JacksonXmlProperty(localName = "palette")
+    val palettes: List<Palette>
+)
+
+data class Palette(
+    @field:JacksonXmlProperty(isAttribute = true)
+    val id: Int,
+    @field:JacksonXmlElementWrapper(useWrapping = false)
+    @field:JacksonXmlProperty(localName = "color")
+    val colors: List<Color>
+)
+
+data class Color(
+    @field:JacksonXmlProperty(isAttribute = true)
+    val id: Int,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val index: Int,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val club: Int,
+    @field:JacksonXmlProperty(isAttribute = true)
+    val selectable: Int,
+    @field:JacksonXmlText
+    val hex: String
+)

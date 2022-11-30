@@ -8,6 +8,7 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     implementation(deps.bundles.ktor)
+    implementation(deps.bundles.jackson)
     implementation(deps.guice)
     implementation(deps.simplecaptcha)
 
