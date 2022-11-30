@@ -1,4 +1,4 @@
-package com.habbokt.xml.figuredata
+package com.habbokt.xml.figuredata.domain
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty

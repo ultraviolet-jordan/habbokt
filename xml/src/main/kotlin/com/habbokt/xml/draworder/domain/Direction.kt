@@ -1,13 +1,13 @@
-package com.habbokt.xml.figuredata
+package com.habbokt.xml.draworder.domain
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
 /**
  * @author Jordan Abraham
  */
-data class Palette(
+data class Direction(
     @JacksonXmlProperty(localName = "id", isAttribute = true)
     val id: Int,
-    @JacksonXmlProperty(localName = "color")
-    val colors: List<Color>
+    @JacksonXmlProperty(localName = "partList")
+    val partList: PartList
 )

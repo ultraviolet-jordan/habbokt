@@ -1,13 +1,13 @@
-package com.habbokt.xml.draworder
+package com.habbokt.xml.draworder.domain
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
 /**
  * @author Jordan Abraham
  */
-data class Direction(
+data class Action(
     @JacksonXmlProperty(localName = "id", isAttribute = true)
-    val id: Int,
-    @JacksonXmlProperty(localName = "partList")
-    val partList: PartList
+    val id: String,
+    @JacksonXmlProperty(localName = "direction")
+    val directions: List<Direction>
 )

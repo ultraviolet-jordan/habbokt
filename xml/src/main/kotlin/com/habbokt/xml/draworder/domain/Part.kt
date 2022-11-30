@@ -1,4 +1,4 @@
-package com.habbokt.xml.draworder
+package com.habbokt.xml.draworder.domain
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 

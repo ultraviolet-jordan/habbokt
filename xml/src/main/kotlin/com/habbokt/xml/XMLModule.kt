@@ -1,13 +1,14 @@
 package com.habbokt.xml
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import com.habbokt.xml.draworder.DrawOrder
-import com.habbokt.xml.figuredata.FigureData
+import com.habbokt.xml.draworder.DrawOrderDocument
+import com.habbokt.xml.draworder.domain.DrawOrder
+import com.habbokt.xml.figuredata.FigureDataDocument
+import com.habbokt.xml.figuredata.domain.FigureData
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import java.io.File
 
@@ -23,9 +24,9 @@ object XMLModule : KotlinModule() {
             .setSerializationInclusion(JsonInclude.Include.NON_NULL) // Ignore null values for serialization.
 
         val figureData = mapper.readValue<FigureData>(File(this::class.java.classLoader.getResource("www/dcr/v31/gamedata/figuredata.txt")!!.toURI()))
-        bind<FigureData>().toInstance(figureData)
+        bind<XMLDocument<FigureData>>().toInstance(FigureDataDocument(figureData))
 
         val drawOrder = mapper.readValue<DrawOrder>(File(this::class.java.classLoader.getResource("www/dcr/v31/gamedata/draworder.txt")!!.toURI()))
-        bind<DrawOrder>().toInstance(drawOrder)
+        bind<XMLDocument<DrawOrder>>().toInstance(DrawOrderDocument(drawOrder))
     }
 }

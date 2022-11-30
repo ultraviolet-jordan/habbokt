@@ -15,7 +15,6 @@ fun Application.installStatusPagesPlugin() {
         "/c_images",
         "/dcr",
         "/flash",
-        "/habbo-imaging",
         "/images",
         "/public",
         "/web-gallery",
