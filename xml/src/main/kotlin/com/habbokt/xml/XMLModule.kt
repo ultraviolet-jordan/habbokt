@@ -9,6 +9,8 @@ import com.habbokt.xml.draworder.DrawOrderDocument
 import com.habbokt.xml.draworder.domain.DrawOrder
 import com.habbokt.xml.figuredata.FigureDataDocument
 import com.habbokt.xml.figuredata.domain.FigureData
+import com.habbokt.xml.partsets.PartSetsDocument
+import com.habbokt.xml.partsets.domain.PartSets
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import java.io.File
 
@@ -28,5 +30,8 @@ object XMLModule : KotlinModule() {
 
         val drawOrder = mapper.readValue<DrawOrder>(File(this::class.java.classLoader.getResource("www/dcr/v31/gamedata/draworder.txt")!!.toURI()))
         bind<XMLDocument<DrawOrder>>().toInstance(DrawOrderDocument(drawOrder))
+
+        val partSets = mapper.readValue<PartSets>(File(this::class.java.classLoader.getResource("www/dcr/v31/gamedata/partsets.txt")!!.toURI()))
+        bind<XMLDocument<PartSets>>().toInstance(PartSetsDocument(partSets))
     }
 }

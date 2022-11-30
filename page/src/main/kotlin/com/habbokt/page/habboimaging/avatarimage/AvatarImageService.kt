@@ -7,6 +7,8 @@ import com.habbokt.page.BlankPageService
 import com.habbokt.xml.XMLDocument
 import com.habbokt.xml.draworder.domain.DrawOrder
 import com.habbokt.xml.figuredata.domain.FigureData
+import com.habbokt.xml.partsets.PartSetsDocument
+import com.habbokt.xml.partsets.domain.PartSets
 import io.ktor.server.application.ApplicationCall
 
 /**
@@ -16,7 +18,8 @@ import io.ktor.server.application.ApplicationCall
 class AvatarImageService @Inject constructor(
     page: BlankPage,
     private val figureDataDocument: XMLDocument<FigureData>,
-    private val drawOrderDocument: XMLDocument<DrawOrder>
+    private val drawOrderDocument: XMLDocument<DrawOrder>,
+    private val partSetsDocument: XMLDocument<PartSets>
 ) : BlankPageService(page) {
     override suspend fun handleGetRequest(call: ApplicationCall) {
         val parameters = call.parameters
@@ -43,5 +46,6 @@ class AvatarImageService @Inject constructor(
 
         val figureData = figureDataDocument.xml
         val drawOrder = drawOrderDocument.xml
+        val partSets = partSetsDocument.xml
     }
 }
