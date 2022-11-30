@@ -31,6 +31,7 @@ class SiteServiceDelegate : SiteService {
             it[loaderDcr] = siteDAO.loaderDcr
             it[loaderVariables] = siteDAO.loaderVariables
             it[loaderTexts] = siteDAO.loaderTexts
+            it[habboImagingPath] = siteDAO.habboImagingPath
         }.resultedValues?.singleOrNull()?.let(::resultToSite)
     }
 
@@ -45,6 +46,7 @@ class SiteServiceDelegate : SiteService {
             it[loaderDcr] = siteDAO.loaderDcr
             it[loaderVariables] = siteDAO.loaderVariables
             it[loaderTexts] = siteDAO.loaderTexts
+            it[habboImagingPath] = siteDAO.habboImagingPath
         } > 0
     }
 
@@ -57,6 +59,7 @@ class SiteServiceDelegate : SiteService {
         loaderGamePort = row[SiteTable.loaderGamePort],
         loaderDcr = row[SiteTable.loaderDcr],
         loaderVariables = row[SiteTable.loaderVariables],
-        loaderTexts = row[SiteTable.loaderTexts]
+        loaderTexts = row[SiteTable.loaderTexts],
+        habboImagingPath = row[SiteTable.habboImagingPath]
     )
 }

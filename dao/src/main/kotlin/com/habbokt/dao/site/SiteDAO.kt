@@ -14,5 +14,6 @@ data class SiteDAO(
     val loaderGamePort: Int,
     val loaderDcr: String,
     val loaderVariables: String,
-    val loaderTexts: String
+    val loaderTexts: String,
+    val habboImagingPath: String
 ) : Serializable

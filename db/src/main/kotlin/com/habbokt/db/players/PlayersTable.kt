@@ -7,12 +7,13 @@ import org.jetbrains.exposed.sql.Table
  */
 object PlayersTable : Table() {
     val id = integer("id").autoIncrement()
-    val username = varchar("username", 50)
+    val name = varchar("name", 50)
     val password = text("password")
     val email = varchar("email", 255)
-    val appearance = varchar("appearance", 255)
-    val gender = char("gender", 1)
-    val ssoTicket = text("ssoTicket")
+    val figure = varchar("figure", 255)
+    val sex = char("sex", 1)
+    val ssoTicket = text("sso_ticket")
+    val motto = text("motto")
 
     override val primaryKey = PrimaryKey(id)
 }

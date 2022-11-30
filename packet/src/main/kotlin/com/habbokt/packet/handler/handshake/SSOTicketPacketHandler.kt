@@ -3,13 +3,9 @@ package com.habbokt.packet.handler.handshake
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.api.client.DisconnectReason.Disconnect
-import com.habbokt.api.entity.player.Player
-import com.habbokt.api.entity.player.PlayerDetails
 import com.habbokt.dao.players.PlayersService
-import com.habbokt.packet.AuthenticationOKPacket
 import com.habbokt.packet.DisconnectReasonPacket
 import com.habbokt.packet.SSOTicketPacket
-import com.habbokt.packet.UserRightsPacket
 import com.habbokt.packet.handler.Handler
 import com.habbokt.packet.handler.PacketHandler
 
@@ -30,13 +26,6 @@ class SSOTicketPacketHandler @Inject constructor(
         it.writePacket(DisconnectReasonPacket(disconnectReason.id))
     } ?: run {
         require(playerDAO != null)
-        it.authenticate(PlayerDetails(
-            id = playerDAO.id,
-            username = playerDAO.username,
-            password = playerDAO.password,
-            email = playerDAO.email,
-            appearance = playerDAO.appearance,
-            gender = playerDAO.gender
-        ))
+        it.authenticate(playerDAO.id)
     }
 })

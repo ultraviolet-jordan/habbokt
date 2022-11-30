@@ -23,20 +23,22 @@ class PlayersServiceDelegate : PlayersService {
     }
 
     override suspend fun createPlayer(
-        username: String,
+        name: String,
         password: String,
         email: String,
-        appearance: String,
-        gender: String,
-        ssoTicket: String
+        figure: String,
+        sex: String,
+        ssoTicket: String,
+        motto: String
     ): PlayerDAO? = query {
         PlayersTable.insert {
-            it[PlayersTable.username] = username
+            it[PlayersTable.name] = name
             it[PlayersTable.password] = password
             it[PlayersTable.email] = email
-            it[PlayersTable.appearance] = appearance
-            it[PlayersTable.gender] = gender
+            it[PlayersTable.figure] = figure
+            it[PlayersTable.sex] = sex
             it[PlayersTable.ssoTicket] = ssoTicket
+            it[PlayersTable.motto] = motto
         }.resultedValues?.singleOrNull()?.let(::resultToPlayer)
     }
 
@@ -44,12 +46,13 @@ class PlayersServiceDelegate : PlayersService {
         playerDAO: PlayerDAO
     ): Boolean = query {
         PlayersTable.update({ PlayersTable.id eq playerDAO.id }) {
-            it[username] = playerDAO.username
+            it[name] = playerDAO.name
             it[password] = playerDAO.password
             it[email] = playerDAO.email
-            it[appearance] = playerDAO.appearance
-            it[gender] = playerDAO.gender
+            it[figure] = playerDAO.figure
+            it[sex] = playerDAO.sex
             it[ssoTicket] = playerDAO.ssoTicket
+            it[motto] = playerDAO.motto
         } > 0
     }
 
@@ -57,10 +60,10 @@ class PlayersServiceDelegate : PlayersService {
         PlayersTable.deleteWhere { PlayersTable.id eq id } > 0
     }
 
-    override suspend fun exists(username: String): Boolean = getId(username) != null
-    override suspend fun getId(username: String): Int? = query {
+    override suspend fun exists(name: String): Boolean = getId(name) != null
+    override suspend fun getId(name: String): Int? = query {
         PlayersTable
-            .select { PlayersTable.username eq username }
+            .select { PlayersTable.name eq name }
             .map(::resultToPlayer)
             .singleOrNull()
             ?.id
@@ -75,11 +78,12 @@ class PlayersServiceDelegate : PlayersService {
 
     private fun resultToPlayer(row: ResultRow) = PlayerDAO(
         id = row[PlayersTable.id],
-        username = row[PlayersTable.username],
+        name = row[PlayersTable.name],
         password = row[PlayersTable.password],
         email = row[PlayersTable.email],
-        appearance = row[PlayersTable.appearance],
-        gender = row[PlayersTable.gender],
-        ssoTicket = row[PlayersTable.ssoTicket]
+        figure = row[PlayersTable.figure],
+        sex = row[PlayersTable.sex],
+        ssoTicket = row[PlayersTable.ssoTicket],
+        motto = row[PlayersTable.motto]
     )
 }

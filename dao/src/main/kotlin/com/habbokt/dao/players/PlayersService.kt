@@ -7,12 +7,13 @@ interface PlayersService {
     suspend fun player(id: Int): PlayerDAO?
 
     suspend fun createPlayer(
-        username: String,
+        name: String,
         password: String,
         email: String,
-        appearance: String,
-        gender: String,
-        ssoTicket: String
+        figure: String,
+        sex: String,
+        ssoTicket: String,
+        motto: String
     ): PlayerDAO?
 
     suspend fun editPlayer(
@@ -20,7 +21,7 @@ interface PlayersService {
     ): Boolean
 
     suspend fun deletePlayer(id: Int): Boolean
-    suspend fun exists(username: String): Boolean
-    suspend fun getId(username: String): Int?
+    suspend fun exists(name: String): Boolean
+    suspend fun getId(name: String): Int?
     suspend fun ssoTicket(ssoTicket: String): PlayerDAO?
 }

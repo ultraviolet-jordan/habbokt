@@ -2,7 +2,6 @@ package com.habbokt.game
 
 import com.habbokt.api.client.Client
 import com.habbokt.api.entity.player.Player
-import com.habbokt.api.entity.player.PlayerDetails
 import com.habbokt.api.packet.Packet
 import com.habbokt.packet.asm.PacketAssembler
 import com.habbokt.packet.buf.base64
@@ -87,8 +86,8 @@ class GameClient(
         writePool.clear()
     }
 
-    override fun authenticate(details: PlayerDetails) {
-        this.connectedPlayer = GamePlayer(this@GameClient, details).also {
+    override fun authenticate(userId: Int) {
+        this.connectedPlayer = GamePlayer(userId, this@GameClient).also {
             it.login()
         }
     }

@@ -7,10 +7,11 @@ import java.io.Serializable
  */
 data class PlayerDAO(
     val id: Int,
-    val username: String,
+    val name: String,
     val password: String,
     val email: String,
-    val appearance: String,
-    val gender: String,
-    val ssoTicket: String
+    val figure: String,
+    val sex: String,
+    val ssoTicket: String,
+    val motto: String
 ) : Serializable

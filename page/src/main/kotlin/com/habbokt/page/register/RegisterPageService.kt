@@ -98,12 +98,13 @@ class RegisterPageService @Inject constructor(
         }
 
         val player = playersService.createPlayer(
-            username = username,
+            name = username,
             password = password,
             email = email,
-            appearance = appearance,
-            gender = gender,
-            ssoTicket = ""
+            figure = appearance,
+            sex = gender,
+            ssoTicket = "",
+            motto = ""
         )
 
         // If the new player was not added to the database.

@@ -15,19 +15,21 @@ class PlayersServiceEhcache @Inject constructor(
     override suspend fun player(id: Int): PlayerDAO? = cache[id] ?: delegate.player(id)?.also { cache.put(id, it) }
 
     override suspend fun createPlayer(
-        username: String,
+        name: String,
         password: String,
         email: String,
-        appearance: String,
-        gender: String,
-        ssoTicket: String
+        figure: String,
+        sex: String,
+        ssoTicket: String,
+        motto: String
     ): PlayerDAO? = delegate.createPlayer(
-        username,
+        name,
         password,
         email,
-        appearance,
-        gender,
-        ssoTicket
+        figure,
+        sex,
+        ssoTicket,
+        motto
     )?.also { cache.put(it.id, it) }
 
     override suspend fun editPlayer(playerDAO: PlayerDAO): Boolean {
@@ -40,7 +42,7 @@ class PlayersServiceEhcache @Inject constructor(
         return delegate.deletePlayer(id)
     }
 
-    override suspend fun exists(username: String): Boolean = getId(username) != null
-    override suspend fun getId(username: String): Int? = cache.firstOrNull { it.value.username == username }?.value?.id ?: delegate.getId(username)
+    override suspend fun exists(name: String): Boolean = getId(name) != null
+    override suspend fun getId(name: String): Int? = cache.firstOrNull { it.value.name == name }?.value?.id ?: delegate.getId(name)
     override suspend fun ssoTicket(ssoTicket: String): PlayerDAO? = cache.firstOrNull { it.value.ssoTicket == ssoTicket }?.value ?: delegate.ssoTicket(ssoTicket)
 }

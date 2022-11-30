@@ -16,6 +16,7 @@ object SiteTable : Table() {
     val loaderDcr = text("loaderDcr")
     val loaderVariables = text("loaderVariables")
     val loaderTexts = text("loaderTexts")
+    val habboImagingPath = text("habboImagingPath")
 
     override val primaryKey = PrimaryKey(id)
 }

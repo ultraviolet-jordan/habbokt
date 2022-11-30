@@ -6,8 +6,8 @@ import com.habbokt.api.client.Client
  * @author Jordan Abraham
  */
 abstract class Player(
-    val client: Client,
-    val details: PlayerDetails
+    val id: Int,
+    val client: Client
 ) {
     abstract fun login()
 }
