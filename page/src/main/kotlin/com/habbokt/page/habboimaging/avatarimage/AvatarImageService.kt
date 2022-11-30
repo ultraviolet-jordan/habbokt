@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.page.BlankPage
 import com.habbokt.page.BlankPageService
+import com.habbokt.xml.draworder.DrawOrder
 import com.habbokt.xml.figuredata.FigureData
 import io.ktor.server.application.ApplicationCall
 
@@ -13,7 +14,8 @@ import io.ktor.server.application.ApplicationCall
 @Singleton
 class AvatarImageService @Inject constructor(
     page: BlankPage,
-    private val figureData: FigureData
+    private val figureData: FigureData,
+    private val drawOrder: DrawOrder
 ) : BlankPageService(page) {
     override suspend fun handleGetRequest(call: ApplicationCall) {
         val parameters = call.parameters

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.habbokt.xml.draworder.DrawOrder
 import com.habbokt.xml.figuredata.FigureData
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import java.io.File
@@ -23,5 +24,8 @@ object XMLModule : KotlinModule() {
 
         val figureData = mapper.readValue<FigureData>(File(this::class.java.classLoader.getResource("www/dcr/v31/gamedata/figuredata.txt")!!.toURI()))
         bind<FigureData>().toInstance(figureData)
+
+        val drawOrder = mapper.readValue<DrawOrder>(File(this::class.java.classLoader.getResource("www/dcr/v31/gamedata/draworder.txt")!!.toURI()))
+        bind<DrawOrder>().toInstance(drawOrder)
     }
 }
