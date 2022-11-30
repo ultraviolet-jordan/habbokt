@@ -1,13 +1,16 @@
 package com.habbokt.game
 
 import com.habbokt.api.client.Client
+import com.habbokt.api.entity.player.Player
+import com.habbokt.api.entity.player.PlayerDetails
 import com.habbokt.api.packet.Packet
 import com.habbokt.packet.asm.PacketAssembler
 import com.habbokt.packet.buf.base64
 import com.habbokt.packet.dasm.PacketDisassembler
 import com.habbokt.packet.handler.PacketHandler
-import io.ktor.utils.io.ByteReadChannel
-import io.ktor.utils.io.ByteWriteChannel
+import io.ktor.network.sockets.Socket
+import io.ktor.network.sockets.openReadChannel
+import io.ktor.network.sockets.openWriteChannel
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
 import kotlinx.coroutines.Dispatchers
@@ -17,13 +20,15 @@ import kotlinx.coroutines.runBlocking
  * @author Jordan Abraham
  */
 class GameClient(
-    private val readChannel: ByteReadChannel,
-    private val writeChannel: ByteWriteChannel,
+    private val socket: Socket,
     private val assemblers: List<PacketAssembler<Packet>>,
     private val disassemblers: List<PacketDisassembler>,
     private val handlers: List<PacketHandler<Packet>>
 ) : Client {
+    private val readChannel = socket.openReadChannel()
+    private val writeChannel = socket.openWriteChannel()
     private val writePool = ByteBuffer.allocateDirect(256)
+    private lateinit var connectedPlayer: Player
 
     override suspend fun awaitPacket(): Packet? {
         if (readChannel.isClosedForRead) {
@@ -80,5 +85,20 @@ class GameClient(
             }
         }.flush()
         writePool.clear()
+    }
+
+    override fun authenticate(details: PlayerDetails) {
+        this.connectedPlayer = GamePlayer(this@GameClient, details).also {
+            it.login()
+        }
+    }
+
+    override fun player(): Player? {
+        if (!::connectedPlayer.isInitialized) return null
+        return connectedPlayer
+    }
+
+    override fun close() {
+        socket.close()
     }
 }

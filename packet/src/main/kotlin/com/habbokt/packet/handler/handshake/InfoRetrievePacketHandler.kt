@@ -11,12 +11,15 @@ import com.habbokt.packet.handler.PacketHandler
  */
 @Singleton
 class InfoRetrievePacketHandler : PacketHandler<InfoRetrievePacket>(Handler {
+    val player = it.player() ?: return@Handler it.close()
+    val details = player.details
+
     it.writePacket(
         UserObjectPacket(
-            userId = "1", // "1"
-            name = "jordan", // "jordan"
-            figure = "hr-540-38.hd-627-9.ch-645-74.lg-696-81.sh-725-74.ha-1004-1315.wa-2006-", // "hr-540-38.hd-627-9.ch-645-74.lg-696-81.sh-725-74.ha-1004-1315.wa-2006-"
-            sex = "F", // "F"
+            userId = details.id.toString(), // "1"
+            name = details.username, // "jordan"
+            figure = details.appearance, // "hr-540-38.hd-627-9.ch-645-74.lg-696-81.sh-725-74.ha-1004-1315.wa-2006-"
+            sex = details.gender, // "F"
             customData = "Test Motto",
             phTickets = 0,
             phFigure = "",

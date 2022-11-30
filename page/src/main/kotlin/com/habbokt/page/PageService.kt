@@ -33,7 +33,7 @@ abstract class PageService<P : Page<*>>(
             .invoke()
             .also { it.configure() }
         require(template.path.isNotEmpty())
-        val html = compiler.compile(template.path, template)
+        val html = compiler.compile(template.path, template.filterValues { it != null })
         htmlHeader(html.length)
         respond(HttpStatusCode.OK, html)
     }

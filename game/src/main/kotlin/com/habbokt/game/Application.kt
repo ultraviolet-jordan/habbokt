@@ -56,16 +56,9 @@ fun Application.game() {
             val socket = server.accept()
 
             launch(Dispatchers.IO) {
+                val client = GameClient(socket, assemblers, disassemblers, handlers)
+
                 log.info("Connection from ${socket.remoteAddress}")
-
-                val client = GameClient(
-                    readChannel = socket.openReadChannel(),
-                    writeChannel = socket.openWriteChannel(),
-                    assemblers = assemblers,
-                    disassemblers = disassemblers,
-                    handlers = handlers
-                )
-
                 client.writePacket(ClientHelloPacket())
 
                 try {
