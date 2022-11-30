@@ -8,13 +8,13 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
  * @author Jordan Abraham
  */
 data class Color(
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "id", isAttribute = true)
     val id: Int,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "index", isAttribute = true)
     val index: Int,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "club", isAttribute = true)
     val club: Int,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "selectable", isAttribute = true)
     val selectable: Int,
     @JacksonXmlText
     @JsonProperty("text")

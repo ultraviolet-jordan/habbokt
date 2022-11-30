@@ -6,16 +6,17 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
  * @author Jordan Abraham
  */
 data class Set(
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "id", isAttribute = true)
     val id: Int,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "gender", isAttribute = true)
     val gender: String,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "club", isAttribute = true)
     val club: Int,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "colorable", isAttribute = true)
     val colorable: Int,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "selectable", isAttribute = true)
     val selectable: Int,
+    @JacksonXmlProperty(localName = "part")
     val part: Part,
     @JacksonXmlProperty(localName = "hiddenlayers")
     val hiddenLayers: HiddenLayers?

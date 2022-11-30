@@ -6,12 +6,12 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
  * @author Jordan Abraham
  */
 data class Part(
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "id", isAttribute = true)
     val id: Int,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "type", isAttribute = true)
     val type: String,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "colorable", isAttribute = true)
     val colorable: Int,
-    @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlProperty(localName = "index", isAttribute = true)
     val index: Int
 )

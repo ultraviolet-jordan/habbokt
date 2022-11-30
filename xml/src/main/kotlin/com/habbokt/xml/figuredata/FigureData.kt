@@ -1,5 +1,6 @@
 package com.habbokt.xml.figuredata
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
 
 /**
@@ -7,6 +8,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
  */
 @JacksonXmlRootElement(localName = "figuredata")
 data class FigureData(
+    @JacksonXmlProperty(localName = "colors")
     val colors: Colors,
+    @JacksonXmlProperty(localName = "sets")
     val sets: Sets
 )
