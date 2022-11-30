@@ -44,6 +44,7 @@ dependencyResolutionManagement {
             // Jackson
             library("jackson-module-kotlin", "com.fasterxml.jackson.module", "jackson-module-kotlin").versionRef("jackson")
             library("jackson-dataformat-xml", "com.fasterxml.jackson.dataformat", "jackson-dataformat-xml").versionRef("jackson")
+            library("jackson-module-parameter-names", "com.fasterxml.jackson.module", "jackson-module-parameter-names").versionRef("jackson")
 
             // Misc Dependencies
             library("pebble", "io.pebbletemplates", "pebble").versionRef("pebble")
@@ -54,7 +55,7 @@ dependencyResolutionManagement {
             // Dependency bundles
             bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging", "ktor-server-sessions", "ktor-server-auth"))
             bundle("database", listOf("exposed-core", "exposed-dao", "exposed-jdbc", "h2database", "hikaricp", "ehcache"))
-            bundle("jackson", listOf("jackson-module-kotlin", "jackson-dataformat-xml"))
+            bundle("jackson", listOf("jackson-module-kotlin", "jackson-dataformat-xml", "jackson-module-parameter-names"))
 
             // Dependency plugins
             plugin("jvm", "org.jetbrains.kotlin.jvm").versionRef("kotlin")
@@ -64,4 +65,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(listOf("api", "argon2", "dao", "db", "game", "packet", "page", "session", "templating", "web"))
+include(listOf("api", "argon2", "dao", "db", "game", "packet", "page", "session", "templating", "web", "xml"))

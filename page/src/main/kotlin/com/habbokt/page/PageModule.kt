@@ -15,6 +15,7 @@ import com.habbokt.page.security.SecurityCheckPageRouting
 import com.habbokt.page.test.TestPageRouting
 import com.habbokt.page.welcome.WelcomePageRouting
 import com.habbokt.templating.TemplatingModule
+import com.habbokt.xml.XMLModule
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMultibinder
 
@@ -23,9 +24,10 @@ import dev.misfitlabs.kotlinguice4.multibindings.KotlinMultibinder
  */
 object PageModule : KotlinModule() {
     override fun configure() {
+        install(Argon2Module)
         install(DAOModule)
         install(TemplatingModule)
-        install(Argon2Module)
+        install(XMLModule)
 
         val routes = KotlinMultibinder.newSetBinder<PageRouting>(kotlinBinder)
         // Account

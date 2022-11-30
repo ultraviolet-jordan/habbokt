@@ -12,6 +12,7 @@
 /session/build/
 /templating/build/
 /web/build/
+/xml/build/
 
 /web/src/main/resources/www/
 /web/src/main/resources/www-tpl/default-en/

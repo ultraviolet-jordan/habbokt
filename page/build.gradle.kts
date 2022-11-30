@@ -8,7 +8,6 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     implementation(deps.bundles.ktor)
-    implementation(deps.bundles.jackson)
     implementation(deps.guice)
     implementation(deps.simplecaptcha)
 
@@ -16,4 +15,5 @@ dependencies {
     implementation(project(":dao"))
     implementation(project(":session"))
     implementation(project(":templating"))
+    implementation(project(":xml"))
 }
