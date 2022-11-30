@@ -16,10 +16,10 @@ import java.io.File
 object XMLModule : KotlinModule() {
     override fun configure() {
         val mapper = XmlMapper(JacksonXmlModule().apply {
-            setDefaultUseWrapper(false)
-            setXMLTextElementName("text")
+            setDefaultUseWrapper(false) // Remove xml wrapper.
+            setXMLTextElementName("text") // Use this for raw text values in the xml.
         }).registerKotlinModule()
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL) // Ignore null values for serialization.
 
         val figureData = mapper.readValue<FigureData>(File(this::class.java.classLoader.getResource("www/dcr/v31/gamedata/figuredata.txt")!!.toURI()))
         bind<FigureData>().toInstance(figureData)
