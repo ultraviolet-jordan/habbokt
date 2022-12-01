@@ -1,36 +1,42 @@
-package com.habbokt.swf.habboregistration
+package com.habbokt.swf.badgeeditor
 
-import com.flagstone.transform.Export
 import com.flagstone.transform.Movie
+import com.flagstone.transform.image.DefineImage
 import com.flagstone.transform.image.DefineImage2
 import com.flagstone.transform.movieclip.DefineMovieClip
 import com.flagstone.transform.shape.DefineShape
 import com.google.inject.Singleton
-import com.habbokt.swf.SwfExport
 import com.habbokt.swf.SwfFile
+import com.habbokt.swf.SwfImage
 import com.habbokt.swf.SwfImage2
 import com.habbokt.swf.SwfMovieClip
-import com.habbokt.swf.SwfObject
 import com.habbokt.swf.SwfShape
 
 /**
  * @author Jordan Abraham
  */
 @Singleton
-class HabboRegistrationSwf(
+class BadgeEditorSwf(
     movie: Movie
-) : SwfFile(name = "HabboRegistration.swf", buildList {
-    movie.objects.drop(19).chunked(4) {
-        if (it.size < 4) return@chunked
-        if (it[0] !is Export) return@chunked
-        if (it[1] !is DefineImage2) return@chunked
-        if (it[2] !is DefineShape) return@chunked
-        if (it[3] !is DefineMovieClip) return@chunked
-        add(SwfObject(
-            export = SwfExport(it[0] as Export),
-            image = SwfImage2(it[1] as DefineImage2),
-            shape = SwfShape(it[2] as DefineShape),
-            clip = SwfMovieClip(it[3] as DefineMovieClip)
-        ))
+) : SwfFile<BadgeEditorSwfObject>(
+    name = "BadgeEditor.swf",
+    data = buildList {
+        movie.objects
+            .drop(3)
+            .chunked(3) {
+                if (it.size < 3) return@chunked
+                if (it[0] !is DefineImage2 && it[0] !is DefineImage) return@chunked
+                if (it[1] !is DefineShape) return@chunked
+                if (it[2] !is DefineMovieClip) return@chunked
+                val isImage2 = it[0] is DefineImage2
+                add(
+                    BadgeEditorSwfObject(
+                        image = if (!isImage2) SwfImage(it[0] as DefineImage) else null,
+                        image2 = if (isImage2) SwfImage2(it[0] as DefineImage2) else null,
+                        shape = SwfShape(it[1] as DefineShape),
+                        clip = SwfMovieClip(it[2] as DefineMovieClip)
+                    )
+                )
+            }
     }
-})
+)

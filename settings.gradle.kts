@@ -20,6 +20,7 @@ dependencyResolutionManagement {
             version("ehcache", "3.10.8")
             version("guice", "1.6.0")
             version("jackson", "2.14.+")
+            version("flagstone", "3.0.2")
 
             // Dependency libraries
             // Ktor Dependencies
@@ -51,6 +52,7 @@ dependencyResolutionManagement {
             library("slf4j-simple", "org.slf4j", "slf4j-simple").versionRef("slf4j")
             library("simplecaptcha", "cn.apiclub.tool", "simplecaptcha").versionRef("simplecaptcha")
             library("argon2", "de.mkammerer", "argon2-jvm").versionRef("argon2")
+            library("flagstone", "com.flagstone", "transform").versionRef("flagstone")
 
             // Dependency bundles
             bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging", "ktor-server-sessions", "ktor-server-auth"))
@@ -65,4 +67,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(listOf("api", "argon2", "dao", "db", "game", "packet", "page", "session", "templating", "web", "xml"))
+include(listOf("api", "argon2", "dao", "db", "game", "packet", "page", "session", "swf", "templating", "web", "xml"))
