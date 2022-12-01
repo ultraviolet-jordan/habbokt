@@ -6,6 +6,7 @@ import com.habbokt.page.account.submit.AccountSubmitPageRouting
 import com.habbokt.page.asset.AssetPageRouting
 import com.habbokt.page.captcha.CaptchaRouting
 import com.habbokt.page.client.ClientPageRouting
+import com.habbokt.page.export.ExportPageRouting
 import com.habbokt.page.habblet.ajax.namecheck.NameCheckAjaxRouting
 import com.habbokt.page.habboimaging.avatarimage.AvatarImageRouting
 import com.habbokt.page.index.IndexPageRouting
@@ -14,6 +15,7 @@ import com.habbokt.page.register.RegisterPageRouting
 import com.habbokt.page.security.SecurityCheckPageRouting
 import com.habbokt.page.test.TestPageRouting
 import com.habbokt.page.welcome.WelcomePageRouting
+import com.habbokt.swf.SwfModule
 import com.habbokt.templating.TemplatingModule
 import com.habbokt.xml.XMLModule
 import dev.misfitlabs.kotlinguice4.KotlinModule
@@ -26,6 +28,7 @@ object PageModule : KotlinModule() {
     override fun configure() {
         install(Argon2Module)
         install(DAOModule)
+        install(SwfModule)
         install(TemplatingModule)
         install(XMLModule)
 
@@ -38,6 +41,8 @@ object PageModule : KotlinModule() {
         routes.addBinding().to<CaptchaRouting>()
         // Client
         routes.addBinding().to<ClientPageRouting>()
+        // Export
+        routes.addBinding().to<ExportPageRouting>()
         // Habblet
         routes.addBinding().to<NameCheckAjaxRouting>()
         // Habboimaging

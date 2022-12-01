@@ -10,10 +10,12 @@ dependencies {
     implementation(deps.bundles.ktor)
     implementation(deps.guice)
     implementation(deps.simplecaptcha)
+    implementation(deps.flagstone)
 
     implementation(project(":argon2"))
     implementation(project(":dao"))
     implementation(project(":session"))
+    implementation(project(":swf"))
     implementation(project(":templating"))
     implementation(project(":xml"))
 }
