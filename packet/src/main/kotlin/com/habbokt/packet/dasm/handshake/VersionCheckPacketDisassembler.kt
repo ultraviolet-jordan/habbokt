@@ -11,7 +11,7 @@ import com.habbokt.packet.dasm.PacketDisassembler
  * @author Jordan Abraham
  */
 @Singleton
-class VersionCheckPacketDisassembler : PacketDisassembler(Disassembler(id = 1170) {
+class VersionCheckPacketDisassembler : PacketDisassembler(Disassembler {
     VersionCheckPacket(
         clientVersionId = it.getIntHabbo(),
         clientUrl = it.getStringHabbo(),

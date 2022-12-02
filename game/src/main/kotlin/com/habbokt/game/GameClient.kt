@@ -3,6 +3,7 @@ package com.habbokt.game
 import com.habbokt.api.client.Client
 import com.habbokt.api.entity.player.Player
 import com.habbokt.api.packet.Packet
+import com.habbokt.packet.ClientHelloPacket
 import com.habbokt.packet.asm.PacketAssembler
 import com.habbokt.packet.buf.base64
 import com.habbokt.packet.dasm.PacketDisassembler
@@ -10,27 +11,43 @@ import com.habbokt.packet.handler.PacketHandler
 import io.ktor.network.sockets.Socket
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
+import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
+import kotlin.reflect.KClass
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 /**
  * @author Jordan Abraham
  */
-class GameClient(
+class GameClient constructor(
+    private val environment: ApplicationEnvironment,
     private val socket: Socket,
-    private val assemblers: List<PacketAssembler<Packet>>,
-    private val disassemblers: List<PacketDisassembler>,
-    private val handlers: List<PacketHandler<Packet>>
+    private val assemblers: Map<KClass<*>, PacketAssembler<Packet>>,
+    private val disassemblers: Map<Int, PacketDisassembler>,
+    private val handlers: Map<KClass<*>, PacketHandler<Packet>>
 ) : Client {
     private val readChannel = socket.openReadChannel()
     private val writeChannel = socket.openWriteChannel()
     private val writePool = ByteBuffer.allocateDirect(256)
     private lateinit var connectedPlayer: Player
 
+    override suspend fun accept() {
+        try {
+            writePacket(ClientHelloPacket())
+            while (true) { handlePacket(packet = awaitPacket() ?: continue) }
+        } catch (exception: Exception) {
+            withContext(Dispatchers.IO) {
+                socket.close()
+            }
+        }
+    }
+
     override suspend fun awaitPacket(): Packet? {
         if (readChannel.isClosedForRead) {
+            readChannel.discard(readChannel.availableForRead.toLong())
             return null
         }
         if (readChannel.availableForRead < 5) {
@@ -47,10 +64,9 @@ class GameClient(
         val buffer = ByteBuffer.wrap(readChannel.readPacket(size).readBytes())
         val id = String(ByteArray(2) { buffer.get() }).toByteArray().base64()
 
-        println("DEBUG Incoming Packet: ID=$id, SIZE=$size, REMAINING=${buffer.remaining()}")
+        environment.log.info("Incoming Packet: Id=$id, Size=$size, Remaining Bytes=${buffer.remaining()}")
 
-        return disassemblers
-            .firstOrNull { it.disassembler.id == id }
+        return disassemblers[id]
             ?.disassembler
             ?.packet
             ?.invoke(buffer)
@@ -58,8 +74,7 @@ class GameClient(
 
     override fun handlePacket(packet: Packet) {
         runBlocking {
-            handlers
-                .firstOrNull { it.typeOf(packet) }
+            handlers[packet::class]
                 ?.handler
                 ?.block
                 ?.invoke(packet, this@GameClient)
@@ -69,9 +84,9 @@ class GameClient(
     override fun writePacket(packet: Packet) {
         // TODO Use the write pool properly. For now I am just writing back to client immediately.
         // TODO It should be pooling the data from multiple packets if possible then writing to client.
-        val assembler = assemblers.firstOrNull { it.typeOf(packet) }?.assembler ?: return
+        val assembler = assemblers[packet::class]?.assembler ?: return
 
-        println("DEBUG Outgoing Packet: ID = ${assembler.id}, ASSEMBLER=${assembler}")
+        environment.log.info("Outgoing Packet: Id=${assembler.id}, Packet=$packet")
 
         writePool.put(assembler.id.base64(2)) // Write packet id.
         assembler.block.invoke(packet, writePool) // Invoke packet body.

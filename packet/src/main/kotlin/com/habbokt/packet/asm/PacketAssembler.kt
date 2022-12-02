@@ -6,14 +6,14 @@ import java.lang.reflect.ParameterizedType
 /**
  * @author Jordan Abraham
  */
-open class PacketAssembler<in P : Packet>(
-    val assembler: Assembler<P>
+open class PacketAssembler<out P : Packet>(
+    val assembler: Assembler<@UnsafeVariance P>
 ) {
     /**
      * Weird solution of checking if a packet is of type of this assembler since assemblers are basically keyed by class type.
      */
-    fun typeOf(packet: P): Boolean = (this::class.java.genericSuperclass as ParameterizedType)
-        .actualTypeArguments
-        .firstOrNull()
-        ?.typeName == packet::class.java.typeName
+//    fun typeOf(packet: @UnsafeVariance P): Boolean = (this::class.java.genericSuperclass as ParameterizedType)
+//        .actualTypeArguments
+//        .firstOrNull()
+//        ?.typeName == packet::class.java.typeName
 }

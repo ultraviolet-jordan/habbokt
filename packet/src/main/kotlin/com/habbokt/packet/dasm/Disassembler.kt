@@ -7,6 +7,5 @@ import java.nio.ByteBuffer
  * @author Jordan Abraham
  */
 data class Disassembler(
-    val id: Int,
     val packet: (ByteBuffer) -> Packet
 )

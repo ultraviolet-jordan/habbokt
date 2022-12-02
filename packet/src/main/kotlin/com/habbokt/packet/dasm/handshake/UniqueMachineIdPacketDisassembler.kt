@@ -10,7 +10,7 @@ import com.habbokt.packet.dasm.PacketDisassembler
  * @author Jordan Abraham
  */
 @Singleton
-class UniqueMachineIdPacketDisassembler : PacketDisassembler(Disassembler(id = 813) {
+class UniqueMachineIdPacketDisassembler : PacketDisassembler(Disassembler {
     UniqueMachineIdPacket(
         machineId = it.getStringHabbo()
     )

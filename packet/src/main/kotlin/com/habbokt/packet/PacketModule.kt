@@ -1,5 +1,6 @@
 package com.habbokt.packet
 
+import com.habbokt.api.packet.Packet
 import com.habbokt.dao.DAOModule
 import com.habbokt.packet.asm.PacketAssembler
 import com.habbokt.packet.asm.handshake.AuthenticationOKPacketAssembler
@@ -31,7 +32,8 @@ import com.habbokt.packet.handler.handshake.SessionParametersRequestPacketHandle
 import com.habbokt.packet.handler.handshake.UniqueMachineIdPacketHandler
 import com.habbokt.packet.handler.handshake.VersionCheckPacketHandler
 import dev.misfitlabs.kotlinguice4.KotlinModule
-import dev.misfitlabs.kotlinguice4.multibindings.KotlinMultibinder
+import dev.misfitlabs.kotlinguice4.multibindings.KotlinMapBinder
+import kotlin.reflect.KClass
 
 /**
  * @author Jordan Abraham
@@ -41,38 +43,38 @@ object PacketModule : KotlinModule() {
         install(DAOModule)
 
         // Assemblers
-        val assemblers = KotlinMultibinder.newSetBinder<PacketAssembler<*>>(kotlinBinder)
-        assemblers.addBinding().to<ClientHelloPacketAssembler>()
-        assemblers.addBinding().to<InitDiffieHandshakeResponsePacketAssembler>()
-        assemblers.addBinding().to<CompleteDiffieHandshakeResponsePacketAssembler>()
-        assemblers.addBinding().to<DisconnectReasonPacketAssembler>()
-        assemblers.addBinding().to<UniqueMachineIdPacketAssembler>()
-        assemblers.addBinding().to<SessionParametersResponsePacketAssembler>()
-        assemblers.addBinding().to<UserRightsPacketAssembler>()
-        assemblers.addBinding().to<AuthenticationOKPacketAssembler>()
-        assemblers.addBinding().to<ScrSendUserInfoPacketAssembler>()
-        assemblers.addBinding().to<UserObjectPacketAssembler>()
+        val assemblers = KotlinMapBinder.newMapBinder<KClass<*>, PacketAssembler<Packet>>(kotlinBinder)
+        assemblers.addBinding(ClientHelloPacket::class).to<ClientHelloPacketAssembler>()
+        assemblers.addBinding(InitDiffieHandshakeResponsePacket::class).to<InitDiffieHandshakeResponsePacketAssembler>()
+        assemblers.addBinding(CompleteDiffieHandshakeResponsePacket::class).to<CompleteDiffieHandshakeResponsePacketAssembler>()
+        assemblers.addBinding(DisconnectReasonPacket::class).to<DisconnectReasonPacketAssembler>()
+        assemblers.addBinding(UniqueMachineIdPacket::class).to<UniqueMachineIdPacketAssembler>()
+        assemblers.addBinding(SessionParametersResponsePacket::class).to<SessionParametersResponsePacketAssembler>()
+        assemblers.addBinding(UserRightsPacket::class).to<UserRightsPacketAssembler>()
+        assemblers.addBinding(AuthenticationOKPacket::class).to<AuthenticationOKPacketAssembler>()
+        assemblers.addBinding(ScrSendUserInfoPacket::class).to<ScrSendUserInfoPacketAssembler>()
+        assemblers.addBinding(UserObjectPacket::class).to<UserObjectPacketAssembler>()
 
         // Disassemblers
-        val disassemblers = KotlinMultibinder.newSetBinder<PacketDisassembler>(kotlinBinder)
-        disassemblers.addBinding().to<InitDiffieHandshakePacketDisassembler>()
-        disassemblers.addBinding().to<CompleteDiffieHandshakeRequestPacketDisassembler>()
-        disassemblers.addBinding().to<VersionCheckPacketDisassembler>()
-        disassemblers.addBinding().to<UniqueMachineIdPacketDisassembler>()
-        disassemblers.addBinding().to<SessionParametersRequestPacketDisassembler>()
-        disassemblers.addBinding().to<SSOTicketPacketDisassembler>()
-        disassemblers.addBinding().to<ScrGetUserInfoPacketDisassembler>()
-        disassemblers.addBinding().to<InfoRetrievePacketDisassembler>()
+        val disassemblers = KotlinMapBinder.newMapBinder<Int, PacketDisassembler>(kotlinBinder)
+        disassemblers.addBinding(206).to<InitDiffieHandshakePacketDisassembler>()
+        disassemblers.addBinding(2002).to<CompleteDiffieHandshakeRequestPacketDisassembler>()
+        disassemblers.addBinding(1170).to<VersionCheckPacketDisassembler>()
+        disassemblers.addBinding(813).to<UniqueMachineIdPacketDisassembler>()
+        disassemblers.addBinding(1817).to<SessionParametersRequestPacketDisassembler>()
+        disassemblers.addBinding(204).to<SSOTicketPacketDisassembler>()
+        disassemblers.addBinding(26).to<ScrGetUserInfoPacketDisassembler>()
+        disassemblers.addBinding(7).to<InfoRetrievePacketDisassembler>()
 
         // Handlers
-        val handlers = KotlinMultibinder.newSetBinder<PacketHandler<*>>(kotlinBinder)
-        handlers.addBinding().to<InitDiffieHandshakeRequestPacketHandler>()
-        handlers.addBinding().to<CompleteDiffieHandshakeRequestPacketHandler>()
-        handlers.addBinding().to<VersionCheckPacketHandler>()
-        handlers.addBinding().to<UniqueMachineIdPacketHandler>()
-        handlers.addBinding().to<SessionParametersRequestPacketHandler>()
-        handlers.addBinding().to<SSOTicketPacketHandler>()
-        handlers.addBinding().to<ScrGetUserInfoPacketHandler>()
-        handlers.addBinding().to<InfoRetrievePacketHandler>()
+        val handlers = KotlinMapBinder.newMapBinder<KClass<*>, PacketHandler<Packet>>(kotlinBinder)
+        handlers.addBinding(InitDiffieHandshakeRequestPacket::class).to<InitDiffieHandshakeRequestPacketHandler>()
+        handlers.addBinding(CompleteDiffieHandshakeRequestPacket::class).to<CompleteDiffieHandshakeRequestPacketHandler>()
+        handlers.addBinding(VersionCheckPacket::class).to<VersionCheckPacketHandler>()
+        handlers.addBinding(UniqueMachineIdPacket::class).to<UniqueMachineIdPacketHandler>()
+        handlers.addBinding(SessionParametersRequestPacket::class).to<SessionParametersRequestPacketHandler>()
+        handlers.addBinding(SSOTicketPacket::class).to<SSOTicketPacketHandler>()
+        handlers.addBinding(ScrGetUserInfoPacket::class).to<ScrGetUserInfoPacketHandler>()
+        handlers.addBinding(InfoRetrievePacket::class).to<InfoRetrievePacketHandler>()
     }
 }

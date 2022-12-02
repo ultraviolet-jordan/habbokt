@@ -10,7 +10,7 @@ import com.habbokt.packet.dasm.PacketDisassembler
  * @author Jordan Abraham
  */
 @Singleton
-class SSOTicketPacketDisassembler : PacketDisassembler(Disassembler(id = 204) {
+class SSOTicketPacketDisassembler : PacketDisassembler(Disassembler {
     SSOTicketPacket(
         ssoTicket = it.getStringHabbo()
     )

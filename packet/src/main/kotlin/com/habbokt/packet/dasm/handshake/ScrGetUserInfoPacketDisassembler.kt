@@ -10,7 +10,7 @@ import com.habbokt.packet.dasm.PacketDisassembler
  * @author Jordan Abraham
  */
 @Singleton
-class ScrGetUserInfoPacketDisassembler : PacketDisassembler(Disassembler(id = 26) {
+class ScrGetUserInfoPacketDisassembler : PacketDisassembler(Disassembler {
     ScrGetUserInfoPacket(
         productName = it.getStringHabbo()
     )

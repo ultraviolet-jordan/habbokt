@@ -9,6 +9,6 @@ import com.habbokt.packet.dasm.PacketDisassembler
  * @author Jordan Abraham
  */
 @Singleton
-class SessionParametersRequestPacketDisassembler : PacketDisassembler(Disassembler(id = 1817) {
+class SessionParametersRequestPacketDisassembler : PacketDisassembler(Disassembler {
     SessionParametersRequestPacket()
 })

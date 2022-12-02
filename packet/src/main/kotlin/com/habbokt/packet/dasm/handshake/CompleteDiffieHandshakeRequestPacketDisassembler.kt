@@ -10,7 +10,7 @@ import com.habbokt.packet.dasm.PacketDisassembler
  * @author Jordan Abraham
  */
 @Singleton
-class CompleteDiffieHandshakeRequestPacketDisassembler : PacketDisassembler(Disassembler(id = 2002) {
+class CompleteDiffieHandshakeRequestPacketDisassembler : PacketDisassembler(Disassembler {
     CompleteDiffieHandshakeRequestPacket(
         publicKey = it.getStringHabbo()
     )

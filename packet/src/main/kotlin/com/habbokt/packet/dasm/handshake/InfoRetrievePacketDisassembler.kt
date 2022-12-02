@@ -9,6 +9,6 @@ import com.habbokt.packet.dasm.PacketDisassembler
  * @author Jordan Abraham
  */
 @Singleton
-class InfoRetrievePacketDisassembler : PacketDisassembler(Disassembler(id = 7) {
+class InfoRetrievePacketDisassembler : PacketDisassembler(Disassembler {
     InfoRetrievePacket()
 })
