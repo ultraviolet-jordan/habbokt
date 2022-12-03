@@ -1,6 +1,7 @@
 package com.habbokt.db
 
 import java.io.File
+import org.ehcache.Cache
 import org.ehcache.config.builders.CacheConfigurationBuilder
 import org.ehcache.config.builders.CacheManagerBuilder
 import org.ehcache.config.builders.ResourcePoolsBuilder
@@ -12,7 +13,7 @@ import org.ehcache.impl.config.persistence.CacheManagerPersistenceConfiguration
  * @author Jordan Abraham
  */
 object CachingResourcePoolBuilder {
-    fun <T> buildCachingResourcePool(alias: String, type: Class<T>) = CacheManagerBuilder.newCacheManagerBuilder()
+    fun <T> buildCachingResourcePool(alias: String, type: Class<T>): Cache<Int, T> = CacheManagerBuilder.newCacheManagerBuilder()
         // TODO Probably move this path out.
         .with(CacheManagerPersistenceConfiguration(File("build/ehcache/$alias")))
         .withCache(
