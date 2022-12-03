@@ -12,6 +12,7 @@ import com.habbokt.xml.partsets.domain.PartSets
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.response.respond
+import java.awt.Color
 import java.awt.image.BufferedImage
 
 /**
@@ -76,12 +77,12 @@ class AvatarImageService @Inject constructor(
     }
 
     private fun BufferedImage.applyHexColor(hex: String?): BufferedImage {
-        val overlay = java.awt.Color.decode("#$hex")
+        val overlay = Color.decode("#$hex")
         for (x in 0 until width) {
             for (y in 0 until height) {
-                val currPixelColor = java.awt.Color(getRGB(x, y), true)
+                val currPixelColor = Color(getRGB(x, y), true)
                 if (currPixelColor.alpha > 0) {
-                    val newPixelColor = java.awt.Color(
+                    val newPixelColor = Color(
                         overlay.red * currPixelColor.red / 255,
                         overlay.green * currPixelColor.green / 255,
                         overlay.blue * currPixelColor.blue / 255,
