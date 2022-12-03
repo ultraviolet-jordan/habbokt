@@ -16,15 +16,15 @@ class InfoRetrievePacketHandler @Inject constructor(
     private val playersService: PlayersService
 ) : PacketHandler<InfoRetrievePacket>(Handler {
     val player = it.player() ?: return@Handler it.close()
-    val playerDAO = playersService.player(player.id) ?: return@Handler it.close()
+    val (id, name, _, _, figure, sex, _, motto) = playersService.player(player.id) ?: return@Handler it.close()
 
     it.writePacket(
         UserObjectPacket(
-            userId = playerDAO.id.toString(), // "1"
-            name = playerDAO.name, // "jordan"
-            figure = playerDAO.figure, // "hr-540-38.hd-627-9.ch-645-74.lg-696-81.sh-725-74.ha-1004-1315.wa-2006-"
-            sex = playerDAO.sex, // "F"
-            customData = playerDAO.motto,
+            userId = id.toString(), // "1"
+            name = name, // "jordan"
+            figure = figure, // "hr-540-38.hd-627-9.ch-645-74.lg-696-81.sh-725-74.ha-1004-1315.wa-2006-"
+            sex = sex, // "F"
+            customData = motto,
             phTickets = 0,
             phFigure = "",
             photoFilm = 1,
