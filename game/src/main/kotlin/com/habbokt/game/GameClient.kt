@@ -37,10 +37,12 @@ class GameClient constructor(
     override suspend fun accept() {
         try {
             writePacket(ClientHelloPacket())
-            while (true) { handlePacket(packet = awaitPacket() ?: continue) }
+            while (true) {
+                handlePacket(packet = awaitPacket() ?: continue)
+            }
         } catch (exception: Exception) {
             withContext(Dispatchers.IO) {
-                socket.close()
+                close()
             }
         }
     }
@@ -53,23 +55,29 @@ class GameClient constructor(
         if (readChannel.availableForRead < 5) {
             readChannel.awaitContent()
         }
-        val size = ByteArray(3) { readChannel.readByte() }.base64()
-        if (readChannel.availableForRead < size || size < 0) {
+        val header = readChannel.readPacket(5)
+        val size = header.readBytes(3).base64() - Short.SIZE_BYTES
+        val id = header.readBytes(2).base64()
+
+        if (readChannel.availableForRead < size) {
             if (size > 0) {
-                readChannel.discard(size.toLong())
+                readChannel.discard(readChannel.availableForRead.toLong())
             }
             return null
         }
 
-        val buffer = ByteBuffer.wrap(readChannel.readPacket(size).readBytes())
-        val id = String(ByteArray(2) { buffer.get() }).toByteArray().base64()
+        val body = readChannel.readPacket(size)
 
-        environment.log.info("Incoming Packet: Id=$id, Size=$size, Remaining Bytes=${buffer.remaining()}")
+        environment.log.info("Incoming Packet: Header Id=$id, Body Size=${body.remaining}")
 
         return disassemblers[id]
             ?.disassembler
             ?.packet
-            ?.invoke(buffer)
+            ?.invoke(ByteBuffer.wrap(body.readBytes()))
+            .also {
+                header.release()
+                body.release()
+            }
     }
 
     override fun handlePacket(packet: Packet) {
@@ -107,10 +115,7 @@ class GameClient constructor(
         }
     }
 
-    override fun player(): Player? {
-        if (!::connectedPlayer.isInitialized) return null
-        return connectedPlayer
-    }
+    override fun player(): Player? = if (!::connectedPlayer.isInitialized) null else connectedPlayer
 
     override fun close() {
         socket.close()
