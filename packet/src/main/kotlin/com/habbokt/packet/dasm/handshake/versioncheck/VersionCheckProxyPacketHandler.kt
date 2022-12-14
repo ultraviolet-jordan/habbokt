@@ -16,12 +16,4 @@ class VersionCheckProxyPacketHandler : ProxyPacketHandler<VersionCheckPacket>(Pr
         !clientVarsUrl.startsWith("http://localhost/dcr/v31/gamedata/external_variables.txt") -> null
         else -> VersionCheckProxyPacket()
     }
-//    when {
-//        clientVersionId != 401 -> Disconnect
-//        clientUrl != "" -> Disconnect
-//        !clientVarsUrl.startsWith("http://localhost/dcr/v31/gamedata/external_variables.txt") -> Disconnect
-//        else -> null
-//    }?.let { disconnectReason ->
-//        it.writePacket(DisconnectReasonPacket(disconnectReason.id))
-//    }
 })

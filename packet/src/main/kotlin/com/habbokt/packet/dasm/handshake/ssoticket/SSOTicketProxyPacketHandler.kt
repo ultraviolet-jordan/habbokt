@@ -20,15 +20,4 @@ class SSOTicketProxyPacketHandler @Inject constructor(
         !playersService.editPlayer(playerDAO.copy(ssoTicket = "")) -> null
         else -> SSOTicketProxyPacket(playerDAO.id)
     }
-//    when {
-//        playerDAO == null -> Disconnect
-//        playerDAO.ssoTicket != ssoTicket -> Disconnect
-//        !playersService.editPlayer(playerDAO.copy(ssoTicket = "")) -> Disconnect
-//        else -> null
-//    }?.let { disconnectReason ->
-//        it.writePacket(DisconnectReasonPacket(disconnectReason.id))
-//    } ?: run {
-//        require(playerDAO != null)
-//        it.authenticate(playerDAO.id)
-//    }
 })
