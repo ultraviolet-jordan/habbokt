@@ -9,9 +9,11 @@ import com.habbokt.api.packet.Packet
 interface Client {
     suspend fun accept()
     suspend fun awaitPacket(): Packet?
-    fun handlePacket(packet: Packet)
+    fun processReadPool()
     fun writePacket(packet: Packet)
+    fun processWritePool()
     fun authenticate(userId: Int)
     fun player(): Player?
     fun close()
+    fun closed(): Boolean
 }

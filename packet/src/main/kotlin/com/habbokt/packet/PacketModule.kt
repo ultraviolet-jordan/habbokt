@@ -1,36 +1,72 @@
 package com.habbokt.packet
 
 import com.habbokt.api.packet.Packet
+import com.habbokt.api.packet.PacketAssembler
+import com.habbokt.api.packet.PacketDisassembler
+import com.habbokt.api.packet.PacketHandler
+import com.habbokt.api.packet.ProxyPacket
+import com.habbokt.api.packet.ProxyPacketHandler
 import com.habbokt.dao.DAOModule
-import com.habbokt.packet.asm.PacketAssembler
-import com.habbokt.packet.asm.handshake.AuthenticationOKPacketAssembler
-import com.habbokt.packet.asm.handshake.ClientHelloPacketAssembler
-import com.habbokt.packet.asm.handshake.CompleteDiffieHandshakeResponsePacketAssembler
-import com.habbokt.packet.asm.handshake.DisconnectReasonPacketAssembler
-import com.habbokt.packet.asm.handshake.InitDiffieHandshakeResponsePacketAssembler
-import com.habbokt.packet.asm.handshake.ScrSendUserInfoPacketAssembler
-import com.habbokt.packet.asm.handshake.SessionParametersResponsePacketAssembler
-import com.habbokt.packet.asm.handshake.UniqueMachineIdPacketAssembler
-import com.habbokt.packet.asm.handshake.UserObjectPacketAssembler
-import com.habbokt.packet.asm.handshake.UserRightsPacketAssembler
-import com.habbokt.packet.dasm.PacketDisassembler
-import com.habbokt.packet.dasm.handshake.CompleteDiffieHandshakeRequestPacketDisassembler
-import com.habbokt.packet.dasm.handshake.InfoRetrievePacketDisassembler
-import com.habbokt.packet.dasm.handshake.InitDiffieHandshakePacketDisassembler
-import com.habbokt.packet.dasm.handshake.SSOTicketPacketDisassembler
-import com.habbokt.packet.dasm.handshake.ScrGetUserInfoPacketDisassembler
-import com.habbokt.packet.dasm.handshake.SessionParametersRequestPacketDisassembler
-import com.habbokt.packet.dasm.handshake.UniqueMachineIdPacketDisassembler
-import com.habbokt.packet.dasm.handshake.VersionCheckPacketDisassembler
-import com.habbokt.packet.handler.PacketHandler
-import com.habbokt.packet.handler.handshake.CompleteDiffieHandshakeRequestPacketHandler
-import com.habbokt.packet.handler.handshake.InfoRetrievePacketHandler
-import com.habbokt.packet.handler.handshake.InitDiffieHandshakeRequestPacketHandler
-import com.habbokt.packet.handler.handshake.SSOTicketPacketHandler
-import com.habbokt.packet.handler.handshake.ScrGetUserInfoPacketHandler
-import com.habbokt.packet.handler.handshake.SessionParametersRequestPacketHandler
-import com.habbokt.packet.handler.handshake.UniqueMachineIdPacketHandler
-import com.habbokt.packet.handler.handshake.VersionCheckPacketHandler
+import com.habbokt.packet.asm.handshake.authenticationok.AuthenticationOKPacket
+import com.habbokt.packet.asm.handshake.authenticationok.AuthenticationOKPacketAssembler
+import com.habbokt.packet.asm.handshake.clienthello.ClientHelloPacket
+import com.habbokt.packet.asm.handshake.clienthello.ClientHelloPacketAssembler
+import com.habbokt.packet.asm.handshake.completediffiehandshake.CompleteDiffieHandshakeResponsePacket
+import com.habbokt.packet.asm.handshake.completediffiehandshake.CompleteDiffieHandshakeResponsePacketAssembler
+import com.habbokt.packet.asm.handshake.disconnectreason.DisconnectReasonPacket
+import com.habbokt.packet.asm.handshake.disconnectreason.DisconnectReasonPacketAssembler
+import com.habbokt.packet.asm.handshake.initdiffiehandshake.InitDiffieHandshakeResponsePacket
+import com.habbokt.packet.asm.handshake.initdiffiehandshake.InitDiffieHandshakeResponsePacketAssembler
+import com.habbokt.packet.asm.handshake.scrsenduserinfo.ScrSendUserInfoPacket
+import com.habbokt.packet.asm.handshake.scrsenduserinfo.ScrSendUserInfoPacketAssembler
+import com.habbokt.packet.asm.handshake.sessionparameters.SessionParametersResponsePacket
+import com.habbokt.packet.asm.handshake.sessionparameters.SessionParametersResponsePacketAssembler
+import com.habbokt.packet.asm.handshake.uniquemachineid.UniqueMachineIdResponsePacket
+import com.habbokt.packet.asm.handshake.uniquemachineid.UniqueMachineIdResponsePacketAssembler
+import com.habbokt.packet.asm.handshake.userobject.UserObjectPacket
+import com.habbokt.packet.asm.handshake.userobject.UserObjectPacketAssembler
+import com.habbokt.packet.asm.handshake.userrights.UserRightsPacket
+import com.habbokt.packet.asm.handshake.userrights.UserRightsPacketAssembler
+import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacket
+import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacketDisassembler
+import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacketHandler
+import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestProxyPacket
+import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestProxyPacketHandler
+import com.habbokt.packet.dasm.handshake.inforetrieve.InfoRetrievePacket
+import com.habbokt.packet.dasm.handshake.inforetrieve.InfoRetrievePacketDisassembler
+import com.habbokt.packet.dasm.handshake.inforetrieve.InfoRetrievePacketHandler
+import com.habbokt.packet.dasm.handshake.inforetrieve.InfoRetrieveProxyPacket
+import com.habbokt.packet.dasm.handshake.inforetrieve.InfoRetrieveProxyPacketHandler
+import com.habbokt.packet.dasm.handshake.initdiffiehandshake.InitDiffieHandshakePacketDisassembler
+import com.habbokt.packet.dasm.handshake.initdiffiehandshake.InitDiffieHandshakeRequestPacket
+import com.habbokt.packet.dasm.handshake.initdiffiehandshake.InitDiffieHandshakeRequestPacketHandler
+import com.habbokt.packet.dasm.handshake.initdiffiehandshake.InitDiffieHandshakeRequestProxyPacket
+import com.habbokt.packet.dasm.handshake.initdiffiehandshake.InitDiffieHandshakeRequestProxyPacketHandler
+import com.habbokt.packet.dasm.handshake.scrgetuserinfo.ScrGetUserInfoPacket
+import com.habbokt.packet.dasm.handshake.scrgetuserinfo.ScrGetUserInfoPacketDisassembler
+import com.habbokt.packet.dasm.handshake.scrgetuserinfo.ScrGetUserInfoPacketHandler
+import com.habbokt.packet.dasm.handshake.scrgetuserinfo.ScrGetUserInfoProxyPacket
+import com.habbokt.packet.dasm.handshake.scrgetuserinfo.ScrGetUserInfoProxyPacketHandler
+import com.habbokt.packet.dasm.handshake.sessionparameters.SessionParametersRequestPacket
+import com.habbokt.packet.dasm.handshake.sessionparameters.SessionParametersRequestPacketDisassembler
+import com.habbokt.packet.dasm.handshake.sessionparameters.SessionParametersRequestPacketHandler
+import com.habbokt.packet.dasm.handshake.sessionparameters.SessionParametersRequestProxyPacket
+import com.habbokt.packet.dasm.handshake.sessionparameters.SessionParametersRequestProxyPacketHandler
+import com.habbokt.packet.dasm.handshake.ssoticket.SSOTicketPacket
+import com.habbokt.packet.dasm.handshake.ssoticket.SSOTicketPacketDisassembler
+import com.habbokt.packet.dasm.handshake.ssoticket.SSOTicketPacketHandler
+import com.habbokt.packet.dasm.handshake.ssoticket.SSOTicketProxyPacket
+import com.habbokt.packet.dasm.handshake.ssoticket.SSOTicketProxyPacketHandler
+import com.habbokt.packet.dasm.handshake.uniquemachineid.UniqueMachineIdRequestPacket
+import com.habbokt.packet.dasm.handshake.uniquemachineid.UniqueMachineIdRequestPacketDisassembler
+import com.habbokt.packet.dasm.handshake.uniquemachineid.UniqueMachineIdRequestPacketHandler
+import com.habbokt.packet.dasm.handshake.uniquemachineid.UniqueMachineIdRequestProxyPacket
+import com.habbokt.packet.dasm.handshake.uniquemachineid.UniqueMachineIdRequestProxyPacketHandler
+import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckPacket
+import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckPacketDisassembler
+import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckPacketHandler
+import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckProxyPacket
+import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckProxyPacketHandler
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMapBinder
 import kotlin.reflect.KClass
@@ -48,7 +84,7 @@ object PacketModule : KotlinModule() {
         assemblers.addBinding(InitDiffieHandshakeResponsePacket::class).to<InitDiffieHandshakeResponsePacketAssembler>()
         assemblers.addBinding(CompleteDiffieHandshakeResponsePacket::class).to<CompleteDiffieHandshakeResponsePacketAssembler>()
         assemblers.addBinding(DisconnectReasonPacket::class).to<DisconnectReasonPacketAssembler>()
-        assemblers.addBinding(UniqueMachineIdPacket::class).to<UniqueMachineIdPacketAssembler>()
+        assemblers.addBinding(UniqueMachineIdResponsePacket::class).to<UniqueMachineIdResponsePacketAssembler>()
         assemblers.addBinding(SessionParametersResponsePacket::class).to<SessionParametersResponsePacketAssembler>()
         assemblers.addBinding(UserRightsPacket::class).to<UserRightsPacketAssembler>()
         assemblers.addBinding(AuthenticationOKPacket::class).to<AuthenticationOKPacketAssembler>()
@@ -60,21 +96,32 @@ object PacketModule : KotlinModule() {
         disassemblers.addBinding(206).to<InitDiffieHandshakePacketDisassembler>()
         disassemblers.addBinding(2002).to<CompleteDiffieHandshakeRequestPacketDisassembler>()
         disassemblers.addBinding(1170).to<VersionCheckPacketDisassembler>()
-        disassemblers.addBinding(813).to<UniqueMachineIdPacketDisassembler>()
+        disassemblers.addBinding(813).to<UniqueMachineIdRequestPacketDisassembler>()
         disassemblers.addBinding(1817).to<SessionParametersRequestPacketDisassembler>()
         disassemblers.addBinding(204).to<SSOTicketPacketDisassembler>()
         disassemblers.addBinding(26).to<ScrGetUserInfoPacketDisassembler>()
         disassemblers.addBinding(7).to<InfoRetrievePacketDisassembler>()
 
+        // Proxies
+        val proxies = KotlinMapBinder.newMapBinder<KClass<*>, ProxyPacketHandler<Packet>>(kotlinBinder)
+        proxies.addBinding(InfoRetrievePacket::class).to<InfoRetrieveProxyPacketHandler>()
+        proxies.addBinding(CompleteDiffieHandshakeRequestPacket::class).to<CompleteDiffieHandshakeRequestProxyPacketHandler>()
+        proxies.addBinding(InitDiffieHandshakeRequestPacket::class).to<InitDiffieHandshakeRequestProxyPacketHandler>()
+        proxies.addBinding(SSOTicketPacket::class).to<SSOTicketProxyPacketHandler>()
+        proxies.addBinding(VersionCheckPacket::class).to<VersionCheckProxyPacketHandler>()
+        proxies.addBinding(SessionParametersRequestPacket::class).to<SessionParametersRequestProxyPacketHandler>()
+        proxies.addBinding(ScrGetUserInfoPacket::class).to<ScrGetUserInfoProxyPacketHandler>()
+        proxies.addBinding(UniqueMachineIdRequestPacket::class).to<UniqueMachineIdRequestProxyPacketHandler>()
+
         // Handlers
-        val handlers = KotlinMapBinder.newMapBinder<KClass<*>, PacketHandler<Packet>>(kotlinBinder)
-        handlers.addBinding(InitDiffieHandshakeRequestPacket::class).to<InitDiffieHandshakeRequestPacketHandler>()
-        handlers.addBinding(CompleteDiffieHandshakeRequestPacket::class).to<CompleteDiffieHandshakeRequestPacketHandler>()
-        handlers.addBinding(VersionCheckPacket::class).to<VersionCheckPacketHandler>()
-        handlers.addBinding(UniqueMachineIdPacket::class).to<UniqueMachineIdPacketHandler>()
-        handlers.addBinding(SessionParametersRequestPacket::class).to<SessionParametersRequestPacketHandler>()
-        handlers.addBinding(SSOTicketPacket::class).to<SSOTicketPacketHandler>()
-        handlers.addBinding(ScrGetUserInfoPacket::class).to<ScrGetUserInfoPacketHandler>()
-        handlers.addBinding(InfoRetrievePacket::class).to<InfoRetrievePacketHandler>()
+        val handlers = KotlinMapBinder.newMapBinder<KClass<*>, PacketHandler<ProxyPacket>>(kotlinBinder)
+        handlers.addBinding(InfoRetrieveProxyPacket::class).to<InfoRetrievePacketHandler>()
+        handlers.addBinding(CompleteDiffieHandshakeRequestProxyPacket::class).to<CompleteDiffieHandshakeRequestPacketHandler>()
+        handlers.addBinding(InitDiffieHandshakeRequestProxyPacket::class).to<InitDiffieHandshakeRequestPacketHandler>()
+        handlers.addBinding(SSOTicketProxyPacket::class).to<SSOTicketPacketHandler>()
+        handlers.addBinding(VersionCheckProxyPacket::class).to<VersionCheckPacketHandler>()
+        handlers.addBinding(SessionParametersRequestProxyPacket::class).to<SessionParametersRequestPacketHandler>()
+        handlers.addBinding(ScrGetUserInfoProxyPacket::class).to<ScrGetUserInfoPacketHandler>()
+        handlers.addBinding(UniqueMachineIdRequestProxyPacket::class).to<UniqueMachineIdRequestPacketHandler>()
     }
 }

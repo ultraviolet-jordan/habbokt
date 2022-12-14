@@ -23,5 +23,6 @@ fun Application.game() {
         PacketModule
     )
 
+    injector.getInstance<GameSynchronizer>().start()
     injector.getInstance<GameServer>().bind()
 }
