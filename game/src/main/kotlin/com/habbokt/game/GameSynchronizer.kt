@@ -27,7 +27,7 @@ class GameSynchronizer @Inject constructor(
     private val dispatcher = forkJoinPool.asCoroutineDispatcher()
 
     override fun start() {
-        executor.scheduleAtFixedRate(this, 0, 1, TimeUnit.SECONDS)
+        executor.scheduleAtFixedRate(this, 1, 1, TimeUnit.SECONDS)
     }
 
     override fun stop() {
