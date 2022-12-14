@@ -1,6 +1,7 @@
 package com.habbokt.game
 
 import com.google.inject.Inject
+import com.google.inject.Singleton
 import com.habbokt.api.threading.Synchronizer
 import io.ktor.server.application.ApplicationEnvironment
 import java.util.concurrent.Executors
@@ -16,6 +17,7 @@ import kotlinx.coroutines.runBlocking
 /**
  * @author Jordan Abraham
  */
+@Singleton
 class GameSynchronizer @Inject constructor(
     private val environment: ApplicationEnvironment,
     private val forkJoinPool: ForkJoinPool,
