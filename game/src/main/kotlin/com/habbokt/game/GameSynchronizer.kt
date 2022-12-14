@@ -20,7 +20,7 @@ class GameSynchronizer @Inject constructor(
     private val environment: ApplicationEnvironment,
     private val forkJoinPool: ForkJoinPool,
     private val gameServer: GameServer
-) : Synchronizer() {
+) : Synchronizer {
     private val executor = Executors.newSingleThreadScheduledExecutor()
     private val dispatcher = forkJoinPool.asCoroutineDispatcher()
 
