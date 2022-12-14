@@ -148,7 +148,7 @@ class GameClient constructor(
 
     override fun close() {
         environment.log.info("Disconnected client: ${socket.remoteAddress}")
-        gameServer.clients.remove(socket.remoteAddress.toString())
+        gameServer.clients.remove(socket.remoteAddress)
         socket.close()
     }
 
