@@ -23,6 +23,7 @@ import kotlin.reflect.KClass
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 
 /**
  * @author Jordan Abraham
@@ -49,18 +50,21 @@ class GameClient constructor(
             processWritePool()
 
             while (true) {
-                // Await incoming packet from client.
-                val packet = awaitPacket() ?: continue
-                // Get associated proxy handler with packet.
-                // We process proxy handlers on the client coroutine thread since these are suspended.
-                // The data gets built out into another type of read packet which gets processed by the game thread.
-                val proxyHandler = proxies[packet::class]?.handler ?: continue
-                // Invoke the proxy handler and return the packet.
-                val proxyPacket = proxyHandler.block.invoke(packet, this) ?: continue
-                // Get real packet handler from the proxy packet.
-                val handler = handlers[proxyPacket::class]?.handler ?: continue
-                // Add the handler to the read pool queue.
-                readPool[proxyPacket] = handler
+                // 30 seconds timeout to disconnect the client connection is nothing gets read.
+                withTimeout(30_000) {
+                    // Await incoming packet from client.
+                    val packet = awaitPacket() ?: return@withTimeout
+                    // Get associated proxy handler with packet.
+                    // We process proxy handlers on the client coroutine thread since these are suspended.
+                    // The data gets built out into another type of read packet which gets processed by the game thread.
+                    val proxyHandler = proxies[packet::class]?.handler ?: return@withTimeout
+                    // Invoke the proxy handler and return the packet.
+                    val proxyPacket = proxyHandler.block.invoke(packet, this@GameClient) ?: return@withTimeout
+                    // Get real packet handler from the proxy packet.
+                    val handler = handlers[proxyPacket::class]?.handler ?: return@withTimeout
+                    // Add the handler to the read pool queue.
+                    readPool[proxyPacket] = handler
+                }
             }
         } catch (exception: Exception) {
             withContext(Dispatchers.IO) {
@@ -143,6 +147,7 @@ class GameClient constructor(
     override fun player(): Player? = if (!::connectedPlayer.isInitialized) null else connectedPlayer
 
     override fun close() {
+        environment.log.info("Disconnected client: ${socket.remoteAddress}")
         gameServer.clients.remove(socket.remoteAddress.toString())
         socket.close()
     }
