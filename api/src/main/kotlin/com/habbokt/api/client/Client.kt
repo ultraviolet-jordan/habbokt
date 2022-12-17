@@ -2,6 +2,7 @@ package com.habbokt.api.client
 
 import com.habbokt.api.entity.player.Player
 import com.habbokt.api.packet.Packet
+import io.ktor.network.sockets.SocketAddress
 
 /**
  * @author Jordan Abraham
@@ -15,5 +16,6 @@ interface Client {
     fun authenticate(userId: Int)
     fun player(): Player?
     fun close()
-    fun closed(): Boolean
+    fun connected(): Boolean
+    fun socketAddress(): SocketAddress
 }

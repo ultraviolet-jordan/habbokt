@@ -40,7 +40,8 @@ class GameSynchronizer @Inject constructor(
     override fun run() {
         if (executor.isShutdown || forkJoinPool.isShutdown) return
 
-        val clients = gameServer.clients.values.filter { !it.closed() }
+        // Returns a list of connected clients to the game server.
+        val clients = gameServer.connectionPool().collect()
 
         val time = measureTime {
             runBlocking(dispatcher) {

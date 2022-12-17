@@ -12,13 +12,13 @@ import com.habbokt.api.packet.ProxyPacketHandler
 import com.habbokt.packet.asm.handshake.clienthello.ClientHelloPacket
 import com.habbokt.packet.buf.base64
 import io.ktor.network.sockets.Socket
+import io.ktor.network.sockets.SocketAddress
 import io.ktor.network.sockets.isClosed
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
 import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
-import java.util.concurrent.ConcurrentHashMap
 import kotlin.reflect.KClass
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -39,7 +39,7 @@ class GameClient constructor(
 ) : Client {
     private val readChannel = socket.openReadChannel()
     private val writeChannel = socket.openWriteChannel()
-    private val readPool = ConcurrentHashMap<ProxyPacket, Handler<ProxyPacket>>()
+    private val readPool = HashMap<ProxyPacket, Handler<ProxyPacket>>()
     private val writePool = ByteBuffer.allocateDirect(256)
     private lateinit var connectedPlayer: Player
 
@@ -63,7 +63,9 @@ class GameClient constructor(
                     // Get real packet handler from the proxy packet.
                     val handler = handlers[proxyPacket::class]?.handler ?: return@withTimeout
                     // Add the handler to the read pool queue.
-                    readPool[proxyPacket] = handler
+                    synchronized(readPool) {
+                        readPool[proxyPacket] = handler
+                    }
                 }
             }
         } catch (exception: Exception) {
@@ -111,10 +113,10 @@ class GameClient constructor(
     }
 
     override fun processReadPool() {
-        readPool.forEach {
-            it.value.block.invoke(it.key, this)
+        if (readPool.isEmpty()) return
+        synchronized(readPool) {
+            readPool.onEach { it.value.block.invoke(it.key, this) }.clear()
         }
-        readPool.clear()
     }
 
     override fun writePacket(packet: Packet) {
@@ -129,7 +131,10 @@ class GameClient constructor(
     }
 
     override fun processWritePool() {
+        // Don't process if the write channel is closed.
         if (writeChannel.isClosedForWrite) return
+        // Don't process if nothing is written to the write pool.
+        if (writePool.position() == 0) return
         writeChannel.apply {
             runBlocking(Dispatchers.IO) {
                 writeFully(writePool.flip())
@@ -147,10 +152,13 @@ class GameClient constructor(
     override fun player(): Player? = if (!::connectedPlayer.isInitialized) null else connectedPlayer
 
     override fun close() {
+        if (!gameServer.connectionPool().drop(this)) {
+            environment.log.info("Disconnected client was not part of the connection pool: ${socket.remoteAddress}")
+        }
         environment.log.info("Disconnected client: ${socket.remoteAddress}")
-        gameServer.clients.remove(socket.remoteAddress)
         socket.close()
     }
 
-    override fun closed(): Boolean = socket.isClosed
+    override fun connected(): Boolean = !socket.isClosed
+    override fun socketAddress(): SocketAddress = socket.remoteAddress
 }
