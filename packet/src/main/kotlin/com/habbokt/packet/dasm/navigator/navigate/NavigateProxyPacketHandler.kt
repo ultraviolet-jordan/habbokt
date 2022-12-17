@@ -15,8 +15,12 @@ class NavigateProxyPacketHandler @Inject constructor(
     private val roomsService: RoomsService,
     private val roomsCategoriesService: RoomsCategoriesService
 ) : ProxyPacketHandler<NavigatePacket>(ProxyHandler {
-    val hideFullRooms = mask == 1
     val category = roomsCategoriesService.roomCategory(id) ?: return@ProxyHandler null
     val rooms = roomsService.roomsByCategoryId(category.id)
-    return@ProxyHandler NavigateProxyPacket()
+
+    return@ProxyHandler NavigateProxyPacket(
+        hideFullRooms = mask == 1,
+        category = category,
+        rooms = rooms
+    )
 })
