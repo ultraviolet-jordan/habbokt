@@ -1,6 +1,7 @@
 package com.habbokt.db
 
 import com.habbokt.db.players.PlayersTable
+import com.habbokt.db.rooms.categories.RoomsCategoriesTable
 import com.habbokt.db.site.SiteTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -39,6 +40,7 @@ object DatabaseResourceBuilder {
             // H2 is in memory so this is unnecessary for now but will be needed.
             SchemaUtils.create(PlayersTable)
             SchemaUtils.create(SiteTable)
+            SchemaUtils.create(RoomsCategoriesTable)
         }
     }
 }

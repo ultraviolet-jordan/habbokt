@@ -3,6 +3,9 @@ package com.habbokt.dao
 import com.habbokt.dao.players.PlayerDAO
 import com.habbokt.dao.players.PlayersService
 import com.habbokt.dao.players.PlayersServiceEhcache
+import com.habbokt.dao.rooms.categories.RoomCategoryDAO
+import com.habbokt.dao.rooms.categories.RoomsCategoriesService
+import com.habbokt.dao.rooms.categories.RoomsCategoryEhcache
 import com.habbokt.dao.site.SiteDAO
 import com.habbokt.dao.site.SiteService
 import com.habbokt.dao.site.SiteServiceEhcache
@@ -18,14 +21,14 @@ object DAOModule : KotlinModule() {
     override fun configure() {
         // Site DAO
         bind<SiteService>().to<SiteServiceEhcache>()
-
-        val siteResourcePool = CachingResourcePoolBuilder.buildCachingResourcePool(CachingAliases.SiteTableCache, SiteDAO::class.java)
-        bind<Cache<Int, SiteDAO>>().toInstance(siteResourcePool)
+        bind<Cache<Int, SiteDAO>>().toInstance(CachingResourcePoolBuilder.buildCachingResourcePool(CachingAliases.SiteTableCache, SiteDAO::class.java))
 
         // Players DAO
         bind<PlayersService>().to<PlayersServiceEhcache>()
+        bind<Cache<Int, PlayerDAO>>().toInstance(CachingResourcePoolBuilder.buildCachingResourcePool(CachingAliases.PlayersTableCache, PlayerDAO::class.java))
 
-        val playersResourcePool = CachingResourcePoolBuilder.buildCachingResourcePool(CachingAliases.PlayersTableCache, PlayerDAO::class.java)
-        bind<Cache<Int, PlayerDAO>>().toInstance(playersResourcePool)
+        // Rooms Categories DAO
+        bind<RoomsCategoriesService>().to<RoomsCategoryEhcache>()
+        bind<Cache<Int, RoomCategoryDAO>>().toInstance(CachingResourcePoolBuilder.buildCachingResourcePool(CachingAliases.RoomsCategoriesTableCache, RoomCategoryDAO::class.java))
     }
 }

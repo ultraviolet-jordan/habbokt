@@ -3,6 +3,7 @@ package com.habbokt.page.test
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.dao.players.PlayersService
+import com.habbokt.dao.rooms.categories.RoomsCategoriesService
 import com.habbokt.dao.site.SiteDAO
 import com.habbokt.dao.site.SiteService
 import com.habbokt.page.PageRouting
@@ -17,7 +18,8 @@ import io.ktor.server.routing.get
 @Singleton
 class TestPageRouting @Inject constructor(
     private val siteService: SiteService,
-    private val playersService: PlayersService
+    private val playersService: PlayersService,
+    private val roomsCategoriesService: RoomsCategoriesService
 ) : PageRouting(Route {
     get("/test") {
         suspend fun createSite() {
@@ -49,8 +51,37 @@ class TestPageRouting @Inject constructor(
             )
         }
 
+        suspend fun createRoomCategories() {
+            roomsCategoriesService.createRoomCategory(
+                roomId = 2,
+                parentRoomId = 0,
+                name = "No Category"
+            )
+            roomsCategoriesService.createRoomCategory(
+                roomId = 3,
+                parentRoomId = 0,
+                name = "Public Rooms"
+            )
+            roomsCategoriesService.createRoomCategory(
+                roomId = 4,
+                parentRoomId = 0,
+                name = "Guest Rooms"
+            )
+            roomsCategoriesService.createRoomCategory(
+                roomId = 5,
+                parentRoomId = 3,
+                name = "Entertainment"
+            )
+            roomsCategoriesService.createRoomCategory(
+                roomId = 6,
+                parentRoomId = 3,
+                name = "Restaurants and Cafes"
+            )
+        }
+
         createSite() // Create Test Site Data
         createPlayer() // Create Test Player Data
+        createRoomCategories() // Create Test Room Categories
         call.respondRedirect("/")
     }
 })
