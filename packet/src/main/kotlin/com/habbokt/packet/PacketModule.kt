@@ -67,6 +67,11 @@ import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckPacketDisassem
 import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckPacketHandler
 import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckProxyPacket
 import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckProxyPacketHandler
+import com.habbokt.packet.dasm.navigator.navigate.NavigatePacket
+import com.habbokt.packet.dasm.navigator.navigate.NavigatePacketDisassembler
+import com.habbokt.packet.dasm.navigator.navigate.NavigatePacketHandler
+import com.habbokt.packet.dasm.navigator.navigate.NavigateProxyPacket
+import com.habbokt.packet.dasm.navigator.navigate.NavigateProxyPacketHandler
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMapBinder
 import kotlin.reflect.KClass
@@ -101,6 +106,7 @@ object PacketModule : KotlinModule() {
         disassemblers.addBinding(204).to<SSOTicketPacketDisassembler>()
         disassemblers.addBinding(26).to<ScrGetUserInfoPacketDisassembler>()
         disassemblers.addBinding(7).to<InfoRetrievePacketDisassembler>()
+        disassemblers.addBinding(150).to<NavigatePacketDisassembler>()
 
         // Proxies
         val proxies = KotlinMapBinder.newMapBinder<KClass<*>, ProxyPacketHandler<Packet>>(kotlinBinder)
@@ -112,6 +118,7 @@ object PacketModule : KotlinModule() {
         proxies.addBinding(SessionParametersRequestPacket::class).to<SessionParametersRequestProxyPacketHandler>()
         proxies.addBinding(ScrGetUserInfoPacket::class).to<ScrGetUserInfoProxyPacketHandler>()
         proxies.addBinding(UniqueMachineIdRequestPacket::class).to<UniqueMachineIdRequestProxyPacketHandler>()
+        proxies.addBinding(NavigatePacket::class).to<NavigateProxyPacketHandler>()
 
         // Handlers
         val handlers = KotlinMapBinder.newMapBinder<KClass<*>, PacketHandler<ProxyPacket>>(kotlinBinder)
@@ -123,5 +130,6 @@ object PacketModule : KotlinModule() {
         handlers.addBinding(SessionParametersRequestProxyPacket::class).to<SessionParametersRequestPacketHandler>()
         handlers.addBinding(ScrGetUserInfoProxyPacket::class).to<ScrGetUserInfoPacketHandler>()
         handlers.addBinding(UniqueMachineIdRequestProxyPacket::class).to<UniqueMachineIdRequestPacketHandler>()
+        handlers.addBinding(NavigateProxyPacket::class).to<NavigatePacketHandler>()
     }
 }
