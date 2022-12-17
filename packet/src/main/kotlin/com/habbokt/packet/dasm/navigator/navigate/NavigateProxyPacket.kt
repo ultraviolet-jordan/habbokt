@@ -1,7 +1,7 @@
 package com.habbokt.packet.dasm.navigator.navigate
 
 import com.habbokt.api.packet.ProxyPacket
-import com.habbokt.dao.rooms.RoomDAO
+import com.habbokt.api.room.Room
 import com.habbokt.dao.rooms.categories.RoomCategoryDAO
 
 /**
@@ -10,5 +10,5 @@ import com.habbokt.dao.rooms.categories.RoomCategoryDAO
 data class NavigateProxyPacket(
     val hideFullRooms: Boolean,
     val category: RoomCategoryDAO,
-    val rooms: List<RoomDAO>
+    val rooms: List<Room>
 ) : ProxyPacket
