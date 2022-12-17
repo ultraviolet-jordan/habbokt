@@ -8,18 +8,18 @@ import org.ehcache.Cache
  * @author Jordan Abraham
  */
 @Singleton
-class RoomsCategoryEhcache @Inject constructor(
-    private val delegate: RoomsCategoryDelegate,
+class RoomsCategoriesServiceEhcache @Inject constructor(
+    private val delegate: RoomsCategoriesServiceDelegate,
     private val cache: Cache<Int, RoomCategoryDAO>
 ) : RoomsCategoriesService {
     override suspend fun roomCategory(id: Int): RoomCategoryDAO? = cache[id] ?: delegate.roomCategory(id)?.also { cache.put(id, it) }
 
     override suspend fun createRoomCategory(
-        roomId: Int,
+        id: Int,
         parentRoomId: Int,
         name: String
     ): RoomCategoryDAO? = delegate.createRoomCategory(
-        roomId,
+        id,
         parentRoomId,
         name
     )?.also { cache.put(it.id, it) }
@@ -33,4 +33,6 @@ class RoomsCategoryEhcache @Inject constructor(
         cache.remove(id)
         return delegate.deleteRoomCategory(id)
     }
+
+    override suspend fun categoriesByParentRoomId(parentRoomId: Int): List<RoomCategoryDAO> = delegate.categoriesByParentRoomId(parentRoomId)
 }

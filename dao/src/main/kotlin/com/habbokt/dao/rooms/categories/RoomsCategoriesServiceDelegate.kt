@@ -14,7 +14,7 @@ import org.jetbrains.exposed.sql.update
  * @author Jordan Abraham
  */
 @Singleton
-class RoomsCategoryDelegate : RoomsCategoriesService {
+class RoomsCategoriesServiceDelegate : RoomsCategoriesService {
     override suspend fun roomCategory(id: Int): RoomCategoryDAO? = query {
         RoomsCategoriesTable
             .select { RoomsCategoriesTable.id eq id }
@@ -23,12 +23,12 @@ class RoomsCategoryDelegate : RoomsCategoriesService {
     }
 
     override suspend fun createRoomCategory(
-        roomId: Int,
+        id: Int,
         parentRoomId: Int,
         name: String
     ): RoomCategoryDAO? = query {
         RoomsCategoriesTable.insert {
-            it[RoomsCategoriesTable.roomId] = roomId
+            it[RoomsCategoriesTable.id] = id
             it[RoomsCategoriesTable.parentRoomId] = parentRoomId
             it[RoomsCategoriesTable.name] = name
         }.resultedValues?.singleOrNull()?.let(::resultToRoomCategory)
@@ -36,7 +36,7 @@ class RoomsCategoryDelegate : RoomsCategoriesService {
 
     override suspend fun editRoomCategory(roomCategoryDAO: RoomCategoryDAO): Boolean = query {
         RoomsCategoriesTable.update({ RoomsCategoriesTable.id eq roomCategoryDAO.id }) {
-            it[roomId] = roomCategoryDAO.roomId
+            it[id] = roomCategoryDAO.id
             it[parentRoomId] = roomCategoryDAO.parentRoomId
             it[name] = roomCategoryDAO.name
         } > 0
@@ -46,9 +46,14 @@ class RoomsCategoryDelegate : RoomsCategoriesService {
         RoomsCategoriesTable.deleteWhere { RoomsCategoriesTable.id eq id } > 0
     }
 
+    override suspend fun categoriesByParentRoomId(parentRoomId: Int): List<RoomCategoryDAO> = query {
+        RoomsCategoriesTable
+            .select { RoomsCategoriesTable.parentRoomId eq parentRoomId }
+            .map(::resultToRoomCategory)
+    }
+
     private fun resultToRoomCategory(row: ResultRow) = RoomCategoryDAO(
         id = row[RoomsCategoriesTable.id],
-        roomId = row[RoomsCategoriesTable.roomId],
         parentRoomId = row[RoomsCategoriesTable.parentRoomId],
         name = row[RoomsCategoriesTable.name]
     )

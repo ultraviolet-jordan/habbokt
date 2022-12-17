@@ -3,6 +3,7 @@ package com.habbokt.page.test
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.dao.players.PlayersService
+import com.habbokt.dao.rooms.RoomsService
 import com.habbokt.dao.rooms.categories.RoomsCategoriesService
 import com.habbokt.dao.site.SiteDAO
 import com.habbokt.dao.site.SiteService
@@ -19,6 +20,7 @@ import io.ktor.server.routing.get
 class TestPageRouting @Inject constructor(
     private val siteService: SiteService,
     private val playersService: PlayersService,
+    private val roomsService: RoomsService,
     private val roomsCategoriesService: RoomsCategoriesService
 ) : PageRouting(Route {
     get("/test") {
@@ -51,29 +53,40 @@ class TestPageRouting @Inject constructor(
             )
         }
 
+        suspend fun createRooms() {
+            roomsService.createRoom(
+                categoryId = 3,
+                name = "Welcome Lounge"
+            )
+            roomsService.createRoom(
+                categoryId = 3,
+                name = "The Park"
+            )
+        }
+
         suspend fun createRoomCategories() {
             roomsCategoriesService.createRoomCategory(
-                roomId = 2,
+                id = 2,
                 parentRoomId = 0,
                 name = "No Category"
             )
             roomsCategoriesService.createRoomCategory(
-                roomId = 3,
+                id = 3,
                 parentRoomId = 0,
                 name = "Public Rooms"
             )
             roomsCategoriesService.createRoomCategory(
-                roomId = 4,
+                id = 4,
                 parentRoomId = 0,
                 name = "Guest Rooms"
             )
             roomsCategoriesService.createRoomCategory(
-                roomId = 5,
+                id = 5,
                 parentRoomId = 3,
                 name = "Entertainment"
             )
             roomsCategoriesService.createRoomCategory(
-                roomId = 6,
+                id = 6,
                 parentRoomId = 3,
                 name = "Restaurants and Cafes"
             )
@@ -81,7 +94,8 @@ class TestPageRouting @Inject constructor(
 
         createSite() // Create Test Site Data
         createPlayer() // Create Test Player Data
-        createRoomCategories() // Create Test Room Categories
+        createRooms() // Create Test Rooms Data
+        createRoomCategories() // Create Test Room Categories Data
         call.respondRedirect("/")
     }
 })
