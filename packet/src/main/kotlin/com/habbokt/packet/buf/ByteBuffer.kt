@@ -10,6 +10,7 @@ private fun ByteBuffer.moveToByteArray(amount: Int): ByteArray = ByteArray(amoun
 
 fun ByteBuffer.getIntHabbo(): Int = moveToByteArray(this[position()].toInt() shr 3 and 7).vl64()
 fun ByteBuffer.getStringHabbo(): String = String(moveToByteArray(ByteArray(2) { get() }.base64()), StandardCharsets.UTF_8)
+fun ByteBuffer.getString(length: Int): String = String(moveToByteArray(length), StandardCharsets.UTF_8)
 
 fun ByteBuffer.putIntHabbo(value: Int): ByteBuffer = put(value.vl64())
 fun ByteBuffer.putStringHabbo(value: String): ByteBuffer = put(value.toByteArray(StandardCharsets.UTF_8)).put(2)

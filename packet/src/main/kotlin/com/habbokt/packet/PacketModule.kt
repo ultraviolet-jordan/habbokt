@@ -29,6 +29,8 @@ import com.habbokt.packet.asm.handshake.userrights.UserRightsPacket
 import com.habbokt.packet.asm.handshake.userrights.UserRightsPacketAssembler
 import com.habbokt.packet.asm.navigater.navnodeinfo.NavNodeInfoPacket
 import com.habbokt.packet.asm.navigater.navnodeinfo.NavNodeInfoPacketAssembler
+import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacket
+import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacketAssembler
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacket
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacketDisassembler
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacketHandler
@@ -74,6 +76,11 @@ import com.habbokt.packet.dasm.navigator.navigate.NavigatePacketDisassembler
 import com.habbokt.packet.dasm.navigator.navigate.NavigatePacketHandler
 import com.habbokt.packet.dasm.navigator.navigate.NavigateProxyPacket
 import com.habbokt.packet.dasm.navigator.navigate.NavigateProxyPacketHandler
+import com.habbokt.packet.dasm.room.getinterst.GetInterstPacket
+import com.habbokt.packet.dasm.room.getinterst.GetInterstPacketDisassembler
+import com.habbokt.packet.dasm.room.getinterst.GetInterstPacketHandler
+import com.habbokt.packet.dasm.room.getinterst.GetInterstProxyPacket
+import com.habbokt.packet.dasm.room.getinterst.GetInterstProxyPacketHandler
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMapBinder
 import kotlin.reflect.KClass
@@ -98,6 +105,7 @@ object PacketModule : KotlinModule() {
         assemblers.addBinding(ScrSendUserInfoPacket::class).to<ScrSendUserInfoPacketAssembler>()
         assemblers.addBinding(UserObjectPacket::class).to<UserObjectPacketAssembler>()
         assemblers.addBinding(NavNodeInfoPacket::class).to<NavNodeInfoPacketAssembler>()
+        assemblers.addBinding(InterstitialDataPacket::class).to<InterstitialDataPacketAssembler>()
 
         // Disassemblers
         val disassemblers = KotlinMapBinder.newMapBinder<Int, PacketDisassembler>(kotlinBinder)
@@ -110,6 +118,7 @@ object PacketModule : KotlinModule() {
         disassemblers.addBinding(26).to<ScrGetUserInfoPacketDisassembler>()
         disassemblers.addBinding(7).to<InfoRetrievePacketDisassembler>()
         disassemblers.addBinding(150).to<NavigatePacketDisassembler>()
+        disassemblers.addBinding(182).to<GetInterstPacketDisassembler>()
 
         // Proxies
         val proxies = KotlinMapBinder.newMapBinder<KClass<*>, ProxyPacketHandler<Packet>>(kotlinBinder)
@@ -122,6 +131,7 @@ object PacketModule : KotlinModule() {
         proxies.addBinding(ScrGetUserInfoPacket::class).to<ScrGetUserInfoProxyPacketHandler>()
         proxies.addBinding(UniqueMachineIdRequestPacket::class).to<UniqueMachineIdRequestProxyPacketHandler>()
         proxies.addBinding(NavigatePacket::class).to<NavigateProxyPacketHandler>()
+        proxies.addBinding(GetInterstPacket::class).to<GetInterstProxyPacketHandler>()
 
         // Handlers
         val handlers = KotlinMapBinder.newMapBinder<KClass<*>, PacketHandler<ProxyPacket>>(kotlinBinder)
@@ -134,5 +144,6 @@ object PacketModule : KotlinModule() {
         handlers.addBinding(ScrGetUserInfoProxyPacket::class).to<ScrGetUserInfoPacketHandler>()
         handlers.addBinding(UniqueMachineIdRequestProxyPacket::class).to<UniqueMachineIdRequestPacketHandler>()
         handlers.addBinding(NavigateProxyPacket::class).to<NavigatePacketHandler>()
+        handlers.addBinding(GetInterstProxyPacket::class).to<GetInterstPacketHandler>()
     }
 }

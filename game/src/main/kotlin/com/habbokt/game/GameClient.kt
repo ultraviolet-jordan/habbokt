@@ -17,6 +17,7 @@ import io.ktor.network.sockets.isClosed
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
 import io.ktor.server.application.ApplicationEnvironment
+import io.ktor.util.logging.error
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
 import kotlin.reflect.KClass
@@ -72,6 +73,7 @@ class GameClient constructor(
             withContext(Dispatchers.IO) {
                 close()
             }
+            environment.log.error(exception)
         }
     }
 
