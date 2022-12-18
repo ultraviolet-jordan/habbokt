@@ -26,13 +26,15 @@ class RoomsServiceDelegate : RoomsService {
         categoryId: Int,
         name: String,
         description: String,
-        swfCast: String
+        swfCast: String,
+        model: String
     ): RoomDAO? = query {
         RoomsTable.insert {
             it[RoomsTable.categoryId] = categoryId
             it[RoomsTable.name] = name
             it[RoomsTable.description] = description
             it[RoomsTable.swfCast] = swfCast
+            it[RoomsTable.model] = model
         }.resultedValues?.singleOrNull()?.let(::resultToRoom)
     }
 
@@ -42,6 +44,7 @@ class RoomsServiceDelegate : RoomsService {
             it[name] = roomDAO.name
             it[description] = roomDAO.description
             it[swfCast] = roomDAO.swfCast
+            it[model] = roomDAO.model
         } > 0
     }
 
@@ -60,6 +63,7 @@ class RoomsServiceDelegate : RoomsService {
         categoryId = row[RoomsTable.categoryId],
         name = row[RoomsTable.name],
         description = row[RoomsTable.description],
-        swfCast = row[RoomsTable.swfCast]
+        swfCast = row[RoomsTable.swfCast],
+        model = row[RoomsTable.model]
     )
 }

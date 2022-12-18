@@ -10,5 +10,6 @@ data class RoomDAO(
     val categoryId: Int,
     val name: String,
     val description: String,
-    val swfCast: String
+    val swfCast: String,
+    val model: String
 ) : Serializable

@@ -10,7 +10,8 @@ interface RoomsService {
         categoryId: Int,
         name: String,
         description: String,
-        swfCast: String
+        swfCast: String,
+        model: String
     ): RoomDAO?
 
     suspend fun editRoom(roomDAO: RoomDAO): Boolean

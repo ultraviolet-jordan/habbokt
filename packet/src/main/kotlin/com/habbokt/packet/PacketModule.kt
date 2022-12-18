@@ -31,6 +31,8 @@ import com.habbokt.packet.asm.navigater.navnodeinfo.NavNodeInfoPacket
 import com.habbokt.packet.asm.navigater.navnodeinfo.NavNodeInfoPacketAssembler
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacket
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacketAssembler
+import com.habbokt.packet.asm.room.roomready.RoomReadyPacket
+import com.habbokt.packet.asm.room.roomready.RoomReadyPacketAssembler
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacket
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacketDisassembler
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacketHandler
@@ -111,6 +113,7 @@ object PacketModule : KotlinModule() {
         assemblers.addBinding(UserObjectPacket::class).to<UserObjectPacketAssembler>()
         assemblers.addBinding(NavNodeInfoPacket::class).to<NavNodeInfoPacketAssembler>()
         assemblers.addBinding(InterstitialDataPacket::class).to<InterstitialDataPacketAssembler>()
+        assemblers.addBinding(RoomReadyPacket::class).to<RoomReadyPacketAssembler>()
 
         // Disassemblers
         val disassemblers = KotlinMapBinder.newMapBinder<Int, PacketDisassembler>(kotlinBinder)

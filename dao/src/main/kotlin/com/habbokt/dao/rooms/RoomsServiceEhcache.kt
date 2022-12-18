@@ -18,12 +18,14 @@ class RoomsServiceEhcache @Inject constructor(
         categoryId: Int,
         name: String,
         description: String,
-        swfCast: String
+        swfCast: String,
+        model: String
     ): RoomDAO? = delegate.createRoom(
         categoryId,
         name,
         description,
-        swfCast
+        swfCast,
+        model
     )?.also { cache.put(it.id, it) }
 
     override suspend fun editRoom(roomDAO: RoomDAO): Boolean {

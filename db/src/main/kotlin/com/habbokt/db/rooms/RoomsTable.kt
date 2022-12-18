@@ -11,6 +11,7 @@ object RoomsTable : Table() {
     val name = text("name")
     val description = text("description")
     val swfCast = text("swf_cast")
+    val model = text("model")
 
     override val primaryKey = PrimaryKey(id)
 }

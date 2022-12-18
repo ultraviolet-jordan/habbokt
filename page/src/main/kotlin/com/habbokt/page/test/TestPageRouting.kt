@@ -58,43 +58,50 @@ class TestPageRouting @Inject constructor(
                 categoryId = 3,
                 name = "Welcome Lounge",
                 description = "welcome_lounge",
-                swfCast = "hh_room_nlobby"
+                swfCast = "hh_room_nlobby",
+                model = "newbie_lobby"
             )
             roomsService.createRoom(
                 categoryId = 3,
                 name = "The Park",
                 description = "park",
-                swfCast = "hh_room_park"
+                swfCast = "hh_room_park,hh_room_park_general",
+                model = "park_a"
             )
             roomsService.createRoom(
                 categoryId = 5,
                 name = "Theatredome",
                 description = "theatredrome",
-                swfCast = "hh_room_theater"
+                swfCast = "hh_room_theater",
+                model = "theater"
             )
             roomsService.createRoom(
                 categoryId = 5,
                 name = "Library",
                 description = "library",
-                swfCast = "hh_room_library"
+                swfCast = "hh_room_library",
+                model = "library"
             )
             roomsService.createRoom(
                 categoryId = 6,
                 name = "Habbo Kitchen",
                 description = "hotel_kitchen",
-                swfCast = "hh_room_kitchen"
+                swfCast = "hh_room_kitchen",
+                model = "cr_kitchen"
             )
             roomsService.createRoom(
                 categoryId = 6,
                 name = "The Dirty Duck Pub",
                 description = "the_dirty_duck_pub",
-                swfCast = "hh_room_pub"
+                swfCast = "hh_room_pub",
+                model = "pub_a"
             )
             roomsService.createRoom(
                 categoryId = 4,
                 name = "Jordan's Room",
                 description = "Hello this is my test room description!",
-                swfCast = "" // Guest rooms do not have a swfCast.
+                swfCast = "", // Guest rooms do not have a swfCast.
+                model = "" // Guest rooms do not have a model.
             )
         }
 

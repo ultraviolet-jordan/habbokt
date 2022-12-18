@@ -16,15 +16,15 @@ import java.nio.ByteBuffer
 class NavNodeInfoPacketAssembler : PacketAssembler<NavNodeInfoPacket>(Assembler(id = 220) {
     require(mask == 0 || mask == 1)
 
-    val (id, _, name, public, rooms) = category
+    val (id, parentId, name, public, rooms) = category
     it.putIntHabbo(mask) // This is for showing/hiding full rooms.
-    it.putCategory(id, if (public) 0 else 2, name, 0) // Create the root category that was clicked.
+    it.putCategory(id, if (public) 0 else 2, name, parentId) // Create the root category that was clicked.
     // Send rooms associated with this clicked category.
     if (public) {
         it.putPublicRooms(rooms)
         // Send sub categories below the rooms that the user can click into.
         subCategories.forEach { subCategory ->
-            it.putCategory(subCategory.id, 0, subCategory.name, subCategory.parentId)
+            it.putCategory(subCategory.id, 0, subCategory.name, id)
         }
     } else {
         it.putGuestRooms(rooms)
