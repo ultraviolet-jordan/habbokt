@@ -56,38 +56,65 @@ class TestPageRouting @Inject constructor(
         suspend fun createRooms() {
             roomsService.createRoom(
                 categoryId = 3,
-                name = "Welcome Lounge"
+                name = "Welcome Lounge",
+                description = "welcome_lounge"
             )
             roomsService.createRoom(
                 categoryId = 3,
-                name = "The Park"
+                name = "The Park",
+                description = "park"
+            )
+            roomsService.createRoom(
+                categoryId = 5,
+                name = "Theatredome",
+                description = "theatredrome"
+            )
+            roomsService.createRoom(
+                categoryId = 5,
+                name = "Library",
+                description = "library"
+            )
+            roomsService.createRoom(
+                categoryId = 6,
+                name = "Habbo Kitchen",
+                description = "hotel_kitchen"
+            )
+            roomsService.createRoom(
+                categoryId = 6,
+                name = "The Dirty Duck Pub",
+                description = "the_dirty_duck_pub"
+            )
+            roomsService.createRoom(
+                categoryId = 4,
+                name = "Jordan's Room",
+                description = "Hello this is my test room description!"
             )
         }
 
         suspend fun createRoomCategories() {
             roomsCategoriesService.createRoomCategory(
                 id = 2,
-                parentRoomId = 0,
+                parentId = 0,
                 name = "No Category"
             )
             roomsCategoriesService.createRoomCategory(
                 id = 3,
-                parentRoomId = 0,
+                parentId = 0,
                 name = "Public Rooms"
             )
             roomsCategoriesService.createRoomCategory(
                 id = 4,
-                parentRoomId = 0,
+                parentId = 0,
                 name = "Guest Rooms"
             )
             roomsCategoriesService.createRoomCategory(
                 id = 5,
-                parentRoomId = 3,
+                parentId = 3,
                 name = "Entertainment"
             )
             roomsCategoriesService.createRoomCategory(
                 id = 6,
-                parentRoomId = 3,
+                parentId = 3,
                 name = "Restaurants and Cafes"
             )
         }

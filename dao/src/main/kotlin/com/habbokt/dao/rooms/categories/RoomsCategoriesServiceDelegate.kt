@@ -24,12 +24,12 @@ class RoomsCategoriesServiceDelegate : RoomsCategoriesService {
 
     override suspend fun createRoomCategory(
         id: Int,
-        parentRoomId: Int,
+        parentId: Int,
         name: String
     ): RoomCategoryDAO? = query {
         RoomsCategoriesTable.insert {
             it[RoomsCategoriesTable.id] = id
-            it[RoomsCategoriesTable.parentRoomId] = parentRoomId
+            it[RoomsCategoriesTable.parentId] = parentId
             it[RoomsCategoriesTable.name] = name
         }.resultedValues?.singleOrNull()?.let(::resultToRoomCategory)
     }
@@ -37,7 +37,7 @@ class RoomsCategoriesServiceDelegate : RoomsCategoriesService {
     override suspend fun editRoomCategory(roomCategoryDAO: RoomCategoryDAO): Boolean = query {
         RoomsCategoriesTable.update({ RoomsCategoriesTable.id eq roomCategoryDAO.id }) {
             it[id] = roomCategoryDAO.id
-            it[parentRoomId] = roomCategoryDAO.parentRoomId
+            it[parentId] = roomCategoryDAO.parentId
             it[name] = roomCategoryDAO.name
         } > 0
     }
@@ -46,15 +46,15 @@ class RoomsCategoriesServiceDelegate : RoomsCategoriesService {
         RoomsCategoriesTable.deleteWhere { RoomsCategoriesTable.id eq id } > 0
     }
 
-    override suspend fun categoriesByParentRoomId(parentRoomId: Int): List<RoomCategoryDAO> = query {
+    override suspend fun subCategories(id: Int): List<RoomCategoryDAO> = query {
         RoomsCategoriesTable
-            .select { RoomsCategoriesTable.parentRoomId eq parentRoomId }
+            .select { RoomsCategoriesTable.parentId eq id }
             .map(::resultToRoomCategory)
     }
 
     private fun resultToRoomCategory(row: ResultRow) = RoomCategoryDAO(
         id = row[RoomsCategoriesTable.id],
-        parentRoomId = row[RoomsCategoriesTable.parentRoomId],
+        parentId = row[RoomsCategoriesTable.parentId],
         name = row[RoomsCategoriesTable.name]
     )
 }

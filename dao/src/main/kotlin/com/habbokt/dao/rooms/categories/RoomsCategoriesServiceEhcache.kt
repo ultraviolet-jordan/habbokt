@@ -16,11 +16,11 @@ class RoomsCategoriesServiceEhcache @Inject constructor(
 
     override suspend fun createRoomCategory(
         id: Int,
-        parentRoomId: Int,
+        parentId: Int,
         name: String
     ): RoomCategoryDAO? = delegate.createRoomCategory(
         id,
-        parentRoomId,
+        parentId,
         name
     )?.also { cache.put(it.id, it) }
 
@@ -34,5 +34,5 @@ class RoomsCategoriesServiceEhcache @Inject constructor(
         return delegate.deleteRoomCategory(id)
     }
 
-    override suspend fun categoriesByParentRoomId(parentRoomId: Int): List<RoomCategoryDAO> = delegate.categoriesByParentRoomId(parentRoomId)
+    override suspend fun subCategories(id: Int): List<RoomCategoryDAO> = delegate.subCategories(id)
 }

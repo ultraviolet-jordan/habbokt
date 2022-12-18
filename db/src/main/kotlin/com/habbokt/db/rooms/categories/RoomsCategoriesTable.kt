@@ -7,7 +7,7 @@ import org.jetbrains.exposed.sql.Table
  */
 object RoomsCategoriesTable : Table() {
     val id = integer("id")
-    val parentRoomId = integer("parent_room_id")
+    val parentId = integer("parent_id")
     val name = text("name")
 
     override val primaryKey = PrimaryKey(id)

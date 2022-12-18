@@ -8,7 +8,8 @@ interface RoomsService {
 
     suspend fun createRoom(
         categoryId: Int,
-        name: String
+        name: String,
+        description: String
     ): RoomDAO?
 
     suspend fun editRoom(roomDAO: RoomDAO): Boolean

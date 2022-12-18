@@ -7,6 +7,6 @@ import java.io.Serializable
  */
 data class RoomCategoryDAO(
     val id: Int,
-    val parentRoomId: Int,
+    val parentId: Int,
     val name: String
 ) : Serializable

@@ -8,5 +8,6 @@ import java.io.Serializable
 data class RoomDAO(
     val id: Int,
     val categoryId: Int,
-    val name: String
+    val name: String,
+    val description: String
 ) : Serializable

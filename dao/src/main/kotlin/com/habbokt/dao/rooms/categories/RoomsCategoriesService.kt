@@ -8,11 +8,11 @@ interface RoomsCategoriesService {
 
     suspend fun createRoomCategory(
         id: Int,
-        parentRoomId: Int,
+        parentId: Int,
         name: String
     ): RoomCategoryDAO?
 
     suspend fun editRoomCategory(roomCategoryDAO: RoomCategoryDAO): Boolean
     suspend fun deleteRoomCategory(id: Int): Boolean
-    suspend fun categoriesByParentRoomId(parentRoomId: Int): List<RoomCategoryDAO>
+    suspend fun subCategories(id: Int): List<RoomCategoryDAO>
 }

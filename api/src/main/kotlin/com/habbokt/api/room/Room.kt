@@ -4,8 +4,8 @@ package com.habbokt.api.room
  * @author Jordan Abraham
  */
 data class Room(
+    val id: Int,
     val port: Int,
-    val type: Int,
     val name: String,
     var userCount: Int,
     var maxUsers: Int,
@@ -14,5 +14,6 @@ data class Room(
     val door: Int,
     val swfCast: String,
     var usersInQueue: Int,
-    var visible: Boolean
+    var visible: Boolean,
+    val owner: String
 )

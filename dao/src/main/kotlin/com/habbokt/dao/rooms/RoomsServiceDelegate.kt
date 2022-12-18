@@ -24,11 +24,13 @@ class RoomsServiceDelegate : RoomsService {
 
     override suspend fun createRoom(
         categoryId: Int,
-        name: String
+        name: String,
+        description: String
     ): RoomDAO? = query {
         RoomsTable.insert {
             it[RoomsTable.categoryId] = categoryId
             it[RoomsTable.name] = name
+            it[RoomsTable.description] = description
         }.resultedValues?.singleOrNull()?.let(::resultToRoom)
     }
 
@@ -36,6 +38,7 @@ class RoomsServiceDelegate : RoomsService {
         RoomsTable.update({ RoomsTable.id eq roomDAO.id }) {
             it[categoryId] = roomDAO.categoryId
             it[name] = roomDAO.name
+            it[description] = roomDAO.description
         } > 0
     }
 
@@ -52,6 +55,7 @@ class RoomsServiceDelegate : RoomsService {
     private fun resultToRoom(row: ResultRow) = RoomDAO(
         id = row[RoomsTable.id],
         categoryId = row[RoomsTable.categoryId],
-        name = row[RoomsTable.name]
+        name = row[RoomsTable.name],
+        description = row[RoomsTable.description]
     )
 }
