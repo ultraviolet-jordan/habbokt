@@ -2,7 +2,11 @@
 A Habbo Hotel Private Server Written in Kotlin.
 
 <p align="center">
-  <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/image.jpg?raw=true" alt="Habbo Hotel Registration"/>
+  <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/assets/registration.jpg?raw=true" alt="Habbo Hotel Registration"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/assets/navigation.jpg?raw=true" alt="Habbo Hotel Navigation"/>
 </p>
 
 # Dependencies
