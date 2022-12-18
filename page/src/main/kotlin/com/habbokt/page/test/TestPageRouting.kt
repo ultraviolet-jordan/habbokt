@@ -57,37 +57,44 @@ class TestPageRouting @Inject constructor(
             roomsService.createRoom(
                 categoryId = 3,
                 name = "Welcome Lounge",
-                description = "welcome_lounge"
+                description = "welcome_lounge",
+                swfCast = "hh_room_nlobby"
             )
             roomsService.createRoom(
                 categoryId = 3,
                 name = "The Park",
-                description = "park"
+                description = "park",
+                swfCast = "hh_room_park"
             )
             roomsService.createRoom(
                 categoryId = 5,
                 name = "Theatredome",
-                description = "theatredrome"
+                description = "theatredrome",
+                swfCast = "hh_room_theater"
             )
             roomsService.createRoom(
                 categoryId = 5,
                 name = "Library",
-                description = "library"
+                description = "library",
+                swfCast = "hh_room_library"
             )
             roomsService.createRoom(
                 categoryId = 6,
                 name = "Habbo Kitchen",
-                description = "hotel_kitchen"
+                description = "hotel_kitchen",
+                swfCast = "hh_room_kitchen"
             )
             roomsService.createRoom(
                 categoryId = 6,
                 name = "The Dirty Duck Pub",
-                description = "the_dirty_duck_pub"
+                description = "the_dirty_duck_pub",
+                swfCast = "hh_room_pub"
             )
             roomsService.createRoom(
                 categoryId = 4,
                 name = "Jordan's Room",
-                description = "Hello this is my test room description!"
+                description = "Hello this is my test room description!",
+                swfCast = "" // Guest rooms do not have a swfCast.
             )
         }
 

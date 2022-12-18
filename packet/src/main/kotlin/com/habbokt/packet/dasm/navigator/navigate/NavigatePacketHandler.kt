@@ -25,7 +25,7 @@ class NavigatePacketHandler : PacketHandler<NavigateProxyPacket>(Handler {
             parentId = room.categoryId,
             description = room.description,
             door = 0, // No password
-            swfCast = "",
+            swfCast = room.swfCast,
             usersInQueue = 0,
             visible = true,
             owner = "jordan"

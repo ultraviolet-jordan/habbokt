@@ -10,6 +10,7 @@ object RoomsTable : Table() {
     val categoryId = integer("category_id")
     val name = text("name")
     val description = text("description")
+    val swfCast = text("swf_cast")
 
     override val primaryKey = PrimaryKey(id)
 }

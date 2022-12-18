@@ -9,7 +9,8 @@ interface RoomsService {
     suspend fun createRoom(
         categoryId: Int,
         name: String,
-        description: String
+        description: String,
+        swfCast: String
     ): RoomDAO?
 
     suspend fun editRoom(roomDAO: RoomDAO): Boolean

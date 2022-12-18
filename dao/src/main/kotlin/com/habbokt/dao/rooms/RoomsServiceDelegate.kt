@@ -25,12 +25,14 @@ class RoomsServiceDelegate : RoomsService {
     override suspend fun createRoom(
         categoryId: Int,
         name: String,
-        description: String
+        description: String,
+        swfCast: String
     ): RoomDAO? = query {
         RoomsTable.insert {
             it[RoomsTable.categoryId] = categoryId
             it[RoomsTable.name] = name
             it[RoomsTable.description] = description
+            it[RoomsTable.swfCast] = swfCast
         }.resultedValues?.singleOrNull()?.let(::resultToRoom)
     }
 
@@ -39,6 +41,7 @@ class RoomsServiceDelegate : RoomsService {
             it[categoryId] = roomDAO.categoryId
             it[name] = roomDAO.name
             it[description] = roomDAO.description
+            it[swfCast] = roomDAO.swfCast
         } > 0
     }
 
@@ -56,6 +59,7 @@ class RoomsServiceDelegate : RoomsService {
         id = row[RoomsTable.id],
         categoryId = row[RoomsTable.categoryId],
         name = row[RoomsTable.name],
-        description = row[RoomsTable.description]
+        description = row[RoomsTable.description],
+        swfCast = row[RoomsTable.swfCast]
     )
 }
