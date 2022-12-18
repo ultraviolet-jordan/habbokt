@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.api.threading.Synchronizer
 import io.ktor.server.application.ApplicationEnvironment
+import io.ktor.util.logging.error
 import java.util.concurrent.Executors
 import java.util.concurrent.ForkJoinPool
 import java.util.concurrent.TimeUnit
@@ -38,20 +39,24 @@ class GameSynchronizer @Inject constructor(
 
     @OptIn(ExperimentalTime::class)
     override fun run() {
-        if (executor.isShutdown || forkJoinPool.isShutdown) return
+        try {
+            if (executor.isShutdown || forkJoinPool.isShutdown) return
 
-        // Returns a list of connected clients to the game server.
-        val clients = gameServer.connectionPool().collect()
+            // Returns a list of connected clients to the game server.
+            val clients = gameServer.connectionPool().collect()
 
-        val time = measureTime {
-            runBlocking(dispatcher) {
-                // Asynchronously process all connected clients read pools.
-                clients.map { async { it.processReadPool() } }.awaitAll()
-                // Asynchronously process all connected clients write pools.
-                clients.map { async { it.processWritePool() } }.awaitAll()
+            val time = measureTime {
+                runBlocking(dispatcher) {
+                    // Asynchronously process all connected clients read pools.
+                    clients.map { async { it.processReadPool() } }.awaitAll()
+                    // Asynchronously process all connected clients write pools.
+                    clients.map { async { it.processWritePool() } }.awaitAll()
+                }
             }
-        }
 
-        environment.log.info("Game Synchronizer: Time: $time, Threads: ${forkJoinPool.parallelism}, Clients: ${clients.size}")
+            environment.log.info("Game Synchronizer: Time: $time, Threads: ${forkJoinPool.parallelism}, Clients: ${clients.size}")
+        } catch (exception: Exception) {
+            environment.log.error(exception.message)
+        }
     }
 }
