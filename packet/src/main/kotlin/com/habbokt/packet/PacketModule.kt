@@ -81,6 +81,11 @@ import com.habbokt.packet.dasm.room.getinterst.GetInterstPacketDisassembler
 import com.habbokt.packet.dasm.room.getinterst.GetInterstPacketHandler
 import com.habbokt.packet.dasm.room.getinterst.GetInterstProxyPacket
 import com.habbokt.packet.dasm.room.getinterst.GetInterstProxyPacketHandler
+import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryPacket
+import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryPacketDisassembler
+import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryPacketHandler
+import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryProxyPacket
+import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryProxyPacketHandler
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMapBinder
 import kotlin.reflect.KClass
@@ -119,6 +124,7 @@ object PacketModule : KotlinModule() {
         disassemblers.addBinding(7).to<InfoRetrievePacketDisassembler>()
         disassemblers.addBinding(150).to<NavigatePacketDisassembler>()
         disassemblers.addBinding(182).to<GetInterstPacketDisassembler>()
+        disassemblers.addBinding(2).to<RoomDirectoryPacketDisassembler>()
 
         // Proxies
         val proxies = KotlinMapBinder.newMapBinder<KClass<*>, ProxyPacketHandler<Packet>>(kotlinBinder)
@@ -132,6 +138,7 @@ object PacketModule : KotlinModule() {
         proxies.addBinding(UniqueMachineIdRequestPacket::class).to<UniqueMachineIdRequestProxyPacketHandler>()
         proxies.addBinding(NavigatePacket::class).to<NavigateProxyPacketHandler>()
         proxies.addBinding(GetInterstPacket::class).to<GetInterstProxyPacketHandler>()
+        proxies.addBinding(RoomDirectoryPacket::class).to<RoomDirectoryProxyPacketHandler>()
 
         // Handlers
         val handlers = KotlinMapBinder.newMapBinder<KClass<*>, PacketHandler<ProxyPacket>>(kotlinBinder)
@@ -145,5 +152,6 @@ object PacketModule : KotlinModule() {
         handlers.addBinding(UniqueMachineIdRequestProxyPacket::class).to<UniqueMachineIdRequestPacketHandler>()
         handlers.addBinding(NavigateProxyPacket::class).to<NavigatePacketHandler>()
         handlers.addBinding(GetInterstProxyPacket::class).to<GetInterstPacketHandler>()
+        handlers.addBinding(RoomDirectoryProxyPacket::class).to<RoomDirectoryPacketHandler>()
     }
 }
