@@ -22,12 +22,12 @@ class NavNodeInfoPacketAssembler : PacketAssembler<NavNodeInfoPacket>(Assembler(
     // Send rooms associated with this clicked category.
     if (public) {
         it.putPublicRooms(rooms)
+        // Send sub categories below the rooms that the user can click into.
+        subCategories.forEach { subCategory ->
+            it.putCategory(subCategory.id, 0, subCategory.name, subCategory.parentId)
+        }
     } else {
         it.putGuestRooms(rooms)
-    }
-    // Send sub categories below the rooms that the user can click into.
-    subCategories.forEach { subCategory ->
-        it.putCategory(subCategory.id, 0, subCategory.name, subCategory.parentId)
     }
     // Terminate the packet loop on the client side.
     it.putIntHabbo(0) // Break
