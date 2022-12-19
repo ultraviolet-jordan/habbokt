@@ -73,7 +73,7 @@ class GameClient constructor(
             withContext(Dispatchers.IO) {
                 close()
             }
-            environment.log.error(exception.message)
+            environment.log.error(exception.stackTraceToString())
         }
     }
 

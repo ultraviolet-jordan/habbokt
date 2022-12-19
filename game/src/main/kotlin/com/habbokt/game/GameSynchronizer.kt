@@ -56,7 +56,7 @@ class GameSynchronizer @Inject constructor(
 
             environment.log.info("Game Synchronizer: Time: $time, Threads: ${forkJoinPool.parallelism}, Clients: ${clients.size}")
         } catch (exception: Exception) {
-            environment.log.error(exception.message)
+            environment.log.error(exception.stackTraceToString())
         }
     }
 }
