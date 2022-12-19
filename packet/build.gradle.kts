@@ -7,6 +7,7 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 
 dependencies {
+    implementation(deps.bundles.ktor)
     implementation(deps.guice)
 
     implementation(project(":api"))

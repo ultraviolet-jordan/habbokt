@@ -91,6 +91,7 @@ class GameClient constructor(
         val size = header.readBytes(3).base64() - Short.SIZE_BYTES
         // Read the packet id.
         val id = header.readBytes(2).base64()
+        header.release()
 
         if (readChannel.availableForRead < size) {
             if (size > 0) {
@@ -104,12 +105,19 @@ class GameClient constructor(
 
         environment.log.info("Incoming Packet: Header Id=$id, Body Size=${body.remaining}")
 
-        return disassemblers[id]
-            ?.disassembler
-            ?.packet
-            ?.invoke(ByteBuffer.wrap(body.readBytes()))
+        val disassembler = disassemblers[id]?.disassembler
+        if (disassembler == null) {
+            body.discard(body.remaining)
+            body.release()
+            return null
+        }
+
+        return disassembler
+            .packet
+            .invoke(body)
             .also {
-                header.release()
+                // Require that the body was fully read from disassembler.
+                require(body.endOfInput)
                 body.release()
             }
     }

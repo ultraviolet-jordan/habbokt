@@ -1,10 +1,10 @@
 package com.habbokt.api.packet
 
-import java.nio.ByteBuffer
+import io.ktor.utils.io.core.ByteReadPacket
 
 /**
  * @author Jordan Abraham
  */
 data class Disassembler(
-    val packet: (ByteBuffer) -> Packet
+    val packet: (ByteReadPacket) -> Packet
 )
