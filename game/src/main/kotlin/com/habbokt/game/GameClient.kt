@@ -20,9 +20,11 @@ import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.util.logging.error
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
+import java.time.Duration
 import kotlin.reflect.KClass
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.time.withTimeout
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 
@@ -49,30 +51,24 @@ class GameClient constructor(
             // Immediately say hello and process the pool.
             writePacket(ClientHelloPacket())
             processWritePool()
-
             while (true) {
-                // 30 seconds timeout to disconnect the client connection is nothing gets read.
-                withTimeout(30_000) {
-                    // Await incoming packet from client.
-                    val packet = awaitPacket() ?: return@withTimeout
-                    // Get associated proxy handler with packet.
-                    // We process proxy handlers on the client coroutine thread since these are suspended.
-                    // The data gets built out into another type of read packet which gets processed by the game thread.
-                    val proxyHandler = proxies[packet::class]?.handler ?: return@withTimeout
-                    // Invoke the proxy handler and return the packet.
-                    val proxyPacket = proxyHandler.block.invoke(packet, this@GameClient) ?: return@withTimeout
-                    // Get real packet handler from the proxy packet.
-                    val handler = handlers[proxyPacket::class]?.handler ?: return@withTimeout
-                    // Add the handler to the read pool queue.
-                    synchronized(readPool) {
-                        readPool[proxyPacket] = handler
-                    }
+                // Timeout to disconnect the client connection is nothing gets read.
+                val packet = withTimeout(Duration.ofSeconds(30)) { awaitPacket() } ?: continue
+                // Get associated proxy handler with packet.
+                // We process proxy handlers on the client coroutine thread since these are suspended.
+                // The data gets built out into another type of read packet which gets processed by the game thread.
+                val proxyHandler = proxies[packet::class]?.handler ?: continue
+                // Invoke the proxy handler and return the packet.
+                val proxyPacket = proxyHandler.block.invoke(packet, this) ?: continue
+                // Get real packet handler from the proxy packet.
+                val handler = handlers[proxyPacket::class]?.handler ?: continue
+                // Add the handler to the read pool queue.
+                synchronized(readPool) {
+                    readPool[proxyPacket] = handler
                 }
             }
         } catch (exception: Exception) {
-            withContext(Dispatchers.IO) {
-                close()
-            }
+            withContext(Dispatchers.IO) { close() }
             environment.log.error(exception.stackTraceToString())
         }
     }
