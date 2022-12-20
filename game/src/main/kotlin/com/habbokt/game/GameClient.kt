@@ -41,7 +41,7 @@ class GameClient constructor(
     private val proxies: Map<KClass<*>, ProxyPacketHandler<Packet>>
 ) : Client {
     private val readChannel = socket.openReadChannel()
-    private val writeChannel = socket.openWriteChannel()
+    private val writeChannel = socket.openWriteChannel(autoFlush = true)
     private val readPool = HashMap<ProxyPacket, Handler<ProxyPacket>>()
     private val writePool = ByteBuffer.allocateDirect(1024)
     private lateinit var connectedPlayer: Player
@@ -78,23 +78,21 @@ class GameClient constructor(
             readChannel.discard(readChannel.availableForRead.toLong())
             return null
         }
-        if (readChannel.availableForRead < 5) {
+        if (readChannel.availableForRead < HEADER_SIZE_BYTES) {
             readChannel.awaitContent()
         }
-        // Read a packet of 5 bytes.
-        val header = readChannel.readPacket(5)
+        val header = readChannel.readPacket(HEADER_SIZE_BYTES)
         // The size of the packet - the 2 because the packet id is read after the size.
-        val size = header.readBytes(3).base64() - Short.SIZE_BYTES
-        // Read the packet id.
-        val id = header.readBytes(2).base64()
-        header.release()
-
-        if (readChannel.availableForRead < size) {
-            if (size > 0) {
+        val size = (header.readBytes(BODY_SIZE_BYTES).base64() - ID_SIZE_BYTES).also {
+            if (readChannel.availableForRead < it) {
                 readChannel.discard(readChannel.availableForRead.toLong())
+                header.discard(header.remaining)
+                header.release()
+                return null
             }
-            return null
         }
+        val id = header.readBytes(ID_SIZE_BYTES).base64()
+        header.release()
 
         // Read a packet of the number of bytes from the buffer according to the read packet size.
         val body = readChannel.readPacket(size)
@@ -127,13 +125,13 @@ class GameClient constructor(
 
     override fun writePacket(packet: Packet) {
         val (id, block) = assemblers[packet::class]?.assembler ?: return
+        writePool.apply {
+            put(id.base64(2))
+            block.invoke(packet, this)
+            put(1)
+        }
+
         environment.log.info("Outgoing Packet: Id=$id, Packet=$packet")
-        // Write packet id.
-        writePool.put(id.base64(2))
-        // Invoke packet body.
-        block.invoke(packet, writePool)
-        // End packet.
-        writePool.put(1)
     }
 
     override fun processWritePool() {
@@ -141,12 +139,10 @@ class GameClient constructor(
         if (writeChannel.isClosedForWrite) return
         // Don't process if nothing is written to the write pool.
         if (writePool.position() == 0) return
-        writeChannel.apply {
-            runBlocking(Dispatchers.IO) {
-                writeFully(writePool.flip())
-            }
-        }.flush()
-        writePool.clear()
+        runBlocking(Dispatchers.IO) {
+            // Write channel auto flushes on this write call.
+            writePool.flip().also { writeChannel.writeAvailable(it) }.clear()
+        }
     }
 
     override fun authenticate(userId: Int) {
@@ -167,4 +163,10 @@ class GameClient constructor(
 
     override fun connected(): Boolean = !socket.isClosed
     override fun socketAddress(): SocketAddress = socket.remoteAddress
+
+    private companion object {
+        const val BODY_SIZE_BYTES = 3
+        const val ID_SIZE_BYTES = 2
+        const val HEADER_SIZE_BYTES = BODY_SIZE_BYTES + ID_SIZE_BYTES
+    }
 }

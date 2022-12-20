@@ -98,63 +98,91 @@ import kotlin.reflect.KClass
 object PacketModule : KotlinModule() {
     override fun configure() {
         install(DAOModule)
+        bindAssemblers()
+        bindDisassemblers()
+        bindProxyHandlers()
+        bindHandlers()
+    }
 
-        // Assemblers
-        val assemblers = KotlinMapBinder.newMapBinder<KClass<*>, PacketAssembler<Packet>>(kotlinBinder)
-        assemblers.addBinding(ClientHelloPacket::class).to<ClientHelloPacketAssembler>()
-        assemblers.addBinding(InitDiffieHandshakeResponsePacket::class).to<InitDiffieHandshakeResponsePacketAssembler>()
-        assemblers.addBinding(CompleteDiffieHandshakeResponsePacket::class).to<CompleteDiffieHandshakeResponsePacketAssembler>()
-        assemblers.addBinding(DisconnectReasonPacket::class).to<DisconnectReasonPacketAssembler>()
-        assemblers.addBinding(UniqueMachineIdResponsePacket::class).to<UniqueMachineIdResponsePacketAssembler>()
-        assemblers.addBinding(SessionParametersResponsePacket::class).to<SessionParametersResponsePacketAssembler>()
-        assemblers.addBinding(UserRightsPacket::class).to<UserRightsPacketAssembler>()
-        assemblers.addBinding(AuthenticationOKPacket::class).to<AuthenticationOKPacketAssembler>()
-        assemblers.addBinding(ScrSendUserInfoPacket::class).to<ScrSendUserInfoPacketAssembler>()
-        assemblers.addBinding(UserObjectPacket::class).to<UserObjectPacketAssembler>()
-        assemblers.addBinding(NavNodeInfoPacket::class).to<NavNodeInfoPacketAssembler>()
-        assemblers.addBinding(InterstitialDataPacket::class).to<InterstitialDataPacketAssembler>()
-        assemblers.addBinding(RoomReadyPacket::class).to<RoomReadyPacketAssembler>()
+    private fun bindAssemblers() {
+        KotlinMapBinder.newMapBinder<KClass<*>, PacketAssembler<Packet>>(kotlinBinder).apply {
+            bindAssembler<ClientHelloPacket, ClientHelloPacketAssembler>()
+            bindAssembler<InitDiffieHandshakeResponsePacket, InitDiffieHandshakeResponsePacketAssembler>()
+            bindAssembler<CompleteDiffieHandshakeResponsePacket, CompleteDiffieHandshakeResponsePacketAssembler>()
+            bindAssembler<DisconnectReasonPacket, DisconnectReasonPacketAssembler>()
+            bindAssembler<UniqueMachineIdResponsePacket, UniqueMachineIdResponsePacketAssembler>()
+            bindAssembler<SessionParametersResponsePacket, SessionParametersResponsePacketAssembler>()
+            bindAssembler<UserRightsPacket, UserRightsPacketAssembler>()
+            bindAssembler<AuthenticationOKPacket, AuthenticationOKPacketAssembler>()
+            bindAssembler<ScrSendUserInfoPacket, ScrSendUserInfoPacketAssembler>()
+            bindAssembler<UserObjectPacket, UserObjectPacketAssembler>()
+            bindAssembler<NavNodeInfoPacket, NavNodeInfoPacketAssembler>()
+            bindAssembler<InterstitialDataPacket, InterstitialDataPacketAssembler>()
+            bindAssembler<RoomReadyPacket, RoomReadyPacketAssembler>()
+        }
+    }
 
-        // Disassemblers
-        val disassemblers = KotlinMapBinder.newMapBinder<Int, PacketDisassembler>(kotlinBinder)
-        disassemblers.addBinding(206).to<InitDiffieHandshakePacketDisassembler>()
-        disassemblers.addBinding(2002).to<CompleteDiffieHandshakeRequestPacketDisassembler>()
-        disassemblers.addBinding(1170).to<VersionCheckPacketDisassembler>()
-        disassemblers.addBinding(813).to<UniqueMachineIdRequestPacketDisassembler>()
-        disassemblers.addBinding(1817).to<SessionParametersRequestPacketDisassembler>()
-        disassemblers.addBinding(204).to<SSOTicketPacketDisassembler>()
-        disassemblers.addBinding(26).to<ScrGetUserInfoPacketDisassembler>()
-        disassemblers.addBinding(7).to<InfoRetrievePacketDisassembler>()
-        disassemblers.addBinding(150).to<NavigatePacketDisassembler>()
-        disassemblers.addBinding(182).to<GetInterstPacketDisassembler>()
-        disassemblers.addBinding(2).to<RoomDirectoryPacketDisassembler>()
+    private fun bindDisassemblers() {
+        KotlinMapBinder.newMapBinder<Int, PacketDisassembler>(kotlinBinder).apply {
+            bindDisassembler<InitDiffieHandshakePacketDisassembler>(id = 206)
+            bindDisassembler<CompleteDiffieHandshakeRequestPacketDisassembler>(id = 2002)
+            bindDisassembler<VersionCheckPacketDisassembler>(id = 1170)
+            bindDisassembler<UniqueMachineIdRequestPacketDisassembler>(id = 813)
+            bindDisassembler<SessionParametersRequestPacketDisassembler>(id = 1817)
+            bindDisassembler<SSOTicketPacketDisassembler>(id = 204)
+            bindDisassembler<ScrGetUserInfoPacketDisassembler>(id = 26)
+            bindDisassembler<InfoRetrievePacketDisassembler>(id = 7)
+            bindDisassembler<NavigatePacketDisassembler>(id = 150)
+            bindDisassembler<GetInterstPacketDisassembler>(id = 182)
+            bindDisassembler<RoomDirectoryPacketDisassembler>(id = 2)
+        }
+    }
 
-        // Proxies
-        val proxies = KotlinMapBinder.newMapBinder<KClass<*>, ProxyPacketHandler<Packet>>(kotlinBinder)
-        proxies.addBinding(InfoRetrievePacket::class).to<InfoRetrieveProxyPacketHandler>()
-        proxies.addBinding(CompleteDiffieHandshakeRequestPacket::class).to<CompleteDiffieHandshakeRequestProxyPacketHandler>()
-        proxies.addBinding(InitDiffieHandshakeRequestPacket::class).to<InitDiffieHandshakeRequestProxyPacketHandler>()
-        proxies.addBinding(SSOTicketPacket::class).to<SSOTicketProxyPacketHandler>()
-        proxies.addBinding(VersionCheckPacket::class).to<VersionCheckProxyPacketHandler>()
-        proxies.addBinding(SessionParametersRequestPacket::class).to<SessionParametersRequestProxyPacketHandler>()
-        proxies.addBinding(ScrGetUserInfoPacket::class).to<ScrGetUserInfoProxyPacketHandler>()
-        proxies.addBinding(UniqueMachineIdRequestPacket::class).to<UniqueMachineIdRequestProxyPacketHandler>()
-        proxies.addBinding(NavigatePacket::class).to<NavigateProxyPacketHandler>()
-        proxies.addBinding(GetInterstPacket::class).to<GetInterstProxyPacketHandler>()
-        proxies.addBinding(RoomDirectoryPacket::class).to<RoomDirectoryProxyPacketHandler>()
+    private fun bindProxyHandlers() {
+        KotlinMapBinder.newMapBinder<KClass<*>, ProxyPacketHandler<Packet>>(kotlinBinder).apply {
+            bindProxyHandler<InfoRetrievePacket, InfoRetrieveProxyPacketHandler>()
+            bindProxyHandler<CompleteDiffieHandshakeRequestPacket, CompleteDiffieHandshakeRequestProxyPacketHandler>()
+            bindProxyHandler<InitDiffieHandshakeRequestPacket, InitDiffieHandshakeRequestProxyPacketHandler>()
+            bindProxyHandler<SSOTicketPacket, SSOTicketProxyPacketHandler>()
+            bindProxyHandler<VersionCheckPacket, VersionCheckProxyPacketHandler>()
+            bindProxyHandler<SessionParametersRequestPacket, SessionParametersRequestProxyPacketHandler>()
+            bindProxyHandler<ScrGetUserInfoPacket, ScrGetUserInfoProxyPacketHandler>()
+            bindProxyHandler<UniqueMachineIdRequestPacket, UniqueMachineIdRequestProxyPacketHandler>()
+            bindProxyHandler<NavigatePacket, NavigateProxyPacketHandler>()
+            bindProxyHandler<GetInterstPacket, GetInterstProxyPacketHandler>()
+            bindProxyHandler<RoomDirectoryPacket, RoomDirectoryProxyPacketHandler>()
+        }
+    }
 
-        // Handlers
-        val handlers = KotlinMapBinder.newMapBinder<KClass<*>, PacketHandler<ProxyPacket>>(kotlinBinder)
-        handlers.addBinding(InfoRetrieveProxyPacket::class).to<InfoRetrievePacketHandler>()
-        handlers.addBinding(CompleteDiffieHandshakeRequestProxyPacket::class).to<CompleteDiffieHandshakeRequestPacketHandler>()
-        handlers.addBinding(InitDiffieHandshakeRequestProxyPacket::class).to<InitDiffieHandshakeRequestPacketHandler>()
-        handlers.addBinding(SSOTicketProxyPacket::class).to<SSOTicketPacketHandler>()
-        handlers.addBinding(VersionCheckProxyPacket::class).to<VersionCheckPacketHandler>()
-        handlers.addBinding(SessionParametersRequestProxyPacket::class).to<SessionParametersRequestPacketHandler>()
-        handlers.addBinding(ScrGetUserInfoProxyPacket::class).to<ScrGetUserInfoPacketHandler>()
-        handlers.addBinding(UniqueMachineIdRequestProxyPacket::class).to<UniqueMachineIdRequestPacketHandler>()
-        handlers.addBinding(NavigateProxyPacket::class).to<NavigatePacketHandler>()
-        handlers.addBinding(GetInterstProxyPacket::class).to<GetInterstPacketHandler>()
-        handlers.addBinding(RoomDirectoryProxyPacket::class).to<RoomDirectoryPacketHandler>()
+    private fun bindHandlers() {
+        KotlinMapBinder.newMapBinder<KClass<*>, PacketHandler<ProxyPacket>>(kotlinBinder).apply {
+            bindHandler<InfoRetrieveProxyPacket, InfoRetrievePacketHandler>()
+            bindHandler<CompleteDiffieHandshakeRequestProxyPacket, CompleteDiffieHandshakeRequestPacketHandler>()
+            bindHandler<InitDiffieHandshakeRequestProxyPacket, InitDiffieHandshakeRequestPacketHandler>()
+            bindHandler<SSOTicketProxyPacket, SSOTicketPacketHandler>()
+            bindHandler<VersionCheckProxyPacket, VersionCheckPacketHandler>()
+            bindHandler<SessionParametersRequestProxyPacket, SessionParametersRequestPacketHandler>()
+            bindHandler<ScrGetUserInfoProxyPacket, ScrGetUserInfoPacketHandler>()
+            bindHandler<UniqueMachineIdRequestProxyPacket, UniqueMachineIdRequestPacketHandler>()
+            bindHandler<NavigateProxyPacket, NavigatePacketHandler>()
+            bindHandler<GetInterstProxyPacket, GetInterstPacketHandler>()
+            bindHandler<RoomDirectoryProxyPacket, RoomDirectoryPacketHandler>()
+        }
+    }
+
+    private inline fun <reified T : Packet, reified X: PacketAssembler<T>> KotlinMapBinder<KClass<*>, PacketAssembler<Packet>>.bindAssembler() {
+        addBinding(T::class).to<X>()
+    }
+
+    private inline fun <reified X: PacketDisassembler> KotlinMapBinder<Int, PacketDisassembler>.bindDisassembler(id: Int) {
+        addBinding(id).to<X>()
+    }
+
+    private inline fun <reified T : Packet, reified X: ProxyPacketHandler<T>> KotlinMapBinder<KClass<*>, ProxyPacketHandler<Packet>>.bindProxyHandler() {
+        addBinding(T::class).to<X>()
+    }
+
+    private inline fun <reified T : ProxyPacket, reified X: PacketHandler<T>> KotlinMapBinder<KClass<*>, PacketHandler<ProxyPacket>>.bindHandler() {
+        addBinding(T::class).to<X>()
     }
 }
