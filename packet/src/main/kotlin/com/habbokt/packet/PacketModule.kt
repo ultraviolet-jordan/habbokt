@@ -37,6 +37,8 @@ import com.habbokt.packet.asm.room.heightmap.HeightMapPacket
 import com.habbokt.packet.asm.room.heightmap.HeightMapPacketAssembler
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacket
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacketAssembler
+import com.habbokt.packet.asm.room.objects.ObjectsPacket
+import com.habbokt.packet.asm.room.objects.ObjectsPacketAssembler
 import com.habbokt.packet.asm.room.roomad.RoomAdPacket
 import com.habbokt.packet.asm.room.roomad.RoomAdPacketAssembler
 import com.habbokt.packet.asm.room.roomready.RoomReadyPacket
@@ -154,6 +156,7 @@ object PacketModule : KotlinModule() {
             bindAssembler<FloorMapPacket, FloorMapPacketAssembler>()
             bindAssembler<UsersPacket, UsersPacketAssembler>()
             bindAssembler<HeightMapPacket, HeightMapPacketAssembler>()
+            bindAssembler<ObjectsPacket, ObjectsPacketAssembler>()
         }
     }
 
