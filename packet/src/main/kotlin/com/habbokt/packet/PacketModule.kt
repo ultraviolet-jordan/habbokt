@@ -85,6 +85,11 @@ import com.habbokt.packet.dasm.room.getinterst.GetInterstPacketDisassembler
 import com.habbokt.packet.dasm.room.getinterst.GetInterstPacketHandler
 import com.habbokt.packet.dasm.room.getinterst.GetInterstProxyPacket
 import com.habbokt.packet.dasm.room.getinterst.GetInterstProxyPacketHandler
+import com.habbokt.packet.dasm.room.getroomad.GetRoomAdPacket
+import com.habbokt.packet.dasm.room.getroomad.GetRoomAdPacketDisassembler
+import com.habbokt.packet.dasm.room.getroomad.GetRoomAdPacketHandler
+import com.habbokt.packet.dasm.room.getroomad.GetRoomAdProxyPacket
+import com.habbokt.packet.dasm.room.getroomad.GetRoomAdProxyPacketHandler
 import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryPacket
 import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryPacketDisassembler
 import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryPacketHandler
@@ -138,6 +143,7 @@ object PacketModule : KotlinModule() {
             bindDisassembler<NavigatePacketDisassembler>(id = 150)
             bindDisassembler<GetInterstPacketDisassembler>(id = 182)
             bindDisassembler<RoomDirectoryPacketDisassembler>(id = 2)
+            bindDisassembler<GetRoomAdPacketDisassembler>(id = 126)
         }
     }
 
@@ -154,6 +160,7 @@ object PacketModule : KotlinModule() {
             bindProxyHandler<NavigatePacket, NavigateProxyPacketHandler>()
             bindProxyHandler<GetInterstPacket, GetInterstProxyPacketHandler>()
             bindProxyHandler<RoomDirectoryPacket, RoomDirectoryProxyPacketHandler>()
+            bindProxyHandler<GetRoomAdPacket, GetRoomAdProxyPacketHandler>()
         }
     }
 
@@ -170,6 +177,7 @@ object PacketModule : KotlinModule() {
             bindHandler<NavigateProxyPacket, NavigatePacketHandler>()
             bindHandler<GetInterstProxyPacket, GetInterstPacketHandler>()
             bindHandler<RoomDirectoryProxyPacket, RoomDirectoryPacketHandler>()
+            bindHandler<GetRoomAdProxyPacket, GetRoomAdPacketHandler>()
         }
     }
 
