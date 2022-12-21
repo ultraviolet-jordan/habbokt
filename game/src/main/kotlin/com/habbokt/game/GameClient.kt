@@ -41,7 +41,7 @@ class GameClient constructor(
     private val readChannel = socket.openReadChannel()
     private val writeChannel = socket.openWriteChannel(autoFlush = true)
     private val readPool = HashMap<ProxyPacket, Handler<ProxyPacket>>()
-    private val writePool = ByteBuffer.allocateDirect(2048)
+    private val writePool = ByteBuffer.allocateDirect(4096)
     private lateinit var connectedPlayer: Player
 
     override suspend fun accept() {
