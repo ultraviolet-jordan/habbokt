@@ -29,6 +29,8 @@ import com.habbokt.packet.asm.handshake.userrights.UserRightsPacket
 import com.habbokt.packet.asm.handshake.userrights.UserRightsPacketAssembler
 import com.habbokt.packet.asm.navigater.navnodeinfo.NavNodeInfoPacket
 import com.habbokt.packet.asm.navigater.navnodeinfo.NavNodeInfoPacketAssembler
+import com.habbokt.packet.asm.room.flatproperty.FlatPropertyPacket
+import com.habbokt.packet.asm.room.flatproperty.FlatPropertyPacketAssembler
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacket
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacketAssembler
 import com.habbokt.packet.asm.room.roomready.RoomReadyPacket
@@ -119,6 +121,7 @@ object PacketModule : KotlinModule() {
             bindAssembler<NavNodeInfoPacket, NavNodeInfoPacketAssembler>()
             bindAssembler<InterstitialDataPacket, InterstitialDataPacketAssembler>()
             bindAssembler<RoomReadyPacket, RoomReadyPacketAssembler>()
+            bindAssembler<FlatPropertyPacket, FlatPropertyPacketAssembler>()
         }
     }
 
