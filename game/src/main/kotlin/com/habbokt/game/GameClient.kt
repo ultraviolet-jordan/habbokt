@@ -17,7 +17,6 @@ import io.ktor.network.sockets.isClosed
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
 import io.ktor.server.application.ApplicationEnvironment
-import io.ktor.util.logging.error
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
 import java.time.Duration
@@ -26,7 +25,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.time.withTimeout
 import kotlinx.coroutines.withContext
-import kotlinx.coroutines.withTimeout
 
 /**
  * @author Jordan Abraham
@@ -105,13 +103,13 @@ class GameClient constructor(
                 // Require that the body was fully read from disassembler.
                 require(body.endOfInput)
                 body.release()
-                environment.log.info("Pooled Incoming Packet: Id=$id, Size=$size, $it")
+                environment.log.info("Disassembled read packet: Id=$id, Size=$size, $it")
             }
             ?: run {
                 // Discard the body if the disassembler was not found for the packet.
                 body.discard(body.remaining)
                 body.release()
-                environment.log.info("Discarded Incoming Packet: Id=$id, Size=$size")
+                environment.log.info("Discarded read packet: Id=$id, Size=$size")
                 return@run null
             }
     }
@@ -125,12 +123,14 @@ class GameClient constructor(
 
     override fun writePacket(packet: Packet) {
         val (id, block) = assemblers[packet::class]?.assembler ?: return
+        val position = writePool.position()
         writePool.apply {
             put(id.base64(ID_SIZE_BYTES)) // Put packet id.
             block.invoke(packet, this) // Put packet body.
             put(1) // Put end packet.
         }
-        environment.log.info("Outgoing Packet: Id=$id, Packet=$packet")
+        val size = writePool.position() - position - 2
+        environment.log.info("Assembled write packet: Id=$id, Size=$size, $packet")
     }
 
     override fun processWritePool() {
