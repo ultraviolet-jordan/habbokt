@@ -105,12 +105,13 @@ class GameClient constructor(
                 // Require that the body was fully read from disassembler.
                 require(body.endOfInput)
                 body.release()
-                environment.log.info("Incoming Packet: Id=$id, Size=$size, $it")
+                environment.log.info("Pooled Incoming Packet: Id=$id, Size=$size, $it")
             }
             ?: run {
                 // Discard the body if the disassembler was not found for the packet.
                 body.discard(body.remaining)
                 body.release()
+                environment.log.info("Discarded Incoming Packet: Id=$id, Size=$size")
                 return@run null
             }
     }
