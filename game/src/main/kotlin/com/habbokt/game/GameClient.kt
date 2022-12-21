@@ -123,14 +123,14 @@ class GameClient constructor(
 
     override fun writePacket(packet: Packet) {
         val (id, block) = assemblers[packet::class]?.assembler ?: return
-        val position = writePool.position()
         writePool.apply {
             put(id.base64(ID_SIZE_BYTES)) // Put packet id.
+            val position = position()
             block.invoke(packet, this) // Put packet body.
+            val size = writePool.position() - position
             put(1) // Put end packet.
+            environment.log.info("Assembled write packet: Id=$id, Size=$size, $packet")
         }
-        val size = writePool.position() - position - 2
-        environment.log.info("Assembled write packet: Id=$id, Size=$size, $packet")
     }
 
     override fun processWritePool() {
