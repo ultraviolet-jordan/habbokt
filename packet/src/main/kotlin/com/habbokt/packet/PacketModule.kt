@@ -82,6 +82,11 @@ import com.habbokt.packet.dasm.navigator.navigate.NavigatePacketDisassembler
 import com.habbokt.packet.dasm.navigator.navigate.NavigatePacketHandler
 import com.habbokt.packet.dasm.navigator.navigate.NavigateProxyPacket
 import com.habbokt.packet.dasm.navigator.navigate.NavigateProxyPacketHandler
+import com.habbokt.packet.dasm.room.getfloormap.GetFloorMapPacket
+import com.habbokt.packet.dasm.room.getfloormap.GetFloorMapPacketDisassembler
+import com.habbokt.packet.dasm.room.getfloormap.GetFloorMapPacketHandler
+import com.habbokt.packet.dasm.room.getfloormap.GetFloorMapProxyPacket
+import com.habbokt.packet.dasm.room.getfloormap.GetFloorMapProxyPacketHandler
 import com.habbokt.packet.dasm.room.getinterst.GetInterstPacket
 import com.habbokt.packet.dasm.room.getinterst.GetInterstPacketDisassembler
 import com.habbokt.packet.dasm.room.getinterst.GetInterstPacketHandler
@@ -147,6 +152,7 @@ object PacketModule : KotlinModule() {
             bindDisassembler<GetInterstPacketDisassembler>(id = 182)
             bindDisassembler<RoomDirectoryPacketDisassembler>(id = 2)
             bindDisassembler<GetRoomAdPacketDisassembler>(id = 126)
+            bindDisassembler<GetFloorMapPacketDisassembler>(id = 394)
         }
     }
 
@@ -164,6 +170,7 @@ object PacketModule : KotlinModule() {
             bindProxyHandler<GetInterstPacket, GetInterstProxyPacketHandler>()
             bindProxyHandler<RoomDirectoryPacket, RoomDirectoryProxyPacketHandler>()
             bindProxyHandler<GetRoomAdPacket, GetRoomAdProxyPacketHandler>()
+            bindProxyHandler<GetFloorMapPacket, GetFloorMapProxyPacketHandler>()
         }
     }
 
@@ -181,6 +188,7 @@ object PacketModule : KotlinModule() {
             bindHandler<GetInterstProxyPacket, GetInterstPacketHandler>()
             bindHandler<RoomDirectoryProxyPacket, RoomDirectoryPacketHandler>()
             bindHandler<GetRoomAdProxyPacket, GetRoomAdPacketHandler>()
+            bindHandler<GetFloorMapProxyPacket, GetFloorMapPacketHandler>()
         }
     }
 
