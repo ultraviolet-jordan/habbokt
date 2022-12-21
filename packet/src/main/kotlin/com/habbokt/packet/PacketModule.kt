@@ -101,6 +101,11 @@ import com.habbokt.packet.dasm.room.getroomad.GetRoomAdPacketDisassembler
 import com.habbokt.packet.dasm.room.getroomad.GetRoomAdPacketHandler
 import com.habbokt.packet.dasm.room.getroomad.GetRoomAdProxyPacket
 import com.habbokt.packet.dasm.room.getroomad.GetRoomAdProxyPacketHandler
+import com.habbokt.packet.dasm.room.ghmap.GHMapPacket
+import com.habbokt.packet.dasm.room.ghmap.GHMapPacketDisassembler
+import com.habbokt.packet.dasm.room.ghmap.GHMapPacketHandler
+import com.habbokt.packet.dasm.room.ghmap.GHMapProxyPacket
+import com.habbokt.packet.dasm.room.ghmap.GHMapProxyPacketHandler
 import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryPacket
 import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryPacketDisassembler
 import com.habbokt.packet.dasm.room.roomdirectory.RoomDirectoryPacketHandler
@@ -159,6 +164,7 @@ object PacketModule : KotlinModule() {
             bindDisassembler<RoomDirectoryPacketDisassembler>(id = 2)
             bindDisassembler<GetRoomAdPacketDisassembler>(id = 126)
             bindDisassembler<GetFloorMapPacketDisassembler>(id = 394)
+            bindDisassembler<GHMapPacketDisassembler>(id = 60)
         }
     }
 
@@ -177,6 +183,7 @@ object PacketModule : KotlinModule() {
             bindProxyHandler<RoomDirectoryPacket, RoomDirectoryProxyPacketHandler>()
             bindProxyHandler<GetRoomAdPacket, GetRoomAdProxyPacketHandler>()
             bindProxyHandler<GetFloorMapPacket, GetFloorMapProxyPacketHandler>()
+            bindProxyHandler<GHMapPacket, GHMapProxyPacketHandler>()
         }
     }
 
@@ -195,6 +202,7 @@ object PacketModule : KotlinModule() {
             bindHandler<RoomDirectoryProxyPacket, RoomDirectoryPacketHandler>()
             bindHandler<GetRoomAdProxyPacket, GetRoomAdPacketHandler>()
             bindHandler<GetFloorMapProxyPacket, GetFloorMapPacketHandler>()
+            bindHandler<GHMapProxyPacket, GHMapPacketHandler>()
         }
     }
 
