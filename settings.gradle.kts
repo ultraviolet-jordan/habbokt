@@ -17,7 +17,6 @@ dependencyResolutionManagement {
             version("exposed", "0.41.1")
             version("h2database", "2.1.214")
             version("hikaricp", "5.0.1")
-            version("ehcache", "3.10.8")
             version("guice", "1.6.0")
             version("jackson", "2.14.+")
             version("flagstone", "3.0.2")
@@ -37,7 +36,6 @@ dependencyResolutionManagement {
             library("exposed-jdbc", "org.jetbrains.exposed", "exposed-jdbc").versionRef("exposed")
             library("h2database", "com.h2database", "h2").versionRef("h2database")
             library("hikaricp", "com.zaxxer", "HikariCP").versionRef("hikaricp")
-            library("ehcache", "org.ehcache", "ehcache").versionRef("ehcache")
 
             // Guice
             library("guice", "dev.misfitlabs.kotlinguice4", "kotlin-guice").versionRef("guice")
@@ -56,7 +54,7 @@ dependencyResolutionManagement {
 
             // Dependency bundles
             bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging", "ktor-server-sessions", "ktor-server-auth"))
-            bundle("database", listOf("exposed-core", "exposed-dao", "exposed-jdbc", "h2database", "hikaricp", "ehcache"))
+            bundle("database", listOf("exposed-core", "exposed-dao", "exposed-jdbc", "h2database", "hikaricp"))
             bundle("jackson", listOf("jackson-module-kotlin", "jackson-dataformat-xml", "jackson-module-parameter-names"))
 
             // Dependency plugins
