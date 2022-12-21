@@ -2,7 +2,6 @@ package com.habbokt.packet.dasm.room.ghmap
 
 import com.google.inject.Singleton
 import com.habbokt.api.map.HeightMap
-import com.habbokt.api.map.Tile
 import com.habbokt.api.packet.Handler
 import com.habbokt.api.packet.PacketHandler
 import com.habbokt.packet.asm.room.heightmap.HeightMapPacket
@@ -12,7 +11,8 @@ import com.habbokt.packet.asm.room.heightmap.HeightMapPacket
  */
 @Singleton
 class GHMapPacketHandler : PacketHandler<GHMapProxyPacket>(Handler {
-    val layout = """
+    val heightMap = HeightMap(
+        """
             xxxxxxxxxxxxxxxx000000|
             xxxxx0xxxxxxxxxx000000|
             xxxxx00000000xxx000000|
@@ -40,26 +40,9 @@ class GHMapPacketHandler : PacketHandler<GHMapProxyPacket>(Handler {
             xxxxxx00000000000xxxxx|
             xxxxxx00000000000xxxxx|
             xxxxx000000000000xxxxx|
-            xxxxx000000000000xxxxx"""
-        .trimIndent()
-        .replace("\n", "")
-
-    it.writePacket(HeightMapPacket(layout.heightmapFromString()))
-})
-
-private fun String.heightmapFromString(): HeightMap {
-    val tiles = split("|")
-    val sizeY = tiles.size
-    val sizeX = tiles.maxBy { it.length }.length
-    return HeightMap(
-        sizeX = sizeX,
-        sizeY = sizeY,
-        tiles = buildMap {
-            repeat(sizeY) { y ->
-                repeat(sizeX) { x ->
-                    this[Tile(x shl 8 or y)] = tiles[y][x].toString()
-                }
-            }
-        }
+            xxxxx000000000000xxxxx
+        """.trimIndent()
     )
-}
+
+    it.writePacket(HeightMapPacket(heightMap))
+})
