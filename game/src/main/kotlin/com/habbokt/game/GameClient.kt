@@ -97,8 +97,6 @@ class GameClient constructor(
         // Read a packet of the number of bytes from the buffer according to the read packet size.
         val body = readChannel.readPacket(size)
 
-        environment.log.info("Incoming Packet: Id=$id, Body Size=${body.remaining}")
-
         return disassemblers[id]
             ?.disassembler
             ?.packet
@@ -107,6 +105,7 @@ class GameClient constructor(
                 // Require that the body was fully read from disassembler.
                 require(body.endOfInput)
                 body.release()
+                environment.log.info("Incoming Packet: Id=$id, Size=$size, $it")
             }
             ?: run {
                 // Discard the body if the disassembler was not found for the packet.
