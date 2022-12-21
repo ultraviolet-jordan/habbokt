@@ -6,6 +6,7 @@ import com.habbokt.api.map.Tile
 import com.habbokt.api.packet.Handler
 import com.habbokt.api.packet.PacketHandler
 import com.habbokt.packet.asm.room.floormap.FloorMapPacket
+import com.habbokt.packet.asm.room.users.UsersPacket
 
 /**
  * @author Jordan Abraham
@@ -45,12 +46,13 @@ class GetFloorMapPacketHandler : PacketHandler<GetFloorMapProxyPacket>(Handler {
         .replace("\n", "")
 
     it.writePacket(FloorMapPacket(layout.heightmapFromString()))
+    it.writePacket(UsersPacket(emptyList()))
 })
 
 private fun String.heightmapFromString(): HeightMap {
     val tiles = split("|")
-    val sizeX = tiles.size
-    val sizeY = tiles.maxBy { it.length }.length
+    val sizeY = tiles.size
+    val sizeX = tiles.maxBy { it.length }.length
     return HeightMap(
         sizeX = sizeX,
         sizeY = sizeY,

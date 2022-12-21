@@ -39,6 +39,8 @@ import com.habbokt.packet.asm.room.roomad.RoomAdPacket
 import com.habbokt.packet.asm.room.roomad.RoomAdPacketAssembler
 import com.habbokt.packet.asm.room.roomready.RoomReadyPacket
 import com.habbokt.packet.asm.room.roomready.RoomReadyPacketAssembler
+import com.habbokt.packet.asm.room.users.UsersPacket
+import com.habbokt.packet.asm.room.users.UsersPacketAssembler
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacket
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacketDisassembler
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacketHandler
@@ -138,6 +140,7 @@ object PacketModule : KotlinModule() {
             bindAssembler<FlatPropertyPacket, FlatPropertyPacketAssembler>()
             bindAssembler<RoomAdPacket, RoomAdPacketAssembler>()
             bindAssembler<FloorMapPacket, FloorMapPacketAssembler>()
+            bindAssembler<UsersPacket, UsersPacketAssembler>()
         }
     }
 
