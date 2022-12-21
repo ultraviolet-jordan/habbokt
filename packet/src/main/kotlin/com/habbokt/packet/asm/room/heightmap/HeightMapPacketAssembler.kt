@@ -11,14 +11,12 @@ import com.habbokt.packet.buf.putStringHabbo
  */
 @Singleton
 class HeightMapPacketAssembler : PacketAssembler<HeightMapPacket>(Assembler(id = 31) {
-    val string = StringBuilder()
     repeat(heightMap.sizeY) { y ->
         repeat(heightMap.sizeX) { x ->
             val tile = heightMap.tiles[Tile(x shl 8 or y)] // Inline
             require(tile != null)
-            string.append(tile)
+            it.putStringHabbo(tile)
         }
-        string.append("\r")
+        it.putStringHabbo(13.toChar().toString())
     }
-    it.putStringHabbo(string.toString())
 })
