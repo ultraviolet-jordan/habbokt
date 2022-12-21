@@ -97,22 +97,22 @@ class GameClient constructor(
         // Read a packet of the number of bytes from the buffer according to the read packet size.
         val body = readChannel.readPacket(size)
 
-        environment.log.info("Incoming Packet: Header Id=$id, Body Size=${body.remaining}")
+        environment.log.info("Incoming Packet: Id=$id, Body Size=${body.remaining}")
 
-        val disassembler = disassemblers[id]?.disassembler
-        if (disassembler == null) {
-            body.discard(body.remaining)
-            body.release()
-            return null
-        }
-
-        return disassembler
-            .packet
-            .invoke(body)
-            .also {
+        return disassemblers[id]
+            ?.disassembler
+            ?.packet
+            ?.invoke(body)
+            ?.also {
                 // Require that the body was fully read from disassembler.
                 require(body.endOfInput)
                 body.release()
+            }
+            ?: run {
+                // Discard the body if the disassembler was not found for the packet.
+                body.discard(body.remaining)
+                body.release()
+                return@run null
             }
     }
 
@@ -126,11 +126,10 @@ class GameClient constructor(
     override fun writePacket(packet: Packet) {
         val (id, block) = assemblers[packet::class]?.assembler ?: return
         writePool.apply {
-            put(id.base64(2))
-            block.invoke(packet, this)
-            put(1)
+            put(id.base64(ID_SIZE_BYTES)) // Put packet id.
+            block.invoke(packet, this) // Put packet body.
+            put(1) // Put end packet.
         }
-
         environment.log.info("Outgoing Packet: Id=$id, Packet=$packet")
     }
 
@@ -165,8 +164,19 @@ class GameClient constructor(
     override fun socketAddress(): SocketAddress = socket.remoteAddress
 
     private companion object {
+        /**
+         * The number of bytes used to represent a packet body.
+         */
         const val BODY_SIZE_BYTES = 3
+
+        /**
+         * The number of bytes used to represent a packet id.
+         */
         const val ID_SIZE_BYTES = 2
+
+        /**
+         * The number of bytes used to represent a packet header.
+         */
         const val HEADER_SIZE_BYTES = BODY_SIZE_BYTES + ID_SIZE_BYTES
     }
 }
