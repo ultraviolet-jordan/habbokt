@@ -33,6 +33,8 @@ import com.habbokt.packet.asm.room.flatproperty.FlatPropertyPacket
 import com.habbokt.packet.asm.room.flatproperty.FlatPropertyPacketAssembler
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacket
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacketAssembler
+import com.habbokt.packet.asm.room.roomad.RoomAdPacket
+import com.habbokt.packet.asm.room.roomad.RoomAdPacketAssembler
 import com.habbokt.packet.asm.room.roomready.RoomReadyPacket
 import com.habbokt.packet.asm.room.roomready.RoomReadyPacketAssembler
 import com.habbokt.packet.dasm.handshake.completediffiehandshake.CompleteDiffieHandshakeRequestPacket
@@ -127,6 +129,7 @@ object PacketModule : KotlinModule() {
             bindAssembler<InterstitialDataPacket, InterstitialDataPacketAssembler>()
             bindAssembler<RoomReadyPacket, RoomReadyPacketAssembler>()
             bindAssembler<FlatPropertyPacket, FlatPropertyPacketAssembler>()
+            bindAssembler<RoomAdPacket, RoomAdPacketAssembler>()
         }
     }
 
