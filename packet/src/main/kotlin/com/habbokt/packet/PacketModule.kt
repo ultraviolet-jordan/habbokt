@@ -31,6 +31,8 @@ import com.habbokt.packet.asm.navigater.navnodeinfo.NavNodeInfoPacket
 import com.habbokt.packet.asm.navigater.navnodeinfo.NavNodeInfoPacketAssembler
 import com.habbokt.packet.asm.room.flatproperty.FlatPropertyPacket
 import com.habbokt.packet.asm.room.flatproperty.FlatPropertyPacketAssembler
+import com.habbokt.packet.asm.room.floormap.FloorMapPacket
+import com.habbokt.packet.asm.room.floormap.FloorMapPacketAssembler
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacket
 import com.habbokt.packet.asm.room.interstitialdata.InterstitialDataPacketAssembler
 import com.habbokt.packet.asm.room.roomad.RoomAdPacket
@@ -135,6 +137,7 @@ object PacketModule : KotlinModule() {
             bindAssembler<RoomReadyPacket, RoomReadyPacketAssembler>()
             bindAssembler<FlatPropertyPacket, FlatPropertyPacketAssembler>()
             bindAssembler<RoomAdPacket, RoomAdPacketAssembler>()
+            bindAssembler<FloorMapPacket, FloorMapPacketAssembler>()
         }
     }
 
