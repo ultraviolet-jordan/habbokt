@@ -87,6 +87,11 @@ import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckPacketDisassem
 import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckPacketHandler
 import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckProxyPacket
 import com.habbokt.packet.dasm.handshake.versioncheck.VersionCheckProxyPacketHandler
+import com.habbokt.packet.dasm.navigator.getrecommendedrooms.GetRecommendedRoomsPacket
+import com.habbokt.packet.dasm.navigator.getrecommendedrooms.GetRecommendedRoomsPacketDisassembler
+import com.habbokt.packet.dasm.navigator.getrecommendedrooms.GetRecommendedRoomsPacketHandler
+import com.habbokt.packet.dasm.navigator.getrecommendedrooms.GetRecommendedRoomsProxyPacket
+import com.habbokt.packet.dasm.navigator.getrecommendedrooms.GetRecommendedRoomsProxyPacketHandler
 import com.habbokt.packet.dasm.navigator.navigate.NavigatePacket
 import com.habbokt.packet.dasm.navigator.navigate.NavigatePacketDisassembler
 import com.habbokt.packet.dasm.navigator.navigate.NavigatePacketHandler
@@ -180,6 +185,7 @@ object PacketModule : KotlinModule() {
             bindDisassembler<GetFloorMapPacketDisassembler>(id = 394)
             bindDisassembler<GHMapPacketDisassembler>(id = 60)
             bindDisassembler<GUsrsPacketDisassembler>(id = 61)
+            bindDisassembler<GetRecommendedRoomsPacketDisassembler>(id = 264)
         }
     }
 
@@ -200,6 +206,7 @@ object PacketModule : KotlinModule() {
             bindProxyHandler<GetFloorMapPacket, GetFloorMapProxyPacketHandler>()
             bindProxyHandler<GHMapPacket, GHMapProxyPacketHandler>()
             bindProxyHandler<GUsrsPacket, GUsrsProxyPacketHandler>()
+            bindProxyHandler<GetRecommendedRoomsPacket, GetRecommendedRoomsProxyPacketHandler>()
         }
     }
 
@@ -220,6 +227,7 @@ object PacketModule : KotlinModule() {
             bindHandler<GetFloorMapProxyPacket, GetFloorMapPacketHandler>()
             bindHandler<GHMapProxyPacket, GHMapPacketHandler>()
             bindHandler<GUsrsProxyPacket, GUsrsPacketHandler>()
+            bindHandler<GetRecommendedRoomsProxyPacket, GetRecommendedRoomsPacketHandler>()
         }
     }
 
