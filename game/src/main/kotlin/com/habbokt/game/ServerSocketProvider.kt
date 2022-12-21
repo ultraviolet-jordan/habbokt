@@ -21,7 +21,7 @@ import kotlinx.coroutines.asCoroutineDispatcher
 class ServerSocketProvider @Inject constructor(
     private val environment: ApplicationEnvironment
 ) : Provider<ServerSocket> {
-    override fun get(): ServerSocket = aSocket(SelectorManager(Dispatchers.IO)).tcp().bind(environment.config.host, environment.config.port) {
+    override fun get(): ServerSocket = aSocket(SelectorManager(Executors.newCachedThreadPool().asCoroutineDispatcher())).tcp().bind(environment.config.host, environment.config.port) {
         reuseAddress = true
     }
 }
