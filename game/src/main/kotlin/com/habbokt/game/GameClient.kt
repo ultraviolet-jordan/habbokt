@@ -20,7 +20,7 @@ import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
 import java.time.Duration
-import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.ArrayBlockingQueue
 import kotlin.reflect.KClass
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -41,8 +41,8 @@ class GameClient constructor(
 ) : Client {
     private val readChannel = socket.openReadChannel()
     private val writeChannel = socket.openWriteChannel(autoFlush = true)
-    private val readPool = ConcurrentHashMap.newKeySet<Pair<ProxyPacket, Handler<ProxyPacket>>>()
-    private val writePool = ByteBuffer.allocateDirect(4096)
+    private val readChannelPool = ArrayBlockingQueue<Pair<ProxyPacket, Handler<ProxyPacket>>>(8, true)
+    private val writeChannelPool = ByteBuffer.allocateDirect(4096)
     private lateinit var connectedPlayer: Player
 
     override suspend fun accept() {
@@ -62,7 +62,10 @@ class GameClient constructor(
                 // Get real packet handler from the proxy packet.
                 val handler = handlers[proxyPacket::class]?.handler ?: continue
                 // Add the handler to the read pool queue.
-                readPool.add(proxyPacket to handler)
+                withContext(Dispatchers.IO) {
+                    // Inserts the specified element at the tail of this queue, waiting for space to become available if the queue is full.
+                    readChannelPool.put(proxyPacket to handler)
+                }
             }
         } catch (exception: Exception) {
             withContext(Dispatchers.IO) { close() }
@@ -115,17 +118,18 @@ class GameClient constructor(
 
     override fun processReadPool() {
         if (!connected()) return
-        if (readPool.isEmpty()) return
-        readPool.onEach { it.second.block.invoke(it.first, this) }.clear()
+        if (readChannelPool.isEmpty()) return
+        // Atomically removes all the elements from this queue. The queue will be empty after this call returns.
+        readChannelPool.onEach { it.second.block.invoke(it.first, this) }.clear()
     }
 
     override fun writePacket(packet: Packet) {
         val (id, block) = assemblers[packet::class]?.assembler ?: return
-        writePool.apply {
+        writeChannelPool.apply {
             put(id.base64(ID_SIZE_BYTES)) // Put packet id.
             val position = position()
             block.invoke(packet, this) // Put packet body.
-            val size = writePool.position() - position
+            val size = writeChannelPool.position() - position
             put(1) // Put end packet.
             environment.log.info("Assembled write packet: Id=$id, Size=$size, $packet")
         }
@@ -133,13 +137,11 @@ class GameClient constructor(
 
     override fun processWritePool() {
         if (!connected()) return
-        // Don't process if the write channel is closed.
-        if (writeChannel.isClosedForWrite) return
-        // Don't process if nothing is written to the write pool.
-        if (writePool.position() == 0) return
+        if (writeChannel.isClosedForWrite) return // Don't process if the write channel is closed.
+        if (writeChannelPool.position() == 0) return // Don't process if nothing is written to the write pool.
         runBlocking(Dispatchers.IO) {
             // Write channel auto flushes on this write call.
-            writePool.flip().also { writeChannel.writeAvailable(it) }.clear()
+            writeChannelPool.flip().also { writeChannel.writeAvailable(it) }.clear()
         }
     }
 
