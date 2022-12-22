@@ -20,6 +20,7 @@ import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.utils.io.core.readBytes
 import java.nio.ByteBuffer
 import java.time.Duration
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.reflect.KClass
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -40,7 +41,7 @@ class GameClient constructor(
 ) : Client {
     private val readChannel = socket.openReadChannel()
     private val writeChannel = socket.openWriteChannel(autoFlush = true)
-    private val readPool = HashMap<ProxyPacket, Handler<ProxyPacket>>()
+    private val readPool = ConcurrentHashMap.newKeySet<Pair<ProxyPacket, Handler<ProxyPacket>>>()
     private val writePool = ByteBuffer.allocateDirect(4096)
     private lateinit var connectedPlayer: Player
 
@@ -61,9 +62,7 @@ class GameClient constructor(
                 // Get real packet handler from the proxy packet.
                 val handler = handlers[proxyPacket::class]?.handler ?: continue
                 // Add the handler to the read pool queue.
-                synchronized(readPool) {
-                    readPool[proxyPacket] = handler
-                }
+                readPool.add(proxyPacket to handler)
             }
         } catch (exception: Exception) {
             withContext(Dispatchers.IO) { close() }
@@ -117,9 +116,7 @@ class GameClient constructor(
     override fun processReadPool() {
         if (!connected()) return
         if (readPool.isEmpty()) return
-        synchronized(readPool) {
-            readPool.onEach { it.value.block.invoke(it.key, this) }.clear()
-        }
+        readPool.onEach { it.second.block.invoke(it.first, this) }.clear()
     }
 
     override fun writePacket(packet: Packet) {
