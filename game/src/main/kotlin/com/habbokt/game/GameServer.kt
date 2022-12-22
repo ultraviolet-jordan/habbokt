@@ -3,7 +3,6 @@ package com.habbokt.game
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.api.client.Client
-import com.habbokt.api.client.ConnectionPool
 import com.habbokt.api.server.Server
 import io.ktor.network.sockets.ServerSocket
 import io.ktor.server.application.ApplicationEnvironment
@@ -20,10 +19,9 @@ import kotlinx.coroutines.runBlocking
 class GameServer @Inject constructor(
     private val environment: ApplicationEnvironment,
     private val serverSocket: ServerSocket,
-    private val serverConfiguration: ServerConfiguration
+    private val serverConfiguration: ServerConfiguration,
+    private val connectionPool: ConnectionPool
 ) : Server {
-    private val gameClientPool = GameClientPool()
-
     override fun bind() = runBlocking {
         environment.log.info("Responding at ${environment.config.host}:${environment.config.port}...")
         while (true) {
@@ -31,18 +29,16 @@ class GameServer @Inject constructor(
             val client = GameClient(
                 environment = environment,
                 socket = socket,
-                gameServer = this@GameServer,
+                connectionPool = connectionPool,
                 assemblers = serverConfiguration.assemblers,
                 disassemblers = serverConfiguration.disassemblers,
                 handlers = serverConfiguration.handlers,
                 proxies = serverConfiguration.proxies
             )
-            if (gameClientPool.add(client)) {
+            if (connectionPool.add(client)) {
                 environment.log.info("Connection from ${socket.remoteAddress}")
                 launch(Dispatchers.IO) { client.accept() }
             }
         }
     }
-
-    override fun connectionPool(): ConnectionPool<Client> = gameClientPool
 }

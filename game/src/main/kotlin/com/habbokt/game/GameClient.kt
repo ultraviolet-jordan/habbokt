@@ -32,7 +32,7 @@ import kotlinx.coroutines.withContext
 class GameClient constructor(
     private val environment: ApplicationEnvironment,
     private val socket: Socket,
-    private val gameServer: GameServer,
+    private val connectionPool: ConnectionPool,
     private val assemblers: Map<KClass<*>, PacketAssembler<Packet>>,
     private val disassemblers: Map<Int, PacketDisassembler>,
     private val handlers: Map<KClass<*>, PacketHandler<ProxyPacket>>,
@@ -115,6 +115,7 @@ class GameClient constructor(
     }
 
     override fun processReadPool() {
+        if (!connected()) return
         if (readPool.isEmpty()) return
         synchronized(readPool) {
             readPool.onEach { it.value.block.invoke(it.key, this) }.clear()
@@ -134,6 +135,7 @@ class GameClient constructor(
     }
 
     override fun processWritePool() {
+        if (!connected()) return
         // Don't process if the write channel is closed.
         if (writeChannel.isClosedForWrite) return
         // Don't process if nothing is written to the write pool.
@@ -153,7 +155,7 @@ class GameClient constructor(
     override fun player(): Player? = if (!::connectedPlayer.isInitialized) null else connectedPlayer
 
     override fun close() {
-        if (!gameServer.connectionPool().drop(this)) {
+        if (!connectionPool.remove(this)) {
             environment.log.info("Disconnected client was not part of the connection pool: ${socket.remoteAddress}")
         }
         environment.log.info("Disconnected client: ${socket.remoteAddress}")

@@ -22,10 +22,12 @@ import kotlinx.coroutines.runBlocking
 class GameSynchronizer @Inject constructor(
     private val environment: ApplicationEnvironment,
     private val forkJoinPool: ForkJoinPool,
-    private val gameServer: GameServer
+    private val connectionPool: ConnectionPool
 ) : Synchronizer {
     private val executor = Executors.newSingleThreadScheduledExecutor()
     private val dispatcher = forkJoinPool.asCoroutineDispatcher()
+
+    private var tick = 0
 
     override fun start() {
         executor.scheduleAtFixedRate(this, 1, 1, TimeUnit.SECONDS)
@@ -42,19 +44,18 @@ class GameSynchronizer @Inject constructor(
         try {
             if (executor.isShutdown || forkJoinPool.isShutdown) return
 
-            // Returns a list of connected clients to the game server.
-            val clients = gameServer.connectionPool().collect()
-
             val time = measureTime {
                 runBlocking(dispatcher) {
                     // Asynchronously process all connected clients read pools.
-                    clients.map { async { it.processReadPool() } }.awaitAll()
+                    connectionPool.map { async { it.processReadPool() } }.awaitAll()
                     // Asynchronously process all connected clients write pools.
-                    clients.map { async { it.processWritePool() } }.awaitAll()
+                    connectionPool.map { async { it.processWritePool() } }.awaitAll()
                 }
             }
 
-            environment.log.info("Game Synchronizer: Time: $time, Threads: ${forkJoinPool.parallelism}, Clients: ${clients.size}")
+            tick++
+
+            environment.log.info("Game Synchronizer: Time: $time, Threads: ${forkJoinPool.parallelism}, Clients: ${connectionPool.size}, Tick: $tick")
         } catch (exception: Exception) {
             environment.log.error(exception.stackTraceToString())
         }
