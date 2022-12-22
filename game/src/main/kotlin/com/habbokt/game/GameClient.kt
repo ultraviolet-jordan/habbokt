@@ -68,7 +68,7 @@ class GameClient constructor(
                 }
             }
         } catch (exception: Exception) {
-            withContext(Dispatchers.IO) { close() }
+            close()
             environment.log.error(exception.stackTraceToString())
         }
     }
@@ -120,18 +120,28 @@ class GameClient constructor(
         if (!connected()) return
         if (readChannelPool.isEmpty()) return
         // Atomically removes all the elements from this queue. The queue will be empty after this call returns.
-        readChannelPool.onEach { it.second.block.invoke(it.first, this) }.clear()
+        try {
+            readChannelPool.onEach { it.second.block.invoke(it.first, this) }.clear()
+        } catch (exception: Exception) {
+            close()
+            environment.log.error(exception.stackTraceToString())
+        }
     }
 
     override fun writePacket(packet: Packet) {
         val (id, block) = assemblers[packet::class]?.assembler ?: return
-        writeChannelPool.apply {
-            put(id.base64(ID_SIZE_BYTES)) // Put packet id.
-            val position = position()
-            block.invoke(packet, this) // Put packet body.
-            val size = writeChannelPool.position() - position
-            put(1) // Put end packet.
-            environment.log.info("Assembled write packet: Id=$id, Size=$size, $packet")
+        try {
+            writeChannelPool.apply {
+                put(id.base64(ID_SIZE_BYTES)) // Put packet id.
+                val position = position()
+                block.invoke(packet, this) // Put packet body.
+                val size = writeChannelPool.position() - position
+                put(1) // Put end packet.
+                environment.log.info("Assembled write packet: Id=$id, Size=$size, $packet")
+            }
+        } catch (exception: Exception) {
+            close()
+            environment.log.error(exception.stackTraceToString())
         }
     }
 
@@ -139,9 +149,14 @@ class GameClient constructor(
         if (!connected()) return
         if (writeChannel.isClosedForWrite) return // Don't process if the write channel is closed.
         if (writeChannelPool.position() == 0) return // Don't process if nothing is written to the write pool.
-        runBlocking(Dispatchers.IO) {
-            // Write channel auto flushes on this write call.
-            writeChannelPool.flip().also { writeChannel.writeAvailable(it) }.clear()
+        try {
+            runBlocking(Dispatchers.IO) {
+                // Write channel auto flushes on this write call.
+                writeChannelPool.flip().also { writeChannel.writeAvailable(it) }.clear()
+            }
+        } catch (exception: Exception) {
+            close()
+            environment.log.error(exception.stackTraceToString())
         }
     }
 
