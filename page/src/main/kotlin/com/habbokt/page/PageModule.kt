@@ -20,6 +20,7 @@ import com.habbokt.templating.TemplatingModule
 import com.habbokt.xml.XMLModule
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMultibinder
+import io.ktor.client.HttpClient
 
 /**
  * @author Jordan Abraham
@@ -31,6 +32,8 @@ object PageModule : KotlinModule() {
         install(SwfModule)
         install(TemplatingModule)
         install(XMLModule)
+
+        bind<HttpClient>().toProvider<HttpClientProvider>()
 
         val routes = KotlinMultibinder.newSetBinder<PageRouting>(kotlinBinder)
         // Account

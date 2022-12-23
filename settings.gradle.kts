@@ -29,6 +29,8 @@ dependencyResolutionManagement {
             library("ktor-server-call-logging", "io.ktor", "ktor-server-call-logging").versionRef("ktor")
             library("ktor-server-sessions", "io.ktor", "ktor-server-sessions").versionRef("ktor")
             library("ktor-server-auth", "io.ktor", "ktor-server-auth").versionRef("ktor")
+            library("ktor-client-core", "io.ktor", "ktor-client-core").versionRef("ktor")
+            library("ktor-client-java", "io.ktor", "ktor-client-java").versionRef("ktor")
 
             // Database Dependencies
             library("exposed-core", "org.jetbrains.exposed", "exposed-core").versionRef("exposed")
@@ -54,6 +56,7 @@ dependencyResolutionManagement {
 
             // Dependency bundles
             bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging", "ktor-server-sessions", "ktor-server-auth"))
+            bundle("ktor-client", listOf("ktor-client-core", "ktor-client-java"))
             bundle("database", listOf("exposed-core", "exposed-dao", "exposed-jdbc", "h2database", "hikaricp"))
             bundle("jackson", listOf("jackson-module-kotlin", "jackson-dataformat-xml", "jackson-module-parameter-names"))
 
