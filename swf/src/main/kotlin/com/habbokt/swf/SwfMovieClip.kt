@@ -5,7 +5,6 @@ import com.flagstone.transform.movieclip.DefineMovieClip
 /**
  * @author Jordan Abraham
  */
-@JvmInline
-value class SwfMovieClip(
+data class SwfMovieClip(
     val defineMovieClip: DefineMovieClip
 )

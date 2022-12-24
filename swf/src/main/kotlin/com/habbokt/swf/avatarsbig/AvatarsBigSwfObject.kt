@@ -4,7 +4,6 @@ import com.habbokt.swf.SwfExport
 import com.habbokt.swf.SwfImage
 import com.habbokt.swf.SwfImage2
 import com.habbokt.swf.SwfMovieClip
-import com.habbokt.swf.SwfObjectType
 import com.habbokt.swf.SwfShape
 
 /**
@@ -16,4 +15,4 @@ data class AvatarsBigSwfObject(
     val image2: SwfImage2?,
     val shape: SwfShape,
     val clip: SwfMovieClip
-) : SwfObjectType
+)

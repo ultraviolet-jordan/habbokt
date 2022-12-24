@@ -3,7 +3,6 @@ package com.habbokt.swf.habboregistration
 import com.habbokt.swf.SwfExport
 import com.habbokt.swf.SwfImage2
 import com.habbokt.swf.SwfMovieClip
-import com.habbokt.swf.SwfObjectType
 import com.habbokt.swf.SwfShape
 
 /**
@@ -14,4 +13,4 @@ data class HabboRegistrationSwfObject(
     val image: SwfImage2,
     val shape: SwfShape,
     val clip: SwfMovieClip
-) : SwfObjectType
+)
