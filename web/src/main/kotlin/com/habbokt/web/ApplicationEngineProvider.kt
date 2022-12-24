@@ -15,5 +15,7 @@ import io.ktor.server.netty.NettyApplicationEngine
 class ApplicationEngineProvider @Inject constructor(
     private val applicationEnvironment: ApplicationEnvironment
 ) : Provider<NettyApplicationEngine> {
-    override fun get(): NettyApplicationEngine = NettyApplicationEngine(applicationEnvironment as ApplicationEngineEnvironment) { loadCommonConfiguration(applicationEnvironment.config) }
+    override fun get(): NettyApplicationEngine = NettyApplicationEngine(applicationEnvironment as ApplicationEngineEnvironment) {
+        loadCommonConfiguration(applicationEnvironment.config)
+    }
 }
