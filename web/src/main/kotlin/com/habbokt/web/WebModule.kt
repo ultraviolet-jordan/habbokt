@@ -1,16 +1,20 @@
 package com.habbokt.web
 
 import com.habbokt.db.DatabaseConfiguration
-import com.habbokt.db.DatabaseModule
 import dev.misfitlabs.kotlinguice4.KotlinModule
+import io.ktor.server.application.ApplicationEnvironment
+import io.ktor.server.netty.NettyApplicationEngine
 
 /**
  * @author Jordan Abraham
  */
 class WebModule(
-    private val databaseConfiguration: DatabaseConfiguration
+    private val args: Array<String>
 ) : KotlinModule() {
     override fun configure() {
-        install(DatabaseModule(databaseConfiguration))
+        bind<Array<String>>().toInstance(args)
+        bind<ApplicationEnvironment>().toProvider<ApplicationEnvironmentProvider>()
+        bind<NettyApplicationEngine>().toProvider<ApplicationEngineProvider>()
+        bind<DatabaseConfiguration>().toProvider<DatabaseConfigurationProvider>()
     }
 }

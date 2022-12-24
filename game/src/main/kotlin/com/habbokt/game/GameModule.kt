@@ -1,7 +1,6 @@
 package com.habbokt.game
 
 import com.habbokt.db.DatabaseConfiguration
-import com.habbokt.db.DatabaseModule
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import io.ktor.network.selector.SelectorManager
 import io.ktor.network.sockets.ServerSocket
@@ -13,16 +12,15 @@ import java.util.concurrent.ForkJoinPool
  * @author Jordan Abraham
  */
 class GameModule(
-    private val applicationEngine: NettyApplicationEngine,
-    private val databaseConfiguration: DatabaseConfiguration
+    private val args: Array<String>
 ) : KotlinModule() {
     override fun configure() {
-        install(DatabaseModule(databaseConfiguration))
-
-        bind<NettyApplicationEngine>().toInstance(applicationEngine)
+        bind<Array<String>>().toInstance(args)
+        bind<ApplicationEnvironment>().toProvider<ApplicationEnvironmentProvider>()
+        bind<NettyApplicationEngine>().toProvider<ApplicationEngineProvider>()
+        bind<DatabaseConfiguration>().toProvider<DatabaseConfigurationProvider>()
         bind<SelectorManager>().toProvider<ServerSocketSelectorProvider>()
         bind<ServerSocket>().toProvider<ServerSocketProvider>()
-        bind<ApplicationEnvironment>().toProvider<ApplicationEnvironmentProvider>()
         bind<ForkJoinPool>().toProvider<ForkJoinPoolProvider>()
     }
 }

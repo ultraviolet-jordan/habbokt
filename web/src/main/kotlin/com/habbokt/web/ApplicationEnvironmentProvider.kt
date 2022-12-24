@@ -1,4 +1,4 @@
-package com.habbokt.game
+package com.habbokt.web
 
 import com.google.inject.Inject
 import com.google.inject.Provider

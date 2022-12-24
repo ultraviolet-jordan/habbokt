@@ -3,7 +3,7 @@ package com.habbokt.game
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.api.threading.Synchronizer
-import io.ktor.server.netty.NettyApplicationEngine
+import io.ktor.server.application.ApplicationEnvironment
 import java.util.concurrent.Executors
 import java.util.concurrent.ForkJoinPool
 import java.util.concurrent.TimeUnit
@@ -19,7 +19,7 @@ import kotlinx.coroutines.runBlocking
  */
 @Singleton
 class GameSynchronizer @Inject constructor(
-    private val applicationEngine: NettyApplicationEngine,
+    private val applicationEnvironment: ApplicationEnvironment,
     private val forkJoinPool: ForkJoinPool,
     private val connectionPool: ConnectionPool
 ) : Synchronizer {
@@ -36,7 +36,7 @@ class GameSynchronizer @Inject constructor(
         executor.shutdown()
         dispatcher.close()
         forkJoinPool.shutdown()
-        applicationEngine.environment.log.info("Stopped the game synchronizer.")
+        applicationEnvironment.log.info("Stopped the game synchronizer.")
     }
 
     @OptIn(ExperimentalTime::class)
@@ -55,9 +55,9 @@ class GameSynchronizer @Inject constructor(
 
             tick++
 
-            applicationEngine.environment.log.info("Game Synchronizer: Time: $time, Threads: ${forkJoinPool.parallelism}, Clients: ${connectionPool.size}, Tick: $tick")
+            applicationEnvironment.log.info("Game Synchronizer: Time: $time, Threads: ${forkJoinPool.parallelism}, Clients: ${connectionPool.size}, Tick: $tick")
         } catch (exception: Exception) {
-            applicationEngine.environment.log.error(exception.stackTraceToString())
+            applicationEnvironment.log.error(exception.stackTraceToString())
         }
     }
 }

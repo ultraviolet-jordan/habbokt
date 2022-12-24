@@ -5,9 +5,9 @@ import com.google.inject.Singleton
 import com.habbokt.api.server.Server
 import io.ktor.network.selector.SelectorManager
 import io.ktor.network.sockets.ServerSocket
+import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.server.application.host
 import io.ktor.server.application.port
-import io.ktor.server.netty.NettyApplicationEngine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -21,14 +21,14 @@ class GameServer @Inject constructor(
     private val selectorManager: SelectorManager,
     private val serverConfiguration: ServerConfiguration,
     private val connectionPool: ConnectionPool,
-    private val applicationEngine: NettyApplicationEngine
+    private val applicationEnvironment: ApplicationEnvironment
 ) : Server {
     override fun bind() = runBlocking {
-        applicationEngine.environment.log.info("Responding at ${applicationEngine.environment.config.host}:${applicationEngine.environment.config.port}...")
+        applicationEnvironment.log.info("Responding at ${applicationEnvironment.config.host}:${applicationEnvironment.config.port}...")
         while (connectionPool.accepting()) {
             val socket = serverSocket.accept()
             val client = GameClient(
-                environment = applicationEngine.environment,
+                environment = applicationEnvironment,
                 socket = socket,
                 connectionPool = connectionPool,
                 assemblers = serverConfiguration.assemblers,
@@ -37,7 +37,7 @@ class GameServer @Inject constructor(
                 proxies = serverConfiguration.proxies
             )
             if (connectionPool.add(client)) {
-                applicationEngine.environment.log.info("Connection from ${socket.remoteAddress}")
+                applicationEnvironment.log.info("Connection from ${socket.remoteAddress}")
                 launch(Dispatchers.IO) { client.accept() }
             }
         }
@@ -45,8 +45,8 @@ class GameServer @Inject constructor(
 
     override fun close() {
         connectionPool.dropAll().clear()
-        applicationEngine.environment.log.info("Closed the game server connection pool.")
+        applicationEnvironment.log.info("Closed the game server connection pool.")
         selectorManager.close()
-        applicationEngine.environment.log.info("Closed the selector manager.")
+        applicationEnvironment.log.info("Closed the selector manager.")
     }
 }

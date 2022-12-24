@@ -11,7 +11,7 @@ import java.util.concurrent.ForkJoinPool
  */
 @Singleton
 class ForkJoinPoolProvider @Inject constructor(
-    private val environment: ApplicationEnvironment
+    private val applicationEnvironment: ApplicationEnvironment
 ) : Provider<ForkJoinPool> {
-    override fun get(): ForkJoinPool = ForkJoinPool(environment.config.property("game.cores").getString().toInt())
+    override fun get(): ForkJoinPool = ForkJoinPool(applicationEnvironment.config.property("game.cores").getString().toInt())
 }
