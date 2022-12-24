@@ -45,8 +45,6 @@ class GameServer @Inject constructor(
 
     override fun close() {
         connectionPool.dropAll().clear()
-        applicationEnvironment.log.info("Closed the game server connection pool.")
         selectorManager.close()
-        applicationEnvironment.log.info("Closed the selector manager.")
     }
 }

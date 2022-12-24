@@ -36,7 +36,6 @@ class GameSynchronizer @Inject constructor(
         executor.shutdown()
         dispatcher.close()
         forkJoinPool.shutdown()
-        applicationEnvironment.log.info("Stopped the game synchronizer.")
     }
 
     @OptIn(ExperimentalTime::class)

@@ -1,6 +1,7 @@
 package com.habbokt.game
 
 import com.habbokt.db.HikariDatabase
+import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.server.engine.stop
 import io.ktor.server.netty.NettyApplicationEngine
 import java.util.concurrent.TimeUnit
@@ -9,17 +10,21 @@ import java.util.concurrent.TimeUnit
  * @author Jordan Abraham
  */
 class ShutdownHook(
+    private val applicationEnvironment: ApplicationEnvironment,
     private val applicationEngine: NettyApplicationEngine,
     private val database: HikariDatabase,
     private val gameServer: GameServer,
     private val gameSynchronizer: GameSynchronizer
 ) : Thread() {
     override fun run() {
-        applicationEngine.environment.log.info("Running shutdown hook...")
+        applicationEnvironment.log.info("Running shutdown hook...")
+        applicationEnvironment.log.info("Shutting down the game server...")
         gameServer.close()
+        applicationEnvironment.log.info("Shutting down the game synchronizer...")
         gameSynchronizer.stop()
+        applicationEnvironment.log.info("Shutting down the database connection...")
         database.close()
-        applicationEngine.environment.log.info("Stopping the application engine...")
+        applicationEnvironment.log.info("Shutting down the application engine...")
         applicationEngine.stop(3, 5, TimeUnit.SECONDS)
     }
 }

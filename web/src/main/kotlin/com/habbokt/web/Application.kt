@@ -11,6 +11,7 @@ import com.habbokt.web.plugin.installSessionsPlugin
 import com.habbokt.web.plugin.installStatusPagesPlugin
 import dev.misfitlabs.kotlinguice4.findBindingsByType
 import dev.misfitlabs.kotlinguice4.getInstance
+import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.server.netty.NettyApplicationEngine
 import io.ktor.server.routing.routing
 
@@ -24,6 +25,7 @@ fun main(args: Array<String>) {
     )
 
     val database = Guice.createInjector(DatabaseModule(injector.getInstance())).getInstance<HikariDatabase>()
+    val applicationEnvironment = injector.getInstance<ApplicationEnvironment>()
     val applicationEngine = injector.getInstance<NettyApplicationEngine>()
 
     with(applicationEngine.application) {
@@ -33,7 +35,7 @@ fun main(args: Array<String>) {
         installStatusPagesPlugin()
     }
 
-    Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEngine, database))
+    Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment, applicationEngine, database))
 
     // This is temporary for now the web server handles creating the db.
     database.connect()
