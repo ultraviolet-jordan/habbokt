@@ -18,6 +18,5 @@ dependencies {
 }
 
 application {
-    mainClass.set("io.ktor.server.netty.EngineMain")
-    applicationDefaultJvmArgs = listOf("-XX:+UnlockExperimentalVMOptions", "-XX:+UseZGC")
+    mainClass.set("com.habbokt.web.ApplicationKt")
 }

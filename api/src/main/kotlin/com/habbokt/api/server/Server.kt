@@ -5,4 +5,5 @@ package com.habbokt.api.server
  */
 interface Server {
     fun bind()
+    fun close()
 }

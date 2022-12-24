@@ -8,4 +8,8 @@ import java.util.concurrent.ConcurrentHashMap
  * @author Jordan Abraham
  */
 @Singleton
-class ConnectionPool : MutableSet<Client> by ConcurrentHashMap.newKeySet()
+class ConnectionPool : MutableSet<Client> by ConcurrentHashMap.newKeySet() {
+    private var accepting = true
+    fun dropAll(): ConnectionPool = onEach { it.close() }.also { accepting = false }
+    fun accepting(): Boolean = accepting
+}

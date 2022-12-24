@@ -43,6 +43,7 @@ class GameClient constructor(
     private val writeChannel = socket.openWriteChannel(autoFlush = true)
     private val readChannelPool = ArrayBlockingQueue<Pair<ProxyPacket, Handler<ProxyPacket>>>(8, true)
     private val writeChannelPool = ByteBuffer.allocateDirect(4096)
+    private val remoteAddress = socket.remoteAddress
     private lateinit var connectedPlayer: Player
 
     override suspend fun accept() {
@@ -170,14 +171,14 @@ class GameClient constructor(
 
     override fun close() {
         if (!connectionPool.remove(this)) {
-            environment.log.info("Disconnected client was not part of the connection pool: ${socket.remoteAddress}")
+            environment.log.info("Disconnected client was not part of the connection pool: $remoteAddress")
         }
-        environment.log.info("Disconnected client: ${socket.remoteAddress}")
+        environment.log.info("Disconnected client: $remoteAddress")
         socket.close()
     }
 
     override fun connected(): Boolean = !socket.isClosed
-    override fun socketAddress(): SocketAddress = socket.remoteAddress
+    override fun socketAddress(): SocketAddress = remoteAddress
 
     private companion object {
         /**
