@@ -31,7 +31,7 @@ import kotlinx.coroutines.withContext
  * @author Jordan Abraham
  */
 class GameClient constructor(
-    private val environment: ApplicationEnvironment,
+    private val applicationEnvironment: ApplicationEnvironment,
     private val socket: Socket,
     private val connectionPool: ConnectionPool,
     private val assemblers: Map<KClass<*>, PacketAssembler<Packet>>,
@@ -70,7 +70,7 @@ class GameClient constructor(
             }
         } catch (exception: Exception) {
             close()
-            environment.log.error(exception.stackTraceToString())
+            applicationEnvironment.log.error(exception.stackTraceToString())
         }
     }
 
@@ -106,13 +106,13 @@ class GameClient constructor(
                 // Require that the body was fully read from disassembler.
                 require(body.endOfInput)
                 body.release()
-                environment.log.info("Disassembled read packet: Id=$id, Size=$size, $it")
+                applicationEnvironment.log.info("Disassembled read packet: Id=$id, Size=$size, $it")
             }
             ?: run {
                 // Discard the body if the disassembler was not found for the packet.
                 body.discard(body.remaining)
                 body.release()
-                environment.log.info("Discarded read packet: Id=$id, Size=$size")
+                applicationEnvironment.log.info("Discarded read packet: Id=$id, Size=$size")
                 return@run null
             }
     }
@@ -125,7 +125,7 @@ class GameClient constructor(
             readChannelPool.onEach { it.second.block.invoke(it.first, this) }.clear()
         } catch (exception: Exception) {
             close()
-            environment.log.error(exception.stackTraceToString())
+            applicationEnvironment.log.error(exception.stackTraceToString())
         }
     }
 
@@ -138,11 +138,11 @@ class GameClient constructor(
                 block.invoke(packet, this) // Put packet body.
                 val size = writeChannelPool.position() - position
                 put(1) // Put end packet.
-                environment.log.info("Assembled write packet: Id=$id, Size=$size, $packet")
+                applicationEnvironment.log.info("Assembled write packet: Id=$id, Size=$size, $packet")
             }
         } catch (exception: Exception) {
             close()
-            environment.log.error(exception.stackTraceToString())
+            applicationEnvironment.log.error(exception.stackTraceToString())
         }
     }
 
@@ -157,7 +157,7 @@ class GameClient constructor(
             }
         } catch (exception: Exception) {
             close()
-            environment.log.error(exception.stackTraceToString())
+            applicationEnvironment.log.error(exception.stackTraceToString())
         }
     }
 
@@ -171,9 +171,9 @@ class GameClient constructor(
 
     override fun close() {
         if (!connectionPool.remove(this)) {
-            environment.log.info("Disconnected client was not part of the connection pool: $remoteAddress")
+            applicationEnvironment.log.info("Disconnected client was not part of the connection pool: $remoteAddress")
         }
-        environment.log.info("Disconnected client: $remoteAddress")
+        applicationEnvironment.log.info("Disconnected client: $remoteAddress")
         socket.close()
     }
 

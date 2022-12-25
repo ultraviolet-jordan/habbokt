@@ -2,8 +2,8 @@ package com.habbokt.game
 
 import com.habbokt.db.HikariDatabase
 import io.ktor.server.application.ApplicationEnvironment
+import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.stop
-import io.ktor.server.netty.NettyApplicationEngine
 import java.util.concurrent.TimeUnit
 
 /**
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
  */
 class ShutdownHook(
     private val applicationEnvironment: ApplicationEnvironment,
-    private val applicationEngine: NettyApplicationEngine,
+    private val applicationEngine: ApplicationEngine,
     private val database: HikariDatabase,
     private val gameServer: GameServer,
     private val gameSynchronizer: GameSynchronizer

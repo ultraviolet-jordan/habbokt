@@ -12,7 +12,7 @@ import com.habbokt.web.plugin.installStatusPagesPlugin
 import dev.misfitlabs.kotlinguice4.findBindingsByType
 import dev.misfitlabs.kotlinguice4.getInstance
 import io.ktor.server.application.ApplicationEnvironment
-import io.ktor.server.netty.NettyApplicationEngine
+import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.routing.routing
 
 /**
@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
 
     val database = Guice.createInjector(DatabaseModule(injector.getInstance())).getInstance<HikariDatabase>()
     val applicationEnvironment = injector.getInstance<ApplicationEnvironment>()
-    val applicationEngine = injector.getInstance<NettyApplicationEngine>()
+    val applicationEngine = injector.getInstance<ApplicationEngine>()
 
     with(applicationEngine.application) {
         installCallLoggingPlugin()

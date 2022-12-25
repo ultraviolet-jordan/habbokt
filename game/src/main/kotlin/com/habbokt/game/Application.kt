@@ -6,7 +6,7 @@ import com.habbokt.db.HikariDatabase
 import com.habbokt.packet.PacketModule
 import dev.misfitlabs.kotlinguice4.getInstance
 import io.ktor.server.application.ApplicationEnvironment
-import io.ktor.server.netty.NettyApplicationEngine
+import io.ktor.server.engine.ApplicationEngine
 
 /**
  * @author Jordan Abraham
@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
     )
 
     val applicationEnvironment = injector.getInstance<ApplicationEnvironment>()
-    val applicationEngine = injector.getInstance<NettyApplicationEngine>()
+    val applicationEngine = injector.getInstance<ApplicationEngine>()
     val gameServer = injector.getInstance<GameServer>()
     val gameSynchronizer = injector.getInstance<GameSynchronizer>()
     val database =  Guice.createInjector(DatabaseModule(injector.getInstance())).getInstance<HikariDatabase>()

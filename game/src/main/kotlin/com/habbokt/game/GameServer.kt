@@ -28,7 +28,7 @@ class GameServer @Inject constructor(
         while (connectionPool.accepting()) {
             val socket = serverSocket.accept()
             val client = GameClient(
-                environment = applicationEnvironment,
+                applicationEnvironment = applicationEnvironment,
                 socket = socket,
                 connectionPool = connectionPool,
                 assemblers = serverConfiguration.assemblers,

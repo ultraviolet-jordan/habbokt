@@ -5,7 +5,7 @@ import dev.misfitlabs.kotlinguice4.KotlinModule
 import io.ktor.network.selector.SelectorManager
 import io.ktor.network.sockets.ServerSocket
 import io.ktor.server.application.ApplicationEnvironment
-import io.ktor.server.netty.NettyApplicationEngine
+import io.ktor.server.engine.ApplicationEngine
 import java.util.concurrent.ForkJoinPool
 
 /**
@@ -17,7 +17,7 @@ class GameModule(
     override fun configure() {
         bind<Array<String>>().toInstance(args)
         bind<ApplicationEnvironment>().toProvider<ApplicationEnvironmentProvider>()
-        bind<NettyApplicationEngine>().toProvider<ApplicationEngineProvider>()
+        bind<ApplicationEngine>().toProvider<ApplicationEngineProvider>()
         bind<DatabaseConfiguration>().toProvider<DatabaseConfigurationProvider>()
         bind<SelectorManager>().toProvider<ServerSocketSelectorProvider>()
         bind<ServerSocket>().toProvider<ServerSocketProvider>()
