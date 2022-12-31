@@ -15,12 +15,10 @@ import org.jetbrains.exposed.sql.update
  */
 @Singleton
 class PlayersServiceDelegate : PlayersService {
-    override suspend fun player(id: Int): PlayerDAO? = query {
+    override suspend fun player(id: Int): PlayerDAO? = query(
         PlayersTable
             .select { PlayersTable.id eq id }
-            .map(::resultToPlayer)
-            .singleOrNull()
-    }
+            .map(::resultToPlayer)::singleOrNull)
 
     override suspend fun createPlayer(
         name: String,
@@ -69,12 +67,10 @@ class PlayersServiceDelegate : PlayersService {
             ?.id
     }
 
-    override suspend fun ssoTicket(ssoTicket: String): PlayerDAO? = query {
+    override suspend fun ssoTicket(ssoTicket: String): PlayerDAO? = query(
         PlayersTable
             .select { PlayersTable.ssoTicket eq ssoTicket }
-            .map(::resultToPlayer)
-            .singleOrNull()
-    }
+            .map(::resultToPlayer)::singleOrNull)
 
     private fun resultToPlayer(row: ResultRow) = PlayerDAO(
         id = row[PlayersTable.id],

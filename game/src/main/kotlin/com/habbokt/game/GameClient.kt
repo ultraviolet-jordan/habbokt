@@ -162,9 +162,7 @@ class GameClient constructor(
     }
 
     override fun authenticate(userId: Int) {
-        this.connectedPlayer = GamePlayer(userId, this@GameClient).also {
-            it.login()
-        }
+        this.connectedPlayer = GamePlayer(userId, client = this).also(Player::login)
     }
 
     override fun player(): Player? = if (!::connectedPlayer.isInitialized) null else connectedPlayer

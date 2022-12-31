@@ -15,12 +15,10 @@ import org.jetbrains.exposed.sql.update
  */
 @Singleton
 class RoomsServiceDelegate : RoomsService {
-    override suspend fun room(id: Int): RoomDAO? = query {
+    override suspend fun room(id: Int): RoomDAO? = query(
         RoomsTable
             .select { RoomsTable.id eq id }
-            .map(::resultToRoom)
-            .singleOrNull()
-    }
+            .map(::resultToRoom)::singleOrNull)
 
     override suspend fun createRoom(
         categoryId: Int,

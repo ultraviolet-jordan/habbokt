@@ -10,5 +10,5 @@ import com.habbokt.packet.buf.putString
  */
 @Singleton
 class HeightMapPacketAssembler : PacketAssembler<HeightMapPacket>(Assembler(id = 31) {
-    heightMap.rows.forEach { row -> it.putString(row) }
+    heightMap.rows.forEach(it::putString)
 })

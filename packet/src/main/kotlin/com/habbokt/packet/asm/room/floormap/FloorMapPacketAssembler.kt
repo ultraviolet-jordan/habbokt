@@ -10,5 +10,5 @@ import com.habbokt.packet.buf.putString
  */
 @Singleton
 class FloorMapPacketAssembler : PacketAssembler<FloorMapPacket>(Assembler(id = 470) {
-    heightMap.rows.forEach { row -> it.putString(row) }
+    heightMap.rows.forEach(it::putString)
 })

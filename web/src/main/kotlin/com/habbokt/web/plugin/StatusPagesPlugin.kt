@@ -30,7 +30,7 @@ fun Application.installStatusPagesPlugin() {
             call.respondRedirect("/")
         }
         status(HttpStatusCode.NotFound) { call, _ ->
-            if (assets.any { call.request.uri.startsWith(it) }) return@status
+            if (assets.any(call.request.uri::startsWith)) return@status
             call.respondRedirect("/")
         }
     }
