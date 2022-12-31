@@ -19,12 +19,12 @@ import com.habbokt.swf.SwfShape
 @Singleton
 internal class HabboRegistrationSwfProvider @Inject constructor(
     private val habboRegistrationSwfMovie: HabboRegistrationSwfMovie
-) : SwfMovieDataProvider<HabboRegistrationSwf, HabboRegistrationSwfObject> {
-    override fun dataMapping(): List<HabboRegistrationSwfObject> = habboRegistrationSwfMovie
+) : SwfMovieDataProvider<HabboRegistrationSwf> {
+    override fun get(): HabboRegistrationSwf = habboRegistrationSwfMovie
         .movie
         .objects
-        .drop(19)
-        .chunked(4)
+        .drop(n = 19)
+        .chunked(size = 4)
         .filterGroups()
         .map {
             HabboRegistrationSwfObject(
@@ -34,8 +34,7 @@ internal class HabboRegistrationSwfProvider @Inject constructor(
                 clip = SwfMovieClip(it[3] as DefineMovieClip)
             )
         }
-
-    override fun get(): HabboRegistrationSwf = HabboRegistrationSwf(dataMapping())
+        .let(::HabboRegistrationSwf)
 
     private fun List<List<MovieTag>>.filterGroups(): List<List<MovieTag>> = filter {
         it.size >= 4 && it[0] is Export && it[1] is DefineImage2 && it[2] is DefineShape && it[3] is DefineMovieClip

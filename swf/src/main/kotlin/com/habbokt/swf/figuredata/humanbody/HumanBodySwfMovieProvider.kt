@@ -10,10 +10,8 @@ import java.io.File
  */
 @Singleton
 internal class HumanBodySwfMovieProvider : Provider<HumanBodySwfMovie> {
-    override fun get(): HumanBodySwfMovie {
-        val movie = Movie().apply {
+    override fun get(): HumanBodySwfMovie = Movie()
+        .apply {
             decodeFromFile(File(this::class.java.classLoader.getResource("www/flash/figuredata/hh_human_body.swf")!!.toURI()))
-        }
-        return HumanBodySwfMovie(movie)
-    }
+        }.let(::HumanBodySwfMovie)
 }

@@ -21,12 +21,12 @@ import com.habbokt.swf.SwfShape
 @Singleton
 internal class AvatarsBigSwfProvider @Inject constructor(
     private val avatarsBigSwfMovie: AvatarsBigSwfMovie
-) : SwfMovieDataProvider<AvatarsBigSwf, AvatarsBigSwfObject> {
-    override fun dataMapping(): List<AvatarsBigSwfObject> = avatarsBigSwfMovie
+) : SwfMovieDataProvider<AvatarsBigSwf> {
+    override fun get(): AvatarsBigSwf = avatarsBigSwfMovie
         .movie
         .objects
-        .drop(6)
-        .chunked(4)
+        .drop(n = 6)
+        .chunked(size = 4)
         .filterAvatarGroups()
         .map {
             val isImage2 = it[1] is DefineImage2
@@ -38,8 +38,7 @@ internal class AvatarsBigSwfProvider @Inject constructor(
                 clip = SwfMovieClip(it[3] as DefineMovieClip)
             )
         }
-
-    override fun get(): AvatarsBigSwf = AvatarsBigSwf(dataMapping())
+        .let(::AvatarsBigSwf)
 
     private fun List<List<MovieTag>>.filterAvatarGroups(): List<List<MovieTag>> = filter {
         it.size >= 4 && it[0] is Export && (it[1] is DefineImage2 || it[1] is DefineImage) && it[2] is DefineShape && it[3] is DefineMovieClip

@@ -19,12 +19,12 @@ import com.habbokt.swf.SwfShape
 @Singleton
 internal class BadgeEditorSwfProvider @Inject constructor(
     private val badgeEditorSwfMovie: BadgeEditorSwfMovie
-) : SwfMovieDataProvider<BadgeEditorSwf, BadgeEditorSwfObject> {
-    override fun dataMapping(): List<BadgeEditorSwfObject> = badgeEditorSwfMovie
+) : SwfMovieDataProvider<BadgeEditorSwf> {
+    override fun get(): BadgeEditorSwf = badgeEditorSwfMovie
         .movie
         .objects
-        .drop(3)
-        .chunked(3)
+        .drop(n = 3)
+        .chunked(size = 3)
         .filterBadgeGroups()
         .map {
             val isImage2 = it[0] is DefineImage2
@@ -35,8 +35,7 @@ internal class BadgeEditorSwfProvider @Inject constructor(
                 clip = SwfMovieClip(it[2] as DefineMovieClip)
             )
         }
-
-    override fun get(): BadgeEditorSwf = BadgeEditorSwf(dataMapping())
+        .let(::BadgeEditorSwf)
 
     private fun List<List<MovieTag>>.filterBadgeGroups(): List<List<MovieTag>> = filter {
         it.size >= 3 && (it[0] is DefineImage2 || it[0] is DefineImage) && it[1] is DefineShape && it[2] is DefineMovieClip

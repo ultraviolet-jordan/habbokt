@@ -10,10 +10,8 @@ import java.io.File
  */
 @Singleton
 internal class AvatarsBigSwfMovieProvider : Provider<AvatarsBigSwfMovie> {
-    override fun get(): AvatarsBigSwfMovie {
-        val movie = Movie().apply {
+    override fun get(): AvatarsBigSwfMovie = Movie()
+        .apply {
             decodeFromFile(File(this::class.java.classLoader.getResource("www/flash/avatars_big.swf")!!.toURI()))
-        }
-        return AvatarsBigSwfMovie(movie)
-    }
+        }.let(::AvatarsBigSwfMovie)
 }

@@ -10,10 +10,8 @@ import java.io.File
  */
 @Singleton
 internal class HabboRegistrationSwfMovieProvider : Provider<HabboRegistrationSwfMovie> {
-    override fun get(): HabboRegistrationSwfMovie {
-        val movie = Movie().apply {
+    override fun get(): HabboRegistrationSwfMovie = Movie()
+        .apply {
             decodeFromFile(File(this::class.java.classLoader.getResource("www/flash/HabboRegistration.swf")!!.toURI()))
-        }
-        return HabboRegistrationSwfMovie(movie)
-    }
+        }.let(::HabboRegistrationSwfMovie)
 }

@@ -5,6 +5,4 @@ import com.google.inject.Provider
 /**
  * @author Jordan Abraham
  */
-internal interface SwfMovieDataProvider<T, O> : Provider<T> {
-    fun dataMapping(): List<O>
-}
+internal interface SwfMovieDataProvider<T> : Provider<T>

@@ -13,16 +13,19 @@ import com.habbokt.swf.SwfMovieDataProvider
 @Singleton
 internal class HumanBodySwfProvider @Inject constructor(
     private val humanBodySwfMovie: HumanBodySwfMovie
-) : SwfMovieDataProvider<HumanBodySwf, HumanBodySwfObject> {
-    override fun dataMapping(): List<HumanBodySwfObject> {
+) : SwfMovieDataProvider<HumanBodySwf> {
+    override fun get(): HumanBodySwf {
         val symbolClass = humanBodySwfMovie.movie.objects.filterIsInstance(SymbolClass::class.java).first()
-        return humanBodySwfMovie.movie.objects.filterIsInstance(DefineImage2::class.java).map {
-            HumanBodySwfObject(
-                name = symbolClass.objects[it.identifier],
-                image = SwfImage2(it)
-            )
-        }
+        return humanBodySwfMovie
+            .movie
+            .objects
+            .filterIsInstance(DefineImage2::class.java)
+            .map {
+                HumanBodySwfObject(
+                    name = symbolClass.objects[it.identifier],
+                    image = SwfImage2(it)
+                )
+            }
+            .let(::HumanBodySwf)
     }
-
-    override fun get(): HumanBodySwf = HumanBodySwf(dataMapping())
 }
