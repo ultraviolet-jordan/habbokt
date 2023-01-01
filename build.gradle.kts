@@ -24,7 +24,7 @@ allprojects {
 
     tasks.withType<KotlinCompile> {
         kotlin {
-            jvmToolchain(JavaVersion.VERSION_19.majorVersion.toInt())
+            jvmToolchain(jdkVersion = 19)
         }
     }
 
