@@ -1,14 +1,6 @@
 # habbokt
 A Habbo Hotel Private Server Written in Kotlin.
 
-<p align="center">
-  <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/assets/registration.jpg?raw=true" alt="Habbo Hotel Registration"/>
-</p>
-
-<p align="center">
-  <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/assets/navigation.jpg?raw=true" alt="Habbo Hotel Navigation"/>
-</p>
-
 # Dependencies
 
 - Gradle 7.6
@@ -40,4 +32,16 @@ _Running the auto-reload task and the web-server task in Gradle simultaneously i
   ```shell
   ./gradlew :game:run
   ```
-  *Note: The game server relies on the web-server to be online.*
+  *Note: The game server relies on the web-server to be online for now.*
+
+<p align="center">
+  <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/assets/registration.jpg?raw=true" alt="Habbo Hotel Registration"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/assets/navigation.jpg?raw=true" alt="Habbo Hotel Navigation"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/assets/room.jpg?raw=true" alt="Habbo Hotel Room"/>
+</p>
