@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.UsesKotlinJavaToolchain
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -7,9 +8,6 @@ plugins {
     alias(deps.plugins.versions)
     alias(deps.plugins.ktlint)
 }
-
-group = "org.example"
-version = "1.0-SNAPSHOT"
 
 allprojects {
     plugins.withType<KotlinPluginWrapper> {
@@ -25,12 +23,16 @@ allprojects {
     }
 
     tasks.withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlin {
+            jvmToolchain(JavaVersion.VERSION_19.majorVersion.toInt())
+        }
     }
-}
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_19.majorVersion))
+    tasks.withType<UsesKotlinJavaToolchain>().configureEach {
+        kotlinJavaToolchain.toolchain.use(
+            project.extensions.getByType<JavaToolchainService>().launcherFor {
+                languageVersion.set(JavaLanguageVersion.of(19))
+            }
+        )
     }
 }

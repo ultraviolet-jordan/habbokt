@@ -12,7 +12,8 @@ A Habbo Hotel Private Server Written in Kotlin.
 # Dependencies
 
 - Gradle 7.6
-- Kotlin 1.7.21
+- Kotlin 1.8.0
+- Java SDK 19
 
 # Autoreloading/Continuous Development
 _Since Auto-reload detects changes in output files, you need to rebuild a project. You can do this manually in IntelliJ IDEA or enable continuous build execution in Gradle using the -t command-line option._

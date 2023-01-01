@@ -6,7 +6,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("deps") {
             // Dependency versions.
-            version("kotlin", "1.7.21")
+            version("kotlin", "1.8.0")
             version("ktor", "2.2.1")
             version("versions", "0.44.0")
             version("pebble", "3.2.0")
