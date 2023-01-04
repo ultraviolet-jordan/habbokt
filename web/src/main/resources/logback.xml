@@ -1,6 +1,5 @@
 <configuration>
     <appender name="async" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="rolling" />
         <discardingThreshold>0</discardingThreshold>
         <queueSize>256</queueSize>
         <neverBlock>false</neverBlock>

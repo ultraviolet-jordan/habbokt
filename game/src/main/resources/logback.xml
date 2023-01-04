@@ -1,0 +1,18 @@
+<configuration>
+    <appender name="async" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>256</queueSize>
+        <neverBlock>false</neverBlock>
+        <includeCallerData>false</includeCallerData>
+        <encoder>
+            <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="async"/>
+    </root>
+    <root level="trace">
+        <appender-ref ref="async"/>
+    </root>
+    <logger name="io.netty" level="INFO"/>
+</configuration>
