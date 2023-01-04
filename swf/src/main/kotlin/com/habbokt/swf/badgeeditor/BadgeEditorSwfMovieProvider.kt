@@ -11,7 +11,6 @@ import java.io.File
 @Singleton
 internal class BadgeEditorSwfMovieProvider : Provider<BadgeEditorSwfMovie> {
     override fun get(): BadgeEditorSwfMovie = Movie()
-        .apply {
-            decodeFromFile(File(this::class.java.classLoader.getResource("www/flash/BadgeEditor.swf")!!.toURI()))
-        }.let(::BadgeEditorSwfMovie)
+        .apply { decodeFromFile(File(this::class.java.classLoader.getResource("www/flash/BadgeEditor.swf")!!.toURI())) }
+        .let(::BadgeEditorSwfMovie)
 }
