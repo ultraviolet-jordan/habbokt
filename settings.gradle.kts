@@ -7,10 +7,9 @@ dependencyResolutionManagement {
         create("deps") {
             // Dependency versions.
             version("kotlin", "1.8.0")
-            version("ktor", "2.2.1")
+            version("ktor", "2.2.2")
             version("versions", "0.44.0")
             version("pebble", "3.2.0")
-            version("ktlint", "11.0.0")
             version("slf4j", "2.0.6")
             version("simplecaptcha", "1.2.2")
             version("argon2", "2.11")
@@ -20,6 +19,10 @@ dependencyResolutionManagement {
             version("guice", "1.6.0")
             version("jackson", "2.14.+")
             version("flagstone", "3.0.2")
+
+            // Dependency plugins
+            plugin("jvm", "org.jetbrains.kotlin.jvm").versionRef("kotlin")
+            plugin("versions", "com.github.ben-manes.versions").versionRef("versions")
 
             // Dependency libraries
             // Ktor Dependencies
@@ -55,17 +58,54 @@ dependencyResolutionManagement {
             library("flagstone", "com.flagstone", "transform").versionRef("flagstone")
 
             // Dependency bundles
-            bundle("ktor", listOf("ktor-server-core", "ktor-server-netty", "ktor-server-status-pages", "ktor-server-call-logging", "ktor-server-sessions", "ktor-server-auth"))
-            bundle("ktor-client", listOf("ktor-client-core", "ktor-client-java"))
-            bundle("database", listOf("exposed-core", "exposed-dao", "exposed-jdbc", "h2database", "hikaricp"))
-            bundle("jackson", listOf("jackson-module-kotlin", "jackson-dataformat-xml", "jackson-module-parameter-names"))
+            val ktorBundle = listOf(
+                "ktor-server-core",
+                "ktor-server-netty",
+                "ktor-server-status-pages",
+                "ktor-server-call-logging",
+                "ktor-server-sessions",
+                "ktor-server-auth"
+            )
+            bundle("ktor", ktorBundle)
 
-            // Dependency plugins
-            plugin("jvm", "org.jetbrains.kotlin.jvm").versionRef("kotlin")
-            plugin("versions", "com.github.ben-manes.versions").versionRef("versions")
-            plugin("ktlint", "org.jlleitschuh.gradle.ktlint").versionRef("ktlint")
+            val ktorClientBundle = listOf(
+                "ktor-client-core",
+                "ktor-client-java"
+            )
+            bundle("ktor-client", ktorClientBundle)
+
+            val databaseBundle = listOf(
+                "exposed-core",
+                "exposed-dao",
+                "exposed-jdbc",
+                "h2database",
+                "hikaricp"
+            )
+            bundle("database", databaseBundle)
+
+            val jacksonBundle = listOf(
+                "jackson-module-kotlin",
+                "jackson-dataformat-xml",
+                "jackson-module-parameter-names"
+            )
+            bundle("jackson", jacksonBundle)
         }
     }
 }
 
-include(listOf("api", "argon2", "dao", "db", "game", "packet", "page", "session", "swf", "templating", "web", "xml"))
+private val modules = listOf(
+    "api",
+    "argon2",
+    "dao",
+    "db",
+    "game",
+    "packet",
+    "page",
+    "session",
+    "swf",
+    "templating",
+    "web",
+    "xml"
+)
+
+include(modules)

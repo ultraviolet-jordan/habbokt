@@ -6,7 +6,6 @@ import org.jetbrains.kotlin.gradle.tasks.UsesKotlinJavaToolchain
 plugins {
     alias(deps.plugins.jvm)
     alias(deps.plugins.versions)
-    alias(deps.plugins.ktlint)
 }
 
 allprojects {
