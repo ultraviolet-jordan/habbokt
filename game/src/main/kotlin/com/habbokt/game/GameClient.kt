@@ -133,7 +133,7 @@ class GameClient constructor(
         val (id, block) = assemblers[packet::class]?.assembler ?: return
         try {
             writeChannelPool.apply {
-                put(id.base64(ID_SIZE_BYTES)) // Put packet id.
+                put(id.base64()) // Put packet id.
                 val position = position()
                 block.invoke(packet, this) // Put packet body.
                 val size = writeChannelPool.position() - position
