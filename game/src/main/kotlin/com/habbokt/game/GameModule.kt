@@ -6,6 +6,8 @@ import io.ktor.network.selector.SelectorManager
 import io.ktor.network.sockets.ServerSocket
 import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.server.engine.ApplicationEngine
+import kotlinx.coroutines.CoroutineDispatcher
+import java.util.concurrent.ScheduledExecutorService
 
 /**
  * @author Jordan Abraham
@@ -20,7 +22,7 @@ class GameModule(
         bind<DatabaseConfiguration>().toProvider<DatabaseConfigurationProvider>()
         bind<SelectorManager>().toProvider<ServerSocketSelectorProvider>()
         bind<ServerSocket>().toProvider<ServerSocketProvider>()
-        bind<GameThreadDispatcher>().toProvider<GameThreadDispatcherProvider>()
-        bind<GameThread>().toProvider<GameThreadProvider>()
+        bind<CoroutineDispatcher>().toProvider<GameThreadDispatcherProvider>()
+        bind<ScheduledExecutorService>().toProvider<GameThreadExecutorProvider>()
     }
 }
