@@ -6,7 +6,6 @@ import io.ktor.network.selector.SelectorManager
 import io.ktor.network.sockets.ServerSocket
 import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.server.engine.ApplicationEngine
-import java.util.concurrent.ForkJoinPool
 
 /**
  * @author Jordan Abraham
@@ -21,6 +20,7 @@ class GameModule(
         bind<DatabaseConfiguration>().toProvider<DatabaseConfigurationProvider>()
         bind<SelectorManager>().toProvider<ServerSocketSelectorProvider>()
         bind<ServerSocket>().toProvider<ServerSocketProvider>()
-        bind<ForkJoinPool>().toProvider<ForkJoinPoolProvider>()
+        bind<GameThreadDispatcher>().toProvider<GameThreadDispatcherProvider>()
+        bind<GameThread>().toProvider<GameThreadProvider>()
     }
 }
