@@ -58,42 +58,38 @@ dependencyResolutionManagement {
             library("flagstone", "com.flagstone", "transform").versionRef("flagstone")
 
             // Dependency bundles
-            val ktorBundle = listOf(
+            listOf(
                 "ktor-server-core",
                 "ktor-server-netty",
                 "ktor-server-status-pages",
                 "ktor-server-call-logging",
                 "ktor-server-sessions",
                 "ktor-server-auth"
-            )
-            bundle("ktor", ktorBundle)
+            ).also { bundle("ktor", it) }
 
-            val ktorClientBundle = listOf(
+            listOf(
                 "ktor-client-core",
                 "ktor-client-java"
-            )
-            bundle("ktor-client", ktorClientBundle)
+            ).also { bundle("ktor-client", it) }
 
-            val databaseBundle = listOf(
+            listOf(
                 "exposed-core",
                 "exposed-dao",
                 "exposed-jdbc",
                 "h2database",
                 "hikaricp"
-            )
-            bundle("database", databaseBundle)
+            ).also { bundle("database", it) }
 
-            val jacksonBundle = listOf(
+            listOf(
                 "jackson-module-kotlin",
                 "jackson-dataformat-xml",
                 "jackson-module-parameter-names"
-            )
-            bundle("jackson", jacksonBundle)
+            ).also { bundle("jackson", it) }
         }
     }
 }
 
-private val modules = listOf(
+listOf(
     "api",
     "argon2",
     "dao",
@@ -106,6 +102,4 @@ private val modules = listOf(
     "templating",
     "web",
     "xml"
-)
-
-include(modules)
+).also(::include)
