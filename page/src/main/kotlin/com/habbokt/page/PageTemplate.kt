@@ -5,12 +5,10 @@ package com.habbokt.page
  */
 abstract class PageTemplate constructor(
     val path: String,
-) : MutableMap<String, Any?> by mutableMapOf() {
-    abstract fun configure()
+    val configuration: PageTemplate.() -> Unit
+) : MutableMap<String, Any?> by mutableMapOf()
 
-    protected fun bind(context: Pair<String, Any?>) = put(context.first, context.second)
-    protected infix fun String.to(value: Any?): Pair<String, Any?> = Pair(this, value)
-}
+fun PageTemplate.bind(context: Pair<String, Any?>): Any? = put(context.first, context.second)
 
 data class Template<T>(
     val block: suspend () -> T

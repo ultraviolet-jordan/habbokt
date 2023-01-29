@@ -31,7 +31,7 @@ abstract class PageService<P : Page<*>>(
             .template(sessions, request.queryParameters)
             .block
             .invoke()
-            .also(PageTemplate::configure)
+            .also { it.configuration.invoke(it) }
         require(template.path.isNotEmpty())
         val html = compiler.compile(template.path, template.filterValues { it != null })
         htmlHeader(html.length)

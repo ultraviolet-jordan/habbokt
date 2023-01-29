@@ -3,7 +3,6 @@ package com.habbokt.page.export
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.page.PageRouting
-import com.habbokt.page.Route
 import com.habbokt.swf.avatarsbig.AvatarsBigSwf
 import com.habbokt.swf.badgeeditor.BadgeEditorSwf
 import com.habbokt.swf.figuredata.humanbody.HumanBodySwf
@@ -26,15 +25,17 @@ class ExportPageRouting @Inject constructor(
     private val habboRegistrationSwf: HabboRegistrationSwf,
     private val badgeEditorSwf: BadgeEditorSwf,
     private val humanBodySwf: HumanBodySwf
-) : PageRouting(Route {
-    get("/export") {
-        exportAvatarsBigImages(avatarsBigSwf)
-        exportHabboRegistrationImages(habboRegistrationSwf)
-        exportBadgeEditorImages(badgeEditorSwf)
-        exportHumanBodyImages(humanBodySwf)
-        call.respondRedirect("/")
+) : PageRouting(
+    routing = {
+        get("/export") {
+            exportAvatarsBigImages(avatarsBigSwf)
+            exportHabboRegistrationImages(habboRegistrationSwf)
+            exportBadgeEditorImages(badgeEditorSwf)
+            exportHumanBodyImages(humanBodySwf)
+            call.respondRedirect("/")
+        }
     }
-})
+)
 
 private fun exportAvatarsBigImages(avatarsBigSwf: AvatarsBigSwf) {
     avatarsBigSwf.data.forEach {

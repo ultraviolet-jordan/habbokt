@@ -2,25 +2,27 @@ package com.habbokt.page.register
 
 import com.habbokt.dao.site.SiteDAO
 import com.habbokt.page.PageTemplate
+import com.habbokt.page.bind
 
 /**
  * @author Jordan Abraham
  */
 class RegisterPageTemplate(
-    private val site: SiteDAO?,
-    private val randomNum: String,
-    private val registerCaptchaInvalid: Boolean?,
-    private val registerEmailInvalid: Boolean?,
-    private val registerUsername: String?,
-    private val registerShowPassword: String?,
-    private val registerEmail: String?,
-    private val registerDay: String?,
-    private val registerMonth: String?,
-    private val registerYear: String?,
-    private val registerFigure: String?,
-    private val registerGender: String?
-) : PageTemplate(path = "register.tpl") {
-    override fun configure() {
+    site: SiteDAO?,
+    randomNum: String,
+    registerCaptchaInvalid: Boolean?,
+    registerEmailInvalid: Boolean?,
+    registerUsername: String?,
+    registerShowPassword: String?,
+    registerEmail: String?,
+    registerDay: String?,
+    registerMonth: String?,
+    registerYear: String?,
+    registerFigure: String?,
+    registerGender: String?
+) : PageTemplate(
+    path = "register.tpl",
+    configuration = {
         bind("site" to site)
         bind("randomNum" to randomNum)
         bind("registerCaptchaInvalid" to registerCaptchaInvalid)
@@ -34,4 +36,4 @@ class RegisterPageTemplate(
         bind("registerFigure" to registerFigure)
         bind("registerGender" to registerGender)
     }
-}
+)

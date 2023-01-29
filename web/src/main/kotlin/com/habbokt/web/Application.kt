@@ -42,7 +42,7 @@ fun main(args: Array<String>) {
     database.createTables()
 
     injector.findBindingsByType<PageRouting>()
-        .map { it.provider.get().route.block }
+        .map { it.provider.get().routing }
         .forEach { it.invoke(applicationEngine.application.routing {}) }
 
     applicationEngine.start(wait = true)
