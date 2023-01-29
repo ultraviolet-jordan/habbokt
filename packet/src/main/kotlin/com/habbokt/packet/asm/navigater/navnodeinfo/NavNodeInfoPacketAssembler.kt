@@ -2,7 +2,6 @@ package com.habbokt.packet.asm.navigater.navnodeinfo
 
 import com.google.inject.Singleton
 import com.habbokt.api.common.toInt
-import com.habbokt.api.packet.Assembler
 import com.habbokt.api.packet.PacketAssembler
 import com.habbokt.api.room.Room
 import com.habbokt.packet.buf.putIntHabbo
@@ -13,25 +12,28 @@ import java.nio.ByteBuffer
  * @author Jordan Abraham
  */
 @Singleton
-class NavNodeInfoPacketAssembler : PacketAssembler<NavNodeInfoPacket>(Assembler(id = 220) {
-    require(mask == 0 || mask == 1)
+class NavNodeInfoPacketAssembler : PacketAssembler<NavNodeInfoPacket>(
+    id = 220,
+    body = {
+        require(it.mask == 0 || it.mask == 1)
 
-    val (id, parentId, name, public, rooms) = category
-    it.putIntHabbo(mask) // This is for showing/hiding full rooms.
-    it.putCategory(id, if (public) 0 else 2, name, parentId) // Create the root category that was clicked.
-    // Send rooms associated with this clicked category.
-    if (public) {
-        it.putPublicRooms(rooms)
-        // Send sub categories below the rooms that the user can click into.
-        subCategories.forEach { subCategory ->
-            it.putCategory(subCategory.id, 0, subCategory.name, id)
+        val (id, parentId, name, public, rooms) = it.category
+        putIntHabbo(it.mask) // This is for showing/hiding full rooms.
+        putCategory(id, if (public) 0 else 2, name, parentId) // Create the root category that was clicked.
+        // Send rooms associated with this clicked category.
+        if (public) {
+            putPublicRooms(rooms)
+            // Send sub categories below the rooms that the user can click into.
+            it.subCategories.forEach { subCategory ->
+                putCategory(subCategory.id, 0, subCategory.name, id)
+            }
+        } else {
+            putGuestRooms(rooms)
         }
-    } else {
-        it.putGuestRooms(rooms)
+        // Terminate the packet loop on the client side.
+        putIntHabbo(0) // Break
     }
-    // Terminate the packet loop on the client side.
-    it.putIntHabbo(0) // Break
-})
+)
 
 private fun ByteBuffer.putInfo(
     id: Int,

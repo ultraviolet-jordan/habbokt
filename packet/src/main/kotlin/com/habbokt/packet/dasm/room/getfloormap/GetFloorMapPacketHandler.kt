@@ -2,7 +2,6 @@ package com.habbokt.packet.dasm.room.getfloormap
 
 import com.google.inject.Singleton
 import com.habbokt.api.map.HeightMap
-import com.habbokt.api.packet.Handler
 import com.habbokt.api.packet.PacketHandler
 import com.habbokt.packet.asm.room.floormap.FloorMapPacket
 import com.habbokt.packet.asm.room.users.UsersPacket
@@ -11,9 +10,10 @@ import com.habbokt.packet.asm.room.users.UsersPacket
  * @author Jordan Abraham
  */
 @Singleton
-class GetFloorMapPacketHandler : PacketHandler<GetFloorMapProxyPacket>(Handler {
-    val heightMap = HeightMap(
-        """
+class GetFloorMapPacketHandler : PacketHandler<GetFloorMapProxyPacket>(
+    handler = {
+        val heightMap = HeightMap(
+            """
             xxxxxxxxxxxxxxxx000000|
             xxxxx0xxxxxxxxxx000000|
             xxxxx00000000xxx000000|
@@ -43,8 +43,9 @@ class GetFloorMapPacketHandler : PacketHandler<GetFloorMapProxyPacket>(Handler {
             xxxxx000000000000xxxxx|
             xxxxx000000000000xxxxx
         """.trimIndent()
-    )
+        )
 
-    it.writePacket(FloorMapPacket(heightMap))
-    it.writePacket(UsersPacket(emptyList()))
-})
+        writePacket(FloorMapPacket(heightMap))
+        writePacket(UsersPacket(emptyList()))
+    }
+)

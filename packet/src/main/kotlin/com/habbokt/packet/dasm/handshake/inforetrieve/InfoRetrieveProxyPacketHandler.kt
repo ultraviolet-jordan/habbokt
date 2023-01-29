@@ -2,7 +2,6 @@ package com.habbokt.packet.dasm.handshake.inforetrieve
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import com.habbokt.api.packet.ProxyHandler
 import com.habbokt.api.packet.ProxyPacketHandler
 import com.habbokt.dao.players.PlayersService
 
@@ -12,14 +11,17 @@ import com.habbokt.dao.players.PlayersService
 @Singleton
 class InfoRetrieveProxyPacketHandler @Inject constructor(
     private val playersService: PlayersService
-) : ProxyPacketHandler<InfoRetrievePacket>(ProxyHandler {
-    val player = it.player() ?: return@ProxyHandler null
-    val (id, name, _, _, figure, sex, _, motto) = playersService.player(player.id) ?: return@ProxyHandler null
-    return@ProxyHandler InfoRetrieveProxyPacket(
-        id = id.toString(),
-        name = name,
-        figure = figure,
-        sex = sex,
-        motto = motto
-    )
-})
+) : ProxyPacketHandler<InfoRetrievePacket, InfoRetrieveProxyPacket>(
+    handler = {
+        player()?.let {
+            val dao = playersService.player(it.id) ?: return@let null
+            InfoRetrieveProxyPacket(
+                id = it.id.toString(),
+                name = dao.name,
+                figure = dao.figure,
+                sex = dao.sex,
+                motto = dao.motto
+            )
+        }
+    }
+)

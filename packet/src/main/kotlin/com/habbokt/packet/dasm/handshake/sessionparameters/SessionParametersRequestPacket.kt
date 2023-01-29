@@ -5,4 +5,8 @@ import com.habbokt.api.packet.Packet
 /**
  * @author Jordan Abraham
  */
-class SessionParametersRequestPacket : Packet
+class SessionParametersRequestPacket : Packet {
+    companion object {
+        val Empty = SessionParametersRequestPacket()
+    }
+}

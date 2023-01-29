@@ -2,7 +2,6 @@ package com.habbokt.game
 
 import com.habbokt.api.client.Client
 import com.habbokt.api.entity.player.Player
-import com.habbokt.api.packet.Handler
 import com.habbokt.api.packet.Packet
 import com.habbokt.api.packet.PacketAssembler
 import com.habbokt.api.packet.PacketDisassembler
@@ -18,14 +17,14 @@ import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
 import io.ktor.server.application.ApplicationEnvironment
 import io.ktor.utils.io.core.readBytes
-import java.nio.ByteBuffer
-import java.time.Duration
-import java.util.concurrent.ArrayBlockingQueue
-import kotlin.reflect.KClass
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.time.withTimeout
 import kotlinx.coroutines.withContext
+import java.nio.ByteBuffer
+import java.time.Duration
+import java.util.concurrent.ArrayBlockingQueue
+import kotlin.reflect.KClass
 
 /**
  * @author Jordan Abraham
@@ -35,13 +34,13 @@ class GameClient constructor(
     private val socket: Socket,
     private val connectionPool: ConnectionPool,
     private val assemblers: Map<KClass<*>, PacketAssembler<Packet>>,
-    private val disassemblers: Map<Int, PacketDisassembler>,
+    private val disassemblers: Map<Int, PacketDisassembler<Packet>>,
     private val handlers: Map<KClass<*>, PacketHandler<ProxyPacket>>,
-    private val proxies: Map<KClass<*>, ProxyPacketHandler<Packet>>
+    private val proxies: Map<KClass<*>, ProxyPacketHandler<Packet, ProxyPacket>>
 ) : Client {
     private val readChannel = socket.openReadChannel()
     private val writeChannel = socket.openWriteChannel(autoFlush = true)
-    private val readChannelPool = ArrayBlockingQueue<Pair<ProxyPacket, Handler<ProxyPacket>>>(8, true)
+    private val readChannelPool = ArrayBlockingQueue<Pair<ProxyPacket, Client.(ProxyPacket) -> Unit>>(8, true)
     private val writeChannelPool = ByteBuffer.allocateDirect(4096)
     private val remoteAddress = socket.remoteAddress
     private lateinit var connectedPlayer: Player
@@ -59,7 +58,7 @@ class GameClient constructor(
                 // The data gets built out into another type of read packet which gets processed by the game thread.
                 val proxyHandler = proxies[packet::class]?.handler ?: continue
                 // Invoke the proxy handler and return the packet.
-                val proxyPacket = proxyHandler.block.invoke(packet, this) ?: continue
+                val proxyPacket = proxyHandler.invoke(this, packet) ?: continue
                 // Get real packet handler from the proxy packet.
                 val handler = handlers[proxyPacket::class]?.handler ?: continue
                 // Add the handler to the read pool queue.
@@ -99,8 +98,7 @@ class GameClient constructor(
         val body = readChannel.readPacket(size)
 
         return disassemblers[id]
-            ?.disassembler
-            ?.packet
+            ?.body
             ?.invoke(body)
             ?.also {
                 // Require that the body was fully read from disassembler.
@@ -122,7 +120,7 @@ class GameClient constructor(
         if (readChannelPool.isEmpty()) return
         // Atomically removes all the elements from this queue. The queue will be empty after this call returns.
         try {
-            readChannelPool.onEach { it.second.block.invoke(it.first, this) }.clear()
+            readChannelPool.onEach { it.second.invoke(this, it.first) }.clear()
         } catch (exception: Exception) {
             close()
             applicationEnvironment.log.error(exception.stackTraceToString())
@@ -130,15 +128,15 @@ class GameClient constructor(
     }
 
     override fun writePacket(packet: Packet) {
-        val (id, block) = assemblers[packet::class]?.assembler ?: return
+        val assembler = assemblers[packet::class] ?: return
         try {
             writeChannelPool.apply {
-                put(id.base64()) // Put packet id.
+                put(assembler.id.base64()) // Put packet id.
                 val position = position()
-                block.invoke(packet, this) // Put packet body.
+                assembler.body.invoke(this, packet) // Put packet body.
                 val size = writeChannelPool.position() - position
                 put(1) // Put end packet.
-                applicationEnvironment.log.info("Assembled write packet: Id=$id, Size=$size, $packet")
+                applicationEnvironment.log.info("Assembled write packet: Id=${assembler.id}, Size=$size, $packet")
             }
         } catch (exception: Exception) {
             close()

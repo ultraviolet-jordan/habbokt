@@ -1,7 +1,6 @@
 package com.habbokt.packet.dasm.handshake.ssoticket
 
 import com.google.inject.Singleton
-import com.habbokt.api.packet.Disassembler
 import com.habbokt.api.packet.PacketDisassembler
 import com.habbokt.packet.buf.getStringHabbo
 
@@ -9,8 +8,10 @@ import com.habbokt.packet.buf.getStringHabbo
  * @author Jordan Abraham
  */
 @Singleton
-class SSOTicketPacketDisassembler : PacketDisassembler(Disassembler {
-    SSOTicketPacket(
-        ssoTicket = it.getStringHabbo()
-    )
-})
+class SSOTicketPacketDisassembler : PacketDisassembler<SSOTicketPacket>(
+    body = {
+        SSOTicketPacket(
+            ssoTicket = getStringHabbo()
+        )
+    }
+)

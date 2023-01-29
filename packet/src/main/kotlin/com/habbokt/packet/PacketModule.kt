@@ -172,7 +172,7 @@ object PacketModule : KotlinModule() {
     }
 
     private fun bindDisassemblers() {
-        KotlinMapBinder.newMapBinder<Int, PacketDisassembler>(kotlinBinder).apply {
+        KotlinMapBinder.newMapBinder<Int, PacketDisassembler<Packet>>(kotlinBinder).apply {
             bindDisassembler<InitDiffieHandshakePacketDisassembler>(id = 206)
             bindDisassembler<CompleteDiffieHandshakeRequestPacketDisassembler>(id = 2002)
             bindDisassembler<VersionCheckPacketDisassembler>(id = 1170)
@@ -193,7 +193,7 @@ object PacketModule : KotlinModule() {
     }
 
     private fun bindProxyHandlers() {
-        KotlinMapBinder.newMapBinder<KClass<*>, ProxyPacketHandler<Packet>>(kotlinBinder).apply {
+        KotlinMapBinder.newMapBinder<KClass<*>, ProxyPacketHandler<Packet, ProxyPacket>>(kotlinBinder).apply {
             bindProxyHandler<InfoRetrievePacket, InfoRetrieveProxyPacketHandler>()
             bindProxyHandler<CompleteDiffieHandshakeRequestPacket, CompleteDiffieHandshakeRequestProxyPacketHandler>()
             bindProxyHandler<InitDiffieHandshakeRequestPacket, InitDiffieHandshakeRequestProxyPacketHandler>()
@@ -234,19 +234,19 @@ object PacketModule : KotlinModule() {
         }
     }
 
-    private inline fun <reified T : Packet, reified X: PacketAssembler<T>> KotlinMapBinder<KClass<*>, PacketAssembler<Packet>>.bindAssembler() {
+    private inline fun <reified T : Packet, reified X : PacketAssembler<T>> KotlinMapBinder<KClass<*>, PacketAssembler<Packet>>.bindAssembler() {
         addBinding(T::class).to<X>()
     }
 
-    private inline fun <reified X: PacketDisassembler> KotlinMapBinder<Int, PacketDisassembler>.bindDisassembler(id: Int) {
+    private inline fun <reified X : PacketDisassembler<Packet>> KotlinMapBinder<Int, PacketDisassembler<Packet>>.bindDisassembler(id: Int) {
         addBinding(id).to<X>()
     }
 
-    private inline fun <reified T : Packet, reified X: ProxyPacketHandler<T>> KotlinMapBinder<KClass<*>, ProxyPacketHandler<Packet>>.bindProxyHandler() {
+    private inline fun <reified T : Packet, reified X : ProxyPacketHandler<T, ProxyPacket>> KotlinMapBinder<KClass<*>, ProxyPacketHandler<Packet, ProxyPacket>>.bindProxyHandler() {
         addBinding(T::class).to<X>()
     }
 
-    private inline fun <reified T : ProxyPacket, reified X: PacketHandler<T>> KotlinMapBinder<KClass<*>, PacketHandler<ProxyPacket>>.bindHandler() {
+    private inline fun <reified T : ProxyPacket, reified X : PacketHandler<T>> KotlinMapBinder<KClass<*>, PacketHandler<ProxyPacket>>.bindHandler() {
         addBinding(T::class).to<X>()
     }
 }

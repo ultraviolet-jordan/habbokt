@@ -1,8 +1,10 @@
 package com.habbokt.api.packet
 
+import com.habbokt.api.client.Client
+
 /**
  * @author Jordan Abraham
  */
-open class ProxyPacketHandler<out P : Packet>(
-    val handler: ProxyHandler<@UnsafeVariance P>
+abstract class ProxyPacketHandler<out P : Packet, out T : ProxyPacket>(
+    val handler: suspend Client.(@UnsafeVariance P) -> T?
 )

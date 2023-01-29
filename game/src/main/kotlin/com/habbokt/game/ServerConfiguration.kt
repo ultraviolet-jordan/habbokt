@@ -16,7 +16,7 @@ import kotlin.reflect.KClass
 @Singleton
 data class ServerConfiguration @Inject constructor(
     val assemblers: Map<KClass<*>, PacketAssembler<Packet>>,
-    val disassemblers: Map<Int, PacketDisassembler>,
+    val disassemblers: Map<Int, PacketDisassembler<Packet>>,
     val handlers: Map<KClass<*>, PacketHandler<ProxyPacket>>,
-    val proxies: Map<KClass<*>, ProxyPacketHandler<Packet>>
+    val proxies: Map<KClass<*>, ProxyPacketHandler<Packet, ProxyPacket>>
 )

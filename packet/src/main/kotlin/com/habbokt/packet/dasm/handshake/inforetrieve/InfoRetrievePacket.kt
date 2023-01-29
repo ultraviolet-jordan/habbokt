@@ -5,4 +5,8 @@ import com.habbokt.api.packet.Packet
 /**
  * @author Jordan Abraham
  */
-class InfoRetrievePacket : Packet
+class InfoRetrievePacket : Packet {
+    companion object {
+        val Empty = InfoRetrievePacket()
+    }
+}

@@ -2,7 +2,6 @@ package com.habbokt.packet.dasm.navigator.navigate
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import com.habbokt.api.packet.ProxyHandler
 import com.habbokt.api.packet.ProxyPacketHandler
 import com.habbokt.dao.rooms.RoomsService
 import com.habbokt.dao.rooms.categories.RoomsCategoriesService
@@ -14,9 +13,12 @@ import com.habbokt.dao.rooms.categories.RoomsCategoriesService
 class NavigateProxyPacketHandler @Inject constructor(
     private val roomsService: RoomsService,
     private val roomsCategoriesService: RoomsCategoriesService
-) : ProxyPacketHandler<NavigatePacket>(ProxyHandler {
-    val category = roomsCategoriesService.roomCategory(id) ?: return@ProxyHandler null
-    val subCategories = roomsCategoriesService.subCategories(category.id)
-    val rooms = roomsService.roomsByCategoryId(category.id)
-    return@ProxyHandler NavigateProxyPacket(mask == 1, category, subCategories, rooms)
-})
+) : ProxyPacketHandler<NavigatePacket, NavigateProxyPacket>(
+    handler = {
+        roomsCategoriesService.roomCategory(it.id)?.let { category ->
+            val subCategories = roomsCategoriesService.subCategories(category.id)
+            val rooms = roomsService.roomsByCategoryId(category.id)
+            NavigateProxyPacket(it.mask == 1, category, subCategories, rooms)
+        }
+    }
+)

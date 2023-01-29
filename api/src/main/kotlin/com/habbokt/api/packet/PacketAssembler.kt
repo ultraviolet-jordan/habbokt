@@ -1,8 +1,11 @@
 package com.habbokt.api.packet
 
+import java.nio.ByteBuffer
+
 /**
  * @author Jordan Abraham
  */
-open class PacketAssembler<out P : Packet>(
-    val assembler: Assembler<@UnsafeVariance P>
+abstract class PacketAssembler<out P : Packet>(
+    val id: Int,
+    val body: ByteBuffer.(@UnsafeVariance P) -> Unit
 )

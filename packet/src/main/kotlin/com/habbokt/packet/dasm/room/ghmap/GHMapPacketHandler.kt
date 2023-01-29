@@ -2,7 +2,6 @@ package com.habbokt.packet.dasm.room.ghmap
 
 import com.google.inject.Singleton
 import com.habbokt.api.map.HeightMap
-import com.habbokt.api.packet.Handler
 import com.habbokt.api.packet.PacketHandler
 import com.habbokt.packet.asm.room.heightmap.HeightMapPacket
 
@@ -10,9 +9,10 @@ import com.habbokt.packet.asm.room.heightmap.HeightMapPacket
  * @author Jordan Abraham
  */
 @Singleton
-class GHMapPacketHandler : PacketHandler<GHMapProxyPacket>(Handler {
-    val heightMap = HeightMap(
-        """
+class GHMapPacketHandler : PacketHandler<GHMapProxyPacket>(
+    handler = {
+        val heightMap = HeightMap(
+            """
             xxxxxxxxxxxxxxxx000000|
             xxxxx0xxxxxxxxxx000000|
             xxxxx00000000xxx000000|
@@ -42,7 +42,8 @@ class GHMapPacketHandler : PacketHandler<GHMapProxyPacket>(Handler {
             xxxxx000000000000xxxxx|
             xxxxx000000000000xxxxx
         """.trimIndent()
-    )
+        )
 
-    it.writePacket(HeightMapPacket(heightMap))
-})
+        writePacket(HeightMapPacket(heightMap))
+    }
+)
