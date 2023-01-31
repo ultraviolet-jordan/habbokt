@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd"><cross-domain-policy>
+<site-control permitted-cross-domain-policies="master-only"/>
+<allow-access-from domain="*.habbohotel.co.uk"/>
+<allow-access-from domain="*.habbomobile.co.uk"/>
+<allow-access-from domain="*.habbo.co.uk"/>
+<allow-access-from domain="*.habbo.com"/>
+<allow-access-from domain="*"/>
+<allow-access-from domain="rumba.sulake.com" secure="false"/>
+</cross-domain-policy>

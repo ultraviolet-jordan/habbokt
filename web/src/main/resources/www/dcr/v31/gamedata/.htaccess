@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^(.*)$ $1 [NS,E=no-gzip:1,E=dont-vary:1]
+RewriteRule ^external_variables.txt external_variables.php
