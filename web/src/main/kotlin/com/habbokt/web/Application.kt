@@ -19,31 +19,35 @@ import io.ktor.server.routing.routing
  * @author Jordan Abraham
  */
 fun main(args: Array<String>) {
-    val injector = Guice.createInjector(
-        WebModule(args),
-        PageModule
-    )
+    try {
+        val injector = Guice.createInjector(
+            WebModule(args),
+            PageModule
+        )
 
-    val database = Guice.createInjector(DatabaseModule(injector.getInstance())).getInstance<HikariDatabase>()
-    val applicationEnvironment = injector.getInstance<ApplicationEnvironment>()
-    val applicationEngine = injector.getInstance<ApplicationEngine>()
+        val database = Guice.createInjector(DatabaseModule(injector.getInstance())).getInstance<HikariDatabase>()
+        val applicationEnvironment = injector.getInstance<ApplicationEnvironment>()
+        val applicationEngine = injector.getInstance<ApplicationEngine>()
 
-    with(applicationEngine.application) {
-        installCallLoggingPlugin()
-        installSessionsPlugin()
-        installAuthenticationPlugin()
-        installStatusPagesPlugin()
+        with(applicationEngine.application) {
+            installCallLoggingPlugin()
+            installSessionsPlugin()
+            installAuthenticationPlugin()
+            installStatusPagesPlugin()
+        }
+
+        Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment, applicationEngine, database))
+
+        // This is temporary for now the web server handles creating the db.
+        database.connect()
+        database.createTables()
+
+        injector.findBindingsByType<PageRouting>()
+            .map { it.provider.get().routing }
+            .forEach { it.invoke(applicationEngine.application.routing {}) }
+
+        applicationEngine.start(wait = true)
+    } catch (exception: Exception) {
+        exception.printStackTrace()
     }
-
-    Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment, applicationEngine, database))
-
-    // This is temporary for now the web server handles creating the db.
-    database.connect()
-    database.createTables()
-
-    injector.findBindingsByType<PageRouting>()
-        .map { it.provider.get().routing }
-        .forEach { it.invoke(applicationEngine.application.routing {}) }
-
-    applicationEngine.start(wait = true)
 }
