@@ -19,6 +19,11 @@ _Since Auto-reload detects changes in output files, you need to rebuild a projec
   ./gradlew -t build -x test -x jar -x distZip -x distTar
   ```
 
+# Adobe Flash Player Compatible Browser
+  ```
+  https://archive.org/details/basilisk-portable-with-flash
+  ```
+
 # Starting the Web Server
 _Running the auto-reload task and the web-server task in Gradle simultaneously is very powerful for development._
 
