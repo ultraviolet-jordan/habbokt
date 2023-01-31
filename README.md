@@ -41,7 +41,7 @@ _Running the auto-reload task and the web-server task in Gradle simultaneously i
   *Note: The game server relies on the web-server to be online for now.*
 
 # Quick Guide
-- Navigate to _http://localhost_ to see the website.
+- Navigate to _http://localhost/_ to see the website.
 - Navigate to _http://localhost/test_ to setup the temporary database for the website and game.
 - Default Account Credentials (username: jordan, password: password1) or create your own account using the registration.
 - Navigate to _http://localhost/client_ to launch the game once logged in.
