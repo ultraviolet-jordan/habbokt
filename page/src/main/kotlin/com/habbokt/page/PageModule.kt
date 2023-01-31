@@ -2,6 +2,7 @@ package com.habbokt.page
 
 import com.habbokt.argon2.Argon2Module
 import com.habbokt.dao.DAOModule
+import com.habbokt.page.account.logout.AccountLogoutPageRouting
 import com.habbokt.page.account.submit.AccountSubmitPageRouting
 import com.habbokt.page.asset.AssetPageRouting
 import com.habbokt.page.captcha.CaptchaRouting
@@ -35,32 +36,34 @@ object PageModule : KotlinModule() {
 
         bind<HttpClient>().toProvider<HttpClientProvider>()
 
-        val routes = KotlinMultibinder.newSetBinder<PageRouting>(kotlinBinder)
-        // Account
-        routes.addBinding().to<AccountSubmitPageRouting>()
-        // Asset
-        routes.addBinding().to<AssetPageRouting>()
-        // Captcha
-        routes.addBinding().to<CaptchaRouting>()
-        // Client
-        routes.addBinding().to<ClientPageRouting>()
-        // Export
-        routes.addBinding().to<ExportPageRouting>()
-        // Habblet
-        routes.addBinding().to<NameCheckAjaxRouting>()
-        // Habboimaging
-        routes.addBinding().to<AvatarImageRouting>()
-        // Index
-        routes.addBinding().to<IndexPageRouting>()
-        // Me
-        routes.addBinding().to<MePageRouting>()
-        // Register
-        routes.addBinding().to<RegisterPageRouting>()
-        // Security
-        routes.addBinding().to<SecurityCheckPageRouting>()
-        // Test
-        routes.addBinding().to<TestPageRouting>()
-        // Welcome
-        routes.addBinding().to<WelcomePageRouting>()
+        with(KotlinMultibinder.newSetBinder<PageRouting>(kotlinBinder)) {
+            // Account
+            addBinding().to<AccountSubmitPageRouting>()
+            addBinding().to<AccountLogoutPageRouting>()
+            // Asset
+            addBinding().to<AssetPageRouting>()
+            // Captcha
+            addBinding().to<CaptchaRouting>()
+            // Client
+            addBinding().to<ClientPageRouting>()
+            // Export
+            addBinding().to<ExportPageRouting>()
+            // Habblet
+            addBinding().to<NameCheckAjaxRouting>()
+            // Habboimaging
+            addBinding().to<AvatarImageRouting>()
+            // Index
+            addBinding().to<IndexPageRouting>()
+            // Me
+            addBinding().to<MePageRouting>()
+            // Register
+            addBinding().to<RegisterPageRouting>()
+            // Security
+            addBinding().to<SecurityCheckPageRouting>()
+            // Test
+            addBinding().to<TestPageRouting>()
+            // Welcome
+            addBinding().to<WelcomePageRouting>()
+        }
     }
 }
