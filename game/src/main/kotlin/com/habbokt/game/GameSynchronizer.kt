@@ -26,7 +26,7 @@ class GameSynchronizer @Inject constructor(
     private var tick = 0
 
     override fun start() {
-        executorService.scheduleAtFixedRate(this, 1, 1, TimeUnit.SECONDS)
+        executorService.scheduleAtFixedRate(this, 500, 500, TimeUnit.MILLISECONDS)
     }
 
     override fun stop() {
