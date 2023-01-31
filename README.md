@@ -32,7 +32,7 @@ _Running the auto-reload task and the web-server task in Gradle simultaneously i
   ```shell
   ./gradlew :game:run
   ```
-  *Note: The game server relies on the web-server to be online for now.*
+  *Note: The game server relies on the web-server to be online for now because of the temporary database.*
 
 # Quick Guide
 - Navigate to _http://localhost/_ to see the website.
