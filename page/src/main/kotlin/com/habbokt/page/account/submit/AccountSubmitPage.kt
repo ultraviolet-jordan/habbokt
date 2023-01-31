@@ -4,9 +4,6 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.dao.site.SiteService
 import com.habbokt.page.Page
-import com.habbokt.page.Template
-import io.ktor.http.Parameters
-import io.ktor.server.sessions.CurrentSession
 
 /**
  * @author Jordan Abraham
@@ -14,10 +11,10 @@ import io.ktor.server.sessions.CurrentSession
 @Singleton
 class AccountSubmitPage @Inject constructor(
     private val siteService: SiteService
-) : Page<AccountSubmitPageTemplate> {
-    override suspend fun template(sessions: CurrentSession, parameters: Parameters): Template<AccountSubmitPageTemplate> = Template {
+) : Page<AccountSubmitPageTemplate>(
+    template = { _, _ ->
         AccountSubmitPageTemplate(
             site = siteService.site()
         )
     }
-}
+)

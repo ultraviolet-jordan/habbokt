@@ -1,14 +1,16 @@
 package com.habbokt.page
 
-import io.ktor.http.Parameters
+import io.ktor.server.request.ApplicationRequest
 import io.ktor.server.sessions.CurrentSession
 
 /**
  * @author Jordan Abraham
  */
-interface Page<T : PageTemplate> {
-    /**
-     * Generates the necessary template to be interpreted when the page loads.
-     */
-    suspend fun template(sessions: CurrentSession, parameters: Parameters): Template<T>
+abstract class Page<T : PageTemplate>(
+    private val template: suspend (CurrentSession, ApplicationRequest) -> T
+) {
+    suspend fun template(
+        currentSession: CurrentSession,
+        request: ApplicationRequest
+    ): T = template.invoke(currentSession, request).also { it.configuration.invoke(it) }
 }

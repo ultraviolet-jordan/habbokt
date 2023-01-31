@@ -9,7 +9,3 @@ abstract class PageTemplate constructor(
 ) : MutableMap<String, Any?> by mutableMapOf()
 
 fun PageTemplate.bind(context: Pair<String, Any?>): Any? = put(context.first, context.second)
-
-data class Template<T>(
-    val block: suspend () -> T
-)

@@ -27,11 +27,7 @@ abstract class PageService<P : Page<*>>(
 
     protected suspend fun ApplicationCall.respondHtmlPage() {
         require(compiler != null)
-        val template = page
-            .template(sessions, request.queryParameters)
-            .block
-            .invoke()
-            .also { it.configuration.invoke(it) }
+        val template = page.template(sessions, request)
         require(template.path.isNotEmpty())
         val html = compiler.compile(template.path, template.filterValues { it != null })
         htmlHeader(html.length)

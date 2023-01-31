@@ -4,22 +4,19 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.dao.site.SiteService
 import com.habbokt.page.Page
-import com.habbokt.page.Template
-import io.ktor.http.Parameters
-import io.ktor.server.sessions.CurrentSession
 
 /**
  * @author Jordan Abraham
  */
 @Singleton
 class IndexPage @Inject constructor(
-   private val siteService: SiteService
-) : Page<IndexPageTemplate> {
-    override suspend fun template(sessions: CurrentSession, parameters: Parameters): Template<IndexPageTemplate> = Template {
+    private val siteService: SiteService
+) : Page<IndexPageTemplate>(
+    template = { _, request ->
         IndexPageTemplate(
             site = siteService.site(),
-            rememberMe = parameters["rememberme"].toBoolean(),
-            username = parameters["username"]
+            rememberMe = request.queryParameters["rememberme"].toBoolean(),
+            username = request.queryParameters["username"]
         )
     }
-}
+)
