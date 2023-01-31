@@ -12,20 +12,24 @@ import io.ktor.server.engine.ApplicationEngine
  * @author Jordan Abraham
  */
 fun main(args: Array<String>) {
-    val injector = Guice.createInjector(
-        GameModule(args),
-        PacketModule
-    )
+    try {
+        val injector = Guice.createInjector(
+            GameModule(args),
+            PacketModule
+        )
 
-    val applicationEnvironment = injector.getInstance<ApplicationEnvironment>()
-    val applicationEngine = injector.getInstance<ApplicationEngine>()
-    val gameServer = injector.getInstance<GameServer>()
-    val gameSynchronizer = injector.getInstance<GameSynchronizer>()
-    val database =  Guice.createInjector(DatabaseModule(injector.getInstance())).getInstance<HikariDatabase>()
+        val applicationEnvironment = injector.getInstance<ApplicationEnvironment>()
+        val applicationEngine = injector.getInstance<ApplicationEngine>()
+        val gameServer = injector.getInstance<GameServer>()
+        val gameSynchronizer = injector.getInstance<GameSynchronizer>()
+        val database = Guice.createInjector(DatabaseModule(injector.getInstance())).getInstance<HikariDatabase>()
 
-    Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment, applicationEngine, database, gameServer, gameSynchronizer))
+        Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment, applicationEngine, database, gameServer, gameSynchronizer))
 
-    database.connect()
-    gameSynchronizer.start()
-    gameServer.bind()
+        database.connect()
+        gameSynchronizer.start()
+        gameServer.bind()
+    } catch (exception: Exception) {
+        exception.printStackTrace()
+    }
 }
