@@ -20,6 +20,7 @@ _Since Auto-reload detects changes in output files, you need to rebuild a projec
   ```
 
 # Adobe Flash Player Compatible Browser
+_Please note that Adobe Flash is no longer supported on modern browsers due to security issues. Use this browser at your own risk!_
   ```
   https://archive.org/details/basilisk-portable-with-flash
   ```
