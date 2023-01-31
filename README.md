@@ -19,12 +19,6 @@ _Since Auto-reload detects changes in output files, you need to rebuild a projec
   ./gradlew -t build -x test -x jar -x distZip -x distTar
   ```
 
-# Adobe Flash Player Compatible Browser
-_Please note that Adobe Flash is no longer supported on modern browsers due to security issues. Use this browser at your own risk!_
-  ```
-  https://archive.org/details/basilisk-portable-with-flash
-  ```
-
 # Starting the Web Server
 _Running the auto-reload task and the web-server task in Gradle simultaneously is very powerful for development._
 
@@ -46,6 +40,14 @@ _Running the auto-reload task and the web-server task in Gradle simultaneously i
 - Default Account Credentials (username: jordan, password: password1) or create your own account using the registration.
 - Navigate to _http://localhost/client_ to launch the game once logged in.
 - Navigate to _http://localhost/export_ to dump some game assets from the Flash movies.
+
+# Adobe Flash Player Compatible Browser
+_Please note that Adobe Flash is no longer supported on modern browsers due to security issues. You 
+must use an Adobe Flash Player compatible browser to be able to play the game. 
+Use this browser at your own risk!_
+  ```
+  https://archive.org/details/basilisk-portable-with-flash
+  ```
 
 <p align="center">
   <img src="https://github.com/ultraviolet-jordan/habbokt/blob/main/assets/registration.jpg?raw=true" alt="Habbo Hotel Registration"/>
