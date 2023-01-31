@@ -18,7 +18,7 @@ class SecurityCheckPageRouting @Inject constructor(
     routing = {
         authenticate(Authentications.User) {
             get("/security_check") {
-                service.handleGetRequest(call)
+                service.getRequest(call)
             }
         }
     }

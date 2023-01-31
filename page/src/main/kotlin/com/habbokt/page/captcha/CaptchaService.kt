@@ -2,12 +2,10 @@ package com.habbokt.page.captcha
 
 import cn.apiclub.captcha.Captcha
 import cn.apiclub.captcha.text.renderer.DefaultWordRenderer
-import com.google.inject.Inject
 import com.google.inject.Singleton
-import com.habbokt.page.BlankPage
 import com.habbokt.page.BlankPageService
+import com.habbokt.page.respondPng
 import com.habbokt.session.CaptchaSession
-import io.ktor.server.application.ApplicationCall
 import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 import io.ktor.server.sessions.set
@@ -18,10 +16,8 @@ import java.awt.Font
  * @author Jordan Abraham
  */
 @Singleton
-class CaptchaService @Inject constructor(
-    page: BlankPage
-) : BlankPageService(page) {
-    override suspend fun handleGetRequest(call: ApplicationCall) {
+class CaptchaService : BlankPageService(
+    get = {
         val colors = listOf(
             Color.BLACK
         )
@@ -37,13 +33,13 @@ class CaptchaService @Inject constructor(
             .build()
 
         // Modify or create new captcha session when generating a new captcha to the user.
-        val session = call.sessions.get<CaptchaSession>()
+        val session = sessions.get<CaptchaSession>()
         if (session == null) {
-            call.sessions.set(CaptchaSession(captcha.answer))
+            sessions.set(CaptchaSession(captcha.answer))
         } else {
-            call.sessions.set(session.copy(captcha = captcha.answer))
+            sessions.set(session.copy(captcha = captcha.answer))
         }
 
-        call.respondPng(captcha.image)
+        respondPng(captcha.image)
     }
-}
+)

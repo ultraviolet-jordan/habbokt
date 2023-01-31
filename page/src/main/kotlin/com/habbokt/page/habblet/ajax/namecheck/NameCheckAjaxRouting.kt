@@ -15,7 +15,7 @@ class NameCheckAjaxRouting @Inject constructor(
 ) : PageRouting(
     routing = {
         post("/habblet/ajax/namecheck") {
-            service.handlePostRequest(call)
+            service.postRequest(call)
         }
     }
 )

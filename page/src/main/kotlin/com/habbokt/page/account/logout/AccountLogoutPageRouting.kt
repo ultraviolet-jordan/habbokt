@@ -18,7 +18,7 @@ class AccountLogoutPageRouting @Inject constructor(
     routing = {
         authenticate(Authentications.User) {
             get("/account/logout") {
-                service.handleGetRequest(call)
+                service.getRequest(call)
             }
         }
     }

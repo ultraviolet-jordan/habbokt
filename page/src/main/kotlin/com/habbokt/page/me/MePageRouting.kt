@@ -18,7 +18,7 @@ class MePageRouting @Inject constructor(
     routing = {
         authenticate(Authentications.User) {
             get("/me") {
-                service.handleGetRequest(call)
+                service.getRequest(call)
             }
         }
     }

@@ -18,7 +18,7 @@ class WelcomePageRouting @Inject constructor(
     routing = {
         authenticate(Authentications.User) {
             get("/welcome") {
-                service.handleGetRequest(call)
+                service.getRequest(call)
             }
         }
     }

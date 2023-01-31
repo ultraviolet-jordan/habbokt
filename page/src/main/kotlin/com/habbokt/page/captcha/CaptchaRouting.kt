@@ -15,7 +15,7 @@ class CaptchaRouting @Inject constructor(
 ) : PageRouting(
     routing = {
         get("/captcha.jpg") {
-            service.handleGetRequest(call)
+            service.getRequest(call)
         }
     }
 )

@@ -15,7 +15,7 @@ class AccountSubmitPageRouting @Inject constructor(
 ) : PageRouting(
     routing = {
         post("/account/submit") {
-            service.handlePostRequest(call)
+            service.postRequest(call)
         }
     }
 )

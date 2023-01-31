@@ -18,7 +18,7 @@ class ClientPageRouting @Inject constructor(
     routing = {
         authenticate(Authentications.User) {
             get("/client") {
-                service.handleGetRequest(call)
+                service.getRequest(call)
             }
         }
     }

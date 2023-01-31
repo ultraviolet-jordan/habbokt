@@ -18,7 +18,7 @@ class AvatarImageRouting @Inject constructor(
     routing = {
         authenticate(Authentications.User) {
             get("/habbo-imaging/avatarimage") {
-                service.handleGetRequest(call)
+                service.getRequest(call)
             }
         }
     }

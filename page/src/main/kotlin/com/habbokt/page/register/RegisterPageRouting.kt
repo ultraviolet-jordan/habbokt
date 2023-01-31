@@ -18,11 +18,11 @@ class RegisterPageRouting @Inject constructor(
 ) : PageRouting(
     routing = {
         get("/register") {
-            service.handleGetRequest(call)
+            service.getRequest(call)
         }
         authenticate(Authentications.Captcha) {
             post("/register") {
-                service.handlePostRequest(call)
+                service.postRequest(call)
             }
         }
         get("/register/cancel") {

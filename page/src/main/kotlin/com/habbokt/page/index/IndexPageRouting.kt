@@ -15,7 +15,7 @@ class IndexPageRouting @Inject constructor(
 ) : PageRouting(
     routing = {
         get("/") {
-            service.handleGetRequest(call)
+            service.getRequest(call)
         }
     }
 )
