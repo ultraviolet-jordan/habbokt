@@ -12,8 +12,10 @@ import io.ktor.server.routing.post
 @Singleton
 class AccountSubmitPageRouting @Inject constructor(
     private val service: AccountSubmitPageService
-) : PageRouting(routing = {
-    post("/account/submit") {
-        service.handlePostRequest(call)
+) : PageRouting(
+    routing = {
+        post("/account/submit") {
+            service.handlePostRequest(call)
+        }
     }
-})
+)
