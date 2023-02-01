@@ -7,8 +7,8 @@ dependencyResolutionManagement {
         create("deps") {
             // Dependency versions.
             version("kotlin", "1.7.10")
-            version("ktor", "2.2.2")
-            version("versions", "0.44.0")
+            version("ktor", "2.2.3")
+            version("versions", "0.45.0")
             version("pebble", "3.2.0")
             version("slf4j", "2.0.6")
             version("simplecaptcha", "1.2.2")
