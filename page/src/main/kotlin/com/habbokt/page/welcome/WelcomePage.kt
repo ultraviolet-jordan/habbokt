@@ -11,8 +11,8 @@ import com.habbokt.page.Page
 @Singleton
 class WelcomePage @Inject constructor(
     private val siteService: SiteService
-) : Page<WelcomePageTemplate>(
-    template = { _, _ ->
+) : Page<WelcomePageTemplate, WelcomePageRequest>(
+    template = {
         WelcomePageTemplate(
             site = siteService.site()
         )
