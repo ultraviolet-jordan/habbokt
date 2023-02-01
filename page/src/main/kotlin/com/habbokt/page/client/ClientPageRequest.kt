@@ -1,6 +1,11 @@
 package com.habbokt.page.client
 
+import com.habbokt.page.PageRequest
+import com.habbokt.session.UserSession
+
 /**
  * @author Jordan Abraham
- */class ClientPageRequest {
-}
+ */
+data class ClientPageRequest(
+    val userSession: UserSession
+) : PageRequest

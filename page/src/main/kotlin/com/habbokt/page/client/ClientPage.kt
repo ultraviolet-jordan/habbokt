@@ -6,7 +6,6 @@ import com.habbokt.dao.players.PlayersService
 import com.habbokt.dao.site.SiteService
 import com.habbokt.page.Page
 import com.habbokt.session.UserSession
-import io.ktor.server.sessions.get
 import java.util.UUID
 
 /**
@@ -16,10 +15,8 @@ import java.util.UUID
 class ClientPage @Inject constructor(
     private val siteService: SiteService,
     private val playersService: PlayersService
-) : Page<ClientPageTemplate>(
-    template = { session, _ ->
-        val userSession = session.get<UserSession>()!! // This call is authenticated by this session.
-
+) : Page<ClientPageTemplate, ClientPageRequest>(
+    template = {
         ClientPageTemplate(
             site = siteService.site(),
             forwardRoom = false,

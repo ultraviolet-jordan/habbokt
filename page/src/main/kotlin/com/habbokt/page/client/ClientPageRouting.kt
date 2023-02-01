@@ -4,9 +4,13 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.page.Authentications
 import com.habbokt.page.PageRouting
+import com.habbokt.page.respondHtml
+import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
 import io.ktor.server.auth.authenticate
 import io.ktor.server.routing.get
+import io.ktor.server.sessions.get
+import io.ktor.server.sessions.sessions
 
 /**
  * @author Jordan Abraham
@@ -18,7 +22,10 @@ class ClientPageRouting @Inject constructor(
     routing = {
         authenticate(Authentications.User) {
             get("/client") {
-                service.getRequest(call)
+                val request = ClientPageRequest(
+                    userSession = call.sessions.get()!!
+                )
+                call.respondHtml(HttpStatusCode.OK, service.getRequest(request))
             }
         }
     }
