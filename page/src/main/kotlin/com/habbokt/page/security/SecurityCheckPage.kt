@@ -11,11 +11,11 @@ import com.habbokt.page.Page
 @Singleton
 class SecurityCheckPage @Inject constructor(
     private val siteService: SiteService
-) : Page<SecurityCheckPageTemplate>(
-    template = { _, _ ->
+) : Page<SecurityCheckPageTemplate, SecurityCheckPageRequest>(
+    template = {
         SecurityCheckPageTemplate(
             site = siteService.site(),
-            redirectPath = "/me" // TODO or /welcome
+            redirectPath = redirectPath
         )
     }
 )

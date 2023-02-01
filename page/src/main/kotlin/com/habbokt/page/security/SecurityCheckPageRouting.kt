@@ -4,6 +4,8 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.page.Authentications
 import com.habbokt.page.PageRouting
+import com.habbokt.page.respondHtml
+import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
 import io.ktor.server.auth.authenticate
 import io.ktor.server.routing.get
@@ -18,7 +20,10 @@ class SecurityCheckPageRouting @Inject constructor(
     routing = {
         authenticate(Authentications.User) {
             get("/security_check") {
-                service.getRequest(call)
+                val request = SecurityCheckPageRequest(
+                    redirectPath = "/me" // TODO
+                )
+                call.respondHtml(HttpStatusCode.OK, service.getRequest(request))
             }
         }
     }

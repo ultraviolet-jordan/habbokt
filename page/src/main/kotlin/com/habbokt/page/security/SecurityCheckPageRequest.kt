@@ -1,6 +1,10 @@
 package com.habbokt.page.security
 
+import com.habbokt.page.PageRequest
+
 /**
  * @author Jordan Abraham
- */class SecurityCheckPageRequest {
-}
+ */
+data class SecurityCheckPageRequest(
+    val redirectPath: String
+) : PageRequest
