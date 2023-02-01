@@ -1,6 +1,10 @@
 package com.habbokt.page.me
 
+import com.habbokt.page.PageRequest
+
 /**
  * @author Jordan Abraham
- */class MePageRequest {
-}
+ */
+data class MePageRequest(
+    val userId: Int
+) : PageRequest
