@@ -1,34 +1,24 @@
 package com.habbokt.page
 
 import com.google.inject.Inject
-import com.habbokt.templating.Compiler
-import io.ktor.server.application.ApplicationCall
-import io.ktor.server.sessions.sessions
 
 /**
  * @author Jordan Abraham
  */
-abstract class PageService<P : Page<*>>(
-    private val get: (suspend ApplicationCall.(String) -> Any?)? = null,
-    private val post: (suspend ApplicationCall.(String) -> Any?)? = null
+abstract class PageService<A : Page<*, Z>, Z : PageRequest, G : ResponseType, P : ResponseType>(
+    private val get: (suspend Z.(A) -> G)? = null,
+    private val post: (suspend Z.(A) -> P)? = null
 ) {
     @Inject
-    private lateinit var page: P
+    private lateinit var page: A
 
-    @Inject
-    private lateinit var compiler: Compiler
-
-    suspend fun getRequest(call: ApplicationCall) {
+    suspend fun getRequest(request: Z): G {
         require(get != null)
-        get.invoke(call, compileHtml(call))
+        return get.invoke(request, page)
     }
 
-    suspend fun postRequest(call: ApplicationCall) {
+    suspend fun postRequest(request: Z): P {
         require(post != null)
-        post.invoke(call, compileHtml(call))
-    }
-
-    private suspend fun compileHtml(call: ApplicationCall): String = page.template(call.sessions, call.request).let {
-        if (it.path.isEmpty()) "" else compiler.compile(it.path, it.filterValues { x -> x != null })
+        return post.invoke(request, page)
     }
 }

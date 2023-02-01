@@ -6,6 +6,6 @@ import com.google.inject.Singleton
  * @author Jordan Abraham
  */
 @Singleton
-class BlankPage : Page<BlankTemplate>(
-    template = { _, _ -> BlankTemplate }
+class BlankPage<Z : PageRequest> : Page<BlankTemplate, Z>(
+    template = { BlankTemplate }
 )

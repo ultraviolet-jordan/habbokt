@@ -1,11 +1,9 @@
 package com.habbokt.page
 
-import io.ktor.server.application.ApplicationCall
-
 /**
  * @author Jordan Abraham
  */
-abstract class BlankPageService(
-    get: (suspend ApplicationCall.(String) -> Any?)? = null,
-    post: (suspend ApplicationCall.(String) -> Any?)? = null
-) : PageService<BlankPage>(get, post)
+abstract class BlankPageService<Z : PageRequest, G : ResponseType, P : ResponseType>(
+    val get: (suspend Z.(BlankPage<Z>) -> G)? = null,
+    val post: (suspend Z.(BlankPage<Z>) -> P)? = null
+) : PageService<BlankPage<Z>, Z, G, P>(get, post)
