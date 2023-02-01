@@ -21,7 +21,7 @@ import io.ktor.server.sessions.set
 class AccountSubmitPageService @Inject constructor(
     private val playersService: PlayersService,
     private val argon2Service: Argon2Service
-) : PageService<AccountSubmitPage, AccountSubmitPageRequest, None, Redirect>(
+) : PageService<AccountSubmitPageRequest, None, Redirect>(
     post = {
         playersService.validatePlayer(argon2Service, username, password)?.let {
             if (session.get<UserSession>() != null) {

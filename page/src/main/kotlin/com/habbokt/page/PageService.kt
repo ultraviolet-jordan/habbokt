@@ -1,24 +1,20 @@
 package com.habbokt.page
 
-import com.google.inject.Inject
-
 /**
  * @author Jordan Abraham
  */
-abstract class PageService<A : Page<*, Z>, Z : PageRequest, G : ResponseType, P : ResponseType>(
-    private val get: (suspend Z.(A) -> G)? = null,
-    private val post: (suspend Z.(A) -> P)? = null
+abstract class PageService<R : PageRequest, G : ResponseType, P : ResponseType>(
+    private val get: (suspend R.() -> G)? = null,
+    private val post: (suspend R.() -> P)? = null
 ) {
-    @Inject
-    private lateinit var page: A
 
-    suspend fun getRequest(request: Z): G {
+    suspend fun getRequest(request: R): G {
         require(get != null)
-        return get.invoke(request, page)
+        return get.invoke(request)
     }
 
-    suspend fun postRequest(request: Z): P {
+    suspend fun postRequest(request: R): P {
         require(post != null)
-        return post.invoke(request, page)
+        return post.invoke(request)
     }
 }

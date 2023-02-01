@@ -15,10 +15,11 @@ import io.ktor.server.sessions.clear
  */
 @Singleton
 class AccountLogoutPageService @Inject constructor(
-    private val compiler: Compiler
-) : PageService<AccountLogoutPage, AccountLogoutPageRequest, Html, None>(
+    private val compiler: Compiler,
+    private val page: AccountLogoutPage
+) : PageService<AccountLogoutPageRequest, Html, None>(
     get = {
         session.clear<UserSession>()
-        html(it, compiler)
+        html(page, compiler)
     }
 )

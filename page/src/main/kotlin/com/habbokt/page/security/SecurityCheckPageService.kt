@@ -13,9 +13,10 @@ import com.habbokt.templating.Compiler
  */
 @Singleton
 class SecurityCheckPageService @Inject constructor(
-    private val compiler: Compiler
-) : PageService<SecurityCheckPage, SecurityCheckPageRequest, Html, None>(
+    private val compiler: Compiler,
+    private val page: SecurityCheckPage
+) : PageService<SecurityCheckPageRequest, Html, None>(
     get = {
-        html(it, compiler)
+        html(page, compiler)
     }
 )

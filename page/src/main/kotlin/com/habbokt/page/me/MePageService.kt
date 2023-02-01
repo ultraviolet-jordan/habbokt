@@ -13,9 +13,10 @@ import com.habbokt.templating.Compiler
  */
 @Singleton
 class MePageService @Inject constructor(
-    private val compiler: Compiler
-) : PageService<MePage, MePageRequest, Html, None>(
+    private val compiler: Compiler,
+    private val page: MePage
+) : PageService<MePageRequest, Html, None>(
     get = {
-        html(it, compiler)
+        html(page, compiler)
     }
 )

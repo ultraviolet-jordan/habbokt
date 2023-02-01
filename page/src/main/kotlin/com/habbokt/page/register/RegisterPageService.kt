@@ -20,11 +20,12 @@ import java.nio.charset.StandardCharsets
 @Singleton
 class RegisterPageService @Inject constructor(
     private val compiler: Compiler,
+    private val page: RegisterPage,
     private val playersService: PlayersService,
     private val argon2Service: Argon2Service
-) : PageService<RegisterPage, RegisterPageRequest, Html, Redirect>(
+) : PageService<RegisterPageRequest, Html, Redirect>(
     get = {
-        html(it, compiler)
+        html(page, compiler)
     },
 
     post = {
