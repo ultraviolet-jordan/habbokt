@@ -1,14 +1,14 @@
-package com.habbokt.page.account.logout
+package com.habbokt.page.account.submit
 
-import com.habbokt.page.Request
+import com.habbokt.page.PageRequest
 import io.ktor.server.sessions.CurrentSession
 
 /**
  * @author Jordan Abraham
  */
-data class AccountLogoutPageRequest(
+data class AccountSubmitPageRequest(
     val session: CurrentSession,
     val username: String,
     val password: String,
     val rememberMe: Boolean
-) : Request
+) : PageRequest

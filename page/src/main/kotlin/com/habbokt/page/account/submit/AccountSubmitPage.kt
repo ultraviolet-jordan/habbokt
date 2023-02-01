@@ -11,8 +11,8 @@ import com.habbokt.page.Page
 @Singleton
 class AccountSubmitPage @Inject constructor(
     private val siteService: SiteService
-) : Page<AccountSubmitPageTemplate>(
-    template = { _, _ ->
+) : Page<AccountSubmitPageTemplate, AccountSubmitPageRequest>(
+    template = {
         AccountSubmitPageTemplate(
             site = siteService.site()
         )
