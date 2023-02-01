@@ -3,7 +3,10 @@ package com.habbokt.page.habblet.ajax.namecheck
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import com.habbokt.page.PageRouting
+import com.habbokt.page.respondAjax
+import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
+import io.ktor.server.request.receiveParameters
 import io.ktor.server.routing.post
 
 /**
@@ -15,7 +18,10 @@ class NameCheckAjaxRouting @Inject constructor(
 ) : PageRouting(
     routing = {
         post("/habblet/ajax/namecheck") {
-            service.postRequest(call)
+            val request = NameCheckAjaxRequest(
+                name = call.receiveParameters()["name"]
+            )
+            call.respondAjax(HttpStatusCode.OK, service.postRequest(request))
         }
     }
 )

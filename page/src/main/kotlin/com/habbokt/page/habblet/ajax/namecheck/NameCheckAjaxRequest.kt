@@ -1,6 +1,10 @@
 package com.habbokt.page.habblet.ajax.namecheck
 
+import com.habbokt.page.PageRequest
+
 /**
  * @author Jordan Abraham
- */class NameCheckAjaxRequest {
-}
+ */
+data class NameCheckAjaxRequest(
+    val name: String?
+) : PageRequest
