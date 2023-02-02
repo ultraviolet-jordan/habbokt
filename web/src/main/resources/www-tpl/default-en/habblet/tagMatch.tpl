@@ -1,9 +1,9 @@
 {% autoescape 'html' %}
 {% if errorMsg != "" %}
 <div class="tag-match-error">
-	{{ errorMsg }}
+    {{ errorMsg }}
 </div>
 {% else %}
 Coming soon.
-{% endif %}							
+{% endif %}
 {% endautoescape %}

@@ -1,7 +1,7 @@
 {% if alert.hasAlert %}
 
 <div class="alert alert-{{ alert.colour }}">
-  {{ alert.message }}
+    {{ alert.message }}
 </div>
 
 
