@@ -33,5 +33,8 @@ fun Application.installStatusPagesPlugin() {
             if (assets.any(call.request.uri::startsWith)) return@status
             call.respondRedirect("/")
         }
+        status(HttpStatusCode.MethodNotAllowed) { call, _ ->
+            call.respondRedirect("/")
+        }
     }
 }
