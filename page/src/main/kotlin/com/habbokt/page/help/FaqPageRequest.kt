@@ -5,8 +5,7 @@ import com.habbokt.page.PageRequest
 /**
  * @author Jordan Abraham
  */
-class FaqPageRequest : PageRequest {
-    companion object {
-        val Empty = FaqPageRequest()
-    }
-}
+data class FaqPageRequest(
+    val helpId: Int?,
+    val userId: Int?
+) : PageRequest
