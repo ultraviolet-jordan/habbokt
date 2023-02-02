@@ -240,8 +240,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% if feedFriendRequests > 0 %}
                             <li id="feed-notification">
                                 You have
-                                <a href="{{ site.sitePath }}/client" onclick="HabboClient.openOrFocus(this); return false;">{{ feedFriendRequests }
-                                    } friend requests</a> waiting
+                                <a href="{{ site.sitePath }}/client" onclick="HabboClient.openOrFocus(this); return false;">{{ feedFriendRequests }} friend requests</a> waiting
                             </li>
                             {% endif %}
 
@@ -249,7 +248,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% if (feedFriendsOnline|length) > 0 %}
                             <li id="feed-friends">
                                 You have {{ feedFriendsOnline|length }} friends online <span>
-			{% for friend in feedFriendsOnline %}				
+			{% for friend in feedFriendsOnline %}
 				<a href="{{ site.sitePath }}/home/{{ friend.getUsername() }}">{{ friend.getUsername() }}</a>{% if num < (feedFriendsOnline|length) %},{% endif %}{% set num = num + 1 %}
                                     {% endfor %}
 			</span>
@@ -259,8 +258,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% if unreadGuestbookMessages > 0 %}
                             <li class="small" id="feed-guestbook">
                                 You have
-                                <a href="{{ site.sitePath }}/home/{{ playerDetails.getName() }}">{{ unreadGuestbookMessages }
-                                    } new guestbook entries</a> on your homepage
+                                <a href="{{ site.sitePath }}/home/{{ playerDetails.getName() }}">{{ unreadGuestbookMessages }} new guestbook entries</a> on your homepage
                             </li>
                             {% endif %}
 
@@ -292,12 +290,10 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                             {% if playerDetails.isTradeEnabled() %}
                             <li class="small" id="feed-trading-enabled">Trading is on.
-                                <a href="{{ site.sitePath }}/profile?tab=6" title="">Click here to turn it off</a>
-                            </li>
+                                <a href="{{ site.sitePath }}/profile?tab=6" title="">Click here to turn it off</a></li>
                             {% else %}
                             <li class="small" id="feed-trading-disabled">Trading is off.
-                                <a href="{{ site.sitePath }}/profile?tab=6" title="">Click here to turn it on</a>
-                            </li>
+                                <a href="{{ site.sitePath }}/profile?tab=6" title="">Click here to turn it on</a></li>
                             {% endif %}
                             <!-- <li class="small" id="feed-flashbeta-invites">This server is currently in beta, some features may not be operating correctly. You may also expect spontaneous maintenance periods.</li> -->
                             <li class="small" id="feed-lastlogin">
@@ -462,14 +458,14 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     </div>
                     <script type="text/javascript">
                         L10N.put("minimail.compose", "Compose").put("minimail.cancel", "Cancel")
-                            .put("bbcode.colors.red", "Red").put("bbcode.colors.orange", "Orange")
-                            .put("bbcode.colors.yellow", "Yellow").put("bbcode.colors.green", "Green")
-                            .put("bbcode.colors.cyan", "Cyan").put("bbcode.colors.blue", "Blue")
-                            .put("bbcode.colors.gray", "Gray").put("bbcode.colors.black", "Black")
-                            .put("minimail.empty_body.confirm", "Are you sure you want to send the message with an empty body?")
-                            .put("bbcode.colors.label", "Color").put("linktool.find.label", " ")
-                            .put("linktool.scope.habbos", "{{ site.siteName }}s").put("linktool.scope.rooms", "Rooms")
-                            .put("linktool.scope.groups", "Groups").put("minimail.report.title", "Report message to moderators");
+                                .put("bbcode.colors.red", "Red").put("bbcode.colors.orange", "Orange")
+                                .put("bbcode.colors.yellow", "Yellow").put("bbcode.colors.green", "Green")
+                                .put("bbcode.colors.cyan", "Cyan").put("bbcode.colors.blue", "Blue")
+                                .put("bbcode.colors.gray", "Gray").put("bbcode.colors.black", "Black")
+                                .put("minimail.empty_body.confirm", "Are you sure you want to send the message with an empty body?")
+                                .put("bbcode.colors.label", "Color").put("linktool.find.label", " ")
+                                .put("linktool.scope.habbos", "{{ site.siteName }}s").put("linktool.scope.rooms", "Rooms")
+                                .put("linktool.scope.groups", "Groups").put("minimail.report.title", "Report message to moderators");
 
                         L10N.put("date.pretty.just_now", "just now");
                         L10N.put("date.pretty.one_minute_ago", "1 minute ago");
@@ -481,21 +477,21 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         L10N.put("date.pretty.one_week_ago", "1 week ago");
                         L10N.put("date.pretty.weeks_ago", "{0} weeks ago");
                         new MiniMail({
-                                pageSize: 10,
-                                total: {{ totalMessages }},
-                            friendCount
+                                    pageSize: 10,
+                                    total: {{ totalMessages }},
+                                friendCount
                         :
                         1,
-                            maxRecipients
+                                maxRecipients
                         :
                         50,
-                            messageMaxLength
+                                messageMaxLength
                         :
                         20,
-                            bodyMaxLength
+                                bodyMaxLength
                         :
                         4096,
-                            secondLevel
+                                secondLevel
                         :
                         false
                         })
@@ -660,8 +656,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             <div class="topstory" style="background-image: url({{ article1.getLiveTopStory() }})">
                                 <h4>Latest news </a></h4>
                                 <h3>
-                                    <a href="{{ site.sitePath }}/articles/{{ article1.getUrl() }}">{% if article1.isPublished() == false %}
-                                        *{% endif %}{{ article1.title }}</a></h3>
+                                    <a href="{{ site.sitePath }}/articles/{{ article1.getUrl() }}">{% if article1.isPublished() == false %}*{% endif %}{{ article1.title }}</a>
+                                </h3>
                                 <p class="summary">
                                     {{ article1.shortstory }} </p>
                                 <p>
@@ -671,8 +667,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             <div class="topstory" style="background-image: url({{ article2.getLiveTopStory() }}); display: none">
                                 <h4>Latest news</a></h4>
                                 <h3>
-                                    <a href="{{ site.sitePath }}/articles/{{ article2.getUrl() }}">{% if article2.isPublished() == false %}
-                                        *{% endif %}{{ article2.title }}</a></h3>
+                                    <a href="{{ site.sitePath }}/articles/{{ article2.getUrl() }}">{% if article2.isPublished() == false %}*{% endif %}{{ article2.title }}</a>
+                                </h3>
                                 <p class="summary">
                                     {{ article2.shortstory }} </p>
                                 <p>
@@ -682,8 +678,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             <div class="topstory" style="background-image: url({{ article3.getLiveTopStory() }}); display: none">
                                 <h4>Latest news</a></h4>
                                 <h3>
-                                    <a href="{{ site.sitePath }}/articles/{{ article3.getUrl() }}">{% if article3.isPublished() == false %}
-                                        *{% endif %}{{ article3.title }}</a></h3>
+                                    <a href="{{ site.sitePath }}/articles/{{ article3.getUrl() }}">{% if article3.isPublished() == false %}*{% endif %}{{ article3.title }}</a>
+                                </h3>
                                 <p class="summary">
                                     {{ article3.shortstory }} </p>
                                 <p>
@@ -695,13 +691,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         </div>
                         <ul class="widelist">
                             <li class="even">
-                                <a href="{{ site.sitePath }}/articles/{{ article4.getUrl() }}">{% if article4.isPublished() == false %}
-                                    *{% endif %}{{ article4.title }}</a>
+                                <a href="{{ site.sitePath }}/articles/{{ article4.getUrl() }}">{% if article4.isPublished() == false %}*{% endif %}{{ article4.title }}</a>
                                 <div class="newsitem-date">{{ article4.getDate() }}</div>
                             </li>
                             <li class="odd">
-                                <a href="{{ site.sitePath }}/articles/{{ article5.getUrl() }}">{% if article4.isPublished() == false %}
-                                    *{% endif %}{{ article5.title }}</a>
+                                <a href="{{ site.sitePath }}/articles/{{ article5.getUrl() }}">{% if article4.isPublished() == false %}*{% endif %}{{ article5.title }}</a>
                                 <div class="newsitem-date">{{ article5.getDate() }}</div>
                             </li>
                             <li class="last"><a href="{{ site.sitePath }}/articles">More news &raquo;</a></li>
@@ -804,8 +798,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 {% if group.getRoomId() > 0 %}
                                 <a href="{{ site.sitePath }}/client?forwardId=2&amp;roomId=1" onclick="HabboClient.roomForward(this, '1', 'private'); return false;" target="client" class="group-room"></a>
                                 {% endif %}
-                                <a class="item" href="{{ group.generateClickLink() }}">{% autoescape 'html' %}{{ group.name }
-                                    }{% endautoescape %}</a>
+                                <a class="item" href="{{ group.generateClickLink() }}">{% autoescape 'html' %}{{ group.name }}{% endautoescape %}</a>
                             </li>
                             {% endfor %}
                         </ul>
@@ -911,8 +904,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 {% set status = "even" %}
                                 {% endif %}
                                 <li class="{{ status }} {{ position }}" style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
-                                    <a class="item" href="{{ group.generateClickLink() }}">{% autoescape 'html' %}{{ group.name }
-                                        }{% endautoescape %}</a>
+                                    <a class="item" href="{{ group.generateClickLink() }}">{% autoescape 'html' %}{{ group.name }}{% endautoescape %}</a>
                                 </li>
                                 {% set i = i + 1 %}
                                 {% endfor %}
