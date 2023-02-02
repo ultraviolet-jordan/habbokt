@@ -11,6 +11,7 @@ import com.habbokt.page.client.ClientPageRouting
 import com.habbokt.page.export.ExportPageRouting
 import com.habbokt.page.habblet.ajax.namecheck.NameCheckAjaxRouting
 import com.habbokt.page.habboimaging.avatarimage.AvatarImageRouting
+import com.habbokt.page.help.FaqPageRouting
 import com.habbokt.page.index.IndexPageRouting
 import com.habbokt.page.me.MePageRouting
 import com.habbokt.page.register.RegisterPageRouting
@@ -54,6 +55,8 @@ object PageModule : KotlinModule() {
             addBinding().to<NameCheckAjaxRouting>()
             // Habboimaging
             addBinding().to<AvatarImageRouting>()
+            // Help
+            addBinding().to<FaqPageRouting>()
             // Index
             addBinding().to<IndexPageRouting>()
             // Me
