@@ -10,8 +10,7 @@
     <div>
         <div class="new-buttons clearfix">
             {% if minimailMessage.getConversationId() > 0 %}
-            <a href="#" class="related-messages" id="rel-{{ minimailMessage.getConversationId() }}"
-               title="Show full conversation"></a>
+            <a href="#" class="related-messages" id="rel-{{ minimailMessage.getConversationId() }}" title="Show full conversation"></a>
             {% endif %}
             {% if (minimailLabel == "inbox") or (minimailLabel == "sent") %}
             <a href="#" class="new-button red-button delete"><b>Delete</b><i></i></a>
@@ -26,8 +25,7 @@
     <div style="display: none;">
         <textarea rows="5" cols="10" class="message-text"></textarea><br>
         <div class="new-buttons clearfix">
-            <a href="#" class="new-button cancel-reply"><b>Cancel</b><i></i></a>
-            <a href="#" class="new-button preview"><b>Preview</b><i></i></a>
+            <a href="#" class="new-button cancel-reply"><b>Cancel</b><i></i></a> <a href="#" class="new-button preview"><b>Preview</b><i></i></a>
 
             <a href="#" class="new-button send-reply"><b>Send</b><i></i></a>
         </div>

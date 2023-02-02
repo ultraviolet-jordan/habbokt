@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -42,10 +40,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -102,17 +98,13 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div id="habboclub-tryout" class="box-content">
 
                             <div class="rounded rounded-lightbrown clearfix">
-                                <p class="habboclub-logo heading">Try on the club clothes for free here and then use the
-                                    menu on the right to become a member and wear the clothes in the Hotel.<br/><br/>If
-                                    you just want to change your look without using club clothes or
-                                    joining {{ site.siteName }} Club, please go back to your <a
-                                            href="{{ site.sitePath }}/profile">Account Settings.</a></p>
+                                <p class="habboclub-logo heading">Try on the club clothes for free here and then use the menu on the right to become a member and wear the clothes in the Hotel.<br/><br/>If you just want to change your look without using club clothes or joining {{ site.siteName }} Club, please go back to your
+                                    <a href="{{ site.sitePath }}/profile">Account Settings.</a></p>
                             </div>
 
                             <div id="flashcontent">
-                                You need to have a Flash player installed on your computer before being able to edit
-                                your {{ site.siteName }} character. You can download the player from here: <a
-                                        target="_blank" href="http://www.adobe.com/go/getflashplayer">http://www.adobe.com/go/getflashplayer</a>
+                                You need to have a Flash player installed on your computer before being able to edit your {{ site.siteName }} character. You can download the player from here:
+                                <a target="_blank" href="http://www.adobe.com/go/getflashplayer">http://www.adobe.com/go/getflashplayer</a>
                             </div>
                         </div>
 
@@ -149,8 +141,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <h2 class="title">My Membership </h2>
 
 
-                        <script src="{{ site.staticContentPath }}/web-gallery/static/js/habboclub.js"
-                                type="text/javascript"></script>
+                        <script src="{{ site.staticContentPath }}/web-gallery/static/js/habboclub.js" type="text/javascript"></script>
                         {% include "base/hc_status.tpl" %}
                     </div>
                 </div>
@@ -164,9 +155,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <h2 class="title">What is {{ site.siteName }} Club? </h2>
 
                         <div id="habboclub-info" class="box-content">
-                            <p>{{ site.siteName }} Club is our VIP members-only club - absolutely no riff-raff admitted!
-                                Members enjoy a wide range of benefits, including exclusive clothes, free gifts and an
-                                extended Friends List. See below for all the sparkly, attractive reasons to join.</p>
+                            <p>{{ site.siteName }} Club is our VIP members-only club - absolutely no riff-raff admitted! Members enjoy a wide range of benefits, including exclusive clothes, free gifts and an extended Friends List. See below for all the sparkly, attractive reasons to join.</p>
                             <h3 class="heading">1. Extra Clothes &amp; Accessories</h3>
                             <h3 class="heading">2. Free Furni</h3>
                             <h3 class="heading">3. Exclusive Room Layouts</h3>
@@ -207,8 +196,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
         {% include "base/footer.tpl" %}
 

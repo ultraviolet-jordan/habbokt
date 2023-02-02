@@ -1,8 +1,7 @@
 {% if hasMessage == false %}
 <div class="postlist-header clearfix">
     {% if discussionTopic.isOpen() == false %}
-    <span class="topic-closed"><img src="{{ site.staticContentPath }}/web-gallery/images/groups/status_closed.gif"
-                                    title="Closed Thread"> Closed Thread</span>
+    <span class="topic-closed"><img src="{{ site.staticContentPath }}/web-gallery/images/groups/status_closed.gif" title="Closed Thread"> Closed Thread</span>
     {% endif %}
     {% if canReplyForum %}
     <a href="#" id="create-post-message" class="create-post-link verify-email">Post Reply</a>
@@ -96,8 +95,7 @@
     <tr class="post-list-index-odd">
         {% endif %}
         <td class="post-list-row-container">
-            <a href="{{ site.sitePath }}/home/{{ reply.getUserId() }}/id"
-               class="post-list-creator-link post-list-creator-info">{{ reply.getUsername() }}</a>
+            <a href="{{ site.sitePath }}/home/{{ reply.getUserId() }}/id" class="post-list-creator-link post-list-creator-info">{{ reply.getUsername() }}</a>
 
             {% if reply.isOnline() %}
             <img alt="online_anim" src="{{ site.staticContentPath }}/web-gallery/images/myhabbo/habbo_online_anim.gif"/>
@@ -106,9 +104,9 @@
             {% endif %}
             <div class="post-list-posts post-list-creator-info">Messages: {{ reply.getForumMessages() }}</div>
             <div class="clearfix">
-                <div class="post-list-creator-avatar"><img
-                            src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ reply.getFigure() }}&size=b&direction=2&head_direction=2&crr=0&gesture=&frame=1"
-                            alt=""/></div>
+                <div class="post-list-creator-avatar">
+                    <img src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ reply.getFigure() }}&size=b&direction=2&head_direction=2&crr=0&gesture=&frame=1" alt=""/>
+                </div>
                 <div class="post-list-group-badge">
                     {% if reply.hasGroupBadge() %}
                     <a href="{{ site.sitePath }}/groups/{{ reply.getGroupId() }}/id">
@@ -163,12 +161,10 @@
                 <span class="post-list-message-edited">Last edited: {{ reply.getEditedDate('MMM dd, yyyy') }} ({{ reply.getEditedDate('h:mm a') }})</span>
                 <br/>
                 {% endif %}
-                {%if reply.isDeleted() %}[Post deleted]{% else %}{{ reply.getFormattedMessage() }}{% endif %} <input
-                        type="hidden" id="{{ reply.getId() }}-message"
-                        value="{% autoescape 'html' %}{{ reply.getMessage() }}{% endautoescape %}"/>
+                {%if reply.isDeleted() %}[Post deleted]{% else %}{{ reply.getFormattedMessage() }}{% endif %}
+                <input type="hidden" id="{{ reply.getId() }}-message" value="{% autoescape 'html' %}{{ reply.getMessage() }}{% endautoescape %}"/>
             </div>
-            <div>
-            </div>
+            <div></div>
 
         </td>
 
@@ -219,8 +215,8 @@
                                 <label for="linktool-query-input">Create link to a:</label>
 
                                 <input type="radio" name="scope" class="linktool-scope" value="1" checked="checked"/>Habbo
-                                <input type="radio" name="scope" class="linktool-scope" value="2"/>Room <input
-                                        type="radio" name="scope" class="linktool-scope" value="3"/>Group&nbsp;
+                                <input type="radio" name="scope" class="linktool-scope" value="2"/>Room
+                                <input type="radio" name="scope" class="linktool-scope" value="3"/>Group&nbsp;
                             </div>
                             <div class="linktool-input">
                                 <input id="linktool-query" type="text" size="30" name="query" value=""/>
@@ -228,8 +224,7 @@
                             </div>
                             <div class="clear" style="height: 0;"><!-- --></div>
 
-                            <div id="linktool-results" style="display: none">
-                            </div>
+                            <div id="linktool-results" style="display: none"></div>
                             <script type="text/javascript">
                                 linkTool = new LinkTool(bbcodeToolbar.textarea);
                             </script>
@@ -237,8 +232,7 @@
 
                         <div id="discussion-captcha">
                             <h3>
-                                <label for="bean_captcha" class="registration-text">Type in the security code shown in
-                                    the image below.</label>
+                                <label for="bean_captcha" class="registration-text">Type in the security code shown in the image below.</label>
                             </h3>
 
                             <div id="captcha-code-error"></div>
@@ -247,10 +241,8 @@
 
                             <div class="register-label" id="captcha-reload">
                                 <p>
-                                    <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif"
-                                         width="15" height="15" alt=""/>
-                                    <a id="captcha-reload-link" href="#">I can't read the code! Please give me another
-                                        one.</a>
+                                    <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif" width="15" height="15" alt=""/>
+                                    <a id="captcha-reload-link" href="#">I can't read the code! Please give me another one.</a>
                                 </p>
                             </div>
 
@@ -260,12 +252,10 @@
                                 });
                             </script>
 
-                            <p id="captcha-container">
-                            </p>
+                            <p id="captcha-container"></p>
 
                             <p>
-                                <input type="text" name="captcha" id="captcha-code" value=""
-                                       class="registration-text required-captcha"/>
+                                <input type="text" name="captcha" id="captcha-code" value="" class="registration-text required-captcha"/>
                             </p>
                         </div>
 
@@ -282,23 +272,20 @@
     {% endif %}
 </table>
 {% if hasMessage == false %}
-<div id="new-post-preview" style="display:none;">
-</div>
+<div id="new-post-preview" style="display:none;"></div>
 <div class="postlist-footer clearfix">
     {% if canReplyForum %}
     <a href="#" id="create-post-message" class="create-post-link verify-email">Post Reply</a>
     {% endif %}
 
     {% if discussionTopic.isOpen() == false %}
-    <span class="topic-closed"><img src="{{ site.staticContentPath }}/web-gallery/images/groups/status_closed.gif"
-                                    title="Closed Thread"> Closed Thread</span>
+    <span class="topic-closed"><img src="{{ site.staticContentPath }}/web-gallery/images/groups/status_closed.gif" title="Closed Thread"> Closed Thread</span>
     {% endif %}
 
 
     </p>
     <div class="page-num-list">
-        <input type="hidden" id="current-page" value="{{ currentPage }}"/>
-        View page:
+        <input type="hidden" id="current-page" value="{{ currentPage }}"/> View page:
         {% if currentPage != 1 %}
         <a href="{{ group.generateClickLink() }}/discussions/{{ discussionTopic.getId() }}/id/page/1">&lt;&lt;</a>
         {% endif %}

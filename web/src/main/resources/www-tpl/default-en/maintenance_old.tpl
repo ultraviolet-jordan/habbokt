@@ -5,13 +5,10 @@
     <meta http-equiv="content-type" content="text/html"/>
     <title>Habbo</title>
 
-    <script type="text/javascript"
-            src="https://retro.alex-dev.org/web-gallery/maintenance/new/js/jquery.min.js"></script>
-    <script type="text/javascript"
-            src="https://retro.alex-dev.org/web-gallery/maintenance/new/js/jquery.tweet.js"></script>
+    <script type="text/javascript" src="https://retro.alex-dev.org/web-gallery/maintenance/new/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://retro.alex-dev.org/web-gallery/maintenance/new/js/jquery.tweet.js"></script>
 
-    <link href="https://retro.alex-dev.org/web-gallery/maintenance/new/style/maintenance.css" rel="stylesheet"
-          type="text/css"/>
+    <link href="https://retro.alex-dev.org/web-gallery/maintenance/new/style/maintenance.css" rel="stylesheet" type="text/css"/>
 
 
 </head>

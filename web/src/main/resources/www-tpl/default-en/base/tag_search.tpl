@@ -8,8 +8,7 @@
 {% else %}
 <p class="search-result-count">{{ pageId }} - {{ totalTagUsers|length }} / {{ totalCount }}</p>
 {% endif %}
-{{ tagSearchAdd }}
-<p class="search-result-divider"></p>
+{{ tagSearchAdd }}<p class="search-result-divider"></p>
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%" class="search-result">
     <tbody>
@@ -29,13 +28,11 @@
         {% if habboTag.getUserId() > 0 %}
         {% set player = habboTag.getUserData() %}
         <td class="image" style="width:39px;">
-            <img src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ player.figure }}&size=s" alt=""
-                 align="left"/>
+            <img src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ player.figure }}&size=s" alt="" align="left"/>
         </td>
         <td class="text">
             <a href="{{ site.sitePath }}/home/{{ player.getName() }}" class="result-title">{{ player.getName() }
-                }</a><br/>
-            <span class="result-description">{{ player.getMotto }}</span>
+                }</a><br/> <span class="result-description">{{ player.getMotto }}</span>
 
             <ul class="tag-list">
                 {% for userTag in tags %}
@@ -67,8 +64,7 @@
     {% endif %}
     {% endautoescape %}
     </tbody>
-</table>
-<p class="search-result-navigation">
+</table><p class="search-result-navigation">
     {% if showFirst %}
     <a href="{{ site.sitePath }}/tag/{{ tag }}?pageNumber={{ showFirstPage }}"><<</a>
     {% endif %}

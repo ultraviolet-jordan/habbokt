@@ -2,15 +2,15 @@
 
     <div class="box-content">
         <ul id="highscores-habblet-games-h116" class="highscores-habblet-games">
-            <li{% if gameId == 1 %} class="selected"{% endif %}><a href="#" id="highscores-habblet-games-h116-1"
-                                                                   class="highscores-habblet-game-link">BattleBall:
-                    Rebound!</a></li>
-            <li{% if gameId == 2 %} class="selected"{% endif %}><a href="#" id="highscores-habblet-games-h116-2"
-                                                                   class="highscores-habblet-game-link">SnowStorm</a>
+            <li{% if gameId == 1 %} class="selected"{% endif %}>
+                <a href="#" id="highscores-habblet-games-h116-1" class="highscores-habblet-game-link">BattleBall: Rebound!</a>
             </li>
-            <li{% if gameId == 0 %} class="selected"{% endif %}><a href="#" id="highscores-habblet-games-h116-0"
-                                                                   class="highscores-habblet-game-link">Wobble
-                    Squabble</a></li>
+            <li{% if gameId == 2 %} class="selected"{% endif %}>
+                <a href="#" id="highscores-habblet-games-h116-2" class="highscores-habblet-game-link">SnowStorm</a>
+            </li>
+            <li{% if gameId == 0 %} class="selected"{% endif %}>
+                <a href="#" id="highscores-habblet-games-h116-0" class="highscores-habblet-game-link">Wobble Squabble</a>
+            </li>
         </ul>
     </div>
 

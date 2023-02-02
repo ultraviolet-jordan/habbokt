@@ -16,7 +16,5 @@
 
         </ul>
     </div>
-    {{ sticker.getVoteCount() }} votes total
-    <br/>
-    ({{ sticker.getHighVoteCount() }} users voted 4 or better)
+    {{ sticker.getVoteCount() }} votes total <br/> ({{ sticker.getHighVoteCount() }} users voted 4 or better)
 </div>

@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -45,8 +43,7 @@
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/skins.css" type="text/css"/>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/dialogs.css" type="text/css"/>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/buttons.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/control.textarea.css"
-          type="text/css"/>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/control.textarea.css" type="text/css"/>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/boxes.css" type="text/css"/>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/myhabbo.css" type="text/css"/>
     <link href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/assets.css" type="text/css" rel="stylesheet"/>
@@ -58,10 +55,8 @@
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/group.css" type="text/css"/>
 
     <!-- HTML5 trax player -->
-    <script src="{{ site.staticContentPath }}/web-gallery/static/js/webbanditten/traxplayer.js"
-            type="text/javascript"></script>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/webbanditten/traxplayer.css"
-          type="text/css"/>
+    <script src="{{ site.staticContentPath }}/web-gallery/static/js/webbanditten/traxplayer.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/webbanditten/traxplayer.css" type="text/css"/>
 
     <style type="text/css">
         #playground, #playground-outer {
@@ -150,10 +145,8 @@
     </script>
     {% endif %}
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -242,8 +235,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                     {% else %}
                     {% if (session.loggedIn) and (group.hasAdministrator(playerDetails.getId())) %}
-                    <a href="#" id="myhabbo-group-tools-button" class="new-button dark-button edit-icon"
-                       style="float:left"><b><span></span>Edit</b><i></i></a>
+                    <a href="#" id="myhabbo-group-tools-button" class="new-button dark-button edit-icon" style="float:left"><b><span></span>Edit</b><i></i></a>
                     {% endif %}
                     <div class="myhabbo-view-tools">
                         {% if session.loggedIn == false %}
@@ -254,14 +246,12 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         {% if group.getGroupType() == 0 or group.getGroupType() == 3 %}
                         <a href="{{ site.sitePath }}/groups/actions/join?groupId=101" id="join-group-button">Join</a>
                         {% elseif group.getGroupType() == 1 %}
-                        <a href="{{ site.sitePath }}/groups/actions/join?groupId=101" id="join-group-button">Request
-                            membership</a>
+                        <a href="{{ site.sitePath }}/groups/actions/join?groupId=101" id="join-group-button">Request membership</a>
                         {% endif %}
                         <a href="#" id="reporting-button" style="display: none;">Show report buttons</a>
                         {% else %}
                         {% if group.getOwnerId() != playerDetails.getId() %}
-                        <a href="{{ site.sitePath }}/groups/actions/leave?groupId=101" id="leave-group-button">Leave
-                            group</a>
+                        <a href="{{ site.sitePath }}/groups/actions/leave?groupId=101" id="leave-group-button">Leave group</a>
                         {% endif %}
 
                         {% if groupMember.isFavourite(group.id) %}
@@ -279,21 +269,18 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         {% autoescape 'html' %}
                         {{ group.getName }}
                         {% endautoescape %}
-                        {% if group.getGroupType() == 1 %}<img
-                                src="{{ site.staticContentPath }}/web-gallery/images/groups/status_exclusive_big.gif"
-                                width="18" height="16" alt="Exclusive group" title="Exclusive group"
-                                class="header-bar-group-status"/>{% elseif group.getGroupType() == 2%}<img
-                                src="{{ site.staticContentPath }}/web-gallery/images/groups/status_closed_big.gif"
-                                width="18" height="16" alt="myhabbo.headerbar.closed_group"
-                                title="myhabbo.headerbar.closed_group" class="header-bar-group-status"/>{% endif %}</h2>
+                        {% if group.getGroupType() == 1 %}
+                        <img src="{{ site.staticContentPath }}/web-gallery/images/groups/status_exclusive_big.gif" width="18" height="16" alt="Exclusive group" title="Exclusive group" class="header-bar-group-status"/>{% elseif group.getGroupType() == 2%}
+                        <img src="{{ site.staticContentPath }}/web-gallery/images/groups/status_closed_big.gif" width="18" height="16" alt="myhabbo.headerbar.closed_group" title="myhabbo.headerbar.closed_group" class="header-bar-group-status"/>{% endif %}
+                    </h2>
                     <ul class="box-tabs">
-                        <li class="selected"><a href="{{ group.generateClickLink() }}">Front Page</a><span
-                                    class="tab-spacer"></span></li>
-                        <li><a href="{{ group.generateClickLink() }}/discussions">Discussion
-                                Forum {% if ((group.getForumType().getId() == 1) or (group.getForumPermission().getId() >= 1)) %}
-                                <img src="{{ site.staticContentPath }}/web-gallery/images/grouptabs/privatekey.png"
-                                     title="Private Forum" alt="Private Forum"/>{% endif %}</a><span
-                                    class="tab-spacer"></span></li>
+                        <li class="selected">
+                            <a href="{{ group.generateClickLink() }}">Front Page</a><span class="tab-spacer"></span>
+                        </li>
+                        <li>
+                            <a href="{{ group.generateClickLink() }}/discussions">Discussion Forum {% if ((group.getForumType().getId() == 1) or (group.getForumPermission().getId() >= 1)) %}
+                                <img src="{{ site.staticContentPath }}/web-gallery/images/grouptabs/privatekey.png" title="Private Forum" alt="Private Forum"/>{% endif %}
+                            </a><span class="tab-spacer"></span></li>
                     </ul>
                 </div>
                 <div id="mypage-content">
@@ -306,10 +293,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         </ul>
 
                         <form action="#" method="get" style="width: 50%">
-                            <a id="cancel-button" class="new-button red-button cancel-icon" href="#"><b><span></span>Cancel
-                                    editing</b><i></i></a>
-                            <a id="save-button" class="new-button green-button save-icon" href="#"><b><span></span>Save
-                                    changes</b><i></i></a>
+                            <a id="cancel-button" class="new-button red-button cancel-icon" href="#"><b><span></span>Cancel editing</b><i></i></a>
+                            <a id="save-button" class="new-button green-button save-icon" href="#"><b><span></span>Save changes</b><i></i></a>
                         </form>
                     </div>
 
@@ -368,9 +353,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                 <div id="edit-menu" class="menu">
                     <div class="menu-header">
-                        <div class="menu-exit" id="edit-menu-exit"><img
-                                    src="{{ site.staticContentPath }}/web-gallery/images/dialogs/menu-exit.gif" alt=""
-                                    width="11" height="11"/></div>
+                        <div class="menu-exit" id="edit-menu-exit">
+                            <img src="{{ site.staticContentPath }}/web-gallery/images/dialogs/menu-exit.gif" alt="" width="11" height="11"/>
+                        </div>
                         <h3>Edit</h3>
 
                     </div>
@@ -400,8 +385,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <p>Warning! If you click 'Remove', the note will be permanently deleted.</p>
                                 </div>
                                 <div id="rating-edit-menu">
-                                    <input type="button" id="ratings-reset-link"
-                                           value="Reset rating"/>
+                                    <input type="button" id="ratings-reset-link" value="Reset rating"/>
                                 </div>
                                 <div id="highscorelist-edit-menu" style="display:none">
                                     <select id="highscorelist-game">
@@ -412,8 +396,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     </select>
                                 </div>
                                 <div id="edit-menu-remove-group-warning">
-                                    <p>This item belongs to another user. If you remove it, it will return to their
-                                        inventory.</p>
+                                    <p>This item belongs to another user. If you remove it, it will return to their inventory.</p>
 
                                 </div>
                                 <div id="edit-menu-gb-availability">
@@ -494,8 +477,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
         <div id="guestbook-form-tab">
             <form method="post" id="guestbook-form">
                 <p>
-                    Note: the message length must not exceed 200 characters <input type="hidden" name="ownerId"
-                                                                                   value="1"/>
+                    Note: the message length must not exceed 200 characters
+                    <input type="hidden" name="ownerId" value="1"/>
                 </p>
                 <div>
                     <textarea cols="15" rows="5" name="message" id="guestbook-message"></textarea>
@@ -519,17 +502,14 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div id="linktool-scope">
                             <label for="linktool-query-input">Create link:</label>
                             <input type="radio" name="scope" class="linktool-scope" value="1" checked="checked"/>Habbos
-                            <input type="radio" name="scope" class="linktool-scope" value="2"/>Rooms <input type="radio"
-                                                                                                            name="scope"
-                                                                                                            class="linktool-scope"
-                                                                                                            value="3"/>Groups
+                            <input type="radio" name="scope" class="linktool-scope" value="2"/>Rooms
+                            <input type="radio" name="scope" class="linktool-scope" value="3"/>Groups
                         </div>
                         <input id="linktool-query" type="text" name="query" value=""/>
                         <a href="#" class="new-button" id="linktool-find"><b>Find</b><i></i></a>
                         <div class="clear" style="height: 0;"><!-- --></div>
 
-                        <div id="linktool-results" style="display: none">
-                        </div>
+                        <div id="linktool-results" style="display: none"></div>
                         <script type="text/javascript">
                             linkTool = new LinkTool(bbcodeToolbar.textarea);
                         </script>
@@ -571,8 +551,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
         <ul>
             {% if (hasMember and groupMember.getMemberRank().getRankId() >= 2) %}
-            <li><a href="{{ site.sitePath }}/groups/actions/startEditingSession/{{ group.id }}" id="group-tools-style">Modify
-                    page</a></li>
+            <li>
+                <a href="{{ site.sitePath }}/groups/actions/startEditingSession/{{ group.id }}" id="group-tools-style">Modify page</a>
+            </li>
             {% endif %}
             {% if (hasMember and groupMember.getMemberRank().getRankId() == 3) %}
             <li><a href="#" id="group-tools-settings">Settings</a></li>
@@ -593,8 +574,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
     <div class="box-tabs-container">
         <ul class="box-tabs">
-            <li class="selected" id="group-settings-link-group"><a href="#">Group settings</a><span
-                        class="tab-spacer"></span></li>
+            <li class="selected" id="group-settings-link-group">
+                <a href="#">Group settings</a><span class="tab-spacer"></span></li>
             <li id="group-settings-link-forum"><a href="#">Forum settings</a><span class="tab-spacer"></span></li>
             <li id="group-settings-link-room"><a href="#">Room settings</a><span class="tab-spacer"></span></li>
         </ul>
@@ -602,8 +583,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
     <a class="topdialog-exit" href="#" id="dialog-group-settings-exit">X</a>
     <div class="topdialog-body" id="dialog-group-settings-body">
-        <p style="text-align:center"><img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif"
-                                          alt="" width="29" height="6"/></p>
+        <p style="text-align:center">
+            <img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6"/>
+        </p>
     </div>
 </div>
 
@@ -617,8 +599,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
     <div class="box-tabs-container">
         <ul class="box-tabs">
-            <li class="selected" id="group-memberlist-link-members"><a href="#">Members</a><span
-                        class="tab-spacer"></span></li>
+            <li class="selected" id="group-memberlist-link-members">
+                <a href="#">Members</a><span class="tab-spacer"></span></li>
             <li id="group-memberlist-link-pending"><a href="#">Pending members</a><span class="tab-spacer"></span></li>
         </ul>
     </div>
@@ -634,20 +616,16 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
         <div id="group-memberlist-members-buttons" class="clearfix">
             {% if (hasMember and groupMember.getMemberRank().getRankId() == 3) %}
-            <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-give-rights"><b>Give
-                    rights</b><i></i></a>
-            <a href="#" class="new-button group-memberlist-button-disabled"
-               id="group-memberlist-button-revoke-rights"><b>Revoke rights</b><i></i></a>{% endif %}
+            <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-give-rights"><b>Give rights</b><i></i></a>
+            <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-revoke-rights"><b>Revoke rights</b><i></i></a>{% endif %}
             <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-remove"><b>Remove</b><i></i></a>
-            <a href="#" class="new-button group-memberlist-button"
-               id="group-memberlist-button-close"><b>Close</b><i></i></a>
+            <a href="#" class="new-button group-memberlist-button" id="group-memberlist-button-close"><b>Close</b><i></i></a>
         </div>
         <div id="group-memberlist-pending" style="clear: both"></div>
         <div id="group-memberlist-pending-buttons" class="clearfix">
             <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-accept"><b>Accept</b><i></i></a>
             <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-decline"><b>Reject</b><i></i></a>
-            <a href="#" class="new-button group-memberlist-button"
-               id="group-memberlist-button-close2"><b>Close</b><i></i></a>
+            <a href="#" class="new-button group-memberlist-button" id="group-memberlist-button-close2"><b>Close</b><i></i></a>
         </div>
     </div>
 </div>
@@ -657,7 +635,6 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 </script>
 
 
-</body>
-</html>
+</body></html>
 
 {% endif %}

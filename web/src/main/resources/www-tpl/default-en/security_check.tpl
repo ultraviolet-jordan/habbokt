@@ -19,8 +19,8 @@
     <meta http-equiv="Refresh" content="0;URL={{ site.sitePath }}{{ redirectPath }}">
 </noscript>
 
-<p class="btn">If you are not automatically redirected, please <a href="{{ site.sitePath }}{{ redirectPath }}"
-                                                                  id="manual_redirect_link">click here</a></p>
+<p class="btn">If you are not automatically redirected, please
+    <a href="{{ site.sitePath }}{{ redirectPath }}" id="manual_redirect_link">click here</a></p>
 
 
 </body>

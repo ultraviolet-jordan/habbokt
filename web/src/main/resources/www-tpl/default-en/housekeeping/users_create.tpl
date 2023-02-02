@@ -19,8 +19,7 @@
         <input type="password" class="form-control" placeholder="Enter password" name="confirmpassword">
     </div>
     <div class="form-group">
-        <label for="pwd">Email:</label>
-        <input type="email" class="form-control" placeholder="Enter email" name="email">
+        <label for="pwd">Email:</label> <input type="email" class="form-control" placeholder="Enter email" name="email">
     </div>
     <div class="form-group">
         <label for="pwd">Look/figure:</label>
@@ -34,9 +33,7 @@
         <button type="submit" class="btn btn-info">Submit</button>
     </div>
 </form>
-</div>
-</div>
-</div>
+</div></div></div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -45,7 +42,6 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-</body>
-</html>
+</body></html>
 
 {% include "housekeeping/base/footer.tpl" %}

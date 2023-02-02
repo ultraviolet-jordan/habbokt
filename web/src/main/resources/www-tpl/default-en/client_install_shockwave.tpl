@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -41,10 +39,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -78,15 +74,15 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <h2 class="title">Shockwave detection </h2>
                         <div class="box-content">
                             <div>
-                                <p>Oops, in order to enter the hotel you need <b>Adobe Shockwave player</b>. Shockwave
-                                    is free and takes only a <b>minute or two</b> to install.</p>
+                                <p>Oops, in order to enter the hotel you need
+                                    <b>Adobe Shockwave player</b>. Shockwave is free and takes only a
+                                    <b>minute or two</b> to install.</p>
                             </div>
                             <div id="swdetection"></div>
                             <div class="install-shockwave">
                                 <div id="shockwave-install-button">
                                     <div class="shockwave-icon">
-                                        <a class="new-button" href="{{ site.sitePath }}/shockwave_help"
-                                           id="install-shockwave-link"><b>Install now</b><i></i></a>
+                                        <a class="new-button" href="{{ site.sitePath }}/shockwave_help" id="install-shockwave-link"><b>Install now</b><i></i></a>
                                     </div>
                                 </div>
                                 <div id="shockwave-install-progressbar">
@@ -107,13 +103,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <script type="text/javascript">
                 HabboView.run();
             </script>
-            <div id="column2" class="column">
-            </div>
+            <div id="column2" class="column"></div>
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
     </div>
 </div>

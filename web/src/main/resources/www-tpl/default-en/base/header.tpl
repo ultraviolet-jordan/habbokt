@@ -9,8 +9,7 @@
             <div id="subnavi-user">
                 <div class="clearfix">&nbsp;</div>
                 <p>
-                    <a href="{{ site.sitePath }}/client" id="enter-hotel-open-medium-link" target="client"
-                       onclick="HabboClient.openOrFocus(this); return false;">Enter {{ site.siteName }} Hotel</a>
+                    <a href="{{ site.sitePath }}/client" id="enter-hotel-open-medium-link" target="client" onclick="HabboClient.openOrFocus(this); return false;">Enter {{ site.siteName }} Hotel</a>
                 </p>
             </div>
             <div id="subnavi-login">
@@ -21,16 +20,13 @@
                             <label for="login-username" class="login-text"><b>Username</b></label>
 
                             <input tabindex="1" type="text" class="login-field" name="username" id="login-username"/>
-                            <a href="#" id="login-submit-new-button" class="new-button"
-                               style="float: left; display:none"><b>Log in</b><i></i></a>
+                            <a href="#" id="login-submit-new-button" class="new-button" style="float: left; display:none"><b>Log in</b><i></i></a>
                             <input type="submit" id="login-submit-button" value="Log in" class="submit"/>
                         </li>
                         <li>
                             <label for="login-password" class="login-text"><b>Password</b></label>
-                            <input tabindex="2" type="password" class="login-field" name="password"
-                                   id="login-password"/>
-                            <input tabindex="3" type="checkbox" name="_login_remember_me" value="true"
-                                   id="login-remember-me"/>
+                            <input tabindex="2" type="password" class="login-field" name="password" id="login-password"/>
+                            <input tabindex="3" type="checkbox" name="_login_remember_me" value="true" id="login-remember-me"/>
 
                             <label for="login-remember-me" class="left">Remember me</label>
                         </li>
@@ -49,8 +45,7 @@
                         <div></div>
                     </div>
                     <div class="bottom-bubble-c">
-                        By selecting 'remember me' you will stay signed in on this computer until you click 'Sign Out'.
-                        If this is a public computer please do not use this feature.
+                        By selecting 'remember me' you will stay signed in on this computer until you click 'Sign Out'. If this is a public computer please do not use this feature.
                     </div>
                     <div class="bottom-bubble-b">
                         <div></div>
@@ -122,17 +117,16 @@
                 <div id="subnavi-search-upper">
 
                     <ul id="subnavi-search-links">
-                        <li><a href="{{ site.sitePath }}/help" target="habbohelp"
-                               onclick="openOrFocusHelp(this); return false">Help</a></li>
+                        <li>
+                            <a href="{{ site.sitePath }}/help" target="habbohelp" onclick="openOrFocusHelp(this); return false">Help</a>
+                        </li>
                         <li><a href="{{ site.sitePath }}/account/logout" class="userlink" id="signout">Sign Out</a></li>
                     </ul>
                 </div>
             </div>
             <div id="to-hotel">
                 {% if site.serverOnline %}
-                <a href="{{ site.sitePath }}/client" class="new-button green-button" target="client"
-                   onclick="HabboClient.openOrFocus(this); return false;"><b>Enter {{ site.siteName }}
-                        Hotel</b><i></i></a>
+                <a href="{{ site.sitePath }}/client" class="new-button green-button" target="client" onclick="HabboClient.openOrFocus(this); return false;"><b>Enter {{ site.siteName }} Hotel</b><i></i></a>
                 {% else %}
                 <div id="hotel-closed-medium">{{ site.siteName }} Hotel is offline</div>
                 {% endif %}

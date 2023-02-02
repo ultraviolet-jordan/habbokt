@@ -18,8 +18,8 @@
         {% for transaction in transactions %}
         <tr>
             <td>
-                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}/transaction/track_item?id={{ transaction.getItemId() }}">Track
-                    this item</a></td>
+                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}/transaction/track_item?id={{ transaction.getItemId() }}">Track this item</a>
+            </td>
             <td>{{ transaction.getItemId() }}</td>
             <td>{{ transaction.description }}</td>
             <td>{{ transaction.costCoins }}</td>

@@ -8,8 +8,7 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
     <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/rss"/>
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
@@ -116,10 +115,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -191,8 +188,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     {% if ("registerCaptchaInvalid" is not present) and ("registerEmailInvalid" is not present) %}
                     <div class="habblet-container ">
                         <form method="post" action="{{ site.sitePath }}/register" id="registerform" autocomplete="off">
-                            {% if referral > 0 %}<input type="hidden" name="referral" id="register-referrer"
-                                                        value="{{ referral }}"/>{% endif %}
+                            {% if referral > 0 %}
+                            <input type="hidden" name="referral" id="register-referrer" value="{{ referral }}"/>{% endif %}
                             <input type="hidden" name="bean.figure" id="register-figure" value=""/>
                             <input type="hidden" name="bean.gender" id="register-gender" value=""/>
                             <input type="hidden" name="bean.editorState" id="register-editor-state" value=""/>
@@ -203,15 +200,12 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                         <fieldset id="register-fieldset-name">
                                             <div class="register-label white">{{ site.siteName }} name</div>
-                                            <input type="text" name="bean.avatarName" id="register-name"
-                                                   class="register-text" value="" size="25"/>
+                                            <input type="text" name="bean.avatarName" id="register-name" class="register-text" value="" size="25"/>
                                             <span id="register-name-check-container" style="display:none">
-		                    <a class="new-button search-icon" href="#"
-                               id="register-name-check"><b><span></span></b><i></i></a>
+		                    <a class="new-button search-icon" href="#" id="register-name-check"><b><span></span></b><i></i></a>
 		                </span>
                                         </fieldset>
-                                        <div id="name-error-box">
-                                        </div>
+                                        <div id="name-error-box"></div>
 
                                     </div>
                                 </div>
@@ -224,27 +218,24 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
 
                                             <fieldset id="register-fieldset-password">
-                                                <div class="register-label"><label for="register-password">My password
-                                                        will be:</label></div>
-                                                <div class="register-label"><input type="password" name="password"
-                                                                                   id="register-password"
-                                                                                   class="register-text" size="25"
-                                                                                   value=""/></div>
-                                                <div class="register-label"><label for="register-password2">Confirm
-                                                        password</label></div>
-                                                <div class="register-label"><input type="password"
-                                                                                   name="retypedPassword"
-                                                                                   id="register-password2"
-                                                                                   class="register-text" size="25"
-                                                                                   value=""/></div>
+                                                <div class="register-label">
+                                                    <label for="register-password">My password will be:</label></div>
+                                                <div class="register-label">
+                                                    <input type="password" name="password" id="register-password" class="register-text" size="25" value=""/>
+                                                </div>
+                                                <div class="register-label">
+                                                    <label for="register-password2">Confirm password</label></div>
+                                                <div class="register-label">
+                                                    <input type="password" name="retypedPassword" id="register-password2" class="register-text" size="25" value=""/>
+                                                </div>
                                             </fieldset>
                                             <div id="password-error-box"></div>
 
 
                                             <fieldset>
                                                 <div class="register-label"><label>I was born on:</label></div>
-                                                <div id="register-birthday"><select name="bean.day" id="bean_day"
-                                                                                    class="dateselector">
+                                                <div id="register-birthday">
+                                                    <select name="bean.day" id="bean_day" class="dateselector">
                                                         <option value="">Day</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -277,8 +268,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                                         <option value="29">29</option>
                                                         <option value="30">30</option>
                                                         <option value="31">31</option>
-                                                    </select> <select name="bean.month" id="bean_month"
-                                                                      class="dateselector">
+                                                    </select>
+                                                    <select name="bean.month" id="bean_month" class="dateselector">
                                                         <option value="">Month</option>
                                                         <option value="1">January</option>
                                                         <option value="2">February</option>
@@ -292,8 +283,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                                         <option value="10">October</option>
                                                         <option value="11">November</option>
                                                         <option value="12">December</option>
-                                                    </select> <select name="bean.year" id="bean_year"
-                                                                      class="dateselector">
+                                                    </select>
+                                                    <select name="bean.year" id="bean_year" class="dateselector">
                                                         <option value="">Year</option>
                                                         <option value="2008">2008</option>
                                                         <option value="2007">2007</option>
@@ -407,61 +398,51 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                                     </select></div>
                                             </fieldset>
 
-                                            <div id="email-error-box">
-                                            </div>
+                                            <div id="email-error-box"></div>
 
 
                                             <fieldset>
-                                                <div class="register-label"><label for="register-email">And my email
-                                                        address is:</label></div>
-                                                <div class="register-label"><input type="text" name="bean.email"
-                                                                                   id="register-email"
-                                                                                   class="register-text" value=""
-                                                                                   size="25" maxlength="48"/></div>
-                                                <div class="register-label"><label for="register-email2">Retype your
-                                                        email address</label></div>
-                                                <div class="register-label"><input type="text" name="bean.retypedEmail"
-                                                                                   id="register-email2"
-                                                                                   class="register-text" value=""
-                                                                                   size="25" maxlength="48"/></div>
+                                                <div class="register-label">
+                                                    <label for="register-email">And my email address is:</label></div>
+                                                <div class="register-label">
+                                                    <input type="text" name="bean.email" id="register-email" class="register-text" value="" size="25" maxlength="48"/>
+                                                </div>
+                                                <div class="register-label">
+                                                    <label for="register-email2">Retype your email address</label></div>
+                                                <div class="register-label">
+                                                    <input type="text" name="bean.retypedEmail" id="register-email2" class="register-text" value="" size="25" maxlength="48"/>
+                                                </div>
                                             </fieldset>
 
                                             <div id="register-marketing-box">
-                                                <input type="checkbox" name="bean.marketing" id="bean_marketing"
-                                                       value="true" checked="checked"/>
-                                                <label for="bean_marketing">Yes, please send me {{ site.siteName }}
-                                                    updates, including the newsletter!</label>
+                                                <input type="checkbox" name="bean.marketing" id="bean_marketing" value="true" checked="checked"/>
+                                                <label for="bean_marketing">Yes, please send me {{ site.siteName }} updates, including the newsletter!</label>
                                             </div>
 
 
                                             <fieldset id="register-fieldset-captcha">
                                                 <noscript>
-                                                    <div class="register-label"><img
-                                                                src="{{ site.sitePath }}/captcha.jpg"/></div>
-                                                    <div class="register-label"><label for="register-captcha">Type in
-                                                            the security code shown in the image above</label></div>
-                                                    <div id="captcha_response"><input type="text"
-                                                                                      name="bean.captchaResponse"
-                                                                                      id="recaptcha_response_field"
-                                                                                      class="register-text" value=""
-                                                                                      size="25"/></div>
+                                                    <div class="register-label">
+                                                        <img src="{{ site.sitePath }}/captcha.jpg"/></div>
+                                                    <div class="register-label">
+                                                        <label for="register-captcha">Type in the security code shown in the image above</label>
+                                                    </div>
+                                                    <div id="captcha_response">
+                                                        <input type="text" name="bean.captchaResponse" id="recaptcha_response_field" class="register-text" value="" size="25"/>
+                                                    </div>
                                                 </noscript>
                                             </fieldset>
 
-                                            <div id="terms-error-box">
-                                            </div>
+                                            <div id="terms-error-box"></div>
                                             <fieldset id="register-fieldset-terms">
                                                 <div class="rounded rounded-darkgray" id="register-terms">
                                                     <div id="register-terms-content">
-                                                        <p><a href="{{ site.sitePath }}/papers/disclaimer"
-                                                              target="_blank" id="register-terms-link">Terms of
-                                                                Service</a></p>
+                                                        <p>
+                                                            <a href="{{ site.sitePath }}/papers/disclaimer" target="_blank" id="register-terms-link">Terms of Service</a>
+                                                        </p>
                                                         <p class="last">
-                                                            <input type="checkbox" name="bean.termsOfServiceSelection"
-                                                                   id="register-terms-check" value="true"/>
-                                                            <label for="register-terms-check">By clicking on continue, I
-                                                                confirm that I have read and accept the Terms of Use and
-                                                                Privacy Policy.</label>
+                                                            <input type="checkbox" name="bean.termsOfServiceSelection" id="register-terms-check" value="true"/>
+                                                            <label for="register-terms-check">By clicking on continue, I confirm that I have read and accept the Terms of Use and Privacy Policy.</label>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -471,8 +452,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <div id="form-validation-error-box" style="display:none">
                                         <div class="register-error">
                                             <div class="rounded rounded-red">
-                                                Sorry, registration failed. Please check the information you gave in the
-                                                red boxes.
+                                                Sorry, registration failed. Please check the information you gave in the red boxes.
                                             </div>
                                         </div>
                                     </div>
@@ -481,20 +461,17 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% else %}
 
                             <div class="habblet-container ">
-                                <form method="post" action="{{ site.sitePath }}/register" id="registerform"
-                                      autocomplete="off">
-                                    {% if referral > 0 %}<input type="hidden" name="referral" id="register-referrer"
-                                                                value="{{ referral }}"/>{% endif %}
-                                    <input type="hidden" name="bean.figure" id="register-figure"
-                                           value="{{ registerFigure }}"/>
-                                    <input type="hidden" name="bean.gender" id="register-gender"
-                                           value="{{ registerGender }}"/>
+                                <form method="post" action="{{ site.sitePath }}/register" id="registerform" autocomplete="off">
+                                    {% if referral > 0 %}
+                                    <input type="hidden" name="referral" id="register-referrer" value="{{ referral }}"/>{% endif %}
+                                    <input type="hidden" name="bean.figure" id="register-figure" value="{{ registerFigure }}"/>
+                                    <input type="hidden" name="bean.gender" id="register-gender" value="{{ registerGender }}"/>
                                     <input type="hidden" name="bean.editorState" id="register-editor-state" value=""/>
                                     <div id="register-column-right">
                                         <div id="register-section-2">
                                             <div class="rounded rounded-blue">
-                                                <h2 class="heading"><span class="numbering white">2.</span>CHOOSE YOUR
-                                                    NAME</h2>
+                                                <h2 class="heading">
+                                                    <span class="numbering white">2.</span>CHOOSE YOUR NAME</h2>
 
                                                 <fieldset id="register-fieldset-name">
 
@@ -509,14 +486,15 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                         <div id="register-section-3">
                                             <div id="registration-overlay"></div>
                                             <div class="cbb clearfix gray">
-                                                <h2 class="title heading"><span class="numbering white">3.</span>Your
-                                                    Details</h2>
+                                                <h2 class="title heading">
+                                                    <span class="numbering white">3.</span>Your Details</h2>
                                                 <div class="box-content">
 
 
                                                     <fieldset id="register-fieldset-password">
-                                                        <div class="register-label"><label for="register-password">My
-                                                                password will be:</label></div>
+                                                        <div class="register-label">
+                                                            <label for="register-password">My password will be:</label>
+                                                        </div>
                                                         <div class="register-input">{{ registerShowPassword }}</div>
 
                                                     </fieldset>
@@ -528,70 +506,58 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                                         </div>
                                                     </fieldset>
 
-                                                    <div id="email-error-box">
-                                                    </div>
+                                                    <div id="email-error-box"></div>
 
                                                     <fieldset>
-                                                        <div class="register-label"><label for="register-email">And my
-                                                                email address is:</label></div>
+                                                        <div class="register-label">
+                                                            <label for="register-email">And my email address is:</label>
+                                                        </div>
                                                         <div class="register-input">{{ registerEmail }}</div>
                                                         {% if (registerEmailInvalid) %}
                                                         <div id="email-error-box">
                                                             <div class="register-error">
-                                                                <div class="rounded rounded-red">The email entered is
-                                                                    already used by someone else.
+                                                                <div class="rounded rounded-red">The email entered is already used by someone else.
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="register-label"><label for="register-email">New
-                                                                email address:</label></div>
-                                                        <div class="register-label"><input type="text" name="bean.email"
-                                                                                           id="register-email"
-                                                                                           class="register-text error"
-                                                                                           value="" maxlength="48"/>
+                                                        <div class="register-label">
+                                                            <label for="register-email">New email address:</label></div>
+                                                        <div class="register-label">
+                                                            <input type="text" name="bean.email" id="register-email" class="register-text error" value="" maxlength="48"/>
                                                         </div>
                                                         {% endif %}
                                                     </fieldset>
 
                                                     <div id="register-marketing-box">
-                                                        <input type="checkbox" name="bean.marketing" id="bean_marketing"
-                                                               value="true" checked="checked"/>
-                                                        <label for="bean_marketing">Yes, please send
-                                                            me {{ site.siteName }} updates, including the
-                                                            newsletter!</label>
+                                                        <input type="checkbox" name="bean.marketing" id="bean_marketing" value="true" checked="checked"/>
+                                                        <label for="bean_marketing">Yes, please send me {{ site.siteName }} updates, including the newsletter!</label>
 
                                                     </div>
 
 
                                                     <fieldset id="register-fieldset-captcha">
 
-                                                        <div class="register-label"><img id="captcha"
-                                                                                         src="{{ site.sitePath }}/captcha.jpg?t={{ randomNum }}&register=1"
-                                                                                         alt="" width="200"
-                                                                                         height="60"/></div>
+                                                        <div class="register-label">
+                                                            <img id="captcha" src="{{ site.sitePath }}/captcha.jpg?t={{ randomNum }}&register=1" alt="" width="200" height="60"/>
+                                                        </div>
                                                         <div class="register-label" id="captcha-reload">
-                                                            <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif"
-                                                                 width="15" height="15"/>
-                                                            <a href="#">I can't read the code! Please give me another
-                                                                one.</a>
+                                                            <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif" width="15" height="15"/>
+                                                            <a href="#">I can't read the code! Please give me another one.</a>
                                                         </div>
                                                         {% if (registerCaptchaInvalid) %}
                                                         <div id="captcha-error-box">
                                                             <div class="register-error">
-                                                                <div class="rounded rounded-red">The code that you
-                                                                    filled in isn't right, please try again.
+                                                                <div class="rounded rounded-red">The code that you filled in isn't right, please try again.
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         {% endif %}
-                                                        <div class="register-label"><label for="register-captcha">Type
-                                                                in the security code shown in the image above</label>
+                                                        <div class="register-label">
+                                                            <label for="register-captcha">Type in the security code shown in the image above</label>
                                                         </div>
-                                                        <div id="captcha_response"><input type="text"
-                                                                                          name="bean.captchaResponse"
-                                                                                          id="recaptcha_response_field"
-                                                                                          class="register-text error"
-                                                                                          value="" size="25"/></div>
+                                                        <div id="captcha_response">
+                                                            <input type="text" name="bean.captchaResponse" id="recaptcha_response_field" class="register-text error" value="" size="25"/>
+                                                        </div>
                                                         <script type="text/javascript">
                                                             document.observe("dom:loaded", function () {
                                                                 Event.observe($("captcha-reload"), "click", function (e) {Utils.reloadCaptcha()});
@@ -599,24 +565,17 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                                         </script>
                                                     </fieldset>
 
-                                                    <div id="terms-error-box">
-                                                    </div>
+                                                    <div id="terms-error-box"></div>
 
                                                     <fieldset id="register-fieldset-terms">
                                                         <div class="rounded rounded-darkgray" id="register-terms">
                                                             <div id="register-terms-content">
                                                                 <p>
-                                                                    <a href="{{ site.sitePath }}/papers/termsAndConditions"
-                                                                       target="_blank" id="register-terms-link">Terms of
-                                                                        Service</a></p>
+                                                                    <a href="{{ site.sitePath }}/papers/termsAndConditions" target="_blank" id="register-terms-link">Terms of Service</a>
+                                                                </p>
                                                                 <p class="last">
-                                                                    <input type="checkbox"
-                                                                           name="bean.termsOfServiceSelection"
-                                                                           id="register-terms-check" value="true"
-                                                                           checked="checked"/>
-                                                                    <label for="register-terms-check">By clicking on
-                                                                        continue, I confirm that I have read and accept
-                                                                        the Terms of Use and Privacy Policy.</label>
+                                                                    <input type="checkbox" name="bean.termsOfServiceSelection" id="register-terms-check" value="true" checked="checked"/>
+                                                                    <label for="register-terms-check">By clicking on continue, I confirm that I have read and accept the Terms of Use and Privacy Policy.</label>
 
                                                                 </p>
                                                             </div>
@@ -628,8 +587,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                                 <div class="register-error">
                                                     <div class="rounded rounded-red">
 
-                                                        Sorry, registration failed. Please check the information you
-                                                        gave in the red boxes.
+                                                        Sorry, registration failed. Please check the information you gave in the red boxes.
                                                     </div>
                                                 </div>
                                             </div>
@@ -642,62 +600,46 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                         <div id="register-avatar-editor-title">
 
-                                            <h2 class="heading"><span class="numbering white">1.</span>Create
-                                                Your {{ site.siteName }}</h2>
+                                            <h2 class="heading">
+                                                <span class="numbering white">1.</span>Create Your {{ site.siteName }}
+                                            </h2>
                                         </div>
 
-                                        <div id="avatar-error-box">
-                                        </div>
+                                        <div id="avatar-error-box"></div>
                                         <div id="register-avatar-editor">
-                                            <p><b>You don't have Flash installed. This is why we can only show you a
-                                                    selection of pre-generated {{ site.siteName }}s. If you install
-                                                    Flash, you'll be able to choose from the hundreds of different
-                                                    options!</b></p>
+                                            <p>
+                                                <b>You don't have Flash installed. This is why we can only show you a selection of pre-generated {{ site.siteName }}s. If you install Flash, you'll be able to choose from the hundreds of different options!</b>
+                                            </p>
                                             <h3>Girls</h3>
                                             <div class="register-avatars clearfix">
-                                                <div class="register-avatar"
-                                                     style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomFemaleFigure1 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
-                                                    <input type="radio" name="randomFigure"
-                                                           value="F-{{ randomFemaleFigure1 }}" checked/>
+                                                <div class="register-avatar" style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomFemaleFigure1 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
+                                                    <input type="radio" name="randomFigure" value="F-{{ randomFemaleFigure1 }}" checked/>
                                                 </div>
-                                                <div class="register-avatar"
-                                                     style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomFemaleFigure2 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
-                                                    <input type="radio" name="randomFigure"
-                                                           value="F-{{ randomFemaleFigure2 }}"/>
+                                                <div class="register-avatar" style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomFemaleFigure2 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
+                                                    <input type="radio" name="randomFigure" value="F-{{ randomFemaleFigure2 }}"/>
                                                 </div>
-                                                <div class="register-avatar"
-                                                     style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomFemaleFigure3 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
-                                                    <input type="radio" name="randomFigure"
-                                                           value="F-{{ randomFemaleFigure3 }}"/>
+                                                <div class="register-avatar" style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomFemaleFigure3 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
+                                                    <input type="radio" name="randomFigure" value="F-{{ randomFemaleFigure3 }}"/>
                                                 </div>
                                             </div>
                                             <h3>Boys</h3>
                                             <div class="register-avatars clearfix">
-                                                <div class="register-avatar"
-                                                     style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomMaleFigure1 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
-                                                    <input type="radio" name="randomFigure"
-                                                           value="M-{{ randomMaleFigure1 }}"/>
+                                                <div class="register-avatar" style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomMaleFigure1 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
+                                                    <input type="radio" name="randomFigure" value="M-{{ randomMaleFigure1 }}"/>
                                                 </div>
-                                                <div class="register-avatar"
-                                                     style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomMaleFigure2 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
-                                                    <input type="radio" name="randomFigure"
-                                                           value="M-{{ randomMaleFigure2 }}"/>
+                                                <div class="register-avatar" style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomMaleFigure2 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
+                                                    <input type="radio" name="randomFigure" value="M-{{ randomMaleFigure2 }}"/>
                                                 </div>
-                                                <div class="register-avatar"
-                                                     style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomMaleFigure3 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
-                                                    <input type="radio" name="randomFigure"
-                                                           value="M-{{ randomMaleFigure3 }}"/>
+                                                <div class="register-avatar" style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/avatarimage?figure={{ randomMaleFigure3 }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1)">
+                                                    <input type="radio" name="randomFigure" value="M-{{ randomMaleFigure3 }}"/>
                                                 </div>
                                             </div>
-                                            <p>If you dislike the {{ site.siteName }} above, you may change it later via
-                                                the account settings page</p>
+                                            <p>If you dislike the {{ site.siteName }} above, you may change it later via the account settings page</p>
                                         </div>
 
                                         <div id="register-buttons">
-                                            <input type="submit" value="Continue" class="continue"
-                                                   id="register-button-continue"/>
-                                            <a href="{{ site.sitePath }}/register/cancel" class="cancel">Exit
-                                                registration</a>
+                                            <input type="submit" value="Continue" class="continue" id="register-button-continue"/>
+                                            <a href="{{ site.sitePath }}/register/cancel" class="cancel">Exit registration</a>
                                         </div>
                                     </div>
                                 </form>
@@ -714,8 +656,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <!--[if lt IE 7]>
                     <script type="text/javascript">
                         Pngfix.doPngImageFix();
-                    </script>
-                    <![endif]-->
+                    </script><![endif]-->
 
                     {% include "base/footer.tpl" %}
 

@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/landing.js" type="text/javascript"></script>
@@ -41,10 +39,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -79,14 +75,15 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <div class="habblet-container " id="create-habbo">
 
                         <div id="create-habbo" class="layout-static">
-                            <div id="create-habbo-nonflash"
-                                 style="background-image: url({{ site.staticContentPath }}/web-gallery/v2/images/landing/landing_group.png)">
+                            <div id="create-habbo-nonflash" style="background-image: url({{ site.staticContentPath }}/web-gallery/v2/images/landing/landing_group.png)">
                                 <div class="landing-text-1"><span></span></div>
                                 <div class="landing-text-2"><span>I'm going to Hollywood!</span></div>
                                 <div class="landing-text-3"><span>American Idol is here!</span></div>
-                                <div id="landing-register-text"><a href="{{ site.sitePath }}/register"><span>Join now, it's free »</span></a>
+                                <div id="landing-register-text">
+                                    <a href="{{ site.sitePath }}/register"><span>Join now, it's free »</span></a>
                                 </div>
-                                <div id="landing-promotional-text"><span>Habbo is a virtual world where you can meet and make friends.</span>
+                                <div id="landing-promotional-text">
+                                    <span>Habbo is a virtual world where you can meet and make friends.</span>
                                 </div>
                             </div>
                         </div>
@@ -200,27 +197,19 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <ul>
                                         <li>
                                             <label for="login-username" class="login-text">Username</label>
-                                            <input tabindex="1" type="text" class="login-field" name="username"
-                                                   id="login-username" value="{{ username }}"/>
+                                            <input tabindex="1" type="text" class="login-field" name="username" id="login-username" value="{{ username }}"/>
                                         </li>
                                         <li>
                                             <label for="login-password" class="login-text">Password</label>
-                                            <input tabindex="2" type="password" class="login-field" name="password"
-                                                   id="login-password"/>
-                                            <input type="submit" value="Sign in" class="submit"
-                                                   id="login-submit-button"/>
-                                            <a href="#" id="login-submit-new-button" class="new-button"
-                                               style="float: left; margin-left: 0;display:none"><b
-                                                        style="padding-left: 10px; padding-right: 7px; width: 55px">Sign
-                                                    in</b><i></i></a>
+                                            <input tabindex="2" type="password" class="login-field" name="password" id="login-password"/>
+                                            <input type="submit" value="Sign in" class="submit" id="login-submit-button"/>
+                                            <a href="#" id="login-submit-new-button" class="new-button" style="float: left; margin-left: 0;display:none"><b style="padding-left: 10px; padding-right: 7px; width: 55px">Sign in</b><i></i></a>
                                         </li>
                                         <li class="no-label">
                                             {% if rememberMe %}
-                                            <input tabindex="3" type="checkbox" value="true" name="_login_remember_me"
-                                                   id="login-remember-me" checked="true"/>
+                                            <input tabindex="3" type="checkbox" value="true" name="_login_remember_me" id="login-remember-me" checked="true"/>
                                             {% else %}
-                                            <input tabindex="3" type="checkbox" value="true" name="_login_remember_me"
-                                                   id="login-remember-me"/>
+                                            <input tabindex="3" type="checkbox" value="true" name="_login_remember_me" id="login-remember-me"/>
                                             {% endif %}
                                             <label for="login-remember-me">Remember me</label>
                                         </li>
@@ -228,8 +217,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                             <a href="{{ site.sitePath }}/register" class="login-register-link"><span>Register for free</span></a>
                                         </li>
                                         <li class="no-label">
-                                            <a href="{{ site.sitePath }}/account/password/forgot"
-                                               id="forgot-password"><span>I forgot my username/password</span></a>
+                                            <a href="{{ site.sitePath }}/account/password/forgot" id="forgot-password"><span>I forgot my username/password</span></a>
                                         </li>
                                     </ul>
                                 </form>
@@ -241,8 +229,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 <div></div>
                             </div>
                             <div class="bottom-bubble-c">
-                                By selecting 'remember me' you will stay signed in on this computer until you click
-                                'Sign Out'. If this is a public computer please do not use this feature.
+                                By selecting 'remember me' you will stay signed in on this computer until you click 'Sign Out'. If this is a public computer please do not use this feature.
                             </div>
                             <div class="bottom-bubble-b">
                                 <div></div>
@@ -282,9 +269,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <div class="habblet-container ">
 
                         <div class="ad-container">
-                            <a href="{{ site.sitePath }}/register"><img
-                                        src="{{ site.staticContentPath }}/web-gallery/v2/images/landing/hablet_diner.png"
-                                        alt=""/></a>
+                            <a href="{{ site.sitePath }}/register"><img src="{{ site.staticContentPath }}/web-gallery/v2/images/landing/hablet_diner.png" alt=""/></a>
                         </div>
 
 
@@ -295,8 +280,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
 
                 </div>
-                <div id="column3" class="column">
-                </div>
+                <div id="column3" class="column"></div>
                 <div id="column-footer">
 
                     <div class="habblet-container ">
@@ -313,8 +297,9 @@ No tags to display.</div> -->
                             {% set tag = kvp.getKey() %}
                             {% set size = kvp.getValue() %}
                             <ul class="tag-list">
-                                <li><a href="{{ site.sitePath }}/tag/{{ tag }}" class="tag"
-                                       style="font-size:{{ size }}px">{{ tag }}</a></li>
+                                <li>
+                                    <a href="{{ site.sitePath }}/tag/{{ tag }}" class="tag" style="font-size:{{ size }}px">{{ tag }}</a>
+                                </li>
                             </ul>
                             {% endfor %}
                             {% else %}
@@ -331,8 +316,7 @@ No tags to display.</div> -->
                     <!--[if lt IE 7]>
                     <script type="text/javascript">
                         Pngfix.doPngImageFix();
-                    </script>
-                    <![endif]-->
+                    </script><![endif]-->
 
                     {% include "base/footer.tpl" %}
 

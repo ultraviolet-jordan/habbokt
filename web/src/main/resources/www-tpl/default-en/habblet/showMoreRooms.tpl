@@ -30,13 +30,11 @@
 
             {% endif %}
 
-            <span class="clearfix enter-room-link room-occupancy-{{ occupancyLevel }}" title="Go to room"
-                  roomid="{{ room.getData().getId() }}">
+            <span class="clearfix enter-room-link room-occupancy-{{ occupancyLevel }}" title="Go to room" roomid="{{ room.getData().getId() }}">
 	    <span class="room-enter">Enter {{ site.siteName }} Hotel</span>
 	    <span class="room-name">{{ room.getData().getName() }}</span>
 	    <span class="room-description">{{ room.getData().getDescription() }}</span>
-		<span class="room-owner">Owner: <a
-                    href="{{ site.sitePath }}/home/{{ room.getData().getOwnerName() }}">{{ room.getData().getOwnerName() }}</a></span>
+		<span class="room-owner">Owner: <a href="{{ site.sitePath }}/home/{{ room.getData().getOwnerName() }}">{{ room.getData().getOwnerName() }}</a></span>
     </span>
         </li>
         {% set num = num + 1 %}
@@ -68,13 +66,11 @@
 
                 {% endif %}
 
-                <span class="clearfix enter-room-link room-occupancy-{{ occupancyLevel }}" title="Go to room"
-                      roomid="{{ room.getData().getId() }}">
+                <span class="clearfix enter-room-link room-occupancy-{{ occupancyLevel }}" title="Go to room" roomid="{{ room.getData().getId() }}">
 	    <span class="room-enter">Enter {{ site.siteName }} Hotel</span>
 	    <span class="room-name">{{ room.getData().getName() }}</span>
 	    <span class="room-description">{{ room.getData().getDescription() }}</span>
-		<span class="room-owner">Owner: <a
-                    href="{{ site.sitePath }}/home/{{ room.getData().getOwnerName() }}">{{ room.getData().getOwnerName() }}</a></span>
+		<span class="room-owner">Owner: <a href="{{ site.sitePath }}/home/{{ room.getData().getOwnerName() }}">{{ room.getData().getOwnerName() }}</a></span>
     </span>
             </li>
             {% set num = num + 1 %}

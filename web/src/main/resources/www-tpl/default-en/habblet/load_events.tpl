@@ -32,8 +32,7 @@
     {% autoescape 'html' %}
     <li class="{{ listClass }} room-occupancy-{{ occupancyLevel }}" roomid="100">
         <div title="Go to the room where this event is held">
-            <span class="event-name"><a href="{{ site.sitePath }}/client?forwardId=2&amp;roomId={{ roomData.getId() }}"
-                                        onclick="HabboClient.roomForward(this, '{{ roomData.getId() }}', 'private'); return false;">{{ event.getName() }}</a></span>
+            <span class="event-name"><a href="{{ site.sitePath }}/client?forwardId=2&amp;roomId={{ roomData.getId() }}" onclick="HabboClient.roomForward(this, '{{ roomData.getId() }}', 'private'); return false;">{{ event.getName() }}</a></span>
             <span class="event-owner"> by <a href="{{ site.sitePath }}/home/{{ creator }}">{{ creator }}</a></span>
             <p>{{ event.getDescription() }} (<span class="event-date">{{ event.getFriendlyDate() }}</span>)</p>
         </div>

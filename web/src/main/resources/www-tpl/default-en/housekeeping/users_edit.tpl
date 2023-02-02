@@ -10,16 +10,14 @@
         <input type="text" class="form-control" id="text" name="username" value="{{ playerUsername }}">
     </div>
     <div class="form-group">
-        <label for="pwd">Email:</label>
-        <input type="email" class="form-control" name="email" value="{{ playerEmail }}">
+        <label for="pwd">Email:</label> <input type="email" class="form-control" name="email" value="{{ playerEmail }}">
     </div>
     <div class="form-group">
         <label for="pwd">Look/figure:</label>
         <input type="text" class="form-control" name="figure" value="{{ playerFigure }}">
     </div>
     <div class="form-group">
-        <label for="pwd">Motto:</label>
-        <input type="text" class="form-control" name="motto" value="{{ playerMotto }}">
+        <label for="pwd">Motto:</label> <input type="text" class="form-control" name="motto" value="{{ playerMotto }}">
     </div>
     <div class="form-group">
         <label for="pwd">Credits:</label>
@@ -34,9 +32,7 @@
         <button type="submit" class="btn btn-info">Save Details</button>
     </div>
 </form>
-</div>
-</div>
-</div>
+</div></div></div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -45,7 +41,6 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-</body>
-</html>
+</body></html>
 
 {% include "housekeeping/base/footer.tpl" %}

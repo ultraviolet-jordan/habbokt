@@ -5,10 +5,8 @@
     <meta http-equiv="content-type" content="text/html"/>
     <title>{{ site.siteName }}</title>
 
-    <script type="text/javascript"
-            src="{{ site.staticContentPath }}/web-gallery/maintenance/new/js/jquery.min.js"></script>
-    <link href="{{ site.staticContentPath }}/web-gallery/maintenance/new/style/maintenance.css" rel="stylesheet"
-          type="text/css"/>
+    <script type="text/javascript" src="{{ site.staticContentPath }}/web-gallery/maintenance/new/js/jquery.min.js"></script>
+    <link href="{{ site.staticContentPath }}/web-gallery/maintenance/new/style/maintenance.css" rel="stylesheet" type="text/css"/>
 
 
 </head>
@@ -34,8 +32,7 @@
                 <h2>What's going on?</h2>
 
                 <div class="tweet"></div>
-                <a class="twitter-timeline" href="https://twitter.com/ShockwaveHabbo?ref_src=twsrc%5Etfw">Tweets by
-                    Classic Habbo</a>
+                <a class="twitter-timeline" href="https://twitter.com/ShockwaveHabbo?ref_src=twsrc%5Etfw">Tweets by Classic Habbo</a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
 

@@ -26,12 +26,10 @@
             <input type="hidden" name="roombadge-id-{{ id }}" value="{{ id }}">
             <tr>
                 <td width="100px">
-                    <input type="text" name="roomad-{{ id }}-roomid" class="form-control" id="searchFor"
-                           value="{{badgeData.getKey()  }}">
+                    <input type="text" name="roomad-{{ id }}-roomid" class="form-control" id="searchFor" value="{{badgeData.getKey()  }}">
                 </td>
                 <td>
-                    <input type="text" name="roomad-{{ id }}-badge" class="form-control" id="searchFor"
-                           value="{{ badge }}">
+                    <input type="text" name="roomad-{{ id }}-badge" class="form-control" id="searchFor" value="{{ badge }}">
                 </td>
                 <td>
                     <img src="{{ site.staticContentPath }}/c_images/album1584/{{ badge }}.gif">
@@ -40,8 +38,7 @@
                     <p>{{ util.getRoomName(badgeData.getKey()) }}</p>
                 </td>
                 <td>
-                    <a href="/{{ site.housekeepingPath }}/room_badges/delete?id={{ id }}"
-                       class="btn btn-danger">Delete</a>
+                    <a href="/{{ site.housekeepingPath }}/room_badges/delete?id={{ id }}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             {% endfor %}
@@ -53,8 +50,7 @@
         </div>
     </form>
 </div>
-</div>
-</div>
+</div></div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -63,7 +59,6 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-</body>
-</html>
+</body></html>
 
 {% include "housekeeping/base/footer.tpl" %}

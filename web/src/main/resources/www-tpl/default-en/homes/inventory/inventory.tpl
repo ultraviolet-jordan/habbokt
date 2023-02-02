@@ -112,21 +112,19 @@
                         <div class="blackbubble-body">
 
                             <p><b>Your inventory for this category is completely empty!</b></p>
-                            <p>To be able to purchase stickers, backgrounds and notes, click on Web Store tab and select
-                                a category and a product, then click Purchase.</p>
+                            <p>To be able to purchase stickers, backgrounds and notes, click on Web Store tab and select a category and a product, then click Purchase.</p>
 
                             <div class="clear"></div>
                         </div>
                     </div>
                     <div class="blackbubble-bottom">
                         <div class="blackbubble-bottom-body">
-                            <img src="{{ site.staticContentPath }}/web-gallery/images/box-scale/bubble_tail_small.gif"
-                                 alt="" width="12" height="21" class="invitation-tail"/>
+                            <img src="{{ site.staticContentPath }}/web-gallery/images/box-scale/bubble_tail_small.gif" alt="" width="12" height="21" class="invitation-tail"/>
                         </div>
                     </div>
-                    <div class="webstore-frank-image"><img
-                                src="{{ site.staticContentPath }}/web-gallery/images/frank/sorry.gif" alt="" width="57"
-                                height="88"/></div>
+                    <div class="webstore-frank-image">
+                        <img src="{{ site.staticContentPath }}/web-gallery/images/frank/sorry.gif" alt="" width="57" height="88"/>
+                    </div>
                 </div>
                 {% endif%}
 

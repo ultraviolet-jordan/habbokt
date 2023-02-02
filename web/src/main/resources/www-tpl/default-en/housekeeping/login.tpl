@@ -22,11 +22,9 @@
         <p style="margin-left:0">Please sign in to access the housekeeping</p>
         <form class="form-signin" action="/{{ site.housekeepingPath }}/login" method="post">
             <label for="inputUsername" class="sr-only">Username</label>
-            <input type="text" name="hkusername" id="inputUsername" class="form-control" placeholder="Username" required
-                   autofocus>
+            <input type="text" name="hkusername" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="hkpassword" id="inputPassword" class="form-control" placeholder="Password"
-                   required>
+            <input type="password" name="hkpassword" id="inputPassword" class="form-control" placeholder="Password" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             <div class="checkbox">
                 <label>

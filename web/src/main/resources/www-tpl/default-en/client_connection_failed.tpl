@@ -8,8 +8,7 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/common.js" type="text/javascript"></script>
@@ -38,10 +37,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="habbo, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, celebrities, room design, rares, rare furni, furni, free, avatar, online, teen, roleplaying, play, expression, mmo, mmorpg, massively multiplayer, chat"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="habbo, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, celebrities, room design, rares, rare furni, furni, free, avatar, online, teen, roleplaying, play, expression, mmo, mmorpg, massively multiplayer, chat"/>
 
     <!--[if lt IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie.css" type="text/css" />
@@ -67,13 +64,9 @@ body { behavior: url(/js/csshover.htc); }
                 <div class="habblet-container ">
                     <div class="cbb clearfix orange ">
 
-                        <h2 class="title">Connection to {{ site.siteName }} Hotel failed.
-                        </h2>
+                        <h2 class="title">Connection to {{ site.siteName }} Hotel failed. </h2>
                         <div class="box-content">
-                            <p>Unfortunately we are unable to connect you to {{ site.siteName }} Hotel. This could be
-                                because your computer is blocking the connections via a firewall. The data relating to
-                                this issue has been logged and will be analyzed by our support team. Sorry for the
-                                inconvenience.</p>
+                            <p>Unfortunately we are unable to connect you to {{ site.siteName }} Hotel. This could be because your computer is blocking the connections via a firewall. The data relating to this issue has been logged and will be analyzed by our support team. Sorry for the inconvenience.</p>
                         </div>
 
 
@@ -87,14 +80,12 @@ body { behavior: url(/js/csshover.htc); }
             <script type="text/javascript">
                 HabboView.run();
             </script>
-            <div id="column2" class="column">
-            </div>
+            <div id="column2" class="column"></div>
 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
     </div>
 </div>

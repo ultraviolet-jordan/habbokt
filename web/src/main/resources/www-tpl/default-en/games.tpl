@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="Habbo: RSS"
-          href="https://classichabbo.com/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="Habbo: RSS" href="https://classichabbo.com/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -61,10 +59,8 @@
         }
     </style>
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE Habbo today!"/>
-    <meta name="keywords"
-          content="habbo, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, celebrities, room design, rares, rare furni, furni, free, avatar, online, teen, roleplaying, play, expression, mmo, mmorpg, massively multiplayer, chat"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE Habbo today!"/>
+    <meta name="keywords" content="habbo, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, celebrities, room design, rares, rare furni, furni, free, avatar, online, teen, roleplaying, play, expression, mmo, mmorpg, massively multiplayer, chat"/>
 
     <!--[if lt IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie.css" type="text/css" />
@@ -123,15 +119,14 @@ body { behavior: url(/js/csshover.htc); }
                 <div class="habblet-container ">
                     <div class="cbb clearfix green ">
 
-                        <h2 class="title">Recommended Games
-                        </h2>
+                        <h2 class="title">Recommended Games </h2>
                         <div class="game-links-top">
-                            <div><a href="/groups/battleball_rebound"><img
-                                            src="{{ site.staticContentPath }}/web-gallery/v2/images/games/battleball.png"
-                                            alt="BattleBall: Rebound! »" width="450" height="99"/></a></div>
-                            <div><a href="/groups/snow_storm"><img
-                                            src="{{ site.staticContentPath }}/web-gallery/v2/images/games/snowstorm.png"
-                                            alt="SnowStorm »" width="450" height="99"/></a></div>
+                            <div>
+                                <a href="/groups/battleball_rebound"><img src="{{ site.staticContentPath }}/web-gallery/v2/images/games/battleball.png" alt="BattleBall: Rebound! »" width="450" height="99"/></a>
+                            </div>
+                            <div>
+                                <a href="/groups/snow_storm"><img src="{{ site.staticContentPath }}/web-gallery/v2/images/games/snowstorm.png" alt="SnowStorm »" width="450" height="99"/></a>
+                            </div>
                         </div>
 
                         <ul class="game-links">
@@ -151,8 +146,7 @@ body { behavior: url(/js/csshover.htc); }
                 <div class="habblet-container ">
                     <div class="cbb clearfix orange ">
 
-                        <h2 class="title">High Scores
-                        </h2>
+                        <h2 class="title">High Scores </h2>
                         {% include "habblet/personalhighscores.tpl" %}
 
                         <script type="text/javascript">
@@ -171,8 +165,7 @@ body { behavior: url(/js/csshover.htc); }
                 <div class="habblet-container ">
                     <div class="cbb clearfix green ">
 
-                        <h2 class="title">Your Ticket To Excitement
-                        </h2>
+                        <h2 class="title">Your Ticket To Excitement </h2>
                         <div class="box-content">
                             <div id="game-promo">
                                 Game tickets cost 1 Coin for 2, or you can purchase 20 Tickets for 6 Coins.
@@ -191,20 +184,18 @@ body { behavior: url(/js/csshover.htc); }
                         <h2 class="title" style="background-color: lightblue">Scoring</h2>
                         <div class="habblet-text">                            </h2>
                             <div class="row">
-                                <div class="column"
-                                     style="width: 100px; margin-top:10px; margin-bottom:10px; margin-right:6px">
+                                <div class="column" style="width: 100px; margin-top:10px; margin-bottom:10px; margin-right:6px">
                                     <img class="credits-image" src="https://i.imgur.com/AOd2pRV.gif" alt="">
                                 </div>
                                 <div class="column" style="width: 170px;">
                                     {% if viewMonthlyScores %}
-                                    <p style="margin-top: 10px">The following results are scores earned month to
-                                        month.</p>
-                                    <p>To view scores earned all time since game scoring has been collected, please
-                                        click <a href="{{ site.sitePath }}/games/score_all_time">here</a>.</p>
+                                    <p style="margin-top: 10px">The following results are scores earned month to month.</p>
+                                    <p>To view scores earned all time since game scoring has been collected, please click
+                                        <a href="{{ site.sitePath }}/games/score_all_time">here</a>.</p>
                                     {% else %}
                                     <p style="margin-top: 10px">The following results are scores earned all time.</p>
-                                    <p>To view scores earned month to month since game scoring has been collected,
-                                        please click <a href="{{ site.sitePath }}/games">here</a>.</p>
+                                    <p>To view scores earned month to month since game scoring has been collected, please click
+                                        <a href="{{ site.sitePath }}/games">here</a>.</p>
                                     {% endif %}
                                 </div>
                             </div>
@@ -233,8 +224,7 @@ body { behavior: url(/js/csshover.htc); }
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
         {% include "base/footer.tpl" %}
 

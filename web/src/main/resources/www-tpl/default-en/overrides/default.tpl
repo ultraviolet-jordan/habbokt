@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -42,10 +40,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -84,9 +80,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                         <h2 class="title">Page not found! </h2>
                         <div id="notfound-content" class="box-content">
-                            <p class="error-text">Sorry, but the page you were looking for was not found.</p> <img
-                                    id="error-image"
-                                    src="{{ site.staticContentPath }}/web-gallery/v2/images/error.gif"/>
+                            <p class="error-text">Sorry, but the page you were looking for was not found.</p>
+                            <img id="error-image" src="{{ site.staticContentPath }}/web-gallery/v2/images/error.gif"/>
                             <p class="error-text">Please use the 'Back' button to get back to where you started.</p>
                         </div>
 
@@ -104,18 +99,17 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                         <h2 class="title">Were you looking for... </h2>
                         <div id="notfound-looking-for" class="box-content">
-                            <p><b>A friend's group or personal page?</b><br/>
-                                See if it is listed on the <a href="{{ site.sitePath }}/community">Community</a> page.
-                            </p>
+                            <p><b>A friend's group or personal page?</b><br/> See if it is listed on the
+                                <a href="{{ site.sitePath }}/community">Community</a> page. </p>
 
-                            <p><b>Rooms that rock?</b><br/>
-                                Browse the <a href="{{ site.sitePath }}/community">Recommended Rooms</a> list.</p>
+                            <p><b>Rooms that rock?</b><br/> Browse the
+                                <a href="{{ site.sitePath }}/community">Recommended Rooms</a> list.</p>
 
-                            <p><b>What other {{ site.siteName }}s are in to?</b><br/>
-                                Check out the <a href="{{ site.sitePath }}/community">Top Tags</a> list.</p>
+                            <p><b>What other {{ site.siteName }}s are in to?</b><br/> Check out the
+                                <a href="{{ site.sitePath }}/community">Top Tags</a> list.</p>
 
-                            <p><b>How to get Coins?</b><br/>
-                                Have a look at the <a href="{{ site.sitePath }}/credits">Coins</a> page.</p>
+                            <p><b>How to get Coins?</b><br/> Have a look at the
+                                <a href="{{ site.sitePath }}/credits">Coins</a> page.</p>
                         </div>
 
 
@@ -147,8 +141,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
         {% include "../base/footer.tpl" %}
 

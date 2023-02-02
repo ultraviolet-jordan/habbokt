@@ -25,8 +25,7 @@
         <p>Edit an existing news article that has already been posted on the website.</p>
         <form class="table-responsive" method="post">
             <div class="form-group">
-                <label>Title</label>
-                <input type="text" class="form-control" name="title" value="{{ article.title }}">
+                <label>Title</label> <input type="text" class="form-control" name="title" value="{{ article.title }}">
             </div>
             <div class="form-group">
                 <label>Category <i>(Hold down CTRL to select multiple)</i></label><br/>
@@ -45,16 +44,13 @@
             <div class="form-group">
                 <label>Full story</label>
                 <p>
-                    <textarea name="fullstory" id="fullstory" class="form-control" rows="6"
-                              style="width: 100%; white-space: pre-wrap" onchange="previewChanges();"
-                              onkeypress="previewChanges();">{{ article.getFullStory() }}</textarea>
+                    <textarea name="fullstory" id="fullstory" class="form-control" rows="6" style="width: 100%; white-space: pre-wrap" onchange="previewChanges();" onkeypress="previewChanges();">{{ article.getFullStory() }}</textarea>
                 </p>
             </div>
             <div class="form-group">
                 <label>Image</label>
                 <p>
-                    <select onkeypress="previewTS(this.value);" onchange="previewTS(this.value);" name="topstory"
-                            id="topstory">
+                    <select onkeypress="previewTS(this.value);" onchange="previewTS(this.value);" name="topstory" id="topstory">
                         {% for image in images %}
                         <option value="{{ image }}"{% if article.topstory == image %} selected{% endif %}>{{ image }}
                         </option>{% endfor %}
@@ -63,9 +59,7 @@
             </div>
             <div class="form-group">
                 <label>Override Image</label>
-                <input type="text" class="form-control" name="topstoryOverride"
-                       onchange="previewTSOverride(this.value);" onkeypress="previewTSOverride(this.value);"
-                       onkeydown="previewTSOverride(this.value);" value="{{ article.topstoryOverride }}">
+                <input type="text" class="form-control" name="topstoryOverride" onchange="previewTSOverride(this.value);" onkeypress="previewTSOverride(this.value);" onkeydown="previewTSOverride(this.value);" value="{{ article.topstoryOverride }}">
             </div>
             <div class="form-group">
                 <label>Image Preview</label>
@@ -78,18 +72,17 @@
             <div class="form-group">
                 <label>Mark as published</label>
                 <input type="checkbox" name="published" value="true"{% if article.isPublished() %}
-                       checked="checked"{% endif %}>
+                        checked="checked"{% endif %}>
             </div>
             <div class="form-group">
                 <label>Publish date</label>
                 <p><i>(Leave alone for current article publish time)</i></p>
-                <input type="datetime-local" name="datePublished" max="3000-12-31" in="1000-01-01" class="form-control"
-                       value="{{ currentDate }}">
+                <input type="datetime-local" name="datePublished" max="3000-12-31" in="1000-01-01" class="form-control" value="{{ currentDate }}">
             </div>
             <div class="form-group">
                 <label>Go live/publish at this date (tick if this news article is set in future)
                     <input type="checkbox" name="futurePublished" value="true"{% if article.isFuturePublished() %}
-                           checked="checked"{% endif %}></label>
+                            checked="checked"{% endif %}></label>
             </div>
             <div class="form-group">
                 <label>Override Author</label>
@@ -145,5 +138,4 @@
     }
 
 </script>
-</body>
-</html>
+</body></html>

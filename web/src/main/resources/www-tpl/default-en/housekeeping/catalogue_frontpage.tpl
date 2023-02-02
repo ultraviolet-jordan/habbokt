@@ -12,12 +12,10 @@
 <p>Edit the catalogue front page data.</p>
 <form class="table-responsive col-md-4" method="post">
     <div class="form-group">
-        <label>Header</label>
-        <input type="text" class="form-control" name="header" value="{{ frontpageText2 }}">
+        <label>Header</label> <input type="text" class="form-control" name="header" value="{{ frontpageText2 }}">
     </div>
     <div class="form-group">
-        <label>Sub Text</label>
-        <input type="text" class="form-control" name="subtext" value="{{ frontpageText3 }}">
+        <label>Sub Text</label> <input type="text" class="form-control" name="subtext" value="{{ frontpageText3 }}">
     </div>
     <div class="form-group">
         <label>Web link (optional)</label>
@@ -42,8 +40,7 @@
     <div class="form-group">
         <button type="submit" class="btn btn-info">SAVE FRONTPAGE</button>
     </div>
-    </div>
-    </div>
+    </div></div>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -52,7 +49,6 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
-</body>
-</html>
+</body></html>
 
 {% include "housekeeping/base/footer.tpl" %}

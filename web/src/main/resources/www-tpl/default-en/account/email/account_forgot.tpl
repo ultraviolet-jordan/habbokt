@@ -7,10 +7,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/landing.js" type="text/javascript"></script>
@@ -40,10 +38,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE Habbo today!"/>
-    <meta name="keywords"
-          content="Habbo, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE Habbo today!"/>
+    <meta name="keywords" content="Habbo, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -115,16 +111,14 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 </div>
                                 <div class="clear"></div>
                                 {% endif %}
-                                <p>Don't panic! Please enter your account information below and we'll send you an email
-                                    telling you how to reset your password.</p>
+                                <p>Don't panic! Please enter your account information below and we'll send you an email telling you how to reset your password.</p>
 
                                 <div class="clear"></div>
 
                                 <form method="post" action="forgot" id="forgottenpw-form">
                                     <p>
                                         <label for="forgottenpw-username">Username</label>
-                                        <input type="text" name="forgottenpw-username" id="forgottenpw-username"
-                                               value=""/>
+                                        <input type="text" name="forgottenpw-username" id="forgottenpw-username" value=""/>
                                     </p>
 
                                     <p>
@@ -133,8 +127,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     </p>
 
                                     <p>
-                                        <input type="submit" value="Request password email" name="actionForgot"
-                                               class="submit process-button" id="forgottenpw-submit"/>
+                                        <input type="submit" value="Request password email" name="actionForgot" class="submit process-button" id="forgottenpw-submit"/>
                                     </p>
                                     <input type="hidden" value="default" name="origin"/>
                                 </form>
@@ -161,8 +154,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 </div>
                                 <div class="clear"></div>
                                 {% endif %}
-                                <p>No problem - just enter your email address below and we'll send you a list of your
-                                    accounts.</p>
+                                <p>No problem - just enter your email address below and we'll send you a list of your accounts.</p>
 
                                 <div class="clear"></div>
 
@@ -170,13 +162,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <p>
 
                                         <label for="accountlist-owner-email">Email address</label>
-                                        <input type="text" name="ownerEmailAddress" id="accountlist-owner-email"
-                                               value=""/>
+                                        <input type="text" name="ownerEmailAddress" id="accountlist-owner-email" value=""/>
                                     </p>
 
                                     <p>
-                                        <input type="submit" value="Get my accounts" name="actionList"
-                                               class="submit process-button" id="accountlist-submit"/>
+                                        <input type="submit" value="Get my accounts" name="actionList" class="submit process-button" id="accountlist-submit"/>
                                     </p>
                                     <input type="hidden" value="default" name="origin"/>
                                 </form>
@@ -187,8 +177,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div class="cbb clearfix">
                             <h2 class="title">False Alarm!</h2>
                             <div class="box-content">
-                                <p>If you have remembered your password, or if you just came here by accident, click the
-                                    link below to return to the homepage.</p>
+                                <p>If you have remembered your password, or if you just came here by accident, click the link below to return to the homepage.</p>
                                 <p><a href="{{ site.sitePath }}">Back to homepage &raquo;</a></p>
                             </div>
                         </div>
@@ -199,8 +188,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <!--[if lt IE 7]>
                     <script type="text/javascript">
                         Pngfix.doPngImageFix();
-                    </script>
-                    <![endif]-->
+                    </script><![endif]-->
 
                     {% include "../../base/footer.tpl" %}
 

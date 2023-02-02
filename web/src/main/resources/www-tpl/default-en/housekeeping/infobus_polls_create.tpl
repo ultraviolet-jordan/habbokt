@@ -33,14 +33,12 @@
 <p>Create an infobus poll for people to answer.</p>
 <form class="table-responsive col-md-4" method="post">
     <div class="form-group">
-        <label>Question:</label>
-        <input type="text" class="form-control" id="text" name="question"></input>
+        <label>Question:</label> <input type="text" class="form-control" id="text" name="question"></input>
     </div>
 
     <div class="form-group" id="answer1">
         <label id="answer1title">Answer 1</label>
-        <input name="answers[]" type="text" class="form-control"
-               placeholder="This is an option that a user can select"></input>
+        <input name="answers[]" type="text" class="form-control" placeholder="This is an option that a user can select"></input>
     </div>
 
     <p>
@@ -55,9 +53,7 @@
         <button type="submit" class="btn btn-info">Create Poll</button>
     </div>
 </form>
-</div>
-</div>
-</div>
+</div></div></div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -66,5 +62,4 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-</body>
-</html>
+</body></html>

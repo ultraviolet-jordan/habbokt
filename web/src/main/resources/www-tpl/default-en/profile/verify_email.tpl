@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -43,14 +41,11 @@
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/settings.js" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/settings.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css"
-          type="text/css"/>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css" type="text/css"/>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -108,8 +103,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                         </li>
                                         <li><a href="{{ site.sitePath }}/profile?tab=2">My Preferences</a>
                                         </li>
-                                        <li class="selected">{% if accountActivated %}My Email{% else %}Email Changing &
-                                            Verification{% endif %}
+                                        <li class="selected">{% if accountActivated %}My Email{% else %}Email Changing & Verification{% endif %}
                                         </li>
                                         <li><a href="{{ site.sitePath }}/profile?tab=4">My Password</a>
                                         </li>
@@ -141,25 +135,21 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <div class="settings-step">
 
                                         <h4>You haven't confirmed that your email is valid!</h4><br/>
-                                        <p>How to activate and confirm my email? Click the button and send a
-                                            confirmation email to your email account. Click the link from the email
-                                            message and you are done! Click the button below if you want us to send you
-                                            another account activation message.</p>
+                                        <p>How to activate and confirm my email? Click the button and send a confirmation email to your email account. Click the link from the email message and you are done! Click the button below if you want us to send you another account activation message.</p>
                                         <div class="settings-buttons">
-                                            <a href="#" class="new-button" style="display: none"
-                                               id="emailform-submit"><b>Activate my email-address</b><i></i></a>
-                                            <noscript><input type="submit" value="Activate my email-address" name="save"
-                                                             class="submit"/></noscript>
+                                            <a href="#" class="new-button" style="display: none" id="emailform-submit"><b>Activate my email-address</b><i></i></a>
+                                            <noscript>
+                                                <input type="submit" value="Activate my email-address" name="save" class="submit"/>
+                                            </noscript>
                                         </div>
                                     </div>
                                     <br/><br/>
                                     <hr>
                                     <div class="settings-step">
-                                        <p>We have noticed that you have logged in with your Habbo account. In order to
-                                            change your email you need to go to the account management settings page.
-                                            Click the link below to enter the Habbo account change email page.</p>
-                                        <p><a href="{{ site.sitePath }}/profile?tab=3">Go to the Habbo account change
-                                                email page</a></p>
+                                        <p>We have noticed that you have logged in with your Habbo account. In order to change your email you need to go to the account management settings page. Click the link below to enter the Habbo account change email page.</p>
+                                        <p>
+                                            <a href="{{ site.sitePath }}/profile?tab=3">Go to the Habbo account change email page</a>
+                                        </p>
                                     </div>
                             </div>
                         </div>

@@ -22,10 +22,9 @@
         {% else %}
         {% set status = "even" %}
         {% endif %}
-        <li class="{{ status }} {{ position }}"
-            style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
-            <a class="item" href="{{ group.generateClickLink() }}"><span
-                        class="index">{{ i + 1}}.</span> {% autoescape 'html' %}{{ group.name }}{% endautoescape %}</a>
+        <li class="{{ status }} {{ position }}" style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
+            <a class="item" href="{{ group.generateClickLink() }}"><span class="index">{{ i + 1}}.</span> {% autoescape 'html' %}{{ group.name }}{% endautoescape %}
+            </a>
         </li>
         {% set i = i + 1 %}
         {% endfor %}
@@ -46,10 +45,8 @@
             {% else %}
             {% set status = "even" %}
             {% endif %}
-            <li class="{{ status }} {{ position }}"
-                style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
-                <a class="item" href="{{ group.generateClickLink() }}"><span
-                            class="index">{{ i + 1 }}.</span> {% autoescape 'html' %}{{ group.name }}{% endautoescape %}
+            <li class="{{ status }} {{ position }}" style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
+                <a class="item" href="{{ group.generateClickLink() }}"><span class="index">{{ i + 1 }}.</span> {% autoescape 'html' %}{{ group.name }}{% endautoescape %}
                 </a>
             </li>
             {% set i = i + 1 %}
@@ -57,8 +54,7 @@
         </ul>
     </div>
     <div class="clearfix">
-        <a href="#" class="hotgroups-toggle-more-data secondary" id="hotgroups-toggle-more-data-h122">Show more
-            Groups</a>
+        <a href="#" class="hotgroups-toggle-more-data secondary" id="hotgroups-toggle-more-data-h122">Show more Groups</a>
     </div>
     <script type="text/javascript">
         L10N.put("show.more.groups", "Show more Groups");

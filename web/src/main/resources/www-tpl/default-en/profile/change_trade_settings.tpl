@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -43,14 +41,11 @@
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/settings.js" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/settings.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css"
-          type="text/css"/>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css" type="text/css"/>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -112,8 +107,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                         <li><a href="{{ site.sitePath }}/profile?tab=3">My Email</a>
                                             {% else %}
                                         </li>
-                                        <li><a href="{{ site.sitePath }}/profile/verify">Email Changing &
-                                                Verification</a>
+                                        <li>
+                                            <a href="{{ site.sitePath }}/profile/verify">Email Changing & Verification</a>
                                             {% endif %}
                                         </li>
                                         <li><a href="{{ site.sitePath }}/profile?tab=4">My Password</a>
@@ -145,46 +140,37 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 <h3>Trade</h3>
                                 <p>Accounts with a trade password</p>
                                 <h3><font>Change trade settings</h3>
-                                <form action="{{ site.sitePath }}/profile/securitysettingupdate" method="post"
-                                      id="securitySettingForm">
+                                <form action="{{ site.sitePath }}/profile/securitysettingupdate" method="post" id="securitySettingForm">
                                     <input type="hidden" name="tab" value="7">
                                     <input type="hidden" name="__app_key" value="HoloWeb">
                                     {% if (canUseTrade == false) %}
                                     <br>
                                     <!-- <h3 style="color: #ff6600;">Trading is now pending a security period before you can trade. You can cancel the enabling any time during the security period. Trading will be enabled once your account is 3 days old and have spent 1 hour in the hotel.</h3> -->
-                                    <h3 style="color: #ff6600;">Trading is now pending a security period before you can
-                                        trade. Trading will be enabled once your email has been verified.</h3>
+                                    <h3 style="color: #ff6600;">Trading is now pending a security period before you can trade. Trading will be enabled once your email has been verified.</h3>
                                     <br>
                                     {% else %}
                                     {% if playerDetails.isTradeEnabled() %}
-                                    <p>Trading is now active. To deactivate the pass, choose 'Deactivate', confirm your
-                                        password and save the changes.</p>
+                                    <p>Trading is now active. To deactivate the pass, choose 'Deactivate', confirm your password and save the changes.</p>
                                     {% else %}
-                                    <p>Trading is now inactive. To activate the pass, choose 'Activate', confirm your
-                                        password and save the changes.</p>
+                                    <p>Trading is now inactive. To activate the pass, choose 'Activate', confirm your password and save the changes.</p>
                                     {% endif %}
                                     {% endif %}
                                     <span id="enableTrading">
-					<input type="radio" id="enableTradingOption" name="tradingsetting" value="true"
-                           {{ ("tradeEnabled" is present) ? tradeEnabled : "" }}>
+					<input type="radio" id="enableTradingOption" name="tradingsetting" value="true" {{ ("tradeEnabled" is present) ? tradeEnabled : "" }}>
 					Allow
-					<input type="radio" id="disableTradingOption" name="tradingsetting" value="false"
-                           {{ ("tradeDisabled" is present) ? tradeDisabled : "" }}>
+					<input type="radio" id="disableTradingOption" name="tradingsetting" value="false" {{ ("tradeDisabled" is present) ? tradeDisabled : "" }}>
 					Deactivate
 					<br>
 					<br>
 				</span>
                                     <p>
-                                        <br>
-                                        <label for="currentpassword">Current password:</label><br>
-                                        <input type="password" size="32" maxlength="32" name="password"
-                                               id="currentpassword" class="currentpassword">
+                                        <br> <label for="currentpassword">Current password:</label><br>
+                                        <input type="password" size="32" maxlength="32" name="password" id="currentpassword" class="currentpassword">
                                     </p>
 
                                     <div class="settings-buttons">
                                         <a href="#" class="new-button" style="" id="securitySettingForm-submit">
-                                            <b>Save Changes</b>
-                                            <i></i></a>
+                                            <b>Save Changes</b> <i></i></a>
                                         <noscript><input type="submit" class="submit"></noscript>
                                     </div>
                                 </form>
@@ -223,8 +209,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
             <div id="column3" class="column">
                 <div class="habblet-container ">
-                    <div class="ad-container">
-                    </div>
+                    <div class="ad-container"></div>
                 </div>
                 <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) {
                         Rounder.init();
@@ -234,8 +219,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
 
         {% include "../base/footer.tpl" %}

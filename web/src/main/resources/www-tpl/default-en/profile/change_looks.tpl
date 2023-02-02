@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -41,17 +39,13 @@
 
     </script>
 
-    <script src="{{ site.staticContentPath }}/web-gallery/static/js/settings.js?{{ randomNumber }}"
-            type="text/javascript"></script>
+    <script src="{{ site.staticContentPath }}/web-gallery/static/js/settings.js?{{ randomNumber }}" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/settings.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css"
-          type="text/css"/>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css" type="text/css"/>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -118,8 +112,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                         <li><a href="{{ site.sitePath }}/profile?tab=3">My Email</a>
                                             {% else %}
                                         </li>
-                                        <li><a href="{{ site.sitePath }}/profile/verify">Email Changing &
-                                                Verification</a>
+                                        <li>
+                                            <a href="{{ site.sitePath }}/profile/verify">Email Changing & Verification</a>
                                             {% endif %}
                                         </li>
                                         <li><a href="{{ site.sitePath }}/profile?tab=4">My Password</a>
@@ -148,9 +142,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 <div>&nbsp;</div>
 
                                 <div id="settings-editor">
-                                    You need to have a Flash player installed on your computer before being able to edit
-                                    your {{ site.siteName }} character. You can download the player from here: <a
-                                            target="_blank" href="http://www.adobe.com/go/getflashplayer">http://www.adobe.com/go/getflashplayer</a>
+                                    You need to have a Flash player installed on your computer before being able to edit your {{ site.siteName }} character. You can download the player from here:
+                                    <a target="_blank" href="http://www.adobe.com/go/getflashplayer">http://www.adobe.com/go/getflashplayer</a>
                                 </div>
 
                                 {% if playerDetails.hasClubSubscription() %}
@@ -220,32 +213,25 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                 <div id="settings-hc" style="display: none">
                                     <div class="rounded rounded-hcred clearfix">
-                                        <a href="{{ site.sitePath }}/club" id="settings-hc-logo"></a>
-                                        Items marked with the {{ site.siteName }} Club symbol <img
-                                                src="{{ site.staticContentPath }}/web-gallery/v2/images/habboclub/hc_mini.png"/>
-                                        are available only to {{ site.siteName }} Club members. <a
-                                                href="{{ site.sitePath }}/club">Join now!</a>
+                                        <a href="{{ site.sitePath }}/club" id="settings-hc-logo"></a> Items marked with the {{ site.siteName }} Club symbol
+                                        <img src="{{ site.staticContentPath }}/web-gallery/v2/images/habboclub/hc_mini.png"/> are available only to {{ site.siteName }} Club members.
+                                        <a href="{{ site.sitePath }}/club">Join now!</a>
                                     </div>
                                 </div>
 
                                 <div id="settings-oldfigure" style="display: none">
                                     <div class="rounded rounded-lightbrown clearfix">
-                                        Your {{ site.siteName }} had clothes or colors that are not selectable anymore.
-                                        Please save your new looks here.
+                                        Your {{ site.siteName }} had clothes or colors that are not selectable anymore. Please save your new looks here.
                                     </div>
                                 </div>
 
-                                <form method="post" action="{{ site.sitePath }}/profile/characterupdate"
-                                      id="settings-form" style="display: none">
+                                <form method="post" action="{{ site.sitePath }}/profile/characterupdate" id="settings-form" style="display: none">
                                     <input type="hidden" name="tab" value="1"/>
                                     <input type="hidden" name="__app_key" value="KeplerWeb"/>
-                                    <input type="hidden" name="figureData" id="settings-figure"
-                                           value="{{ playerDetails.figure }}"/>
-                                    <input type="hidden" name="newGender" id="settings-gender"
-                                           value="{{ playerDetails.gender }}"/>
+                                    <input type="hidden" name="figureData" id="settings-figure" value="{{ playerDetails.figure }}"/>
+                                    <input type="hidden" name="newGender" id="settings-gender" value="{{ playerDetails.gender }}"/>
                                     <input type="hidden" name="editorState" id="settings-state" value=""/>
-                                    <a href="#" id="settings-submit" class="new-button disabled-button"><b>Save
-                                            changes</b><i></i></a>
+                                    <a href="#" id="settings-submit" class="new-button disabled-button"><b>Save changes</b><i></i></a>
 
                                     <script type="text/javascript" language="JavaScript">
                                         var swfobj = new SWFObject("{{ site.sitePath }}/flash/HabboRegistration.swf", "habboreg", "435", "400", "8");
@@ -294,8 +280,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
             <div id="column3" class="column">
                 <div class="habblet-container ">
-                    <div class="ad-container">
-                    </div>
+                    <div class="ad-container"></div>
                 </div>
                 <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) {
                         Rounder.init();
@@ -305,8 +290,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
 
         {% include "../base/footer.tpl" %}

@@ -9,9 +9,7 @@
                 <div id="group-name-area">
                     <div id="group_name_message_error" class="error"></div>
                     <label for="group_name" id="group_name_text">Edit group name:</label>
-                    <input type="text" name="group_name" id="group_name"
-                           onKeyUp="GroupUtils.validateGroupElements('group_name', 30, 'Maximum Group name length reached');"
-                           value="{{ group.getName }}"/><br/>
+                    <input type="text" name="group_name" id="group_name" onKeyUp="GroupUtils.validateGroupElements('group_name', 30, 'Maximum Group name length reached');" value="{{ group.getName }}"/><br/>
                 </div>
 
                 <div id="group-url-area">
@@ -19,13 +17,10 @@
                     <label for="group_url" id="group_url_text">Edit Group URL:</label><br/>
 
                     {% if group.getAlias() == "" %}
-                    <input type="text" name="group_url" id="group_url"
-                           onKeyUp="GroupUtils.validateGroupElements('group_url', 30, 'URL limit reached');"
-                           value=""/><br/>
+                    <input type="text" name="group_url" id="group_url" onKeyUp="GroupUtils.validateGroupElements('group_url', 30, 'URL limit reached');" value=""/><br/>
                     <input type="hidden" name="group_url_edited" id="group_url_edited" value="1"/>
                     {% else %}
-                    <span id="group_url_text"><a
-                                href="{{ group.generateClickLink() }}">/groups/{{ group.getAlias() }}</a></span><br/>
+                    <span id="group_url_text"><a href="{{ group.generateClickLink() }}">/groups/{{ group.getAlias() }}</a></span><br/>
                     <input type="hidden" name="group_url" id="group_url" value="{{ group.getAlias() }}"/>
                     <input type="hidden" name="group_url_edited" id="group_url_edited" value="0"/>
                     {% endif %}
@@ -38,11 +33,9 @@
                 <label for="group_description" id="description_text">Edit text:</label>
                 <span id="description_chars_left">
             <label for="characters_left">Characters left:</label>
-            <input id="group_description-counter" type="text" value="{{ charactersLeft }}" size="3" readonly="readonly"
-                   class="amount"/>
+            <input id="group_description-counter" type="text" value="{{ charactersLeft }}" size="3" readonly="readonly" class="amount"/>
           </span>
-                <textarea name="group_description" id="group_description"
-                          onKeyUp="GroupUtils.validateGroupElements('group_description', 255, 'Description limit reached');">{{ group.getDescription() }}</textarea>
+                <textarea name="group_description" id="group_description" onKeyUp="GroupUtils.validateGroupElements('group_description', 255, 'Description limit reached');">{{ group.getDescription() }}</textarea>
             </div>
         </div>
         <div id="group-settings-type" class="group-settings-pane group-settings-selection">
@@ -117,20 +110,17 @@
 
         <div id="forum-settings-topics" class="group-settings-pane group-settings-selection">
             <label for="new_topic_permission">Edit New threads:</label>
-            <input type="radio" name="new_topic_permission" id="new_topic_permission" value="2"
-                   {{ selected2ForumPermissionType}}/>
+            <input type="radio" name="new_topic_permission" id="new_topic_permission" value="2" {{ selected2ForumPermissionType}}/>
             <div class="description">
                 Admin<br/>
                 <p>Only Admins can start new threads.</p>
             </div>
-            <input type="radio" name="new_topic_permission" id="new_topic_permission" value="1"
-                   {{ selected1ForumPermissionType}}/>
+            <input type="radio" name="new_topic_permission" id="new_topic_permission" value="1" {{ selected1ForumPermissionType}}/>
             <div class="description">
                 Members<br/>
                 <p>Only group members can start new threads.</p>
             </div>
-            <input type="radio" name="new_topic_permission" id="new_topic_permission" value="0"
-                   {{ selected0ForumPermissionType}}/>
+            <input type="radio" name="new_topic_permission" id="new_topic_permission" value="0" {{ selected0ForumPermissionType}}/>
             <div class="description">
                 Everyone<br/>
                 <p>Anyone can start a new thread.</p>
@@ -143,8 +133,8 @@
         <label>Select a room for your group:</label>
         <div id="room-settings-id" class="group-settings-pane-wide group-settings-selection">
             <ul>
-                <li><input type="radio" name="roomId" value=""
-                           {% if group.getRoomId() == 0 %}checked="checked" {% endif %}/>
+                <li>
+                    <input type="radio" name="roomId" value="" {% if group.getRoomId() == 0 %}checked="checked" {% endif %}/>
                     <div>No room</div>
                 </li>
 
@@ -156,11 +146,8 @@
                 <li class="odd">
                     {% endif %}
 
-                    <input type="radio" name="roomId" value="{{ room.getId() }}"
-                           {% if group.getRoomId() == room.getId() %}checked="checked" {% endif %}/>
-                    <a href="{{ site.sitePath }}/client?forwardId=2&amp;roomId={{ room.getId() }}"
-                       onclick="HabboClient.roomForward(this, '{{ room.getId() }}', 'private'); return false;"
-                       target="client" class="room-enter">Enter</a>
+                    <input type="radio" name="roomId" value="{{ room.getId() }}" {% if group.getRoomId() == room.getId() %}checked="checked" {% endif %}/>
+                    <a href="{{ site.sitePath }}/client?forwardId=2&amp;roomId={{ room.getId() }}" onclick="HabboClient.roomForward(this, '{{ room.getId() }}', 'private'); return false;" target="client" class="room-enter">Enter</a>
                     <div>
                         {{ room.getData().getName() }}<br/>
                         <span class="room-description">{{ room.getData().getDescription() }}</br></span>
@@ -173,16 +160,11 @@
     </div>
 
     <div id="group-button-area">
-        <a href="#" id="group-settings-update-button" class="new-button"
-           onclick="showGroupSettingsConfirmation('{{ group.getId() }}');">
-            <b>Save changes</b><i></i>
-        </a>
-        <a id="group-delete-button" href="#" class="new-button red-button"
-           onclick="openGroupActionDialog('/groups/actions/confirm_delete_group', '/groups/actions/delete_group', null , '{{ group.getId() }}', null);">
-            <b>Delete group</b><i></i>
-        </a>
-        <a href="#" id="group-settings-close-button" class="new-button"
-           onclick="closeGroupSettings(); return false;"><b>Cancel</b><i></i></a>
+        <a href="#" id="group-settings-update-button" class="new-button" onclick="showGroupSettingsConfirmation('{{ group.getId() }}');">
+            <b>Save changes</b><i></i> </a>
+        <a id="group-delete-button" href="#" class="new-button red-button" onclick="openGroupActionDialog('/groups/actions/confirm_delete_group', '/groups/actions/delete_group', null , '{{ group.getId() }}', null);">
+            <b>Delete group</b><i></i> </a>
+        <a href="#" id="group-settings-close-button" class="new-button" onclick="closeGroupSettings(); return false;"><b>Cancel</b><i></i></a>
     </div>
     </div>
 </form>

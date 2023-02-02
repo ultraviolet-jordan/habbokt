@@ -48,28 +48,23 @@
                 <div class="item" style="padding-left: 5px; padding-bottom: 4px;">
                     <div style="float: right; width: 16px; height: 16px; margin-top: 1px">
                         {% if member.getMemberRank().getRankId() == 3 %}
-                        <img src="{{ site.staticContentPath }}/web-gallery/images/groups/owner_icon.gif" width="15"
-                             height="15" alt="" title=""/>
+                        <img src="{{ site.staticContentPath }}/web-gallery/images/groups/owner_icon.gif" width="15" height="15" alt="" title=""/>
                         {% endif %}
                         {% if member.getMemberRank().getRankId() == 2 %}
-                        <img src="{{ site.staticContentPath }}/web-gallery/images/groups/administrator_icon.gif"
-                             width="15" height="15" alt="Administrator" title="Administrator"/>
+                        <img src="{{ site.staticContentPath }}/web-gallery/images/groups/administrator_icon.gif" width="15" height="15" alt="Administrator" title="Administrator"/>
                         {% endif %}
                     </div>
                     {% if  (selfMember.getMemberRank().getRankId() <= member.getMemberRank().getRankId()) and (selfMember.getMemberRank().getRankId() >= 2) %}
                     <input type="checkbox" disabled="disabled" style="margin: 0; padding: 0; vertical-align: middle"/>
                     {% else %}
                     {% if member.getMemberRank().getRankId() == 2 %}
-                    <input type="checkbox" id="group-memberlist-a-{{ member.getUser().getId() }}"
-                           style="margin: 0; padding: 0; vertical-align: middle"/>
+                    <input type="checkbox" id="group-memberlist-a-{{ member.getUser().getId() }}" style="margin: 0; padding: 0; vertical-align: middle"/>
                     {% elseif member.getMemberRank().getRankId() == 1 %}
-                    <input type="checkbox" id="group-memberlist-m-{{ member.getUser().getId() }}"
-                           style="margin: 0; padding: 0; vertical-align: middle"/>
+                    <input type="checkbox" id="group-memberlist-m-{{ member.getUser().getId() }}" style="margin: 0; padding: 0; vertical-align: middle"/>
                     {% endif %}
                     {% endif %}
 
-                    <a class="home-page-link"
-                       href="{{ site.sitePath }}/home/{{ member.getUser().getName() }}"><span>{{ member.getUser().getName() }}</span></a>
+                    <a class="home-page-link" href="{{ site.sitePath }}/home/{{ member.getUser().getName() }}"><span>{{ member.getUser().getName() }}</span></a>
                 </div>
             </li>
 

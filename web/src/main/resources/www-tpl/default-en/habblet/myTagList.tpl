@@ -10,11 +10,9 @@
         {% endif %}
     </ul>
 
-    <form method="post" action="{{ site.sitePath }}/myhabbo/tag/add"
-          onsubmit="TagHelper.addFormTagToMe();return false;">
+    <form method="post" action="{{ site.sitePath }}/myhabbo/tag/add" onsubmit="TagHelper.addFormTagToMe();return false;">
         <div class="add-tag-form clearfix">
-            <a class="new-button" href="#" id="add-tag-button" onclick="TagHelper.addFormTagToMe();return false;"><b>Add
-                    tag</b><i></i></a>
+            <a class="new-button" href="#" id="add-tag-button" onclick="TagHelper.addFormTagToMe();return false;"><b>Add tag</b><i></i></a>
             <input type="text" id="add-tag-input" maxlength="20" style="float: right"/>
             <em class="tag-question">{{ tagRandomQuestion }}</em>
         </div>

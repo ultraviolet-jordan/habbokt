@@ -1,12 +1,10 @@
-<div class="movable widget RatingWidget" id="widget-{{ sticker.getId() }}"
-     style="left: {{ sticker.getX() }}px; top: {{ sticker.getY() }}px; z-index: {{ sticker.getZ() }}">
+<div class="movable widget RatingWidget" id="widget-{{ sticker.getId() }}" style="left: {{ sticker.getX() }}px; top: {{ sticker.getY() }}px; z-index: {{ sticker.getZ() }}">
     <div class="w_skin_{{ sticker.getSkin() }}">
         <div class="widget-corner" id="widget-{{ sticker.getId() }}-handle">
             <div class="widget-headline">
                 <h3>
                     {% if editMode %}
-                    <img src="{{ site.staticContentPath }}/web-gallery/images/myhabbo/icon_edit.gif" width="19"
-                         height="18" class="edit-button" id="widget-{{ sticker.getId() }}-edit"/>
+                    <img src="{{ site.staticContentPath }}/web-gallery/images/myhabbo/icon_edit.gif" width="19" height="18" class="edit-button" id="widget-{{ sticker.getId() }}-edit"/>
 
                     <script language="JavaScript" type="text/javascript">
                         Event.observe("widget-{{ sticker.getId() }}-edit", "click", function (e) {
@@ -17,8 +15,8 @@
 
                     </script>
                     {% endif %}
-                    <span class="header-left">&nbsp;</span><span class="header-middle">My Rating</span><span
-                            class="header-right">&nbsp;</span></h3>
+                    <span class="header-left">&nbsp;</span><span class="header-middle">My Rating</span><span class="header-right">&nbsp;</span>
+                </h3>
             </div>
         </div>
         <div class="widget-body">
@@ -60,8 +58,7 @@
                             </ul>
                         </div>
                         {{ sticker.getVoteCount() }} votes total
-                        <br/>
-                        ({{ sticker.getHighVoteCount() }} users voted 4 or better)
+                        <br/> ({{ sticker.getHighVoteCount() }} users voted 4 or better)
                     </div>
                 </div>
                 <div class="clear"></div>

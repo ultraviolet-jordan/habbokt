@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -42,10 +40,8 @@
 
     </script>
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -126,34 +122,25 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div id="tag-fight-habblet-container">
                             <div class="fight-process" id="fight-process">The fight ... is on ...</div>
                             <div id="fightForm" class="fight-form">
-                                <div class="tag-field-container">First Tag<br/><input maxlength="30" type="text"
-                                                                                      class="tag-input" name="tag1"
-                                                                                      id="tag1"/></div>
+                                <div class="tag-field-container">First Tag<br/><input maxlength="30" type="text" class="tag-input" name="tag1" id="tag1"/>
+                                </div>
 
-                                <div class="tag-field-container">Second Tag<br/><input maxlength="30" type="text"
-                                                                                       class="tag-input" name="tag2"
-                                                                                       id="tag2"/></div>
+                                <div class="tag-field-container">Second Tag<br/><input maxlength="30" type="text" class="tag-input" name="tag2" id="tag2"/>
+                                </div>
                             </div>
                             <div id="fightResults" class="fight-results">
                                 <div class="fight-image">
-                                    <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_start.gif"
-                                         alt="" name="fightanimation" id="fightanimation"/>
-                                    <a id="tag-fight-button" href="#" class="new-button"
-                                       onclick="TagFight.init(); return false;"><b>Fight</b><i></i></a>
+                                    <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_start.gif" alt="" name="fightanimation" id="fightanimation"/>
+                                    <a id="tag-fight-button" href="#" class="new-button" onclick="TagFight.init(); return false;"><b>Fight</b><i></i></a>
                                 </div>
                             </div>
                             <div class="tagfight-preload">
-                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_end_0.gif"
-                                     width="1" height="1"/>
+                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_end_0.gif" width="1" height="1"/>
 
-                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_end_1.gif"
-                                     width="1" height="1"/>
-                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_end_2.gif"
-                                     width="1" height="1"/>
-                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_loop.gif"
-                                     width="1" height="1"/>
-                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_start.gif"
-                                     width="1" height="1"/>
+                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_end_1.gif" width="1" height="1"/>
+                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_end_2.gif" width="1" height="1"/>
+                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_loop.gif" width="1" height="1"/>
+                                <img src="{{ site.staticContentPath }}/web-gallery/images/tagfight/tagfight_start.gif" width="1" height="1"/>
                             </div>
                         </div>
 
@@ -239,8 +226,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
         {% include "base/footer.tpl" %}
 

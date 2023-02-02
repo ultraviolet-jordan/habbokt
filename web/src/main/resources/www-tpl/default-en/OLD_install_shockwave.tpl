@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -62,10 +60,8 @@
     </style>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -118,37 +114,30 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <div class="cbb clearfix blue ">
                         <h2 class="title">How to use Shockwave</h2>
                         <div class="tutorial-text">
-                            <p style="margin-top: 10px">In order to load the Shockwave hotel, you must follow these
-                                steps and ensure you have the prequisities required.</p>
+                            <p style="margin-top: 10px">In order to load the Shockwave hotel, you must follow these steps and ensure you have the prequisities required.</p>
                             <p><b>Pale Moon</b></p>
-                            <p>Pale Moon is a necessity to run Shockwave correctly, as it's one of the few browsers that
-                                still supports NPAPI plugins correctly.</p>
-                            <p>Since Shockwave is quite old, the <b>32-bit</b> version of Pale Moon is required, here
-                                you can download the <a
-                                        href="https://www.palemoon.org/download.shtml#Portable_versions">Portable</a> or
-                                the <a href="https://www.palemoon.org/download.shtml">Full</a> version.</p>
+                            <p>Pale Moon is a necessity to run Shockwave correctly, as it's one of the few browsers that still supports NPAPI plugins correctly.</p>
+                            <p>Since Shockwave is quite old, the
+                                <b>32-bit</b> version of Pale Moon is required, here you can download the
+                                <a href="https://www.palemoon.org/download.shtml#Portable_versions">Portable</a> or the
+                                <a href="https://www.palemoon.org/download.shtml">Full</a> version.</p>
                             <p><b>Shockwave 12</b></p>
-                            <p>You must install the Shockwave 12 MSI first and then proceed to install the Visual Studio
-                                2008 C++ x86 redist.</p>
+                            <p>You must install the Shockwave 12 MSI first and then proceed to install the Visual Studio 2008 C++ x86 redist.</p>
                             <p><i>Download list</i></p>
-                            <p>Adobe Shockwave 12.3 MSI: <a
-                                        href="https://alex-dev.org/shockwave/12.3/sw_lic_full_installer.msi"
-                                        target="_blank">Download</a></p>
-                            <p>Microsoft Visual C++ 2008 Redistributable Package (x86): <a
-                                        href="https://www.microsoft.com/en-au/download/details.aspx?id=29"
-                                        target="_blank">Download</a></p>
-                            <p>Also please make sure you <b>do not have a browser open</b> when installing the Shockwave
-                                MSI, as you will need to start a fresh Windows installation, since the current
-                                installation breaks with a browser open.</p>
-                            <p><b>Shockwave 11</b></p>
-                            <p>While Shockwave 11.6 is older than the latest version that is Shockwave 12, the latest
-                                version experiences issues with crashing while playing music from the Trax Machine or
-                                Jukebox, and also messsages in the instant messenger are always stuck at 12:00.</p>
-                            <p>For these reasons, Shockwave 11 is recommended to install instead since these issues are
-                                not present in this version.</p>
-                            <p>You can download the official Shockwave 11.6 installer MSI <a
-                                        href="https://alex-dev.org/shockwave/11.6/sw_lic_full_installer.msi">here</a>.
+                            <p>Adobe Shockwave 12.3 MSI:
+                                <a href="https://alex-dev.org/shockwave/12.3/sw_lic_full_installer.msi" target="_blank">Download</a>
                             </p>
+                            <p>Microsoft Visual C++ 2008 Redistributable Package (x86):
+                                <a href="https://www.microsoft.com/en-au/download/details.aspx?id=29" target="_blank">Download</a>
+                            </p>
+                            <p>Also please make sure you
+                                <b>do not have a browser open</b> when installing the Shockwave MSI, as you will need to start a fresh Windows installation, since the current installation breaks with a browser open.
+                            </p>
+                            <p><b>Shockwave 11</b></p>
+                            <p>While Shockwave 11.6 is older than the latest version that is Shockwave 12, the latest version experiences issues with crashing while playing music from the Trax Machine or Jukebox, and also messsages in the instant messenger are always stuck at 12:00.</p>
+                            <p>For these reasons, Shockwave 11 is recommended to install instead since these issues are not present in this version.</p>
+                            <p>You can download the official Shockwave 11.6 installer MSI
+                                <a href="https://alex-dev.org/shockwave/11.6/sw_lic_full_installer.msi">here</a>. </p>
 
                             <!-- <p><b>Shockwave 12</b></p>
                             <p>If the Shockwave 11 steps do not work, there is another option to install Shockwave 12, but this version brings issues that Shockwave 11 does not have.</p>
@@ -166,22 +155,17 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <div class="cbb clearfix red ">
                         <h2 class="title">Why should I use Shockwave?</h2>
                         <div class="tutorial-text">
-                            <p style="margin-top: 10px">As of right now there are two clients to play the hotel on, the
-                                first is the Shockwave hotel and the second is Flash.</p>
-                            <p>It is highly recommended to play the Shockwave version because it's filled with far more
-                                features that cannot be experienced on the Flash client.</p>
-                            <p>The features that Shockwave contains which are not present in the Flash version are
-                                listed below.</p>
+                            <p style="margin-top: 10px">As of right now there are two clients to play the hotel on, the first is the Shockwave hotel and the second is Flash.</p>
+                            <p>It is highly recommended to play the Shockwave version because it's filled with far more features that cannot be experienced on the Flash client.</p>
+                            <p>The features that Shockwave contains which are not present in the Flash version are listed below.</p>
                             <div class="row">
                                 <div class="column" style="margin-top:10px; margin-bottom:10px; margin-right:10px">
-                                    <img src="{{ site.staticContentPath }}/c_images/stickers/sticker_submarine.gif"
-                                         alt="">
+                                    <img src="{{ site.staticContentPath }}/c_images/stickers/sticker_submarine.gif" alt="">
                                 </div>
-                                <div class="column"
-                                     style="margin-top:10px; margin-bottom:10px; margin-left:10px; width: 275px;">
-                                    <p><b>BattleBall, Diving, Wobble Squabble, Trax Machines, Jukeboxes, American Idol,
-                                            Tic Tac Toe, Chess, Battleships, Poker</b> and some nostalgic Habbo
-                                        components such as the hand and the Room-o-Matic.</p>
+                                <div class="column" style="margin-top:10px; margin-bottom:10px; margin-left:10px; width: 275px;">
+                                    <p>
+                                        <b>BattleBall, Diving, Wobble Squabble, Trax Machines, Jukeboxes, American Idol, Tic Tac Toe, Chess, Battleships, Poker</b> and some nostalgic Habbo components such as the hand and the Room-o-Matic.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -194,16 +178,12 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <h2 class="title" style="background-color: darkorange">Prerequisities</h2>
                         <div class="tutorial-text">                            </h2>
                             <div class="row">
-                                <div class="column"
-                                     style="width: 100px; margin-top:10px; margin-bottom:10px; margin-right:10px">
-                                    <img class="credits-image" src="https://i.imgur.com/6zrNiqZ.gif" alt="" width="100"
-                                         height="100">
+                                <div class="column" style="width: 100px; margin-top:10px; margin-bottom:10px; margin-right:10px">
+                                    <img class="credits-image" src="https://i.imgur.com/6zrNiqZ.gif" alt="" width="100" height="100">
                                 </div>
                                 <div class="column" style="width: 165px;">
-                                    <p style="margin-top: 10px">The following items are required to use Shockwave are
-                                        listed below.</p>
-                                    <p>If you fail to meet these requirements, you will only be able to play the Flash
-                                        version.</p>
+                                    <p style="margin-top: 10px">The following items are required to use Shockwave are listed below.</p>
+                                    <p>If you fail to meet these requirements, you will only be able to play the Flash version.</p>
                                 </div>
                             </div>
                             <p><b>Requirements</b></p>
@@ -233,8 +213,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
     </div>
     {% include "base/footer.tpl" %}

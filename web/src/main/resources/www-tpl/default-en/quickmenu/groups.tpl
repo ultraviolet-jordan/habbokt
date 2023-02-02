@@ -13,9 +13,7 @@
 
     <li class="{{ status }}">
         {% if group.getRoomId() > 0 %}
-        <a href="{{ site.sitePath }}/client?forwardId=2&amp;roomId={{ group.getRoomId() }}"
-           onclick="HabboClient.roomForward(this, '{{ group.getRoomId() }}', 'private'); return false;" target="client"
-           class="group-room" title=""></a>
+        <a href="{{ site.sitePath }}/client?forwardId=2&amp;roomId={{ group.getRoomId() }}" onclick="HabboClient.roomForward(this, '{{ group.getRoomId() }}', 'private'); return false;" target="client" class="group-room" title=""></a>
         {% endif %}
         {% if group.isMember(playerDetails.id) %}
         {% set member = group.getMember(playerDetails.id) %}

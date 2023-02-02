@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -43,14 +41,11 @@
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/settings.js" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/settings.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css"
-          type="text/css"/>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css" type="text/css"/>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -108,8 +103,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                         </li>
                                         <li><a href="{{ site.sitePath }}/profile?tab=2">My Preferences</a>
                                         </li>
-                                        <li class="selected">{% if accountActivated %}My Email{% else %}Email Changing &
-                                            Verification{% endif %}
+                                        <li class="selected">{% if accountActivated %}My Email{% else %}Email Changing & Verification{% endif %}
                                         </li>
                                         <li><a href="{{ site.sitePath }}/profile?tab=4">My Password</a>
                                         </li>
@@ -169,8 +163,7 @@ How to activate my account and confirm my email? Click the button and send a con
 
                                             <p>
                                                 <label for="currentpassword">Current password</label><br/>
-                                                <input type="password" size="32" maxlength="32" name="password"
-                                                       id="currentpassword" class="currentpassword "/>
+                                                <input type="password" size="32" maxlength="32" name="password" id="currentpassword" class="currentpassword "/>
                                             </p>
 
                                             <!--
@@ -188,19 +181,16 @@ How to activate my account and confirm my email? Click the button and send a con
 
                                             <h3>Enter your new email address</h3>
 
-                                            <p>Make sure you type in your email address correctly. Email verification
-                                                link is sent to that address.</p>
+                                            <p>Make sure you type in your email address correctly. Email verification link is sent to that address.</p>
 
                                             <p>
                                                 <label for="email">Email address:</label><br/>
-                                                <input type="text" name="email" id="email" size="32" maxlength="48"
-                                                       value="{{ playerDetails.email }}"/>
+                                                <input type="text" name="email" id="email" size="32" maxlength="48" value="{{ playerDetails.email }}"/>
                                             </p>
 
                                             <p>
-                                                <input name="directemail" id="directemail" type="checkbox"> <label
-                                                        for="directemail">Yes! I want the latest Retro news sent
-                                                    straight to my inbox.</label>
+                                                <input name="directemail" id="directemail" type="checkbox">
+                                                <label for="directemail">Yes! I want the latest Retro news sent straight to my inbox.</label>
                                             </p>
 
                                         </div>
@@ -212,8 +202,7 @@ How to activate my account and confirm my email? Click the button and send a con
                                         <div class="settings-step-content">
 
                                             <h3>
-                                                <label for="bean_captcha" class="registration-text">Type in the security
-                                                    code shown in the image below.</label>
+                                                <label for="bean_captcha" class="registration-text">Type in the security code shown in the image below.</label>
                                             </h3>
 
                                             <div id="captcha-code-error"></div>
@@ -222,10 +211,8 @@ How to activate my account and confirm my email? Click the button and send a con
 
                                             <div class="register-label" id="captcha-reload">
                                                 <p>
-                                                    <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif"
-                                                         width="15" height="15" alt=""/>
-                                                    <a id="captcha-reload-link" href="#">I can't read the code! Please
-                                                        give me another one.</a>
+                                                    <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif" width="15" height="15" alt=""/>
+                                                    <a id="captcha-reload-link" href="#">I can't read the code! Please give me another one.</a>
                                                 </p>
                                             </div>
 
@@ -236,22 +223,18 @@ How to activate my account and confirm my email? Click the button and send a con
                                             </script>
 
                                             <p id="captcha-container">
-                                                <img id="captcha"
-                                                     src="{{ site.sitePath }}/captcha.jpg?t={{ randomNumber }}" alt=""
-                                                     width="200" height="50"/>
+                                                <img id="captcha" src="{{ site.sitePath }}/captcha.jpg?t={{ randomNumber }}" alt="" width="200" height="50"/>
 
                                             </p>
 
                                             <p>
-                                                <input type="text" name="captcha" id="captcha-code" value=""
-                                                       class="registration-text required-captcha"/>
+                                                <input type="text" name="captcha" id="captcha-code" value="" class="registration-text required-captcha"/>
                                             </p>
                                         </div>
                                     </div>
 
                                     <div class="settings-buttons">
-                                        <a href="#" class="new-button" style="display: none" id="emailform-submit"><b>Save
-                                                changes</b><i></i></a>
+                                        <a href="#" class="new-button" style="display: none" id="emailform-submit"><b>Save changes</b><i></i></a>
                                         <noscript><input type="submit" value="Save changes" name="save" class="submit"/>
                                         </noscript>
                                     </div>

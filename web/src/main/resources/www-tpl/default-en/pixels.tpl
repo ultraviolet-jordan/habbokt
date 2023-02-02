@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -42,10 +40,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -99,15 +95,15 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                 <div class="habblet-container ">
                     <div class="cbb clearfix pixelblue ">
 
-                        <h2 class="title">Learn how to get your pixels and enjoy!
-                        </h2>
+                        <h2 class="title">Learn how to get your pixels and enjoy! </h2>
                         <div class="pixels-infobox-container">
                             <div class="pixels-infobox-text">
                                 <h3>You can earn Pixels in a variety of ways:</h3>
                                 <ul>
                                     <li><p>1. Sign into Habbo once a day</p></li>
-                                    <li><p>2. Get rewarded for spending time each day in Habbo- the longer you stay the
-                                            more you earn!</p></li>
+                                    <li>
+                                        <p>2. Get rewarded for spending time each day in Habbo- the longer you stay the more you earn!</p>
+                                    </li>
                                     <li><p>3. Complete Achievements, work as a Guide and give respect to other users</p>
                                     </li>
                                     <li><p>4. Join Habbo Club!</p></li>
@@ -135,11 +131,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                         <div id="pixels-info" class="box-content pixels-info">
                             <div class="pixels-info-text clearfix">
-                                <img class="pixels-image"
-                                     src="{{ site.staticContentPath }}/web-gallery/v2/images/activitypoints/pixelpage_effectmachine.png"
-                                     alt=""/>
-                                <p class="pixels-text">Create a cool room, with these rocking room effects you can
-                                    expand your friends experience.</p>
+                                <img class="pixels-image" src="{{ site.staticContentPath }}/web-gallery/v2/images/activitypoints/pixelpage_effectmachine.png" alt=""/>
+                                <p class="pixels-text">Create a cool room, with these rocking room effects you can expand your friends experience.</p>
                             </div>
                         </div>
 
@@ -157,12 +150,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <h2 class="title">Effects? </h2>
                         <div id="pixels-info" class="box-content pixels-info">
                             <div class="pixels-info-text clearfix">
-                                <img class="pixels-image"
-                                     src="{{ site.staticContentPath }}/web-gallery/v2/images/activitypoints/pixelpage_personaleffect.png"
-                                     alt=""/>
-                                <p class="pixels-text">Tune your character with cool effects that fit the occasion. Do
-                                    you want to fly away with the red carpet or be in the spotlight? Now is your
-                                    chance</p>
+                                <img class="pixels-image" src="{{ site.staticContentPath }}/web-gallery/v2/images/activitypoints/pixelpage_personaleffect.png" alt=""/>
+                                <p class="pixels-text">Tune your character with cool effects that fit the occasion. Do you want to fly away with the red carpet or be in the spotlight? Now is your chance</p>
                             </div>
 
                         </div>
@@ -182,11 +171,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div id="pixels-info" class="box-content pixels-info">
                             <div class="pixels-info-text clearfix">
 
-                                <img class="pixels-image"
-                                     src="{{ site.staticContentPath }}/web-gallery/v2/images/activitypoints/pixelpage_discounts.png"
-                                     alt=""/>
-                                <p class="pixels-text">Earning Pixels gives you discounts on a wide variety of Furni -
-                                    find out how much you can save in our offers section!</p>
+                                <img class="pixels-image" src="{{ site.staticContentPath }}/web-gallery/v2/images/activitypoints/pixelpage_discounts.png" alt=""/>
+                                <p class="pixels-text">Earning Pixels gives you discounts on a wide variety of Furni - find out how much you can save in our offers section!</p>
                             </div>
                         </div>
 
@@ -223,8 +209,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
         {% include "base/footer.tpl" %}
 

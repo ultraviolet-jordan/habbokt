@@ -1,6 +1,5 @@
 <p>
-    Are you sure you want to delete the group {{ group.getName() }}?
-</p>
+    Are you sure you want to delete the group {{ group.getName() }}? </p>
 
 <p>
     <a href="#" class="new-button" id="group-action-cancel"><b>Cancel</b><i></i></a>

@@ -7,8 +7,7 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/landing.js" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/styles/local/uk.css" type="text/css"/>
     <script src="{{ site.staticContentPath }}/js/local/uk.js" type="text/javascript"></script>
@@ -163,26 +162,19 @@
                                 <ul>
                                     <li>
                                         <label for="login-username" class="login-text">Username</label>
-                                        <input tabindex="1" type="text" class="login-field" name="username"
-                                               id="login-username" value="{{ username }}" maxlength="32"/>
+                                        <input tabindex="1" type="text" class="login-field" name="username" id="login-username" value="{{ username }}" maxlength="32"/>
                                     </li>
                                     <li>
                                         <label for="login-password" class="login-text">Password</label>
-                                        <input tabindex="2" type="password" class="login-field" name="password"
-                                               id="login-password" maxlength="32"/>
+                                        <input tabindex="2" type="password" class="login-field" name="password" id="login-password" maxlength="32"/>
                                         <input type="submit" value="Sign in" class="submit" id="login-submit-button"/>
-                                        <a href="#" id="login-submit-new-button" class="new-button"
-                                           style="margin-left: 0;display:none"><b
-                                                    style="padding-left: 10px; padding-right: 7px; width: 55px">Sign
-                                                in</b><i></i></a>
+                                        <a href="#" id="login-submit-new-button" class="new-button" style="margin-left: 0;display:none"><b style="padding-left: 10px; padding-right: 7px; width: 55px">Sign in</b><i></i></a>
                                     </li>
                                     <li id="remember-me" class="no-label">
                                         {% if rememberMe %}
-                                        <input tabindex="4" type="checkbox" value="true" name="_login_remember_me"
-                                               id="login-remember-me" checked="true"/>
+                                        <input tabindex="4" type="checkbox" value="true" name="_login_remember_me" id="login-remember-me" checked="true"/>
                                         {% else %}
-                                        <input tabindex="4" type="checkbox" value="true" name="_login_remember_me"
-                                               id="login-remember-me"/>
+                                        <input tabindex="4" type="checkbox" value="true" name="_login_remember_me" id="login-remember-me"/>
                                         {% endif %}
                                         <label for="login-remember-me">Remember me</label>
                                     </li>
@@ -190,8 +182,7 @@
                                         <a href="{{ site.sitePath }}/register" class="login-register-link"><span>Register for free</span></a>
                                     </li>
                                     <li class="no-label">
-                                        <a href="{{ site.sitePath }}/account/password/forgot"
-                                           id="forgot-password"><span>I forgot my password/username</span></a>
+                                        <a href="{{ site.sitePath }}/account/password/forgot" id="forgot-password"><span>I forgot my password/username</span></a>
                                     </li>
                                 </ul>
                                 <div id="remember-me-notification" class="bottom-bubble" style="display:none;">
@@ -199,8 +190,7 @@
                                         <div></div>
                                     </div>
                                     <div class="bottom-bubble-c">
-                                        By selecting 'remember me' you will stay signed in on this computer until you
-                                        click 'Sign Out'. If this is a public computer please do not use this feature.
+                                        By selecting 'remember me' you will stay signed in on this computer until you click 'Sign Out'. If this is a public computer please do not use this feature.
                                     </div>
                                     <div class="bottom-bubble-b">
                                         <div></div>
@@ -221,8 +211,7 @@
                     Rounder.init();
                 }</script>
             <div class="habblet-container ">
-                <div id="frontpage-image"
-                     style="background-image: url('{{ site.staticContentPath }}/c_images/Frontpage_images/frontpg_misc_01.gif')">
+                <div id="frontpage-image" style="background-image: url('{{ site.staticContentPath }}/c_images/Frontpage_images/frontpg_misc_01.gif')">
                     <div id="partner-logo"></div>
                 </div>
                 <script type="text/javascript">
@@ -244,11 +233,10 @@
             <div class="habblet-container ">
                 <div class="cbb" id="hotel-stats">
                     <ul class="stats">
-                        <li class="stats-online"><span
-                                    class="stats-fig">{{ site.usersOnline }}</span> {{ site.siteName }}s online now!
+                        <li class="stats-online"><span class="stats-fig">{{ site.usersOnline }}</span> {{ site.siteName }}s online now!
                         </li>
-                        <li class="stats-visited"><span class="stats-fig">{{ site.visits }}</span> visits in the last 30
-                            days
+                        <li class="stats-visited">
+                            <span class="stats-fig">{{ site.visits }}</span> visits in the last 30 days
                         </li>
                     </ul>
                 </div>
@@ -282,8 +270,7 @@
         <!--[if lt IE 7]>
         <script type="text/javascript">
             Pngfix.doPngImageFix();
-        </script>
-        <![endif]-->
+        </script><![endif]-->
         {% set indexClass = " class=\"copyright\"" %}
         {% include "base/footer.tpl" %}
         <!-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
@@ -325,9 +312,7 @@
         <script type="text/javascript">_qacct = "p-b5UDx6EsiRfMI";
             quantserve();</script>
         <noscript>
-            <a href="http://www.quantcast.com/p-b5UDx6EsiRfMI" target="_blank"><img
-                        src="http://pixel.quantserve.com/pixel/p-b5UDx6EsiRfMI.gif" style="display: none" border="0"
-                        height="1" width="1" alt="Quantcast"/></a>
+            <a href="http://www.quantcast.com/p-b5UDx6EsiRfMI" target="_blank"><img src="http://pixel.quantserve.com/pixel/p-b5UDx6EsiRfMI.gif" style="display: none" border="0" height="1" width="1" alt="Quantcast"/></a>
         </noscript>
         <!-- End Quantcast tag -->
 </body>

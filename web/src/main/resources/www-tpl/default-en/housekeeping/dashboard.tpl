@@ -3,8 +3,7 @@
 {% set dashboardActive = " active " %}
 {% include "housekeeping/base/navigation.tpl" %}
 <h1 class="mt-4">Hotel Statistics</h1>
-<p>Welcome to the housekeeping for {{ site.siteName }} Hotel, here you can manage a lot of things at once, such as
-    users, news, site content and view the statistics of the hotel.</p>
+<p>Welcome to the housekeeping for {{ site.siteName }} Hotel, here you can manage a lot of things at once, such as users, news, site content and view the statistics of the hotel.</p>
 <div class="table-responsive col-md-4">
     <table class="table table-striped">
         <thead>
@@ -88,11 +87,11 @@
             <th>Credits</th>
             <th>Pixels</th>
             <th>
-                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}?page={{ page }}{{ zeroCoinsValue }}&sort=last_online">Last
-                    online</a></th>
+                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}?page={{ page }}{{ zeroCoinsValue }}&sort=last_online">Last online</a>
+            </th>
             <th>
-                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}?page={{ page }}{{ zeroCoinsValue }}&sort=created_at">Date
-                    joined</a></th>
+                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}?page={{ page }}{{ zeroCoinsValue }}&sort=created_at">Date joined</a>
+            </th>
             <th></th>
         </tr>
         </thead>
@@ -102,8 +101,8 @@
         <tr>
             <td>{{ player.id }}</td>
             <td><a href="{{ site.sitePath }}/{{ site.housekeepingPath }}/users/edit?id={{ player.id }}">{{ player.name }
-                    }</a> - <a
-                        href="{{ site.sitePath }}/{{ site.housekeepingPath }}/transaction/lookup?searchQuery={{ player.getName() }}">Transactons</a>
+                    }</a> -
+                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}/transaction/lookup?searchQuery={{ player.getName() }}">Transactons</a>
             </td>
             <td>{{ player.email }}</td>
             <td><img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?figure={{ player.figure }}&size=s"></td>
@@ -121,8 +120,7 @@
         </tbody>
     </table>
 </div>
-</div>
-</div>
+</div></div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -131,5 +129,4 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-</body>
-</html>
+</body></html>

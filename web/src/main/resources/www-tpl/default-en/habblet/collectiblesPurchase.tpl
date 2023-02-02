@@ -1,6 +1,5 @@
 <p>
-    {{ message }}.
-</p>
+    {{ message }}. </p>
 
 
 <p>

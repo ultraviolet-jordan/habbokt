@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -43,14 +41,11 @@
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/settings.js" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/settings.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css"
-          type="text/css"/>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css" type="text/css"/>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -112,8 +107,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                         <li><a href="{{ site.sitePath }}/profile?tab=3">My Email</a>
                                             {% else %}
                                         </li>
-                                        <li><a href="{{ site.sitePath }}/profile/verify">Email Changing &
-                                                Verification</a>
+                                        <li>
+                                            <a href="{{ site.sitePath }}/profile/verify">Email Changing & Verification</a>
                                             {% endif %}
                                         </li>
                                         <li><a href="{{ site.sitePath }}/profile?tab=4">My Password</a>
@@ -147,14 +142,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <h3>Your motto</h3>
 
                                     <p>
-                                        Your motto is what other {{ site.siteName }}s will see on
-                                        your {{ site.siteName }} Home page and beneath your {{ site.siteName }} in the
-                                        Hotel.</p>
+                                        Your motto is what other {{ site.siteName }}s will see on your {{ site.siteName }} Home page and beneath your {{ site.siteName }} in the Hotel.</p>
                                     {% autoescape 'html' %}
                                     <p>
                                         <span class="label">Motto:</span>
-                                        <input type="text" name="motto" size="32" maxlength="32"
-                                               value="{{ playerDetails.motto }}" id="avatarmotto"/>
+                                        <input type="text" name="motto" size="32" maxlength="32" value="{{ playerDetails.motto }}" id="avatarmotto"/>
                                     </p>
                                     {% endautoescape %}
 
@@ -162,22 +154,18 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                     <p>
                                         The plugin to use when clicking the go to hotel buttons (go to room, etc)<br/>
-                                        <label><input type="radio" name="clientpreference" value="SHOCKWAVE"
-                                                      {{ SHOCKWAVEenabled }}/>Shockwave</label>
+                                        <label><input type="radio" name="clientpreference" value="SHOCKWAVE" {{ SHOCKWAVEenabled }}/>Shockwave</label>
 
-                                        <label><input type="radio" name="clientpreference" value="FLASH"
-                                                      {{ FLASHenabled }}/>Flash</label>
+                                        <label><input type="radio" name="clientpreference" value="FLASH" {{ FLASHenabled }}/>Flash</label>
                                     </p>
 
                                     <h3>Your page</h3>
 
                                     <p>
                                         Who can view your homepage:<br/>
-                                        <label><input type="radio" name="visibility" value="EVERYONE"
-                                                      {{ profileVisibleEnabled }}/>Visible to everyone</label>
+                                        <label><input type="radio" name="visibility" value="EVERYONE" {{ profileVisibleEnabled }}/>Visible to everyone</label>
 
-                                        <label><input type="radio" name="visibility" value="NOBODY"
-                                                      {{ profileVisibleDisabled }}/>Invisible to everyone</label>
+                                        <label><input type="radio" name="visibility" value="NOBODY" {{ profileVisibleDisabled }}/>Invisible to everyone</label>
                                     </p>
 
                                     <!-- <h3>Email alerts</h3>
@@ -189,37 +177,30 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     -->
                                     <h3>Word Filter</h3>
                                     <p>
-                                        <label><input type="checkbox" name="wordFilterSetting" value="false"
-                                                      {{ wordFilterSetting }}> Turn bad language filter off.</label>
+                                        <label><input type="checkbox" name="wordFilterSetting" value="false" {{ wordFilterSetting }}> Turn bad language filter off.</label>
                                     </p>
 
                                     <h3>Friend Requests</h3>
                                     <p>
-                                        <label><input type="checkbox" name="allowFriendRequests" value="true"
-                                                      {{ allowFriendRequests }}> Friend requests enabled</label>
+                                        <label><input type="checkbox" name="allowFriendRequests" value="true" {{ allowFriendRequests }}> Friend requests enabled</label>
                                     </p>
 
                                     <h3>Friend Follow</h3>
                                     <p>
                                         Ability for other people to follow users between rooms:<br/>
-                                        <label><input type="radio" name="followFriendSetting" value="true"
-                                                      {{ followFriendEnabled }}/>Friends</label>
-                                        <label><input type="radio" name="followFriendSetting" value="false"
-                                                      {{ followFriendDisabled }}/>Nobody</label>
+                                        <label><input type="radio" name="followFriendSetting" value="true" {{ followFriendEnabled }}/>Friends</label>
+                                        <label><input type="radio" name="followFriendSetting" value="false" {{ followFriendDisabled }}/>Nobody</label>
                                     </p>
 
                                     <h3>Online Status</h3>
                                     <p>
                                         Select who can see your online status:<br/>
-                                        <label><input type="radio" name="showOnlineStatus" value="true"
-                                                      {{ onlineStatusEnabled }}/>Everybody</label>
-                                        <label><input type="radio" name="showOnlineStatus" value="false"
-                                                      {{ onlineStatusDisabled }}/>Nobody</label>
+                                        <label><input type="radio" name="showOnlineStatus" value="true" {{ onlineStatusEnabled }}/>Everybody</label>
+                                        <label><input type="radio" name="showOnlineStatus" value="false" {{ onlineStatusDisabled }}/>Nobody</label>
                                     </p>
 
                                     <div class="settings-buttons">
-                                        <a href="#" class="new-button" style="display: none" id="profileForm-submit"><b>Save
-                                                changes</b><i></i></a>
+                                        <a href="#" class="new-button" style="display: none" id="profileForm-submit"><b>Save changes</b><i></i></a>
                                         <noscript><input type="submit" value="Save changes" name="save" class="submit"/>
                                         </noscript>
                                     </div>
@@ -259,8 +240,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
             <div id="column3" class="column">
                 <div class="habblet-container ">
-                    <div class="ad-container">
-                    </div>
+                    <div class="ad-container"></div>
                 </div>
                 <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) {
                         Rounder.init();
@@ -270,8 +250,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
 
         {% include "../base/footer.tpl" %}

@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/landing.js" type="text/javascript"></script>
@@ -41,10 +39,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ siteName }} today!"/>
+    <meta name="keywords" content="{{ siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -79,12 +75,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <h2 class="title">Please enter your password</h2>
 
                         <div class="box-content">
-                            <p>You need to enter your password to continue because you have signed in via
-                                'remember-me'.</p>
-                            <p>If you are not <strong>{{ playerDetails.getName() }}</strong>, please <a
-                                        href="{{ site.sitePath }}/account/logout?origin=default">sign out</a>.</p>
-                            <p>If you have forgotten your password, please <a
-                                        href="{{ site.sitePath }}/account/password/forgot">click here</a>.</p>
+                            <p>You need to enter your password to continue because you have signed in via 'remember-me'.</p>
+                            <p>If you are not <strong>{{ playerDetails.getName() }}</strong>, please
+                                <a href="{{ site.sitePath }}/account/logout?origin=default">sign out</a>.</p>
+                            <p>If you have forgotten your password, please
+                                <a href="{{ site.sitePath }}/account/password/forgot">click here</a>.</p>
                         </div>
 
                     </div>
@@ -96,8 +91,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <h2 class="title">Sign in</h2>
 
                         <div class="box-content clearfix" id="login-habblet">
-                            <form action="{{ site.sitePath }}/account/reauthenticate" method="post"
-                                  class="login-habblet">
+                            <form action="{{ site.sitePath }}/account/reauthenticate" method="post" class="login-habblet">
                                 <input type="hidden" name="page" value="/client"/>
                                 <ul>
 
@@ -107,14 +101,10 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     </li>
                                     <li>
                                         <label for="login-password" class="login-text">Password</label>
-                                        <input tabindex="2" type="password" class="login-field" name="password"
-                                               id="login-password"/>
+                                        <input tabindex="2" type="password" class="login-field" name="password" id="login-password"/>
 
                                         <input type="submit" value="Sign in" class="submit" id="login-submit-button"/>
-                                        <a style="float: left; margin-left: 0pt; display: none" class="new-button"
-                                           id="login-submit-new-button" href="#"><b
-                                                    style="padding-left: 10px; padding-right: 7px; width: 55px;">Sign
-                                                in</b><i></i></a>
+                                        <a style="float: left; margin-left: 0pt; display: none" class="new-button" id="login-submit-new-button" href="#"><b style="padding-left: 10px; padding-right: 7px; width: 55px;">Sign in</b><i></i></a>
                                     </li>
                                 </ul>
                             </form>
@@ -130,8 +120,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                 <!--[if lt IE 7]>
                 <script type="text/javascript">
                     Pngfix.doPngImageFix();
-                </script>
-                <![endif]-->
+                </script><![endif]-->
 
                 {% include "base/footer.tpl" %}
 

@@ -6,8 +6,7 @@
 
 <p>
     Group name: <b>{{ groupName }}</b>.<br>Price: <b>{{ groupCost }} Credits</b>.<br> You have:
-    <b>{{ playerDetails.credits }} Credits</b>.
-</p>
+    <b>{{ playerDetails.credits }} Credits</b>. </p>
 
 <div id="group-confirmation-button-area">
     <div class="new-buttons clearfix">

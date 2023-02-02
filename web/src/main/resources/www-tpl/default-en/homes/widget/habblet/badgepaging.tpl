@@ -10,15 +10,13 @@
         {{ badgeList|length }} - {{ currentPage }} / {{ pages }}<br/>
 
         {% if currentPage != 1 %}
-        <a href="#" id="badge-list-search-first">First</a> |
-        <a href="#" id="badge-list-search-previous">&lt;&lt;</a> |
+        <a href="#" id="badge-list-search-first">First</a> | <a href="#" id="badge-list-search-previous">&lt;&lt;</a> |
         {% else %}
         First | &lt;&lt; |
         {% endif %}
 
         {% if showLast %}
-        <a href="#" id="badge-list-search-next">&gt;&gt;</a> |
-        <a href="#" id="badge-list-search-last">Last</a>
+        <a href="#" id="badge-list-search-next">&gt;&gt;</a> | <a href="#" id="badge-list-search-last">Last</a>
         {% else %}
         &gt;&gt; | Last
         {% endif %}

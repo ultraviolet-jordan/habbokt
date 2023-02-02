@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -44,10 +42,8 @@
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/welcome.css" type="text/css"/>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -85,15 +81,15 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                 <div id="subnavi-search-upper">
 
                     <ul id="subnavi-search-links">
-                        <li><a href="{{ site.sitePath }}/help" target="habbohelp"
-                               onclick="openOrFocusHelp(this); return false">Help</a></li>
+                        <li>
+                            <a href="{{ site.sitePath }}/help" target="habbohelp" onclick="openOrFocusHelp(this); return false">Help</a>
+                        </li>
                         <li><a href="{{ site.sitePath }}/account/logout" class="userlink" id="signout">Sign Out</a></li>
                     </ul>
                 </div>
             </div>
             <div id="to-hotel">
-                <a href="{{ site.sitePath }}/client" class="new-button green-button" target="client"
-                   onclick="HabboClient.openOrFocus(this); return false;"><b>Enter {{ site.siteName }} Hotel</b><i></i></a>
+                <a href="{{ site.sitePath }}/client" class="new-button green-button" target="client" onclick="HabboClient.openOrFocus(this); return false;"><b>Enter {{ site.siteName }} Hotel</b><i></i></a>
             </div>
         </div>
         <script type="text/javascript">
@@ -146,36 +142,28 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                 <div class="habblet-container ">
                     <div class="cbb clearfix lightgreen ">
 
-                        <h2 class="title">Choose a pre-decorated room and get free furniture!
-                        </h2>
+                        <h2 class="title">Choose a pre-decorated room and get free furniture! </h2>
                         <div id="roomselection-welcome-intro" class="box-content">
-                            Select the room you like best to get a new piece of furniture every day during your first
-                            week in {{ site.siteName }}!
+                            Select the room you like best to get a new piece of furniture every day during your first week in {{ site.siteName }}!
                         </div>
                         <ul class="roomselection-welcome clearfix">
                             <li class="odd">
-                                <a class="roomselection-select new-button" href="client?createRoom=0" target="client"
-                                   onclick="return RoomSelectionHabblet.create(this, 0);"><b>Select</b><i></i></a>
+                                <a class="roomselection-select new-button" href="client?createRoom=0" target="client" onclick="return RoomSelectionHabblet.create(this, 0);"><b>Select</b><i></i></a>
                             </li>
                             <li class="even">
-                                <a class="roomselection-select new-button" href="client?createRoom=1" target="client"
-                                   onclick="return RoomSelectionHabblet.create(this, 1);"><b>Select</b><i></i></a>
+                                <a class="roomselection-select new-button" href="client?createRoom=1" target="client" onclick="return RoomSelectionHabblet.create(this, 1);"><b>Select</b><i></i></a>
                             </li>
                             <li class="odd">
-                                <a class="roomselection-select new-button" href="client?createRoom=2" target="client"
-                                   onclick="return RoomSelectionHabblet.create(this, 2);"><b>Select</b><i></i></a>
+                                <a class="roomselection-select new-button" href="client?createRoom=2" target="client" onclick="return RoomSelectionHabblet.create(this, 2);"><b>Select</b><i></i></a>
                             </li>
                             <li class="even">
-                                <a class="roomselection-select new-button" href="client?createRoom=3" target="client"
-                                   onclick="return RoomSelectionHabblet.create(this, 3);"><b>Select</b><i></i></a>
+                                <a class="roomselection-select new-button" href="client?createRoom=3" target="client" onclick="return RoomSelectionHabblet.create(this, 3);"><b>Select</b><i></i></a>
                             </li>
                             <li class="odd">
-                                <a class="roomselection-select new-button" href="client?createRoom=4" target="client"
-                                   onclick="return RoomSelectionHabblet.create(this, 4);"><b>Select</b><i></i></a>
+                                <a class="roomselection-select new-button" href="client?createRoom=4" target="client" onclick="return RoomSelectionHabblet.create(this, 4);"><b>Select</b><i></i></a>
                             </li>
                             <li class="even">
-                                <a class="roomselection-select new-button" href="client?createRoom=5" target="client"
-                                   onclick="return RoomSelectionHabblet.create(this, 5);"><b>Select</b><i></i></a>
+                                <a class="roomselection-select new-button" href="client?createRoom=5" target="client" onclick="return RoomSelectionHabblet.create(this, 5);"><b>Select</b><i></i></a>
                             </li>
                         </ul>
 
@@ -193,13 +181,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <div class="cbb clearfix lightgreen">
 
                         <div class="welcome-intro clearfix">
-                            <img alt="{{ site.playerName }}"
-                                 src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ playerDetails.figure }}&size=b&direction=3&head_direction=3&crr=667&gesture=srp&frame=1"
-                                 width="64" height="110" class="welcome-habbo"/>
+                            <img alt="{{ site.playerName }}" src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ playerDetails.figure }}&size=b&direction=3&head_direction=3&crr=667&gesture=srp&frame=1" width="64" height="110" class="welcome-habbo"/>
                             <div id="welcome-intro-welcome-user">Welcome {{ playerDetails.getName() }}!</div>
-                            <div id="welcome-intro-welcome-party" class="box-content">When arriving to your room, you
-                                will be asked if you'd like to meet {{ site.siteName }} Guides. {{ site.siteName }}
-                                guides are experienced {{ site.siteName }} players.
+                            <div id="welcome-intro-welcome-party" class="box-content">When arriving to your room, you will be asked if you'd like to meet {{ site.siteName }} Guides. {{ site.siteName }} guides are experienced {{ site.siteName }} players.
                             </div>
                         </div>
                     </div>
@@ -214,15 +198,13 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                 <div class="habblet-container ">
                     <div class="cbb clearfix green ">
 
-                        <h2 class="title">Got Shockwave?
-                        </h2>
+                        <h2 class="title">Got Shockwave? </h2>
                         <div class="welcome-shockwave clearfix box-content">
-                            <div id="welcome-shockwave-text">When you open {{ site.siteName }} Hotel for the first time
-                                you might need to install Shockwave. But don't worry, it's as easy as 1-2-3!
+                            <div id="welcome-shockwave-text">When you open {{ site.siteName }} Hotel for the first time you might need to install Shockwave. But don't worry, it's as easy as 1-2-3!
                             </div>
-                            <div id="welcome-shockwave-logo"><img
-                                        src="{{ site.staticContentPath }}/web-gallery/v2/images/welcome/shockwave.gif"
-                                        alt="shockwave"/></div>
+                            <div id="welcome-shockwave-logo">
+                                <img src="{{ site.staticContentPath }}/web-gallery/v2/images/welcome/shockwave.gif" alt="shockwave"/>
+                            </div>
                         </div>
 
 
@@ -244,8 +226,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
             <div id="column3" class="column">
                 <div class="habblet-container ">
-                    <div class="ad-container">
-                    </div>
+                    <div class="ad-container"></div>
                 </div>
                 <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) {
                         Rounder.init();
@@ -255,8 +236,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
         {% include "base/footer.tpl" %}
 

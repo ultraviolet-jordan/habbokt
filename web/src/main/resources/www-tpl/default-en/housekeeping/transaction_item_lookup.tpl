@@ -6,9 +6,7 @@
 {% include "housekeeping/base/alert.tpl" %}
 <br>
 {% include "housekeeping/transaction/search_results.tpl" %}
-</div>
-</div>
-</div>
+</div></div></div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -17,7 +15,6 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-</body>
-</html>
+</body></html>
 
 {% include "housekeeping/base/footer.tpl" %}

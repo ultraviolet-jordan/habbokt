@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -42,10 +40,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -99,24 +95,18 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                 <div class="habblet-container ">
                     <div class="cbb clearfix green ">
 
-                        <h2 class="title">How to get Credits
-                        </h2>
+                        <h2 class="title">How to get Credits </h2>
 
-                        <script src="{{ site.staticContentPath }}/web-gallery/static/js/credits.js"
-                                type="text/javascript"></script>
+                        <script src="{{ site.staticContentPath }}/web-gallery/static/js/credits.js" type="text/javascript"></script>
                         <p class="credits-countries-select">
-                            The good thing about this server is that credits a free, yes, free. You won't have to spend
-                            a thing to get credits for building your favourite rooms. Just find out by using the methods
-                            below to receive credits.
-                        </p>
+                            The good thing about this server is that credits a free, yes, free. You won't have to spend a thing to get credits for building your favourite rooms. Just find out by using the methods below to receive credits. </p>
                         <ul id="credits-methods">
                             <li id="credits-type-promo">
                                 <h4 class="credits-category-promo">Best Way</h4>
                                 <ul>
                                     <li class="clearfix odd">
                                         <div id="method-3" class="credits-method-container">
-                                            <div class="credits-summary"
-                                                 style="background-image: url({{ site.staticContentPath }}/c_images/album2705/logo_sms.png)">
+                                            <div class="credits-summary" style="background-image: url({{ site.staticContentPath }}/c_images/album2705/logo_sms.png)">
                                                 <h3>Be Online</h3>
                                                 <p>Just by playing on the server daily you can receive coins!</p>
 
@@ -124,11 +114,10 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                                     Read more</p>
                                             </div>
                                             <div id="method-full-3" class="credits-method-full">
-                                                <p><b>Receive coins by being online</b><br/>You need to be in a room but
-                                                    every day, if you wait 5 minutes, you will recieve 120 credits just
-                                                    by being active.</p>
-                                                <p>This happens once every 24 hours, so if you do the same thing
-                                                    tomorrow, you'll get another 120 credits!</p>
+                                                <p>
+                                                    <b>Receive coins by being online</b><br/>You need to be in a room but every day, if you wait 5 minutes, you will recieve 120 credits just by being active.
+                                                </p>
+                                                <p>This happens once every 24 hours, so if you do the same thing tomorrow, you'll get another 120 credits!</p>
                                             </div>
                                             <script type="text/javascript">
                                                 $("method-show-3").show();
@@ -144,8 +133,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                     <li class="clearfix odd">
                                         <div id="method-1" class="credits-method-container">
-                                            <div class="credits-summary"
-                                                 style="background-image: url({{ site.staticContentPath }}/c_images/album2705/payment_habbo_prepaid.png)">
+                                            <div class="credits-summary" style="background-image: url({{ site.staticContentPath }}/c_images/album2705/payment_habbo_prepaid.png)">
                                                 <h3>Vouchers</h3>
                                                 <p>You can get special codes to redeem vouchers</p>
 
@@ -153,8 +141,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                                     Read more</p>
                                             </div>
                                             <div id="method-full-1" class="credits-method-full">
-                                                <p>Redeem your voucher code in your hotel purse, or on this page - and
-                                                    you will get your coins right away!</p>
+                                                <p>Redeem your voucher code in your hotel purse, or on this page - and you will get your coins right away!</p>
                                             </div>
                                             <script type="text/javascript">
                                                 $("method-show-1").show();
@@ -170,11 +157,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                     <li class="clearfix odd">
                                         <div id="method-2" class="credits-method-container">
-                                            <div class="credits-summary"
-                                                 style="background-image: url({{ site.staticContentPath }}/c_images/album2705/byesw_hand.png)">
+                                            <div class="credits-summary" style="background-image: url({{ site.staticContentPath }}/c_images/album2705/byesw_hand.png)">
                                                 <div class="credits-tools">
-                                                    <a class="new-button" id="warn-clear-hand-button" href="#"
-                                                       onclick="warnClearHand()"><b>Reset Hand</b><i></i></a>
+                                                    <a class="new-button" id="warn-clear-hand-button" href="#" onclick="warnClearHand()"><b>Reset Hand</b><i></i></a>
 
                                                 </div>
                                                 <h3>Reset Hand</h3>
@@ -273,23 +258,20 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <li class="even icon-purse">
                                         <div>You Currently Have:</div>
                                         <span class="purse-balance-amount">{{ playerDetails.credits }} Coins</span>
-                                        <div class="purse-tx"><a href="{{ site.sitePath }}/credits/history">Account
-                                                transactions</a></div>
+                                        <div class="purse-tx">
+                                            <a href="{{ site.sitePath }}/credits/history">Account transactions</a></div>
                                     </li>
 
                                     <li class="odd">
 
                                         <div class="box-content">
                                             <div>Enter voucher code (without spaces):</div>
-                                            <input type="text" name="voucherCode" value=""
-                                                   id="purse-habblet-redeemcode-string" class="redeemcode"/>
-                                            <a href="#" id="purse-redeemcode-button" class="new-button purse-icon"
-                                               style="float:left"><b><span></span>Enter</b><i></i></a>
+                                            <input type="text" name="voucherCode" value="" id="purse-habblet-redeemcode-string" class="redeemcode"/>
+                                            <a href="#" id="purse-redeemcode-button" class="new-button purse-icon" style="float:left"><b><span></span>Enter</b><i></i></a>
                                         </div>
                                     </li>
                                 </ul>
-                                <div id="purse-redeem-result">
-                                </div>
+                                <div id="purse-redeem-result"></div>
                             </form>
                         </div>
                         {% endif %}
@@ -312,15 +294,10 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                         <div id="credits-promo" class="box-content credits-info">
                             <div class="credit-info-text clearfix">
-                                <img class="credits-image"
-                                     src="{{ site.staticContentPath }}/web-gallery/v2/images/credits/poor.png" alt=""
-                                     width="77" height="105"/>
-                                <p class="credits-text">{{ site.siteName }} Coins are the Hotel's currency. You can use
-                                    them to buy all kinds of things, from rubber ducks and sofas, to VIP membership,
-                                    jukeboxes and teleports.</p>
+                                <img class="credits-image" src="{{ site.staticContentPath }}/web-gallery/v2/images/credits/poor.png" alt="" width="77" height="105"/>
+                                <p class="credits-text">{{ site.siteName }} Coins are the Hotel's currency. You can use them to buy all kinds of things, from rubber ducks and sofas, to VIP membership, jukeboxes and teleports.</p>
                             </div>
-                            <p class="credits-text-2">All legitimate ways to get {{ site.siteName }} coins are to the
-                                left. Remember: {{ site.siteName }} coins are ALWAYS and always will be free.</p>
+                            <p class="credits-text-2">All legitimate ways to get {{ site.siteName }} coins are to the left. Remember: {{ site.siteName }} coins are ALWAYS and always will be free.</p>
                         </div>
 
 
@@ -334,15 +311,12 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                 <div class="habblet-container ">
                     <div class="cbb clearfix blue ">
 
-                        <h2 class="title">Always Ask Permission First!
-                        </h2>
+                        <h2 class="title">Always Ask Permission First! </h2>
                         <div id="credits-safety" class="box-content credits-info">
-                            <div class="credit-info-text clearfix"><img class="credits-image"
-                                                                        src="{{ site.sitePath }}/web-gallery/v2/images/credits_permission.png"
-                                                                        width="114" height="136"/>
-                                <p class="credits-text">Always ask permission from your parent or guardian before you
-                                    buy Habbo Coins. If you do not do this and the payment is later canceled or
-                                    declined, you will be permanently banned.</p></div>
+                            <div class="credit-info-text clearfix">
+                                <img class="credits-image" src="{{ site.sitePath }}/web-gallery/v2/images/credits_permission.png" width="114" height="136"/>
+                                <p class="credits-text">Always ask permission from your parent or guardian before you buy Habbo Coins. If you do not do this and the payment is later canceled or declined, you will be permanently banned.</p>
+                            </div>
                             <p class="credits-text-2">Uh-oh!</p>
                         </div>
 
@@ -372,8 +346,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
         {% include "base/footer.tpl" %}
 

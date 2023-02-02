@@ -21,8 +21,7 @@
         {% else %}
         {% set status = "even" %}
         {% endif %}
-        <li class="{{ status }} {{ position }}"
-            style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
+        <li class="{{ status }} {{ position }}" style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
             <a class="item" href="{{ group.generateClickLink() }}">{% autoescape 'html' %}{{ group.name }
                 }{% endautoescape %}</a>
         </li>
@@ -30,8 +29,8 @@
         {% endfor %}
     </ul>
 
-    <div class="habblet-button-row clearfix"><a class="new-button" id="purchase-group-button" href="#"><b>Create/buy a
-                Group</b><i></i></a>
+    <div class="habblet-button-row clearfix">
+        <a class="new-button" id="purchase-group-button" href="#"><b>Create/buy a Group</b><i></i></a>
     </div>
 </div>
 

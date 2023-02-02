@@ -1,6 +1,5 @@
 <p>
-    Are you sure you want to purchase {{ collectableName }}? It will cost {{ collectableCost }} credits.
-</p>
+    Are you sure you want to purchase {{ collectableName }}? It will cost {{ collectableCost }} credits. </p>
 
 <p>
     <a href="#" class="new-button" id="collectibles-purchase"><b>Purchase</b><i></i></a>

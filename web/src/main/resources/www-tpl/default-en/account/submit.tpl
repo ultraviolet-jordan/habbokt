@@ -16,13 +16,12 @@
 
 <script type="text/javascript">window.location.replace('{{ site.sitePath }}/?page=&username={{ username }}&rememberme={{ rememberMe }}');</script>
 <noscript>
-    <meta http-equiv="Refresh"
-          content="0;URL={{ site.sitePath }}/?page=&username={{ username }}&rememberme={{ rememberMe }}">
+    <meta http-equiv="Refresh" content="0;URL={{ site.sitePath }}/?page=&username={{ username }}&rememberme={{ rememberMe }}">
 </noscript>
 
-<p class="btn">If you are not automatically redirected, please <a
-            href="{{ site.sitePath }}/?page=&username={{ username }}&rememberme={{ rememberMe }}"
-            id="manual_redirect_link">click here</a></p>
+<p class="btn">If you are not automatically redirected, please
+    <a href="{{ site.sitePath }}/?page=&username={{ username }}&rememberme={{ rememberMe }}" id="manual_redirect_link">click here</a>
+</p>
 
 
 </body>

@@ -58,12 +58,10 @@
                 <td class="friend-name">
                     {{ friend.getUsername() }}
                 </td>
-                <td class="friend-login"
-                    title="{{ friend.getFormattedLastOnline() }}">{{ friend.getFormattedLastOnline() }}
+                <td class="friend-login" title="{{ friend.getFormattedLastOnline() }}">{{ friend.getFormattedLastOnline() }}
                 </td>
                 <td class="friend-remove">
-                    <div id="remove-friend-button-{{ friend.getUserId() }}"
-                         class="friendmanagement-small-icons friendmanagement-remove remove-friend"></div>
+                    <div id="remove-friend-button-{{ friend.getUserId() }}" class="friendmanagement-small-icons friendmanagement-remove remove-friend"></div>
                 </td>
             </tr>
             {% set num = num + 1 %}
@@ -83,10 +81,11 @@
                 {% endfor %}
             </select>
 
-            <div class="friend-del"><a class="new-button red-button cancel-icon" href="#"
-                                       id="delete-friends"><b><span></span>Delete selected friends</b><i></i></a></div>
-            <div class="friend-move"><a class="new-button" href="#"
-                                        id="move-friend-button"><b><span></span>Move</b><i></i></a></div>
+            <div class="friend-del">
+                <a class="new-button red-button cancel-icon" href="#" id="delete-friends"><b><span></span>Delete selected friends</b><i></i></a>
+            </div>
+            <div class="friend-move">
+                <a class="new-button" href="#" id="move-friend-button"><b><span></span>Move</b><i></i></a></div>
         </div>
 
     </div>

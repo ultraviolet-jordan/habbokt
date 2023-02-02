@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -46,10 +44,8 @@
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/moredata.js" type="text/javascript"></script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -113,21 +109,20 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             <h2>Rooms</h2>
                             <ul class="box-tabs">
                                 <li id="tab-0-0-1"><a href="#">Top Rated</a><span class="tab-spacer"></span></li>
-                                <li id="tab-0-0-2" class="selected"><a href="#">Recommended Rooms</a><span
-                                            class="tab-spacer"></span></li>
+                                <li id="tab-0-0-2" class="selected">
+                                    <a href="#">Recommended Rooms</a><span class="tab-spacer"></span></li>
                             </ul>
                         </div>
                         <div id="tab-0-0-1-content" style="display: none">
 
-                            <div class="progressbar"><img
-                                        src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif"
-                                        alt="" width="29" height="6"/></div>
+                            <div class="progressbar">
+                                <img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6"/>
+                            </div>
                             <a href="{{ site.sitePath }}/habblet/proxy?hid=h120" class="tab-ajax"></a>
                         </div>
                         <div id="tab-0-0-2-content">
 
-                            <div id="rooms-habblet-list-container-h119"
-                                 class="recommendedrooms-lite-habblet-list-container">
+                            <div id="rooms-habblet-list-container-h119" class="recommendedrooms-lite-habblet-list-container">
                                 <ul class="habblet-list">
                                     {% autoescape 'html' %}
                                     {% set num = 0 %}
@@ -155,13 +150,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                         {% endif %}
 
-                                        <span class="clearfix enter-room-link room-occupancy-{{ occupancyLevel }}"
-                                              title="Go to room" roomid="{{ room.getData().getId() }}">
+                                        <span class="clearfix enter-room-link room-occupancy-{{ occupancyLevel }}" title="Go to room" roomid="{{ room.getData().getId() }}">
 	    <span class="room-enter">Enter {{ site.siteName }} Hotel</span>
 	    <span class="room-name">{% autoescape 'html' %}{{ room.getData().getName() }}{% endautoescape %}</span>
 	    <span class="room-description">{% autoescape 'html' %}{{ room.getData().getDescription() }}{% endautoescape %}</span>
-		<span class="room-owner">Owner: <a
-                    href="{{ site.sitePath }}/home/{{ room.getData().getOwnerName() }}">{{ room.getData().getOwnerName() }}</a></span>
+		<span class="room-owner">Owner: <a href="{{ site.sitePath }}/home/{{ room.getData().getOwnerName() }}">{{ room.getData().getOwnerName() }}</a></span>
     </span>
                                     </li>
                                     {% set num = num + 1 %}
@@ -194,13 +187,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                             {% endif %}
 
-                                            <span class="clearfix enter-room-link room-occupancy-{{ occupancyLevel }}"
-                                                  title="Go to room" roomid="{{ room.getData().getId() }}">
+                                            <span class="clearfix enter-room-link room-occupancy-{{ occupancyLevel }}" title="Go to room" roomid="{{ room.getData().getId() }}">
 	    <span class="room-enter">Enter {{ site.siteName }} Hotel</span>
 	    <span class="room-name">{% autoescape 'html' %}{{ room.getData().getName() }}{% endautoescape %}</span>
 	    <span class="room-description">{% autoescape 'html' %}{{ room.getData().getDescription() }}{% endautoescape %}</span>
-		<span class="room-owner">Owner: <a
-                    href="{{ site.sitePath }}/home/{{ room.getData().getOwnerName() }}">{{ room.getData().getOwnerName() }}</a></span>
+		<span class="room-owner">Owner: <a href="{{ site.sitePath }}/home/{{ room.getData().getOwnerName() }}">{{ room.getData().getOwnerName() }}</a></span>
     </span>
                                         </li>
 
@@ -210,8 +201,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     </ul>
                                 </div>
                                 <div class="clearfix">
-                                    <a href="#" class="room-toggle-more-data" id="room-toggle-more-data-h119">Show more
-                                        rooms</a>
+                                    <a href="#" class="room-toggle-more-data" id="room-toggle-more-data-h119">Show more rooms</a>
                                 </div>
                             </div>
                             <script type="text/javascript">
@@ -233,15 +223,15 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             <h2>Groups</h2>
                             <ul class="box-tabs">
                                 <li id="tab-0-1-1"><a href="#">Hot Groups</a><span class="tab-spacer"></span></li>
-                                <li id="tab-0-1-2" class="selected"><a href="#">Recent topics</a><span
-                                            class="tab-spacer"></span></li>
+                                <li id="tab-0-1-2" class="selected">
+                                    <a href="#">Recent topics</a><span class="tab-spacer"></span></li>
                             </ul>
 
                         </div>
                         <div id="tab-0-1-1-content" style="display: none">
-                            <div class="progressbar"><img
-                                        src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif"
-                                        alt="" width="29" height="6"/></div>
+                            <div class="progressbar">
+                                <img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6"/>
+                            </div>
                             <a href="{{ site.sitePath }}/habblet/proxy?hid=h122" class="tab-ajax"></a>
                         </div>
                         <div id="tab-0-1-2-content">
@@ -257,20 +247,17 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 <li class="odd">
                                     {% endif %}
 
-                                    <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id"
-                                       class="topic">
+                                    <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id" class="topic">
                                         <span>{{ topic.getTopicTitle }}</span>
 
                                     </a>
                                     <div class="topic-info post-icon">
                                         <span class="grey">(</span>
-                                        <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id/page/1"
-                                           class="topiclist-page-link secondary">1</a>
+                                        <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id/page/1" class="topiclist-page-link secondary">1</a>
                                         {% if topic.getRecentPages()|length > 0 %}
                                         ...
                                         {% for page in topic.getRecentPages() %}
-                                        <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id/page/{{ page }}"
-                                           class="topiclist-page-link secondary">{{ page }}</a>
+                                        <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id/page/{{ page }}" class="topiclist-page-link secondary">{{ page }}</a>
                                         {% endfor %}
                                         {% endif %}
                                         <span class="grey">)</span>
@@ -293,20 +280,17 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <li class="odd">
                                         {% endif %}
 
-                                        <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id"
-                                           class="topic">
+                                        <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id" class="topic">
                                             <span>{{ topic.getTopicTitle }}</span>
 
                                         </a>
                                         <div class="topic-info post-icon">
                                             <span class="grey">(</span>
-                                            <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id/page/1"
-                                               class="topiclist-page-link secondary">1</a>
+                                            <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id/page/1" class="topiclist-page-link secondary">1</a>
                                             {% if topic.getRecentPages()|length > 0 %}
                                             ...
                                             {% for page in topic.getRecentPages() %}
-                                            <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id/page/{{ page }}"
-                                               class="topiclist-page-link secondary">{{ page }}</a>
+                                            <a href="{{ site.sitePath }}/groups/{{ topic.getGroupId() }}/id/discussions/{{ topic.getId() }}/id/page/{{ page }}" class="topiclist-page-link secondary">{{ page }}</a>
                                             {% endfor %}
                                             {% endif %}
                                             <span class="grey">)</span>
@@ -319,8 +303,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                             </div>
                             <div class="clearfix">
-                                <a href="#" class="discussions-toggle-more-data secondary"
-                                   id="discussions-toggle-more-data-h121">Show more discussions</a>
+                                <a href="#" class="discussions-toggle-more-data secondary" id="discussions-toggle-more-data-h121">Show more discussions</a>
                             </div>
                             <script type="text/javascript">
                                 L10N.put("show.more.discussions", "Show more discussions");
@@ -340,9 +323,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                         <h2 class="title">Random {{ site.siteName }}s - Click Us! </h2>
                         <div id="homes-habblet-list-container" class="habblet-list-container">
-                            <img class="active-habbo-imagemap"
-                                 src="{{ site.staticContentPath }}/web-gallery/v2/images/activehomes/transparent_area.gif"
-                                 width="435px" height="230px" usemap="#habbomap"/>
+                            <img class="active-habbo-imagemap" src="{{ site.staticContentPath }}/web-gallery/v2/images/activehomes/transparent_area.gif" width="435px" height="230px" usemap="#habbomap"/>
 
                             {% set num = 0 %}
                             {% for habbo in randomHabbos %}
@@ -358,10 +339,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <p class="motto">{{ habbo.getMotto() }}</p>
                                 </div>
                             </div>
-                            <input type="hidden" id="active-habbo-url-{{ num }}"
-                                   value="{{ site.sitePath }}/home/{{ habbo.getName() }}"/>
-                            <input type="hidden" id="active-habbo-image-{{ num }}" class="active-habbo-image"
-                                   value="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ habbo.getFigure() }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1
+                            <input type="hidden" id="active-habbo-url-{{ num }}" value="{{ site.sitePath }}/home/{{ habbo.getName() }}"/>
+                            <input type="hidden" id="active-habbo-image-{{ num }}" class="active-habbo-image" value="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ habbo.getFigure() }}&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1
 "/>
                             {% set num = num + 1 %}
                             {% endfor %}
@@ -376,22 +355,14 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 <div id="active-habbo-image-placeholder-7" class="active-habbo-image-placeholder"></div>
                                 <div id="active-habbo-image-placeholder-8" class="active-habbo-image-placeholder"></div>
                                 <div id="active-habbo-image-placeholder-9" class="active-habbo-image-placeholder"></div>
-                                <div id="active-habbo-image-placeholder-10"
-                                     class="active-habbo-image-placeholder"></div>
-                                <div id="active-habbo-image-placeholder-11"
-                                     class="active-habbo-image-placeholder"></div>
-                                <div id="active-habbo-image-placeholder-12"
-                                     class="active-habbo-image-placeholder"></div>
-                                <div id="active-habbo-image-placeholder-13"
-                                     class="active-habbo-image-placeholder"></div>
-                                <div id="active-habbo-image-placeholder-14"
-                                     class="active-habbo-image-placeholder"></div>
-                                <div id="active-habbo-image-placeholder-15"
-                                     class="active-habbo-image-placeholder"></div>
-                                <div id="active-habbo-image-placeholder-16"
-                                     class="active-habbo-image-placeholder"></div>
-                                <div id="active-habbo-image-placeholder-17"
-                                     class="active-habbo-image-placeholder"></div>
+                                <div id="active-habbo-image-placeholder-10" class="active-habbo-image-placeholder"></div>
+                                <div id="active-habbo-image-placeholder-11" class="active-habbo-image-placeholder"></div>
+                                <div id="active-habbo-image-placeholder-12" class="active-habbo-image-placeholder"></div>
+                                <div id="active-habbo-image-placeholder-13" class="active-habbo-image-placeholder"></div>
+                                <div id="active-habbo-image-placeholder-14" class="active-habbo-image-placeholder"></div>
+                                <div id="active-habbo-image-placeholder-15" class="active-habbo-image-placeholder"></div>
+                                <div id="active-habbo-image-placeholder-16" class="active-habbo-image-placeholder"></div>
+                                <div id="active-habbo-image-placeholder-17" class="active-habbo-image-placeholder"></div>
                             </div>
                         </div>
 
@@ -444,12 +415,10 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <p class="summary">
                                         {{ article1.shortstory }} </p>
                                     <p>
-                                        <a href="{{ site.sitePath }}/articles/{{ article1.getUrl() }}">Read more
-                                            &raquo;</a>
+                                        <a href="{{ site.sitePath }}/articles/{{ article1.getUrl() }}">Read more &raquo;</a>
                                     </p>
                                 </div>
-                                <div class="topstory"
-                                     style="background-image: url({{ article2.getLiveTopStory() }}); display: none">
+                                <div class="topstory" style="background-image: url({{ article2.getLiveTopStory() }}); display: none">
                                     <h4>Latest news</a></h4>
                                     <h3>
                                         <a href="{{ site.sitePath }}/articles/{{ article2.getUrl() }}">{% if article2.isPublished() == false %}
@@ -457,12 +426,10 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <p class="summary">
                                         {{ article2.shortstory }} </p>
                                     <p>
-                                        <a href="{{ site.sitePath }}/articles/{{ article2.getUrl() }}">Read more
-                                            &raquo;</a>
+                                        <a href="{{ site.sitePath }}/articles/{{ article2.getUrl() }}">Read more &raquo;</a>
                                     </p>
                                 </div>
-                                <div class="topstory"
-                                     style="background-image: url({{ article3.getLiveTopStory() }}); display: none">
+                                <div class="topstory" style="background-image: url({{ article3.getLiveTopStory() }}); display: none">
                                     <h4>Latest news</a></h4>
                                     <h3>
                                         <a href="{{ site.sitePath }}/articles/{{ article3.getUrl() }}">{% if article3.isPublished() == false %}
@@ -470,12 +437,12 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <p class="summary">
                                         {{ article3.shortstory }} </p>
                                     <p>
-                                        <a href="{{ site.sitePath }}/articles/{{ article3.getUrl() }}">Read more
-                                            &raquo;</a>
+                                        <a href="{{ site.sitePath }}/articles/{{ article3.getUrl() }}">Read more &raquo;</a>
                                     </p>
                                 </div>
-                                <div id="topstories-nav" style="display: none"><a href="#" class="prev">&laquo;
-                                        Previous</a><span>1</span> / 3<a href="#" class="next">Next &raquo</a></div>
+                                <div id="topstories-nav" style="display: none">
+                                    <a href="#" class="prev">&laquo; Previous</a><span>1</span> / 3<a href="#" class="next">Next &raquo</a>
+                                </div>
                             </div>
                             <ul class="widelist">
                                 <li class="even">
@@ -538,8 +505,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
         {% include "base/footer.tpl" %}
 

@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -46,15 +44,12 @@
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/habboclub.js" type="text/javascript"></script>
 
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/minimail.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/control.textarea.css"
-          type="text/css"/>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/control.textarea.css" type="text/css"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/minimail.js" type="text/javascript"></script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -124,15 +119,12 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                 </div>
                 <br /> -->
                 <div class="habblet-container ">
-                    <div id="new-personal-info"
-                         style="background-image:url({{ site.staticContentPath }}/web-gallery/v2/images/personal_info/hotel_views/htlview_au.png)"/>
+                    <div id="new-personal-info" style="background-image:url({{ site.staticContentPath }}/web-gallery/v2/images/personal_info/hotel_views/htlview_au.png)"/>
 
                     {% if site.serverOnline %}
                     <div class="enter-hotel-btn">
                         <div class="open enter-btn">
-                            <a href="{{ site.sitePath }}/client" target="client"
-                               onclick="openOrFocusHabbo(this); return false;">Enter {{ site.siteName }}
-                                Hotel<i></i></a>
+                            <a href="{{ site.sitePath }}/client" target="client" onclick="openOrFocusHabbo(this); return false;">Enter {{ site.siteName }} Hotel<i></i></a>
                             <b></b>
                         </div>
                     </div>
@@ -147,8 +139,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     {% else %}
                     <div class="enter-hotel-btn">
                         <div class="closed enter-btn">
-                            <span>{{ site.siteName }} is offline</span>
-                            <b></b>
+                            <span>{{ site.siteName }} is offline</span> <b></b>
                         </div>
                     </div>
                     {% endif %}
@@ -156,12 +147,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <div id="habbo-plate">
                         <a href="{{ site.sitePath }}/profile">
                             {% if playerDetails.motto.toLowerCase() == "crikey" %}
-                            <img src='{{ site.staticContentPath }}/web-gallery/images/sticker_croco.gif'
-                                 style='margin-top: 57px'>
+                            <img src='{{ site.staticContentPath }}/web-gallery/images/sticker_croco.gif' style='margin-top: 57px'>
                             {% else %}
-                            <img alt="{{ playerDetails.getName() }}"
-                                 src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ playerDetails.figure }}&size=b&direction=3&head_direction=3&crr=0&gesture=sml&frame=1"
-                                 width="64" height="110"/>
+                            <img alt="{{ playerDetails.getName() }}" src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ playerDetails.figure }}&size=b&direction=3&head_direction=3&crr=0&gesture=sml&frame=1" width="64" height="110"/>
                             {% endif %}
                         </a>
                     </div>
@@ -212,27 +200,20 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% for alert in alerts %}
                             {% if alert.getAlertType() == 'HC_EXPIRED' %}
                             <li id="feed-item-hc-reminder">
-                                <a href="#" class="remove-feed-item" id="remove-hc-reminder"
-                                   title="Remove notification">Remove notification</a>
+                                <a href="#" class="remove-feed-item" id="remove-hc-reminder" title="Remove notification">Remove notification</a>
 
                                 <div>Your Habbo Club is expired. Do you want to extend your Habbo Club?</div>
                                 <div class="clearfix">
                                     <table width="100px" style="margin-top:6px; margin-left:-12px">
                                         <tr>
                                             <td>
-                                                <a class="new-button" id="subscribe1" href="#"
-                                                   onclick='habboclub.buttonClick(1, "Habbo Club"); return false;'><b>1
-                                                        months</b><i></i></a>
+                                                <a class="new-button" id="subscribe1" href="#" onclick='habboclub.buttonClick(1, "Habbo Club"); return false;'><b>1 months</b><i></i></a>
                                             </td>
                                             <td>
-                                                <a class="new-button" id="subscribe2" href="#"
-                                                   onclick='habboclub.buttonClick(2, "Habbo Club"); return false;'
-                                                   style="margin-left:6px"><b>2 months</b><i></i></a>
+                                                <a class="new-button" id="subscribe2" href="#" onclick='habboclub.buttonClick(2, "Habbo Club"); return false;' style="margin-left:6px"><b>2 months</b><i></i></a>
                                             </td>
                                             <td>
-                                                <a class="new-button" id="subscribe2" href="#"
-                                                   onclick='habboclub.buttonClick(3, "Habbo Club"); return false;'
-                                                   style="margin-left:6px"><b>3 months</b><i></i></a>
+                                                <a class="new-button" id="subscribe2" href="#" onclick='habboclub.buttonClick(3, "Habbo Club"); return false;' style="margin-left:6px"><b>3 months</b><i></i></a>
                                             </td>
                                         </tr>
                                     </table>
@@ -258,8 +239,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% endfor %}
                             {% if feedFriendRequests > 0 %}
                             <li id="feed-notification">
-                                You have <a href="{{ site.sitePath }}/client"
-                                            onclick="HabboClient.openOrFocus(this); return false;">{{ feedFriendRequests }
+                                You have
+                                <a href="{{ site.sitePath }}/client" onclick="HabboClient.openOrFocus(this); return false;">{{ feedFriendRequests }
                                     } friend requests</a> waiting
                             </li>
                             {% endif %}
@@ -267,8 +248,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% set num = 1 %}
                             {% if (feedFriendsOnline|length) > 0 %}
                             <li id="feed-friends">
-                                You have {{ feedFriendsOnline|length }} friends online
-                                <span>
+                                You have {{ feedFriendsOnline|length }} friends online <span>
 			{% for friend in feedFriendsOnline %}				
 				<a href="{{ site.sitePath }}/home/{{ friend.getUsername() }}">{{ friend.getUsername() }}</a>{% if num < (feedFriendsOnline|length) %},{% endif %}{% set num = num + 1 %}
                                     {% endfor %}
@@ -278,8 +258,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                             {% if unreadGuestbookMessages > 0 %}
                             <li class="small" id="feed-guestbook">
-                                You have <a
-                                        href="{{ site.sitePath }}/home/{{ playerDetails.getName() }}">{{ unreadGuestbookMessages }
+                                You have
+                                <a href="{{ site.sitePath }}/home/{{ playerDetails.getName() }}">{{ unreadGuestbookMessages }
                                     } new guestbook entries</a> on your homepage
                             </li>
                             {% endif %}
@@ -287,8 +267,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% set num = 1 %}
                             {% if pendingMembers > 0 %}
                             <li class="small" id="feed-pending-members">
-                                <strong>{{ pendingMembers }}</strong> of your groups have pending members:
-                                <span>
+                                <strong>{{ pendingMembers }}</strong> of your groups have pending members: <span>
 			{% for group in pendingGroups.entrySet() %}
                                     {% set groupId = group.getKey() %}
                                     {% set groupName = group.getValue() %}
@@ -301,8 +280,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% set num = 1 %}
                             {% if newPostsAmount > 0 %}
                             <li class="small" id="feed-group-discussion">
-                                <strong>{{ newPostsAmount }}</strong> of your groups have new forum messages:
-                                <span>
+                                <strong>{{ newPostsAmount }}</strong> of your groups have new forum messages: <span>
 			{% for group in newPosts.entrySet() %}
                                     {% set groupId = group.getKey() %}
                                     {% set groupName = group.getValue() %}
@@ -313,12 +291,12 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% endif %}
 
                             {% if playerDetails.isTradeEnabled() %}
-                            <li class="small" id="feed-trading-enabled">Trading is on. <a
-                                        href="{{ site.sitePath }}/profile?tab=6" title="">Click here to turn it off</a>
+                            <li class="small" id="feed-trading-enabled">Trading is on.
+                                <a href="{{ site.sitePath }}/profile?tab=6" title="">Click here to turn it off</a>
                             </li>
                             {% else %}
-                            <li class="small" id="feed-trading-disabled">Trading is off. <a
-                                        href="{{ site.sitePath }}/profile?tab=6" title="">Click here to turn it on</a>
+                            <li class="small" id="feed-trading-disabled">Trading is off.
+                                <a href="{{ site.sitePath }}/profile?tab=6" title="">Click here to turn it on</a>
                             </li>
                             {% endif %}
                             <!-- <li class="small" id="feed-flashbeta-invites">This server is currently in beta, some features may not be operating correctly. You may also expect spontaneous maintenance periods.</li> -->
@@ -349,43 +327,29 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                 <div class="cbb clearfix rooms">
                     <h2 class="title">
                         Select your room!
-                        <span class="habblet-close" id="habblet-close-roomselection"
-                              onclick="RoomSelectionHabblet.showConfirmation()"></span>
+                        <span class="habblet-close" id="habblet-close-roomselection" onclick="RoomSelectionHabblet.showConfirmation()"></span>
                     </h2>
                     <div id="roomselection-plp-intro" class="box-content">
-                        Hey! You haven't chosen your pre-decorated room, which comes with free furniture! Choose one
-                        below:
+                        Hey! You haven't chosen your pre-decorated room, which comes with free furniture! Choose one below:
                     </div>
                     <ul id="roomselection-plp" class="clearfix">
                         <li class="top">
-                            <a class="roomselection-select new-button green-button" href="client?createRoom=0"
-                               target="client"
-                               onclick="return RoomSelectionHabblet.create(this, 0);"><b>Select</b><i></i></a>
+                            <a class="roomselection-select new-button green-button" href="client?createRoom=0" target="client" onclick="return RoomSelectionHabblet.create(this, 0);"><b>Select</b><i></i></a>
                         </li>
                         <li class="top">
-                            <a class="roomselection-select new-button green-button" href="client?createRoom=1"
-                               target="client"
-                               onclick="return RoomSelectionHabblet.create(this, 1);"><b>Select</b><i></i></a>
+                            <a class="roomselection-select new-button green-button" href="client?createRoom=1" target="client" onclick="return RoomSelectionHabblet.create(this, 1);"><b>Select</b><i></i></a>
                         </li>
                         <li class="top">
-                            <a class="roomselection-select new-button green-button" href="client?createRoom=2"
-                               target="client"
-                               onclick="return RoomSelectionHabblet.create(this, 2);"><b>Select</b><i></i></a>
+                            <a class="roomselection-select new-button green-button" href="client?createRoom=2" target="client" onclick="return RoomSelectionHabblet.create(this, 2);"><b>Select</b><i></i></a>
                         </li>
                         <li class="bottom">
-                            <a class="roomselection-select new-button green-button" href="client?createRoom=3"
-                               target="client"
-                               onclick="return RoomSelectionHabblet.create(this, 3);"><b>Select</b><i></i></a>
+                            <a class="roomselection-select new-button green-button" href="client?createRoom=3" target="client" onclick="return RoomSelectionHabblet.create(this, 3);"><b>Select</b><i></i></a>
                         </li>
                         <li class="bottom">
-                            <a class="roomselection-select new-button green-button" href="client?createRoom=4"
-                               target="client"
-                               onclick="return RoomSelectionHabblet.create(this, 4);"><b>Select</b><i></i></a>
+                            <a class="roomselection-select new-button green-button" href="client?createRoom=4" target="client" onclick="return RoomSelectionHabblet.create(this, 4);"><b>Select</b><i></i></a>
                         </li>
                         <li class="bottom">
-                            <a class="roomselection-select new-button green-button" href="client?createRoom=5"
-                               target="client"
-                               onclick="return RoomSelectionHabblet.create(this, 5);"><b>Select</b><i></i></a>
+                            <a class="roomselection-select new-button green-button" href="client?createRoom=5" target="client" onclick="return RoomSelectionHabblet.create(this, 5);"><b>Select</b><i></i></a>
                         </li>
                     </ul>
                     <script type="text/javascript">
@@ -407,8 +371,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <h2 class="title">
                         Your next gift!
                         {% if newbieNextGift > 2 %}
-                        <span class="habblet-close" id="habblet-close-giftqueue"
-                              onclick="GiftQueueHabblet.hide()"></span>
+                        <span class="habblet-close" id="habblet-close-giftqueue" onclick="GiftQueueHabblet.hide()"></span>
                         {% endif %}
                     </h2>
                     <div class="box-content" id="gift-container">
@@ -427,24 +390,18 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                             <li class="even">
                                 <div class="hotcampaign-container">
-                                    <a href="{{ site.sitePath }}/articles"><img
-                                                src="{{ site.staticContentPath }}/c_images/hot_campaign_images_gb/beta.gif"
-                                                align="left" alt=""/></a>
+                                    <a href="{{ site.sitePath }}/articles"><img src="{{ site.staticContentPath }}/c_images/hot_campaign_images_gb/beta.gif" align="left" alt=""/></a>
                                     <h3>Under Construction</h3>
-                                    <p>Put interesting text in here, because this text is just useless sitting here
-                                        otherwise!</p>
+                                    <p>Put interesting text in here, because this text is just useless sitting here otherwise!</p>
                                     <p class="link"><a href="{{ site.sitePath }}">Go there &raquo;</a></p>
                                 </div>
                             </li>
 
                             <li class="odd">
                                 <div class="hotcampaign-container">
-                                    <a href="{{ site.sitePath }}/articles"><img
-                                                src="{{ site.staticContentPath }}/c_images/hot_campaign_images_gb/habbobetahot.gif"
-                                                align="left" alt=""/></a>
+                                    <a href="{{ site.sitePath }}/articles"><img src="{{ site.staticContentPath }}/c_images/hot_campaign_images_gb/habbobetahot.gif" align="left" alt=""/></a>
                                     <h3>Under Construction</h3>
-                                    <p>Put interesting text in here, because this text is just useless sitting here
-                                        otherwise!</p>
+                                    <p>Put interesting text in here, because this text is just useless sitting here otherwise!</p>
                                     <p class="link"><a href="{{ site.sitePath }}">Go there &raquo;</a></p>
                                 </div>
                             </li>
@@ -482,8 +439,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div id="message-compose-wait"></div>
                         <form style="display: none" id="message-compose">
                             <div>To</div>
-                            <div id="message-recipients-container" class="input-text"
-                                 style="width: 426px; margin-bottom: 1em">
+                            <div id="message-recipients-container" class="input-text" style="width: 426px; margin-bottom: 1em">
                                 <input type="text" value="" id="message-recipients"/>
                                 <div class="autocomplete" id="message-recipients-auto">
                                     <div class="default" style="display: none;">Type the name of your friend</div>
@@ -492,12 +448,10 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 </div>
                             </div>
                             <div>Subject<br/>
-                                <input type="text" style="margin: 5px 0" id="message-subject" class="message-text"
-                                       maxlength="100" tabindex="2"/>
+                                <input type="text" style="margin: 5px 0" id="message-subject" class="message-text" maxlength="100" tabindex="2"/>
                             </div>
                             <div>Message<br/>
-                                <textarea style="margin: 5px 0" rows="5" cols="10" id="message-body"
-                                          class="message-text" tabindex="3"></textarea>
+                                <textarea style="margin: 5px 0" rows="5" cols="10" id="message-body" class="message-text" tabindex="3"></textarea>
 
                             </div>
                             <div class="new-buttons clearfix">
@@ -559,17 +513,16 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <div class="box-tabs-container clearfix">
                         <h2>{{ site.siteName }}s</h2>
                         <ul class="box-tabs">
-                            <li id="tab-0-4-1"><a href="#">Search {{ site.siteName }}s</a><span
-                                        class="tab-spacer"></span></li>
+                            <li id="tab-0-4-1">
+                                <a href="#">Search {{ site.siteName }}s</a><span class="tab-spacer"></span></li>
 
-                            <li id="tab-0-4-2" class="selected"><a href="#">Invite Friend(s)</a><span
-                                        class="tab-spacer"></span></li>
+                            <li id="tab-0-4-2" class="selected">
+                                <a href="#">Invite Friend(s)</a><span class="tab-spacer"></span></li>
                         </ul>
                     </div>
                     <div id="tab-0-4-1-content" style="display: none">
                         <div class="habblet-content-info">
-                            <a name="habbo-search">Type in the first characters of the name to search for
-                                other {{ site.siteName }}s.</a>
+                            <a name="habbo-search">Type in the first characters of the name to search for other {{ site.siteName }}s.</a>
                         </div>
                         <div id="habbo-search-error-container" style="display: none;">
                             <div id="habbo-search-error" class="rounded rounded-red"></div>
@@ -585,8 +538,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                         <div id="avatar-habblet-content">
                             <div id="avatar-habblet-list-container" class="habblet-list-container">
-                                <ul class="habblet-list">
-                                </ul>
+                                <ul class="habblet-list"></ul>
 
                             </div>
                             <script type="text/javascript">
@@ -607,27 +559,14 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div id="friend-invitation-habblet-container" class="box-content">
                             <div style="display: none">
                                 <div id="invitation-form" class="clearfix">
-                                    <textarea name="invitation_message" id="invitation_message"
-                                              class="invitation-message">Come and hangout with me in {{ site.siteName }}.- {{ playerDetails.getName() }}</textarea>
+                                    <textarea name="invitation_message" id="invitation_message" class="invitation-message">Come and hangout with me in {{ site.siteName }}.- {{ playerDetails.getName() }}</textarea>
                                     <div id="invitation-email">
-                                        <div class="invitation-input">1.<input
-                                                    onkeypress="$('invitation_recipient2').enable()" type="text"
-                                                    name="invitation_recipients" id="invitation_recipient1"
-                                                    value="Friend's email address:" class="invitation-input"/>
+                                        <div class="invitation-input">1.<input onkeypress="$('invitation_recipient2').enable()" type="text" name="invitation_recipients" id="invitation_recipient1" value="Friend's email address:" class="invitation-input"/>
 
                                         </div>
-                                        <div class="invitation-input">2.<input disabled
-                                                                               onkeypress="$('invitation_recipient3').enable()"
-                                                                               type="text" name="invitation_recipients"
-                                                                               id="invitation_recipient2"
-                                                                               value="Friend's email address:"
-                                                                               class="invitation-input"/>
+                                        <div class="invitation-input">2.<input disabled onkeypress="$('invitation_recipient3').enable()" type="text" name="invitation_recipients" id="invitation_recipient2" value="Friend's email address:" class="invitation-input"/>
                                         </div>
-                                        <div class="invitation-input">3.<input disabled type="text"
-                                                                               name="invitation_recipients"
-                                                                               id="invitation_recipient3"
-                                                                               value="Friend's email address:"
-                                                                               class="invitation-input"/>
+                                        <div class="invitation-input">3.<input disabled type="text" name="invitation_recipients" id="invitation_recipient3" value="Friend's email address:" class="invitation-input"/>
                                         </div>
                                     </div>
                                     <div class="clear"></div>
@@ -638,8 +577,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 </div>
 
                                 <div class="invitation-buttons clearfix" id="invitation_buttons">
-                                    <a class="new-button" id="send-friend-invite-button" href="#"><b>Invite
-                                            Friend(s)</b><i></i></a>
+                                    <a class="new-button" id="send-friend-invite-button" href="#"><b>Invite Friend(s)</b><i></i></a>
                                 </div>
 
                                 <hr/>
@@ -648,13 +586,10 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 <h3>Enjoy {{ site.siteName }} more with real life friends!</h3>
 
                                 <div class="copytext">
-                                    <p>Invite your friends to Habbo and earn cool badges! Send a link to your friend and
-                                        ask them to register and activate their email. If they are using Habbo in active
-                                        way you get rewarded with a badge.</p>
+                                    <p>Invite your friends to Habbo and earn cool badges! Send a link to your friend and ask them to register and activate their email. If they are using Habbo in active way you get rewarded with a badge.</p>
                                 </div>
                                 <div class="invitation-buttons clearfix">
-                                    <a class="new-button" id="getlink-friend-invite-button" href="#"><b>Click for the
-                                            invitation link!</b><i></i></a>
+                                    <a class="new-button" id="getlink-friend-invite-button" href="#"><b>Click for the invitation link!</b><i></i></a>
                                 </div>
                             </div>
                         </div>
@@ -733,8 +668,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <a href="{{ site.sitePath }}/articles/{{ article1.getUrl() }}">Read more &raquo;</a>
                                 </p>
                             </div>
-                            <div class="topstory"
-                                 style="background-image: url({{ article2.getLiveTopStory() }}); display: none">
+                            <div class="topstory" style="background-image: url({{ article2.getLiveTopStory() }}); display: none">
                                 <h4>Latest news</a></h4>
                                 <h3>
                                     <a href="{{ site.sitePath }}/articles/{{ article2.getUrl() }}">{% if article2.isPublished() == false %}
@@ -745,8 +679,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <a href="{{ site.sitePath }}/articles/{{ article2.getUrl() }}">Read more &raquo;</a>
                                 </p>
                             </div>
-                            <div class="topstory"
-                                 style="background-image: url({{ article3.getLiveTopStory() }}); display: none">
+                            <div class="topstory" style="background-image: url({{ article3.getLiveTopStory() }}); display: none">
                                 <h4>Latest news</a></h4>
                                 <h3>
                                     <a href="{{ site.sitePath }}/articles/{{ article3.getUrl() }}">{% if article3.isPublished() == false %}
@@ -757,8 +690,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <a href="{{ site.sitePath }}/articles/{{ article3.getUrl() }}">Read more &raquo;</a>
                                 </p>
                             </div>
-                            <div id="topstories-nav" style="display: none"><a href="#" class="prev">&laquo; Previous</a><span>1</span>
-                                / 3<a href="#" class="next">Next &raquo</a></div>
+                            <div id="topstories-nav" style="display: none"><a href="#" class="prev">&laquo; Previous</a><span>1</span> / 3<a href="#" class="next">Next &raquo</a>
+                            </div>
                         </div>
                         <ul class="widelist">
                             <li class="even">
@@ -797,9 +730,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                     </div>
                     <div id="tab-1-3-1-content" style="display: none">
-                        <div class="progressbar"><img
-                                    src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt=""
-                                    width="29" height="6"/></div>
+                        <div class="progressbar">
+                            <img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6"/>
+                        </div>
                         <a href="{{ site.sitePath }}/habblet/proxy?hid=h21" class="tab-ajax"></a>
                     </div>
                     <div id="tab-1-3-2-content">
@@ -826,8 +759,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 {% endif %}
 
                                 {% set i = i + 1 %}
-                                <li class="{{ status }} {{ position }}"
-                                    style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
+                                <li class="{{ status }} {{ position }}" style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
                                     <a class="item" href="{{ group.generateClickLink() }}">{{ group.getName }}</a>
                                 </li>
                                 {% endfor %}
@@ -868,15 +800,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             {% else %}
                             {% set status = "odd" %}
                             {% endif %}
-                            <li class="{{ status }} {{ position }}"
-                                style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
+                            <li class="{{ status }} {{ position }}" style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
                                 {% if group.getRoomId() > 0 %}
-                                <a href="{{ site.sitePath }}/client?forwardId=2&amp;roomId=1"
-                                   onclick="HabboClient.roomForward(this, '1', 'private'); return false;"
-                                   target="client" class="group-room"></a>
+                                <a href="{{ site.sitePath }}/client?forwardId=2&amp;roomId=1" onclick="HabboClient.roomForward(this, '1', 'private'); return false;" target="client" class="group-room"></a>
                                 {% endif %}
-                                <a class="item"
-                                   href="{{ group.generateClickLink() }}">{% autoescape 'html' %}{{ group.name }
+                                <a class="item" href="{{ group.generateClickLink() }}">{% autoescape 'html' %}{{ group.name }
                                     }{% endautoescape %}</a>
                             </li>
                             {% endfor %}
@@ -894,16 +822,15 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <h2>Tags</h2>
 
                         <ul class="box-tabs">
-                            <li id="tab-1-5-1"><a href="#">{{ site.siteName }}s Like...</a><span
-                                        class="tab-spacer"></span></li>
+                            <li id="tab-1-5-1">
+                                <a href="#">{{ site.siteName }}s Like...</a><span class="tab-spacer"></span></li>
                             <li id="tab-1-5-2" class="selected"><a href="#">My Tags</a><span class="tab-spacer"></span>
                             </li>
                         </ul>
                     </div>
                     <div id="tab-1-5-1-content" style="display: none">
                         <div class="progressbar">
-                            <img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt=""
-                                 width="29" height="6"/>
+                            <img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6"/>
                         </div>
                         <a href="{{ site.sitePath }}/habblet/proxy?hid=h24" class="tab-ajax"></a>
                     </div>
@@ -948,17 +875,16 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         </ul>
                     </div>
                     <div id="tab-2-1-content" style="display: none">
-                        <div class="progressbar"><img
-                                    src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt=""
-                                    width="29" height="6"/></div>
+                        <div class="progressbar">
+                            <img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6"/>
+                        </div>
                         <a href="{{ site.sitePath }}/habblet/proxy?hid=groups" class="tab-ajax"></a>
                     </div>
                     <div id="tab-2-2-content">
 
 
                         <div id="groups-habblet-info" class="habblet-content-info">
-                            View the groups you are in, create your own group, or get some inspiration from the 'Hot
-                            Groups'-tab!
+                            View the groups you are in, create your own group, or get some inspiration from the 'Hot Groups'-tab!
                         </div>
 
                         <div id="groups-habblet-list-container" class="habblet-list-container groups-list">
@@ -984,17 +910,15 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 {% else %}
                                 {% set status = "even" %}
                                 {% endif %}
-                                <li class="{{ status }} {{ position }}"
-                                    style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
-                                    <a class="item"
-                                       href="{{ group.generateClickLink() }}">{% autoescape 'html' %}{{ group.name }
+                                <li class="{{ status }} {{ position }}" style="background-image: url({{ site.habboImagingPath }}/habbo-imaging/badge/{{ group.badge }}.gif)">
+                                    <a class="item" href="{{ group.generateClickLink() }}">{% autoescape 'html' %}{{ group.name }
                                         }{% endautoescape %}</a>
                                 </li>
                                 {% set i = i + 1 %}
                                 {% endfor %}
                             </ul>
-                            <div class="habblet-button-row clearfix"><a class="new-button" id="purchase-group-button"
-                                                                        href="#"><b>Create/buy a Group</b><i></i></a>
+                            <div class="habblet-button-row clearfix">
+                                <a class="new-button" id="purchase-group-button" href="#"><b>Create/buy a Group</b><i></i></a>
                             </div>
                         </div>
 
@@ -1042,8 +966,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
         <!--[if lt IE 7]>
         <script type="text/javascript">
             Pngfix.doPngImageFix();
-        </script>
-        <![endif]-->
+        </script><![endif]-->
     </div>
 </div>
 {% include "base/footer.tpl" %}

@@ -24,29 +24,27 @@
         <ul id="avatar-list-list" class="avatar-widget-list">
             {% if members > 0 %}
             {% for member in membersList %}
-            <li id="avatar-list-{{ sticker.getId() }}-{{ member.getUser().getId() }}"
-                title="{{ member.getUser().getName() }}">
-                <div class="avatar-list-open"><a href="#"
-                                                 id="avatar-list-open-link-{{ sticker.getId() }}-{{ member.getUser().getId() }}"
-                                                 class="avatar-list-open-link"></a></div>
-                <div class="avatar-list-avatar"><img
-                            src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ member.getUser().getFigure() }}&size=s&direction=4&head_direction=4&crr=0&gesture=&frame=1"
-                            alt=""/></div>
+            <li id="avatar-list-{{ sticker.getId() }}-{{ member.getUser().getId() }}" title="{{ member.getUser().getName() }}">
+                <div class="avatar-list-open">
+                    <a href="#" id="avatar-list-open-link-{{ sticker.getId() }}-{{ member.getUser().getId() }}" class="avatar-list-open-link"></a>
+                </div>
+                <div class="avatar-list-avatar">
+                    <img src="{{ site.habboImagingPath }}/habbo-imaging/avatarimage?figure={{ member.getUser().getFigure() }}&size=s&direction=4&head_direction=4&crr=0&gesture=&frame=1" alt=""/>
+                </div>
                 <h4><a href="{{ site.sitePath }}/home/{{ member.getUser().getName() }}">{{ member.getUser().getName() }
                         }</a></h4>
                 <p class="avatar-list-birthday">{{ member.getUser().getCreatedAt() }}</p>
 
                 {% if member.getMemberRank().getRankId() == 3 %}
-                <p><img src="{{ site.staticContentPath }}/web-gallery/images/groups/owner_icon.gif" alt=""
-                        class="avatar-list-groupstatus"/>
+                <p>
+                    <img src="{{ site.staticContentPath }}/web-gallery/images/groups/owner_icon.gif" alt="" class="avatar-list-groupstatus"/>
                     {% endif %}
                     {% if member.getMemberRank().getRankId() == 2 %}
-                <p><img src="{{ site.staticContentPath }}/web-gallery/images/groups/administrator_icon.gif" alt=""
-                        class="avatar-list-groupstatus"/>
+                <p>
+                    <img src="{{ site.staticContentPath }}/web-gallery/images/groups/administrator_icon.gif" alt="" class="avatar-list-groupstatus"/>
                     {% endif %}
                     {% if member.isFavourite(group.id) %}
-                    <img src="{{ site.staticContentPath }}/web-gallery/images/groups/favourite_group_icon.gif" alt=""
-                         class="avatar-list-groupstatus"/>
+                    <img src="{{ site.staticContentPath }}/web-gallery/images/groups/favourite_group_icon.gif" alt="" class="avatar-list-groupstatus"/>
                     {% endif %}
                 </p>
             </li>
@@ -64,8 +62,7 @@
     </div>
     <div id="avatar-list-paging">
         {% if members > 0 %}
-        {{ currentPage }} - {{ membersList|length }} / {{ pages }}
-        <br/>
+        {{ currentPage }} - {{ membersList|length }} / {{ pages }} <br/>
 
         {% if (firstPage != -1) or (previousPage != -1) %}
         <a href="#" class="avatar-list-paging-link" id="avatarlist-search-first">First</a> |

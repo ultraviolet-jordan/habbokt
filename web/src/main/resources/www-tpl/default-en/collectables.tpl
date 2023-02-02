@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -45,10 +43,8 @@
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/collectibles.css" type="text/css"/>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -106,8 +102,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                         <div id="collectible-current-content" class="clearfix">
                             {% if hasCollectable %}
-                            <div id="collectibles-current-img"
-                                 style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/furni?sprite={{ collectableSprite }}&direction=2&canvas=transparent)"></div>
+                            <div id="collectibles-current-img" style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/furni?sprite={{ collectableSprite }}&direction=2&canvas=transparent)"></div>
                             <h4>{{ collectableName }}</h4>
                             <p>March 2019</p>
                             <p class="last">{{ collectableDescription }}</p>
@@ -116,8 +111,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 {% if session.loggedIn %}
                                 <a href="#" class="new-button collectibles-purchase-current"><b>Purchase</b><i></i></a>
                                 {% endif %}
-                                <span class="collectibles-timeleft">Available Until: <span
-                                            id="collectibles-timeleft-value"></span></span>
+                                <span class="collectibles-timeleft">Available Until: <span id="collectibles-timeleft-value"></span></span>
                             </p>
                             {% else %}
                             <div id="collectibles-current-img" style="background-image: url()"></div>
@@ -151,8 +145,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                             <li class="odd clearfix">
                                 {% endif %}
 
-                                <div class="collectibles-prodimg"
-                                     style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/furni?sprite={{ entry.getSprite() }}&direction=2&icon=1&canvas=transparent);"></div>
+                                <div class="collectibles-prodimg" style="background-image: url(https://cdn.classichabbo.com/habbo-imaging/furni?sprite={{ entry.getSprite() }}&direction=2&icon=1&canvas=transparent);"></div>
                                 <h4>{{ entry.getName() }}</h4>
                                 <p class="collectibles-proddesc last">{{ entry.getDescription() }}</p>
 
@@ -188,9 +181,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                         <div id="collectibles-instructions" class="box-content">
 
-                            Collectables are special furniture sold only for a limited and set period of time.
-                            Experienced {{ site.siteName }}s would know them as rares. They always cost the same - 200
-                            Credits.
+                            Collectables are special furniture sold only for a limited and set period of time. Experienced {{ site.siteName }}s would know them as rares. They always cost the same - 200 Credits.
                         </div>
 
 
@@ -208,15 +199,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div class="box-content">
 
                             <p class="collectibles-value-intro">
-                                <img src="{{ site.staticContentPath }}/web-gallery/v2/images/collectibles/ukplane.png"
-                                     alt="" width="79" height="47"/>
-                                Collect your way to the riches! Collectables not only make a great piece of Furni but
-                                also come with an amazing trade value. As collectables will never be sold again for
-                                quite a while (that's a promise), the value will keep increasing in time.</p>
+                                <img src="{{ site.staticContentPath }}/web-gallery/v2/images/collectibles/ukplane.png" alt="" width="79" height="47"/> Collect your way to the riches! Collectables not only make a great piece of Furni but also come with an amazing trade value. As collectables will never be sold again for quite a while (that's a promise), the value will keep increasing in time.
+                            </p>
 
                             <p class="clear last">
-                                <img src="{{ site.staticContentPath }}/web-gallery/v2/images/collectibles/chart.png"
-                                     alt="" width="272" height="117"/>
+                                <img src="{{ site.staticContentPath }}/web-gallery/v2/images/collectibles/chart.png" alt="" width="272" height="117"/>
                             </p>
 
                         </div>
@@ -250,8 +237,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
         {% include "base/footer.tpl" %}
 

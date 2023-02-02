@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -43,14 +41,11 @@
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/settings.js" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/settings.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css"
-          type="text/css"/>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/friendmanagement.css" type="text/css"/>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -112,8 +107,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                         <li><a href="{{ site.sitePath }}/profile?tab=3">My Email</a>
                                             {% else %}
                                         </li>
-                                        <li><a href="{{ site.sitePath }}/profile/verify">Email Changing &
-                                                Verification</a>
+                                        <li>
+                                            <a href="{{ site.sitePath }}/profile/verify">Email Changing & Verification</a>
                                             {% endif %}
                                         </li>
                                         <li class="selected">My Password
@@ -139,8 +134,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 <br/>
                                 {% endif %}
 
-                                <p>If someone told you to come here and change your password in return for a reward, do
-                                    not change your password!</p>
+                                <p>If someone told you to come here and change your password in return for a reward, do not change your password!</p>
 
                                 <form action="{{ site.sitePath }}/profile/passwordupdate" method="post" id="pwform">
 
@@ -156,8 +150,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                             <p>
                                                 <label for="currentpassword">Current password</label><br/>
-                                                <input type="password" size="32" name="currentpassword"
-                                                       id="currentpassword" class="currentpassword "/>
+                                                <input type="password" size="32" name="currentpassword" id="currentpassword" class="currentpassword "/>
                                             </p>
 
                                             <!-- <div>
@@ -175,23 +168,16 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                             <h3>Enter new password</h3>
 
-                                            <p>Your new password must have at least 6 characters. Your password can
-                                                include lowercase, UPPERCASE letters and numbers.</p>
+                                            <p>Your new password must have at least 6 characters. Your password can include lowercase, UPPERCASE letters and numbers.</p>
 
                                             <p>
                                                 <label for="bean_password">New password</label><br/>
-                                                <input type="password" size="32" name="newpassword"
-                                                       value=""
-                                                       id="bean_password"
-                                                       class="required-password required-password2 "/>
+                                                <input type="password" size="32" name="newpassword" value="" id="bean_password" class="required-password required-password2 "/>
                                             </p>
 
                                             <p>
                                                 <label for="bean_retypedPassword">New password (again)</label><br/>
-                                                <input type="password" size="32" name="newpasswordconfirm"
-                                                       value=""
-                                                       id="bean_retypedPassword"
-                                                       class="required-retypedPassword required-retypedPassword2 "/>
+                                                <input type="password" size="32" name="newpasswordconfirm" value="" id="bean_retypedPassword" class="required-retypedPassword required-retypedPassword2 "/>
                                             </p>
 
                                         </div>
@@ -204,8 +190,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                         <div class="settings-step-content">
 
                                             <h3>
-                                                <label for="bean_captcha" class="registration-text">Type in the security
-                                                    code shown in the image below.</label>
+                                                <label for="bean_captcha" class="registration-text">Type in the security code shown in the image below.</label>
                                             </h3>
 
                                             <div id="captcha-code-error"></div>
@@ -214,10 +199,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                                             <div class="register-label" id="captcha-reload">
                                                 <p>
-                                                    <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif"
-                                                         width="15" height="15" alt=""/>
-                                                    <a id="captcha-reload-link" href="#">I can't read the code! Please
-                                                        give me another one.</a>
+                                                    <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif" width="15" height="15" alt=""/>
+                                                    <a id="captcha-reload-link" href="#">I can't read the code! Please give me another one.</a>
                                                 </p>
                                             </div>
 
@@ -228,24 +211,21 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                             </script>
 
                                             <p id="captcha-container">
-                                                <img id="captcha"
-                                                     src="{{ site.sitePath }}/captcha.jpg?t={{ randomNumber }}" alt=""
-                                                     width="200" height="50"/>
+                                                <img id="captcha" src="{{ site.sitePath }}/captcha.jpg?t={{ randomNumber }}" alt="" width="200" height="50"/>
 
                                             </p>
 
                                             <p>
-                                                <input type="text" name="captcha" id="captcha-code" value=""
-                                                       class="registration-text required-captcha"/>
+                                                <input type="text" name="captcha" id="captcha-code" value="" class="registration-text required-captcha"/>
                                             </p>
                                         </div>
                                     </div>
 
                                     <div class="settings-buttons">
-                                        <a href="#" class="new-button" style="display: none" id="pwform-submit"><b>Change
-                                                password</b><i></i></a>
-                                        <noscript><input type="submit" value="Change password" name="save"
-                                                         class="submit"/></noscript>
+                                        <a href="#" class="new-button" style="display: none" id="pwform-submit"><b>Change password</b><i></i></a>
+                                        <noscript>
+                                            <input type="submit" value="Change password" name="save" class="submit"/>
+                                        </noscript>
 
                                     </div>
 

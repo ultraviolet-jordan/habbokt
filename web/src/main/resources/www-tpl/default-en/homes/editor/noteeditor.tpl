@@ -43,17 +43,14 @@
         <div id="linktool">
             <div id="linktool-scope">
                 <label for="linktool-query-input">Create link:</label>
-                <input type="radio" name="scope" class="linktool-scope" value="1" checked="checked"/>Habbos <input
-                        type="radio" name="scope" class="linktool-scope" value="2"/>Rooms <input type="radio"
-                                                                                                 name="scope"
-                                                                                                 class="linktool-scope"
-                                                                                                 value="3"/>Groups
+                <input type="radio" name="scope" class="linktool-scope" value="1" checked="checked"/>Habbos
+                <input type="radio" name="scope" class="linktool-scope" value="2"/>Rooms
+                <input type="radio" name="scope" class="linktool-scope" value="3"/>Groups
             </div>
             <input id="linktool-query" type="text" name="query" value=""/>
             <a href="#" class="new-button" id="linktool-find"><b>Find</b><i></i></a>
             <div class="clear" style="height: 0;"><!-- --></div>
-            <div id="linktool-results" style="display: none">
-            </div>
+            <div id="linktool-results" style="display: none"></div>
             <script type="text/javascript">
                 linkTool = new LinkTool(bbcodeToolbar.textarea);
             </script>

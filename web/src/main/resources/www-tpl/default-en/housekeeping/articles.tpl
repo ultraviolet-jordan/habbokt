@@ -27,18 +27,15 @@
             <td>{{ article.getDate() }}</td>
             <td>{{ article.views }}</td>
             <td>
-                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}/articles/edit?id={{ article.id }}"
-                   class="btn btn-primary">Edit</a>
-                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}/articles/delete?id={{ article.id }}"
-                   class="btn btn-danger">Delete</a>
+                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}/articles/edit?id={{ article.id }}" class="btn btn-primary">Edit</a>
+                <a href="{{ site.sitePath }}/{{ site.housekeepingPath }}/articles/delete?id={{ article.id }}" class="btn btn-danger">Delete</a>
             </td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-</div>
-</div>
+</div></div>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script src="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -47,5 +44,4 @@
         $("#wrapper").toggleClass("toggled");
     });
 </script>
-</body>
-</html>
+</body></html>

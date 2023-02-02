@@ -30,13 +30,11 @@
     <p id="avatar-habblet-list-container-list-paging" class="paging-navigation">
         <span class="disabled">&laquo;</span>
         {% if previousPageId > 0 %}
-        <a href="#" class="avatar-habblet-list-container-list-paging-link"
-           id="avatar-habblet-list-container-list-page-{{ previousPageId }}">{{ previousPageId }}</a>
+        <a href="#" class="avatar-habblet-list-container-list-paging-link" id="avatar-habblet-list-container-list-page-{{ previousPageId }}">{{ previousPageId }}</a>
         {% endif %}
         <span class="current">{{ currentPage }}</span>
         {% if nextPageId > 0 %}
-        <a href="#" class="avatar-habblet-list-container-list-paging-link"
-           id="avatar-habblet-list-container-list-page-{{ nextPageId }}">{{ nextPageId }}</a>
+        <a href="#" class="avatar-habblet-list-container-list-paging-link" id="avatar-habblet-list-container-list-page-{{ nextPageId }}">{{ nextPageId }}</a>
         {% endif %}
         <span class="disabled">&raquo;</span>
     </p>
@@ -44,7 +42,6 @@
     <input type="hidden" id="avatar-habblet-list-container-totalPages" value="{{ totalPages }}"/>
 </div>
 {% else %}
-<div class="box-content">{{ site.siteName }} not found. Please make sure you have typed his or her name correctly and
-    try again.
+<div class="box-content">{{ site.siteName }} not found. Please make sure you have typed his or her name correctly and try again.
 </div>
 {% endif %}

@@ -15,8 +15,8 @@
             <table border="0" cellpadding="0" cellspacing="0" style="margin: 5px; width: 98%;">
                 <tr>
                     <td>
-                        <div class="post-list-content-element"><input type="text" size="50" id="new-topic-name"
-                                                                      value=""/></div>
+                        <div class="post-list-content-element">
+                            <input type="text" size="50" id="new-topic-name" value=""/></div>
                     </td>
                 </tr>
             </table>
@@ -37,8 +37,7 @@
             <table border="0" cellpadding="0" cellspacing="0" style="margin: 5px; width: 98%;">
                 <tr>
                     <td>
-                        <input type="hidden" id="edit-type"/>
-                        <input type="hidden" id="post-id"/>
+                        <input type="hidden" id="edit-type"/> <input type="hidden" id="post-id"/>
                         <a href="#" class="preview-post-link" id="topic-form-preview">Preview &raquo;</a>
                         <input type="hidden" id="spam-message" value=""/>
                         <textarea id="post-message" class="new-post-entry-message" rows="5" name="message"></textarea>
@@ -61,16 +60,15 @@
                             <div id="linktool-scope">
                                 <label for="linktool-query-input">Create link to a:</label>
                                 <input type="radio" name="scope" class="linktool-scope" value="1" checked="checked"/>Habbo
-                                <input type="radio" name="scope" class="linktool-scope" value="2"/>Room <input
-                                        type="radio" name="scope" class="linktool-scope" value="3"/>Group&nbsp;
+                                <input type="radio" name="scope" class="linktool-scope" value="2"/>Room
+                                <input type="radio" name="scope" class="linktool-scope" value="3"/>Group&nbsp;
                             </div>
                             <div class="linktool-input">
                                 <input id="linktool-query" type="text" size="30" name="query" value=""/>
                                 <input id="linktool-find" class="search" type="submit" title="Find" value=""/>
                             </div>
                             <div class="clear" style="height: 0;"><!-- --></div>
-                            <div id="linktool-results" style="display: none">
-                            </div>
+                            <div id="linktool-results" style="display: none"></div>
                             <script type="text/javascript">
                                 linkTool = new LinkTool(bbcodeToolbar.textarea);
                             </script>
@@ -78,8 +76,7 @@
 
                         <div id="discussion-captcha">
                             <h3>
-                                <label for="bean_captcha" class="registration-text">Type in the security code shown in
-                                    the image below.</label>
+                                <label for="bean_captcha" class="registration-text">Type in the security code shown in the image below.</label>
                             </h3>
 
                             <div id="captcha-code-error"></div>
@@ -88,10 +85,8 @@
 
                             <div class="register-label" id="captcha-reload">
                                 <p>
-                                    <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif"
-                                         width="15" height="15" alt=""/>
-                                    <a id="captcha-reload-link" href="#">I can't read the code! Please give me another
-                                        one.</a>
+                                    <img src="{{ site.staticContentPath }}/web-gallery/v2/images/shared_icons/reload_icon.gif" width="15" height="15" alt=""/>
+                                    <a id="captcha-reload-link" href="#">I can't read the code! Please give me another one.</a>
                                 </p>
                             </div>
 
@@ -101,18 +96,15 @@
                                 });
                             </script>
 
-                            <p id="captcha-container">
-                            </p>
+                            <p id="captcha-container"></p>
 
                             <p>
-                                <input type="text" name="captcha" id="captcha-code" value=""
-                                       class="registration-text required-captcha"/>
+                                <input type="text" name="captcha" id="captcha-code" value="" class="registration-text required-captcha"/>
                             </p>
                         </div>
 
                         <div class="button-area">
-                            <a id="topic-form-cancel" class="new-button red-button cancel-icon"
-                               href="#"><b><span></span>Cancel</b><i></i></a>
+                            <a id="topic-form-cancel" class="new-button red-button cancel-icon" href="#"><b><span></span>Cancel</b><i></i></a>
                             <a id="topic-form-save" class="new-button green-button save-icon" href="#"><b><span></span>Save</b><i></i></a>
                         </div>
                     </td>
@@ -122,5 +114,4 @@
     </tr>
 
 </table>
-<div id="new-post-preview" style="display:none;">
-</div>
+<div id="new-post-preview" style="display:none;"></div>

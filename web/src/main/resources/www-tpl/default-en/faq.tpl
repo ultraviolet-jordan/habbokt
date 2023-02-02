@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
 
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -40,10 +38,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -67,15 +63,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 <body id="faq" class="plain-template">
 <script src="{{ site.staticContentPath }}/web-gallery/static/js/faq.js" type="text/javascript"></script>
 <div id="faq" class="clearfix">
-    <div id="faq-header" class="clearfix"><img
-                src="{{ site.staticContentPath }}/web-gallery/v2/images/faq/faq_header.png"/>
-        <form method="post" action="{{ site.sitePath }}/help/faqsearch" class="search-box"><input type="text"
-                                                                                                  id="faq-search"
-                                                                                                  name="query"
-                                                                                                  class="search-box-query search-box-onfocus"
-                                                                                                  size="50"
-                                                                                                  value="Search..."/><input
-                    type="submit" value="" title="Search" class="search"/></form>
+    <div id="faq-header" class="clearfix">
+        <img src="{{ site.staticContentPath }}/web-gallery/v2/images/faq/faq_header.png"/>
+        <form method="post" action="{{ site.sitePath }}/help/faqsearch" class="search-box">
+            <input type="text" id="faq-search" name="query" class="search-box-query search-box-onfocus" size="50" value="Search..."/><input type="submit" value="" title="Search" class="search"/>
+        </form>
     </div>
     <div id="faq-container" class="clearfix">
         <div id="faq-category-list">
@@ -85,17 +77,16 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
         </div>
         <div id="faq-category-content" class="clearfix">
             <p class="faq-category-description"></p>
-            <h4 id="faq-item-header-2" class="faq-item-header faq-toggle "><span class="faq-toggle selected"
-                                                                                 id="faq-header-text-2">How do I contact {{ site.siteName }}?</span>
+            <h4 id="faq-item-header-2" class="faq-item-header faq-toggle "><span class="faq-toggle selected" id="faq-header-text-2">How do I contact {{ site.siteName }}?</span>
             </h4>
             <div id="faq-item-content-2" class="faq-item-content clearfix">
-                <div class="faq-item-content clearfix">Please use the <a href="{{ site.sitePath }}/iot/go">Help Tool</a>
-                    to email us!
+                <div class="faq-item-content clearfix">Please use the
+                    <a href="{{ site.sitePath }}/iot/go">Help Tool</a> to email us!
                 </div>
                 <div class="faq-close-container">
-                    <div id="faq-close-button-2" class="faq-close-button clearfix faq-toggle" style="display:none">Close
-                        FAQ <img id="faq-close-image-2" class="faq-toggle"
-                                 src="{{ site.staticContentPath }}/web-gallery/v2/images/faq/close_btn.png"/></div>
+                    <div id="faq-close-button-2" class="faq-close-button clearfix faq-toggle" style="display:none">Close FAQ
+                        <img id="faq-close-image-2" class="faq-toggle" src="{{ site.staticContentPath }}/web-gallery/v2/images/faq/close_btn.png"/>
+                    </div>
                 </div>
             </div>
 
@@ -103,19 +94,15 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
                 $("faq-close-button-2").show();
             </script>
-            <h4 id="faq-item-header-3" class="faq-item-header faq-toggle "><span class="faq-toggle selected"
-                                                                                 id="faq-header-text-3">Will sending my issue twice get a faster reply?</span>
+            <h4 id="faq-item-header-3" class="faq-item-header faq-toggle "><span class="faq-toggle selected" id="faq-header-text-3">Will sending my issue twice get a faster reply?</span>
             </h4>
             <div id="faq-item-content-3" class="faq-item-content clearfix">
-                <div class="faq-item-content clearfix">Sending more than one email will slow down the Player Support
-                    staff as they will have more emails to read through. If you have received no response after a week,
-                    check your spam/junk mail folder. If there is still no response, then there must have been a
-                    technical glitch and you should send your email again.
+                <div class="faq-item-content clearfix">Sending more than one email will slow down the Player Support staff as they will have more emails to read through. If you have received no response after a week, check your spam/junk mail folder. If there is still no response, then there must have been a technical glitch and you should send your email again.
                 </div>
                 <div class="faq-close-container">
-                    <div id="faq-close-button-3" class="faq-close-button clearfix faq-toggle" style="display:none">Close
-                        FAQ <img id="faq-close-image-3" class="faq-toggle"
-                                 src="{{ site.staticContentPath }}/web-gallery/v2/images/faq/close_btn.png"/></div>
+                    <div id="faq-close-button-3" class="faq-close-button clearfix faq-toggle" style="display:none">Close FAQ
+                        <img id="faq-close-image-3" class="faq-toggle" src="{{ site.staticContentPath }}/web-gallery/v2/images/faq/close_btn.png"/>
+                    </div>
                 </div>
             </div>
 
@@ -131,10 +118,10 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
     </div>
 
-    <div id="faq-footer" class="clearfix"><p><a href="http://localhost/" target="_self">Homepage</a> | <a
-                    href="http://localhost/papers/disclaimer" target="_self">Disclaimer</a> | <a
-                    href="http://localhost/papers/privacy" target="_self">Privacy Policy</a> | <a
-                    href="http://localhost/help/1" target="_new">Contact Us</a></p>
+    <div id="faq-footer" class="clearfix"><p><a href="http://localhost/" target="_self">Homepage</a> |
+            <a href="http://localhost/papers/disclaimer" target="_self">Disclaimer</a> |
+            <a href="http://localhost/papers/privacy" target="_self">Privacy Policy</a> |
+            <a href="http://localhost/help/1" target="_new">Contact Us</a></p>
         <p>HABBO is a registered trademark of Sulake Corporation. All rights reserved to their respective owner(s).</p>
     </div>
     <script type="text/javascript">

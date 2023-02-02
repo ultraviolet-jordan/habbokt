@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -45,8 +43,7 @@
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/skins.css" type="text/css"/>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/dialogs.css" type="text/css"/>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/buttons.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/control.textarea.css"
-          type="text/css"/>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/control.textarea.css" type="text/css"/>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/boxes.css" type="text/css"/>
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/myhabbo.css" type="text/css"/>
     <link href="{{ site.staticContentPath }}/web-gallery/styles/myhabbo/assets.css" type="text/css" rel="stylesheet"/>
@@ -58,10 +55,8 @@
     <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/group.css" type="text/css"/>
 
     <!-- HTML5 trax player -->
-    <script src="{{ site.staticContentPath }}/web-gallery/static/js/webbanditten/traxplayer.js"
-            type="text/javascript"></script>
-    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/webbanditten/traxplayer.css"
-          type="text/css"/>
+    <script src="{{ site.staticContentPath }}/web-gallery/static/js/webbanditten/traxplayer.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/webbanditten/traxplayer.css" type="text/css"/>
 
     <style type="text/css">
         #playground, #playground-outer {
@@ -137,10 +132,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -230,13 +223,11 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     {% if session.loggedIn %}
                     {% if user.id == playerDetails.id %}
                     {% if editMode == false %}
-                    <a href="{{ site.sitePath }}/myhabbo/startSession/{{ user.id }}" id="edit-button"
-                       class="new-button dark-button edit-icon" style="float:left"><b><span></span>Edit</b><i></i></a>
+                    <a href="{{ site.sitePath }}/myhabbo/startSession/{{ user.id }}" id="edit-button" class="new-button dark-button edit-icon" style="float:left"><b><span></span>Edit</b><i></i></a>
                     {% endif %}
                     {% endif %}
                     {% endif %}
-                    <div class="myhabbo-view-tools">
-                    </div>
+                    <div class="myhabbo-view-tools"></div>
 
                     <h2 class="page-owner">{{ user.getName() }}</h2>
                     <ul class="box-tabs"></ul>
@@ -252,11 +243,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         </ul>
 
                         <form action="#" method="get" style="width: 50%">
-                            <a id="cancel-button" class="new-button red-button cancel-icon" href="#"><b><span></span>Cancel
-                                    editing</b><i></i></a>
+                            <a id="cancel-button" class="new-button red-button cancel-icon" href="#"><b><span></span>Cancel editing</b><i></i></a>
 
-                            <a id="save-button" class="new-button green-button save-icon" href="#"><b><span></span>Save
-                                    changes</b><i></i></a>
+                            <a id="save-button" class="new-button green-button save-icon" href="#"><b><span></span>Save changes</b><i></i></a>
                         </form>
                     </div>
 
@@ -269,8 +258,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div id="playground">
 
 
-                            <div class="movable stickie n_skin_nakedskin-c" style=" left: 114px; top: 8px; z-index: 5;"
-                                 id="stickie-3188500">
+                            <div class="movable stickie n_skin_nakedskin-c" style=" left: 114px; top: 8px; z-index: 5;" id="stickie-3188500">
                                 <div class="n_skin_nakedskin">
                                     <div class="stickie-header">
                                         <h3></h3>
@@ -281,16 +269,14 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                             <div class="stickie-markup">
                                                 <h2><p style="color:#9D9D9D">I am the malady, I am the pain...</p></h2>
                                             </div>
-                                            <div class="stickie-footer">
-                                            </div>
+                                            <div class="stickie-footer"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="movable stickie n_skin_nakedskin-c" style=" left: 73px; top: 121px; z-index: 7;"
-                                 id="stickie-3188552">
+                            <div class="movable stickie n_skin_nakedskin-c" style=" left: 73px; top: 121px; z-index: 7;" id="stickie-3188552">
                                 <div class="n_skin_nakedskin">
                                     <div class="stickie-header">
                                         <h3></h3>
@@ -302,16 +288,14 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                                 <h2><p style="color:#FFFFFF">...I am the death that never dies....</p>
                                                 </h2>
                                             </div>
-                                            <div class="stickie-footer">
-                                            </div>
+                                            <div class="stickie-footer"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="movable stickie n_skin_nakedskin-c"
-                                 style=" left: 315px; top: 660px; z-index: 8;" id="stickie-3188551">
+                            <div class="movable stickie n_skin_nakedskin-c" style=" left: 315px; top: 660px; z-index: 8;" id="stickie-3188551">
                                 <div class="n_skin_nakedskin">
                                     <div class="stickie-header">
                                         <h3></h3>
@@ -320,19 +304,18 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <div class="stickie-body">
                                         <div class="stickie-content">
                                             <div class="stickie-markup">
-                                                <h1><p style="color:#007400">...on Halloween day I shall come to
-                                                        play...</p></h1>
+                                                <h1>
+                                                    <p style="color:#007400">...on Halloween day I shall come to play...</p>
+                                                </h1>
                                             </div>
-                                            <div class="stickie-footer">
-                                            </div>
+                                            <div class="stickie-footer"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="movable stickie n_skin_nakedskin-c"
-                                 style=" left: 425px; top: 55px; z-index: 6;">
+                            <div class="movable stickie n_skin_nakedskin-c" style=" left: 425px; top: 55px; z-index: 6;">
                                 <div class="n_skin_nakedskin">
                                     <div class="stickie-header">
                                         <h3></h3>
@@ -340,18 +323,17 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     </div>
                                     <div class="stickie-body">
                                         <div class="stickie-content">
-                                            <div class="stickie-markup"><p style="color:#FFFFFF">...my life was lost in
-                                                    the Virus rain...</p></div>
-                                            <div class="stickie-footer">
+                                            <div class="stickie-markup">
+                                                <p style="color:#FFFFFF">...my life was lost in the Virus rain...</p>
                                             </div>
+                                            <div class="stickie-footer"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="movable stickie n_skin_nakedskin-c"
-                                 style=" left: 220px; top: 85px; z-index: 9;">
+                            <div class="movable stickie n_skin_nakedskin-c" style=" left: 220px; top: 85px; z-index: 9;">
                                 <div class="n_skin_nakedskin">
                                     <div class="stickie-header">
                                         <h3></h3>
@@ -362,16 +344,14 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                             <div class="stickie-markup">
                                                 <h3><p style="color:#727272">...I am the poor one who cries...</p></h3>
                                             </div>
-                                            <div class="stickie-footer">
-                                            </div>
+                                            <div class="stickie-footer"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="movable stickie n_skin_nakedskin-c"
-                                 style=" left: 14px; top: 200px; z-index: 10;">
+                            <div class="movable stickie n_skin_nakedskin-c" style=" left: 14px; top: 200px; z-index: 10;">
                                 <div class="n_skin_nakedskin">
                                     <div class="stickie-header">
                                         <h3></h3>
@@ -381,28 +361,18 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                         <div class="stickie-content">
                                             <div class="stickie-markup">
                                                 <div style="background-image: url({{ site.sitePath }}/boo.gif); height: 278px; width: 547px;"></div>
-                                                <audio src="{{ site.sitePath }}/horror.mp3" autoplay loop>
-                                                </audio>
+                                                <audio src="{{ site.sitePath }}/horror.mp3" autoplay loop></audio>
                                             </div>
-                                            <div class="stickie-footer">
-                                            </div>
+                                            <div class="stickie-footer"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="movable sticker s_hw08_websbl"
-                                 style="left: 3px; top: 1224px; z-index: 1; background-image:url(data:image/gif;base64,R0lGODlhUgCFAJECAMjIyKenp////wAAACH5BAEAAAIALAAAAABSAIUAAAL/lI8XadsMVXCR0Wpv1MjxvXyVOJIJgAUoZgCUmcCxrLDCWrmx3fINjcDlhEEOEKjzHYgQz4n5sEEZSeXS9mpNo5jtEgjx1paorUwMEEuxClRoxPKmrRG1IIRzhlNDOhzL9GZxV1dn56M2scF19eF4qGSimMPYQ9hhAVmCCcKjZ3lZqeKX8tkBtnIhZDpKimUEBkqxGjrpyjZpS5cKOqZ7y/ISS1UT+AvMdze890BUhex5fJu3Ax25HHelbf3KfbKtCY2NeLPtzXZ+xZvuM55dxm7l3lUeL88+Z083z6y/7x3O3xhoAdOpSKNiAr9eAv8BW+hvXsGGnEhNpDjwHkZk8MsubszIw+PHSslGciRnUlzIlNZgQGQZqh/Mk4Vmtmxi0xsHkTlPHczX8ybDoDR5EsVk9ChIpTSZCnXaFOpDqSqp3nrpFCtTrUe5drU6FSwpr0TJBjWbE21asa7UznT7lq0faXJzwE0pqO6amFLpEuNrtRWloWAFfzNX13DMuxFXONO7gUnSnoIZfxw1WSlQyNk4r/SMDvRg0aNJ4zQtE3UQ1adZL2Vt2WTsy66r1Sapejbt27hR6974G2PwhsOJ8+5turhA5RGPM9f33F50dtOpHwec+3p1g861e+e9/Vx4nd3Lgzd/ezw39VXPo69dAAA7);width:82px;height:133px;left:2px;top:2px;z-index:4;background-repeat: no-repeat; margin: 0px; padding: 0px; ">
-                            </div>
+                            <div class="movable sticker s_hw08_websbl" style="left: 3px; top: 1224px; z-index: 1; background-image:url(data:image/gif;base64,R0lGODlhUgCFAJECAMjIyKenp////wAAACH5BAEAAAIALAAAAABSAIUAAAL/lI8XadsMVXCR0Wpv1MjxvXyVOJIJgAUoZgCUmcCxrLDCWrmx3fINjcDlhEEOEKjzHYgQz4n5sEEZSeXS9mpNo5jtEgjx1paorUwMEEuxClRoxPKmrRG1IIRzhlNDOhzL9GZxV1dn56M2scF19eF4qGSimMPYQ9hhAVmCCcKjZ3lZqeKX8tkBtnIhZDpKimUEBkqxGjrpyjZpS5cKOqZ7y/ISS1UT+AvMdze890BUhex5fJu3Ax25HHelbf3KfbKtCY2NeLPtzXZ+xZvuM55dxm7l3lUeL88+Z083z6y/7x3O3xhoAdOpSKNiAr9eAv8BW+hvXsGGnEhNpDjwHkZk8MsubszIw+PHSslGciRnUlzIlNZgQGQZqh/Mk4Vmtmxi0xsHkTlPHczX8ybDoDR5EsVk9ChIpTSZCnXaFOpDqSqp3nrpFCtTrUe5drU6FSwpr0TJBjWbE21asa7UznT7lq0faXJzwE0pqO6amFLpEuNrtRWloWAFfzNX13DMuxFXONO7gUnSnoIZfxw1WSlQyNk4r/SMDvRg0aNJ4zQtE3UQ1adZL2Vt2WTsy66r1Sapejbt27hR6974G2PwhsOJ8+5turhA5RGPM9f33F50dtOpHwec+3p1g861e+e9/Vx4nd3Lgzd/ezw39VXPo69dAAA7);width:82px;height:133px;left:2px;top:2px;z-index:4;background-repeat: no-repeat; margin: 0px; padding: 0px; "></div>
                         </div>
-                        <div class="movable sticker s_hw08_webstr"
-                             style="left: 837px; top: 2px; z-index: 2; background-image:url(data:image/gif;base64,R0lGODlhUACEAJECAMjIyKenp////wAAACH5BAEAAAIALAAAAABQAIQAAAL/jI6py+0PozCy2osRzbz77YXiA47mWZ5qmK7u1b4yFM82U9/6tPdL7psBg64hUWU8opS9JJP13DmjnCkVY73CtLIsN+L90sSrMBl3RqZN5rXGPWrD5W56HQ7Fd+xr/tlPBhiot0dYZcgBgIihuGjR6Fgh+AUZCVFpSZIZgbm50OmZAADqGaBIamn6FjrRiUqoKoD5OocJMqkT+ymKqNsAScsVkNSIS1XM+sOTrABgfDXMrCyd8AxNXY29qr2sbR31Dc7djR3+ZK6EfqS+Ps4e9A7vPu8tW34QvLiRbzhsOsoPT4qAd6ZtqkFwkIOEX4DEiyOBIRVi+iw8PHRBYjtG3Xq8XJTkQaOUECJvyPnYapQpfyZKvuDjsoyKmEtW0BQxadREGafO8bR3c8tPZPJm9MQHDxcwBEElRLPJlFdSP5BKqKPwlOSbWeg2ZE209cdXIROwhiHayazJFGM5batkwOukpy3aLjwAAi7eaje/1rA7Le82cq26kMhBVKrVH03t0YiBdVddHE2N+No7OQYpnS2dFt5LOKoDhDSDeVUUd/SlB5xDemZ6FM1q1iVNr2otmzWns2BAw25gJJ8zsJc2swUZ0coQWsOzRbQ4JQdgBVmdRE/y1/fj0JpgBCgAADs=);width:80px;height:132px;left:3px;top:1224px;z-index:1;background-repeat: no-repeat; margin: 0px; padding: 0px; ">
-                        </div>
-                        <div class="movable sticker s_hw08_websbr"
-                             style="left: 839px; top: 1224px; z-index: 3; background-image:url(data:image/gif;base64,R0lGODlhUACEAJECAMjIyKenp////wAAACH5BAEAAAIALAAAAABQAIQAAAL/lI+py+0PRYi02osm3rzrDobOJ5amdKYiqbYV68YPLNcKbed4bu+87Pu1gkIVsXg6IldLnrIJekI30immarVgs5EtF+L9jsSpMHlhPifSagO7jYKH3mp6XT7He/R7PtV/BRgoqEX4YniI2KUIAcDY+PjgGMlgdzZJuYCZmcGp6amwCQog6ukIYMn1gWoamrokOsn6SMIya7hZanALiKmLwKun8XvzarQL6haXHEBMa5wFHZ18IG1lPYXdpL1NXe29TM29NF5Ubg4eDnouxP7jrpMOH+/tOC8zee+CqZ9CShogYKs1nGj0C0HsYAdnCv+MQeTsGy4KDSkm8hPxRq9B3cIcysnYoGKoKHLSiES2IiCqf/dALiLj8iWXmBazkBpi5ZSLeTppXmyHzOfPHL4ECB2K70DRIdxyKTUyjsWqJAJ1xFp2dI0GbAFh2Hvq4YO1ql6VGeVAdgK0qihI8AP7AgbbE7y2Aut0lqJBN3SC1YIb58hcgtXMBFM3TGPeSj7sHFanrJRdNESyJrj5CQ3ktq5kLkzo4Ndko2ojWDbqLOKO0rcqf5YEpsGpTUeONoM0I3Q+iaGvgASJA7NE1y9cKpH7S7jsuBWMr4mYUbCUJ2KlPxxRZbqE42Y1PygAADs=);width:80px;height:132px;left:839px;z-index:3;top:1228px;background-repeat: no-repeat; margin: 0px; padding: 0px; ">
-                        </div>
-                        <div class="movable sticker s_hw08_webstl"
-                             style="left: 2px; top: 2px; z-index: 4; background-image:url(data:image/gif;base64,R0lGODlhUgCFAJECAMjIyKenpwAAAAAAACH5BAEAAAIALAAAAABSAIUAAAL/TISpm8ffHGRSKjuRyQ/zs3HaCHlZKJJpZVKtmmovA8RYUGf5GS+4DfTtFoAhxNgT/ETIztHomCGavaVONCuqpAJqUnv9TGpg2Dg59nbFJWW3wkTrvNm2ewpKqeVlYtuUR8R1J6cD6IQUVcK1V/hG4TMFuTaB4uTIdHORMKSI9WJhickZCtMpaXOoNFiIEohK2OjjITpa6amQ4yDbEfVq++lRI8G72ACcZCVJDBzCimzGDG3wDE0JW5xq3bPTvR3xHSeZjVY9PR5uln60Rh60Hue+As8tz0YfY1+Jj6Y/yc/tHMAvyKgBwFHEXDqFkQbyGcXQob6IDgklq4jJHUWM6uQ2YrR476MjXh5FyiopEuS/lKPUoGRJh6U1VTKRJapprUjCWjhbHuuZUx1Qny+H/jQ6E+m2okpVNnXEFGlUqU8LVm12FWtWTFOHdvW6lWtYqGPJli13Fm3ai2vftf3wtaeyt3/o8rhmdxLJuN+8GTo7hMrBtqVy8cVnJMdgu0gW5411mOOjx0T8ZbV8FXPVyDI1P/XclDNMyuxI0zB9CfVR1U5Nixb5+mNs2axXq56NEbdD3QN5964tlLRvgMPxFad3HDnw1pSTw3O+cDn06MCnf7N+Xbr27bWxJ+XO2rvA6uBvL2f+WHzBAgA7);width:82px;height:133px;left:837px;top:2px;z-index:2;background-repeat: no-repeat; margin: 0px; padding: 0px; ">
-                        </div>
+                        <div class="movable sticker s_hw08_webstr" style="left: 837px; top: 2px; z-index: 2; background-image:url(data:image/gif;base64,R0lGODlhUACEAJECAMjIyKenp////wAAACH5BAEAAAIALAAAAABQAIQAAAL/jI6py+0PozCy2osRzbz77YXiA47mWZ5qmK7u1b4yFM82U9/6tPdL7psBg64hUWU8opS9JJP13DmjnCkVY73CtLIsN+L90sSrMBl3RqZN5rXGPWrD5W56HQ7Fd+xr/tlPBhiot0dYZcgBgIihuGjR6Fgh+AUZCVFpSZIZgbm50OmZAADqGaBIamn6FjrRiUqoKoD5OocJMqkT+ymKqNsAScsVkNSIS1XM+sOTrABgfDXMrCyd8AxNXY29qr2sbR31Dc7djR3+ZK6EfqS+Ps4e9A7vPu8tW34QvLiRbzhsOsoPT4qAd6ZtqkFwkIOEX4DEiyOBIRVi+iw8PHRBYjtG3Xq8XJTkQaOUECJvyPnYapQpfyZKvuDjsoyKmEtW0BQxadREGafO8bR3c8tPZPJm9MQHDxcwBEElRLPJlFdSP5BKqKPwlOSbWeg2ZE209cdXIROwhiHayazJFGM5batkwOukpy3aLjwAAi7eaje/1rA7Le82cq26kMhBVKrVH03t0YiBdVddHE2N+No7OQYpnS2dFt5LOKoDhDSDeVUUd/SlB5xDemZ6FM1q1iVNr2otmzWns2BAw25gJJ8zsJc2swUZ0coQWsOzRbQ4JQdgBVmdRE/y1/fj0JpgBCgAADs=);width:80px;height:132px;left:3px;top:1224px;z-index:1;background-repeat: no-repeat; margin: 0px; padding: 0px; "></div>
+                        <div class="movable sticker s_hw08_websbr" style="left: 839px; top: 1224px; z-index: 3; background-image:url(data:image/gif;base64,R0lGODlhUACEAJECAMjIyKenp////wAAACH5BAEAAAIALAAAAABQAIQAAAL/lI+py+0PRYi02osm3rzrDobOJ5amdKYiqbYV68YPLNcKbed4bu+87Pu1gkIVsXg6IldLnrIJekI30immarVgs5EtF+L9jsSpMHlhPifSagO7jYKH3mp6XT7He/R7PtV/BRgoqEX4YniI2KUIAcDY+PjgGMlgdzZJuYCZmcGp6amwCQog6ukIYMn1gWoamrokOsn6SMIya7hZanALiKmLwKun8XvzarQL6haXHEBMa5wFHZ18IG1lPYXdpL1NXe29TM29NF5Ubg4eDnouxP7jrpMOH+/tOC8zee+CqZ9CShogYKs1nGj0C0HsYAdnCv+MQeTsGy4KDSkm8hPxRq9B3cIcysnYoGKoKHLSiES2IiCqf/dALiLj8iWXmBazkBpi5ZSLeTppXmyHzOfPHL4ECB2K70DRIdxyKTUyjsWqJAJ1xFp2dI0GbAFh2Hvq4YO1ql6VGeVAdgK0qihI8AP7AgbbE7y2Aut0lqJBN3SC1YIb58hcgtXMBFM3TGPeSj7sHFanrJRdNESyJrj5CQ3ktq5kLkzo4Ndko2ojWDbqLOKO0rcqf5YEpsGpTUeONoM0I3Q+iaGvgASJA7NE1y9cKpH7S7jsuBWMr4mYUbCUJ2KlPxxRZbqE42Y1PygAADs=);width:80px;height:132px;left:839px;z-index:3;top:1228px;background-repeat: no-repeat; margin: 0px; padding: 0px; "></div>
+                        <div class="movable sticker s_hw08_webstl" style="left: 2px; top: 2px; z-index: 4; background-image:url(data:image/gif;base64,R0lGODlhUgCFAJECAMjIyKenpwAAAAAAACH5BAEAAAIALAAAAABSAIUAAAL/TISpm8ffHGRSKjuRyQ/zs3HaCHlZKJJpZVKtmmovA8RYUGf5GS+4DfTtFoAhxNgT/ETIztHomCGavaVONCuqpAJqUnv9TGpg2Dg59nbFJWW3wkTrvNm2ewpKqeVlYtuUR8R1J6cD6IQUVcK1V/hG4TMFuTaB4uTIdHORMKSI9WJhickZCtMpaXOoNFiIEohK2OjjITpa6amQ4yDbEfVq++lRI8G72ACcZCVJDBzCimzGDG3wDE0JW5xq3bPTvR3xHSeZjVY9PR5uln60Rh60Hue+As8tz0YfY1+Jj6Y/yc/tHMAvyKgBwFHEXDqFkQbyGcXQob6IDgklq4jJHUWM6uQ2YrR476MjXh5FyiopEuS/lKPUoGRJh6U1VTKRJapprUjCWjhbHuuZUx1Qny+H/jQ6E+m2okpVNnXEFGlUqU8LVm12FWtWTFOHdvW6lWtYqGPJli13Fm3ai2vftf3wtaeyt3/o8rhmdxLJuN+8GTo7hMrBtqVy8cVnJMdgu0gW5411mOOjx0T8ZbV8FXPVyDI1P/XclDNMyuxI0zB9CfVR1U5Nixb5+mNs2axXq56NEbdD3QN5964tlLRvgMPxFad3HDnw1pSTw3O+cDn06MCnf7N+Xbr27bWxJ+XO2rvA6uBvL2f+WHzBAgA7);width:82px;height:133px;left:837px;top:2px;z-index:2;background-repeat: no-repeat; margin: 0px; padding: 0px; "></div>
 
                     </div>
                     <div id="mypage-ad">
@@ -462,13 +432,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                 <div class="ad-container">
                                     {% if (user.hasClubSubscription() == false) %}
                                     {% if (editMode == true) %}
-                                    <a href="{{ site.sitePath }}/club.php"><img
-                                                src="{{ site.staticContentPath }}/web-gallery/album1/hc_habbohome_banner_holo.png"
-                                                id="galleryImage" border="0" alt="hc habbohome banner holo"></a>
+                                    <a href="{{ site.sitePath }}/club.php"><img src="{{ site.staticContentPath }}/web-gallery/album1/hc_habbohome_banner_holo.png" id="galleryImage" border="0" alt="hc habbohome banner holo"></a>
                                     {% else %}
-                                    <a href="{{ site.sitePath }}/club.php"><img
-                                                src="{{ site.staticContentPath }}/c_images/banners/160x600/{{ homeBannerAd }}"
-                                                id="galleryImage" border="0" alt="hc habbohome banner holo"></a>
+                                    <a href="{{ site.sitePath }}/club.php"><img src="{{ site.staticContentPath }}/c_images/banners/160x600/{{ homeBannerAd }}" id="galleryImage" border="0" alt="hc habbohome banner holo"></a>
                                     {% endif %}
                                     {% endif %}
                                 </div>
@@ -507,9 +473,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
 <div id="edit-menu" class="menu">
     <div class="menu-header">
-        <div class="menu-exit" id="edit-menu-exit"><img
-                    src="{{ site.staticContentPath }}/web-gallery/images/dialogs/menu-exit.gif" alt="" width="11"
-                    height="11"/></div>
+        <div class="menu-exit" id="edit-menu-exit">
+            <img src="{{ site.staticContentPath }}/web-gallery/images/dialogs/menu-exit.gif" alt="" width="11" height="11"/>
+        </div>
         <h3>Edit</h3>
 
     </div>
@@ -538,8 +504,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                     <p>Warning! If you click 'Remove', the note will be permanently deleted.</p>
                 </div>
                 <div id="rating-edit-menu">
-                    <input type="button" id="ratings-reset-link"
-                           value="Reset rating"/>
+                    <input type="button" id="ratings-reset-link" value="Reset rating"/>
                 </div>
                 <div id="highscorelist-edit-menu" style="display:none">
                     <select id="highscorelist-game">
@@ -608,8 +573,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
         <div id="guestbook-form-tab">
             <form method="post" id="guestbook-form">
                 <p>
-                    Note: the message length must not exceed 200 characters <input type="hidden" name="ownerId"
-                                                                                   value="1"/>
+                    Note: the message length must not exceed 200 characters
+                    <input type="hidden" name="ownerId" value="1"/>
                 </p>
                 <div>
                     <textarea cols="15" rows="5" name="message" id="guestbook-message"></textarea>
@@ -633,17 +598,14 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div id="linktool-scope">
                             <label for="linktool-query-input">Create link:</label>
                             <input type="radio" name="scope" class="linktool-scope" value="1" checked="checked"/>Habbos
-                            <input type="radio" name="scope" class="linktool-scope" value="2"/>Rooms <input type="radio"
-                                                                                                            name="scope"
-                                                                                                            class="linktool-scope"
-                                                                                                            value="3"/>Groups
+                            <input type="radio" name="scope" class="linktool-scope" value="2"/>Rooms
+                            <input type="radio" name="scope" class="linktool-scope" value="3"/>Groups
                         </div>
                         <input id="linktool-query" type="text" name="query" value=""/>
                         <a href="#" class="new-button" id="linktool-find"><b>Find</b><i></i></a>
                         <div class="clear" style="height: 0;"><!-- --></div>
 
-                        <div id="linktool-results" style="display: none">
-                        </div>
+                        <div id="linktool-results" style="display: none"></div>
                         <script type="text/javascript">
                             linkTool = new LinkTool(bbcodeToolbar.textarea);
                         </script>
@@ -681,8 +643,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
     <div class="box-tabs-container">
         <ul class="box-tabs">
-            <li class="selected" id="group-settings-link-group"><a href="#">Group settings</a><span
-                        class="tab-spacer"></span></li>
+            <li class="selected" id="group-settings-link-group">
+                <a href="#">Group settings</a><span class="tab-spacer"></span></li>
             <li id="group-settings-link-forum"><a href="#">Forum settings</a><span class="tab-spacer"></span></li>
             <li id="group-settings-link-room"><a href="#">Room settings</a><span class="tab-spacer"></span></li>
         </ul>
@@ -690,8 +652,9 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
     <a class="topdialog-exit" href="#" id="dialog-group-settings-exit">X</a>
     <div class="topdialog-body" id="dialog-group-settings-body">
-        <p style="text-align:center"><img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif"
-                                          alt="" width="29" height="6"/></p>
+        <p style="text-align:center">
+            <img src="{{ site.staticContentPath }}/web-gallery/images/progress_bubbles.gif" alt="" width="29" height="6"/>
+        </p>
     </div>
 </div>
 
@@ -705,8 +668,8 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
 
     <div class="box-tabs-container">
         <ul class="box-tabs">
-            <li class="selected" id="group-memberlist-link-members"><a href="#">Members</a><span
-                        class="tab-spacer"></span></li>
+            <li class="selected" id="group-memberlist-link-members">
+                <a href="#">Members</a><span class="tab-spacer"></span></li>
             <li id="group-memberlist-link-pending"><a href="#">Pending members</a><span class="tab-spacer"></span></li>
         </ul>
     </div>
@@ -720,20 +683,16 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
         </div>
         <div id="group-memberlist-members" style="clear: both"></div>
         <div id="group-memberlist-members-buttons" class="clearfix">
-            <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-give-rights"><b>Give
-                    rights</b><i></i></a>
-            <a href="#" class="new-button group-memberlist-button-disabled"
-               id="group-memberlist-button-revoke-rights"><b>Revoke rights</b><i></i></a>
+            <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-give-rights"><b>Give rights</b><i></i></a>
+            <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-revoke-rights"><b>Revoke rights</b><i></i></a>
             <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-remove"><b>Remove</b><i></i></a>
-            <a href="#" class="new-button group-memberlist-button"
-               id="group-memberlist-button-close"><b>Close</b><i></i></a>
+            <a href="#" class="new-button group-memberlist-button" id="group-memberlist-button-close"><b>Close</b><i></i></a>
         </div>
         <div id="group-memberlist-pending" style="clear: both"></div>
         <div id="group-memberlist-pending-buttons" class="clearfix">
             <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-accept"><b>Accept</b><i></i></a>
             <a href="#" class="new-button group-memberlist-button-disabled" id="group-memberlist-button-decline"><b>Reject</b><i></i></a>
-            <a href="#" class="new-button group-memberlist-button"
-               id="group-memberlist-button-close2"><b>Close</b><i></i></a>
+            <a href="#" class="new-button group-memberlist-button" id="group-memberlist-button-close2"><b>Close</b><i></i></a>
         </div>
     </div>
 </div>

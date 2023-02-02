@@ -8,10 +8,8 @@
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
     </script>
-    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico"
-          type="image/vnd.microsoft.icon"/>
-    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS"
-          href="{{ site.sitePath }}/articles/rss.xml"/>
+    <link rel="shortcut icon" href="{{ site.staticContentPath }}/web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ site.siteName }}: RSS" href="{{ site.sitePath }}/articles/rss.xml"/>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs2.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/visual.js" type="text/javascript"></script>
     <script src="{{ site.staticContentPath }}/web-gallery/static/js/libs.js" type="text/javascript"></script>
@@ -42,10 +40,8 @@
     </script>
 
 
-    <meta name="description"
-          content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
-    <meta name="keywords"
-          content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
+    <meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE {{ site.siteName }} today!"/>
+    <meta name="keywords" content="{{ site.siteName }}, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele"/>
 
     <!--[if IE 8]>
 <link rel="stylesheet" href="{{ site.staticContentPath }}/web-gallery/v2/styles/ie8.css" type="text/css" />
@@ -107,24 +103,21 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                         <div id="tx-log">
 
                             <div class="box-content">
-                                This is an overview of your credit transaction history. They are updated as soon as the
-                                transaction is made.
+                                This is an overview of your credit transaction history. They are updated as soon as the transaction is made.
                             </div>
 
                             <ul class="tx-navi">
                                 {% if canGoNext %}
-                                <li class="next" id="tx-navi-{{ futureYear }}-{{ futureNumericalMonth }}-01"
-                                    title="{{ futureMonth }} {{ futureYear }}"><a
-                                            href="{{ site.sitePath }}/credits/history?period={{ futureYear }}-{{ futureNumericalMonth }}-01">Next
-                                        &raquo</a></li>
+                                <li class="next" id="tx-navi-{{ futureYear }}-{{ futureNumericalMonth }}-01" title="{{ futureMonth }} {{ futureYear }}">
+                                    <a href="{{ site.sitePath }}/credits/history?period={{ futureYear }}-{{ futureNumericalMonth }}-01">Next &raquo</a>
+                                </li>
                                 {% else %}
                                 <li class="next">Next &raquo</li>
                                 {% endif %}
 
-                                <li class="prev" id="tx-navi-{{ previousYear }}-{{ previousNumericalMonth }}-01"
-                                    title="{{ previousMonth }} {{ previousYear }}"><a
-                                            href="{{ site.sitePath }}/credits/history?period={{ previousYear }}-{{ previousNumericalMonth }}-01">&laquo
-                                        Previous</a></li>
+                                <li class="prev" id="tx-navi-{{ previousYear }}-{{ previousNumericalMonth }}-01" title="{{ previousMonth }} {{ previousYear }}">
+                                    <a href="{{ site.sitePath }}/credits/history?period={{ previousYear }}-{{ previousNumericalMonth }}-01">&laquo Previous</a>
+                                </li>
                                 <li class="now">{{ currentMonth }} {{ currentYear }}</li>
                             </ul>
 
@@ -192,23 +185,20 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
                                     <li class="even icon-purse">
                                         <div>You Currently Have:</div>
                                         <span class="purse-balance-amount">{{ playerDetails.credits }} Coins</span>
-                                        <div class="purse-tx"><a href="{{ site.sitePath }}/credits/history">Account
-                                                transactions</a></div>
+                                        <div class="purse-tx">
+                                            <a href="{{ site.sitePath }}/credits/history">Account transactions</a></div>
                                     </li>
 
                                     <li class="odd">
 
                                         <div class="box-content">
                                             <div>Enter voucher code (without spaces):</div>
-                                            <input type="text" name="voucherCode" value=""
-                                                   id="purse-habblet-redeemcode-string" class="redeemcode"/>
-                                            <a href="#" id="purse-redeemcode-button" class="new-button purse-icon"
-                                               style="float:left"><b><span></span>Enter</b><i></i></a>
+                                            <input type="text" name="voucherCode" value="" id="purse-habblet-redeemcode-string" class="redeemcode"/>
+                                            <a href="#" id="purse-redeemcode-button" class="new-button purse-icon" style="float:left"><b><span></span>Enter</b><i></i></a>
                                         </div>
                                     </li>
                                 </ul>
-                                <div id="purse-redeem-result">
-                                </div>
+                                <div id="purse-redeem-result"></div>
                             </form>
                         </div>
                         {% endif %}
@@ -248,8 +238,7 @@ body { behavior: url({{ site.staticContentPath }}/web-gallery/js/csshover.htc); 
             <!--[if lt IE 7]>
             <script type="text/javascript">
                 Pngfix.doPngImageFix();
-            </script>
-            <![endif]-->
+            </script><![endif]-->
         </div>
 
     </div>
