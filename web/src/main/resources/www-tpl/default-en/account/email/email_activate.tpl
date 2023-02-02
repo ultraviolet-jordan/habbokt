@@ -7,15 +7,13 @@
 <p>Here are your user details:</p>
 <p style="margin-left: 30px;"><b>{{ site.siteName}} name:</b> {{ playerName }}</p>
 <p style="margin-left: 30px;"><b>Email:</b> {{ playerEmail }}</p>
-<p>Keep this information safe, you need your username and email to reset your password if you forget it.</br>
+<p>Keep this information safe, you need your username and email to reset your password if you forget it.</p>
 <hr>
 <p>Here's some other stuff you may want to do:</p>
-</ul>
 <li style="padding-left: 30px;"><a style="color: #66b3ff" href="{{ site.sitePath }}/profile?tab=2">Change account
         settings</a>.
 </li>
 <li style="padding-left: 30px;"><a style="color: #66b3ff" href="{{ site.sitePath }}/?emaildelete">Completely delete this
         email address from your user profile</a>.
 </li>
-</ul>
 {% include "base/email_footer.tpl" %}
