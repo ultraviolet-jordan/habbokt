@@ -38,37 +38,27 @@ object PageModule : KotlinModule() {
 
         bind<HttpClient>().toProvider<HttpClientProvider>()
 
-        with(KotlinMultibinder.newSetBinder<PageRouting>(kotlinBinder)) {
-            // Account
-            addBinding().to<AccountSubmitPageRouting>()
-            addBinding().to<AccountLogoutPageRouting>()
-            addBinding().to<AccountPasswordForgotPageRouting>()
-            // Asset
-            addBinding().to<AssetPageRouting>()
-            // Captcha
-            addBinding().to<CaptchaRouting>()
-            // Client
-            addBinding().to<ClientPageRouting>()
-            // Export
-            addBinding().to<ExportPageRouting>()
-            // Habblet
-            addBinding().to<NameCheckAjaxRouting>()
-            // Habboimaging
-            addBinding().to<AvatarImageRouting>()
-            // Help
-            addBinding().to<FaqPageRouting>()
-            // Index
-            addBinding().to<IndexPageRouting>()
-            // Me
-            addBinding().to<MePageRouting>()
-            // Register
-            addBinding().to<RegisterPageRouting>()
-            // Security
-            addBinding().to<SecurityCheckPageRouting>()
-            // Test
-            addBinding().to<TestPageRouting>()
-            // Welcome
-            addBinding().to<WelcomePageRouting>()
+        KotlinMultibinder.newSetBinder<PageRouting>(kotlinBinder).apply {
+            bindRouting<AccountSubmitPageRouting>()
+            bindRouting<AccountLogoutPageRouting>()
+            bindRouting<AccountPasswordForgotPageRouting>()
+            bindRouting<AssetPageRouting>()
+            bindRouting<CaptchaRouting>()
+            bindRouting<ClientPageRouting>()
+            bindRouting<ExportPageRouting>()
+            bindRouting<NameCheckAjaxRouting>()
+            bindRouting<AvatarImageRouting>()
+            bindRouting<FaqPageRouting>()
+            bindRouting<IndexPageRouting>()
+            bindRouting<MePageRouting>()
+            bindRouting<RegisterPageRouting>()
+            bindRouting<SecurityCheckPageRouting>()
+            bindRouting<TestPageRouting>()
+            bindRouting<WelcomePageRouting>()
         }
+    }
+
+    private inline fun <reified P : PageRouting> KotlinMultibinder<PageRouting>.bindRouting() {
+        addBinding().to<P>()
     }
 }
