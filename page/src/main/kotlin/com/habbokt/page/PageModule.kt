@@ -3,6 +3,7 @@ package com.habbokt.page
 import com.habbokt.argon2.Argon2Module
 import com.habbokt.dao.DAOModule
 import com.habbokt.page.account.logout.AccountLogoutPageRouting
+import com.habbokt.page.account.password.forgot.AccountPasswordForgotPageRouting
 import com.habbokt.page.account.submit.AccountSubmitPageRouting
 import com.habbokt.page.asset.AssetPageRouting
 import com.habbokt.page.captcha.CaptchaRouting
@@ -40,6 +41,7 @@ object PageModule : KotlinModule() {
             // Account
             addBinding().to<AccountSubmitPageRouting>()
             addBinding().to<AccountLogoutPageRouting>()
+            addBinding().to<AccountPasswordForgotPageRouting>()
             // Asset
             addBinding().to<AssetPageRouting>()
             // Captcha
