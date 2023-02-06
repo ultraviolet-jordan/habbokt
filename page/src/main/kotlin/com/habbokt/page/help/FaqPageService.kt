@@ -17,6 +17,6 @@ class FaqPageService @Inject constructor(
     private val page: FaqPage
 ) : PageService<FaqPageRequest, Html, None>(
     get = {
-        html(page, compiler)
+        page.html(this, compiler)
     }
 )

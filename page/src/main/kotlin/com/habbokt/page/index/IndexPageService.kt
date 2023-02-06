@@ -17,6 +17,6 @@ class IndexPageService @Inject constructor(
     private val page: IndexPage
 ) : PageService<IndexPageRequest, Html, None>(
     get = {
-        html(page, compiler)
+        page.html(this, compiler)
     }
 )

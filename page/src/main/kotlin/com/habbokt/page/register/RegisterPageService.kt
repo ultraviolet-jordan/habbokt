@@ -25,7 +25,7 @@ class RegisterPageService @Inject constructor(
     private val argon2Service: Argon2Service
 ) : PageService<RegisterPageRequest, Html, Redirect>(
     get = {
-        html(page, compiler)
+        page.html(this, compiler)
     },
 
     post = {
@@ -54,7 +54,7 @@ class RegisterPageService @Inject constructor(
                     userId = it.id.toString()
                 )
             )
-            redirect("/me") // TODO /welcome
-        } ?: redirect("/register")
+            "/me".redirect() // TODO /welcome
+        } ?: "/register".redirect()
     }
 )

@@ -59,21 +59,14 @@ private fun ApplicationCall.pngHeader(contentLength: Int) {
     response.header(HttpHeaders.ContentLength, contentLength)
 }
 
-suspend inline fun <reified T : PageTemplate, reified R : PageRequest> R.html(page: Page<T, R>, compiler: Compiler): Html = Html(
-    page.template(this).let {
-        if (it.path.isEmpty()) "" else compiler.compile(it.path, it.filterValues { v -> v != null })
-    }
-)
+suspend inline fun <reified T : PageTemplate, reified R : PageRequest> Page<T, R>.html(request: R, compiler: Compiler): Html = template(request)
+    .let { if (it.path.isEmpty()) "" else compiler.compile(it.path, it.filterValues { v -> v != null }) }
+    .let(::Html)
 
-fun png(image: BufferedImage): Png = Png(
-    try {
-        ByteArrayOutputStream().apply {
-            ImageIO.write(image, "png", this)
-        }.toByteArray()
-    } catch (exception: Exception) {
-        throw RuntimeException("RuntimeException when writing the image to the buffer.")
-    }
-)
+fun BufferedImage.png(): Png = ByteArrayOutputStream()
+    .apply { ImageIO.write(this@png, "png", this) }
+    .toByteArray()
+    .let(::Png)
 
-fun ajax(json: String): Ajax = Ajax(json)
-fun redirect(path: String): Redirect = Redirect(path)
+fun String.ajax(): Ajax = Ajax(this)
+fun String.redirect(): Redirect = Redirect(this)

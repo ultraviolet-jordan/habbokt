@@ -28,19 +28,20 @@ class CaptchaService : BlankPageService<CaptchaRequest, Png, None>(
             Font("Arial", Font.BOLD, 45)
         )
 
-        val captcha = Captcha
+        Captcha
             .Builder(200, 50)
             .addText(DefaultWordRenderer(colors, fonts))
             .build()
-
-        // Modify or create new captcha session when generating a new captcha to the user.
-        val captchaSession = session.get<CaptchaSession>()
-        if (captchaSession == null) {
-            session.set(CaptchaSession(captcha.answer))
-        } else {
-            session.set(captchaSession.copy(captcha = captcha.answer))
-        }
-
-        png(captcha.image)
+            .also {
+                // Modify or create new captcha session when generating a new captcha to the user.
+                val captchaSession = session.get<CaptchaSession>()
+                if (captchaSession == null) {
+                    session.set(CaptchaSession(it.answer))
+                } else {
+                    session.set(captchaSession.copy(captcha = it.answer))
+                }
+            }
+            .image
+            .png()
     }
 )

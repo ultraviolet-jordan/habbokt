@@ -11,6 +11,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.http.URLProtocol
 import io.ktor.http.path
+import java.awt.image.BufferedImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayInputStream
@@ -39,10 +40,8 @@ class AvatarImageService @Inject constructor(
             }
         }
 
-        val image = withContext(Dispatchers.IO) {
+        withContext(Dispatchers.IO) {
             ImageIO.read(ByteArrayInputStream(response.body<ByteArray>()))
-        }
-
-        png(image)
+        }.let(BufferedImage::png)
     }
 )

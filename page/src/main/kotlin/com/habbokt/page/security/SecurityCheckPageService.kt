@@ -17,6 +17,6 @@ class SecurityCheckPageService @Inject constructor(
     private val page: SecurityCheckPage
 ) : PageService<SecurityCheckPageRequest, Html, None>(
     get = {
-        html(page, compiler)
+        page.html(this, compiler)
     }
 )

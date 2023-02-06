@@ -17,6 +17,6 @@ class WelcomePageService @Inject constructor(
     private val page: WelcomePage
 ) : PageService<WelcomePageRequest, Html, None>(
     get = {
-        html(page, compiler)
+        page.html(this, compiler)
     }
 )

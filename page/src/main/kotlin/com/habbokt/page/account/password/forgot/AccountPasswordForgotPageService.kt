@@ -17,6 +17,6 @@ class AccountPasswordForgotPageService @Inject constructor(
     private val page: AccountPasswordForgotPage
 ) : PageService<AccountPasswordForgotPageRequest, Html, None>(
     get = {
-        html(page, compiler)
+        page.html(this, compiler)
     }
 )

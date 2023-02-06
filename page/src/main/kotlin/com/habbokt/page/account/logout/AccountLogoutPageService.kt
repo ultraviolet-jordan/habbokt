@@ -20,6 +20,6 @@ class AccountLogoutPageService @Inject constructor(
 ) : PageService<AccountLogoutPageRequest, Html, None>(
     get = {
         session.clear<UserSession>()
-        html(page, compiler)
+        page.html(this, compiler)
     }
 )

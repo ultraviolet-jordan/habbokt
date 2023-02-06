@@ -17,6 +17,6 @@ class ClientPageService @Inject constructor(
     private val page: ClientPage
 ) : PageService<ClientPageRequest, Html, None>(
     get = {
-        html(page, compiler)
+        page.html(this, compiler)
     }
 )

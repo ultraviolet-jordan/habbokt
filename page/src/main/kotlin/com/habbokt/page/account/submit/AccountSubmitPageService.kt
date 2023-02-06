@@ -34,8 +34,8 @@ class AccountSubmitPageService @Inject constructor(
                     userId = it.id.toString()
                 )
             )
-            redirect("/security_check")
-        } ?: redirect("/?page=submit&username=$username&rememberme=$rememberMe")
+            "/security_check".redirect()
+        } ?: "/?page=submit&username=$username&rememberme=$rememberMe".redirect()
     }
 )
 
