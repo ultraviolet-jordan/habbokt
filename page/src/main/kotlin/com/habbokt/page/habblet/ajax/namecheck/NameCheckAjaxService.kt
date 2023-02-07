@@ -16,7 +16,7 @@ class NameCheckAjaxService @Inject constructor(
     private val playersService: PlayersService
 ) : BlankPageService<NameCheckAjaxRequest, None, Ajax>(
     post = {
-        "{\"registration_name\":\"${playersService.checkStatus(name).string}\"}".ajax()
+        ("registration_name" to playersService.checkStatus(name).string).ajax()
     }
 )
 

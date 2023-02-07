@@ -68,5 +68,5 @@ fun BufferedImage.png(): Png = ByteArrayOutputStream()
     .toByteArray()
     .let(::Png)
 
-fun String.ajax(): Ajax = Ajax(this)
+fun Pair<String, String>.ajax(): Ajax = Ajax("{\"$first\":\"$second\"}")
 fun String.redirect(): Redirect = Redirect(this)
