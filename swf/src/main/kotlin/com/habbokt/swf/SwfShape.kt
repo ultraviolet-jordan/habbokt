@@ -5,7 +5,6 @@ import com.flagstone.transform.shape.DefineShape
 /**
  * @author Jordan Abraham
  */
-@JvmInline
-value class SwfShape(
+data class SwfShape(
     val defineShape: DefineShape
 )

@@ -1,5 +1,6 @@
 package com.habbokt.swf
 
+import com.google.inject.Provider
 import com.habbokt.swf.avatarsbig.AvatarsBigSwf
 import com.habbokt.swf.avatarsbig.AvatarsBigSwfMovie
 import com.habbokt.swf.avatarsbig.AvatarsBigSwfMovieProvider
@@ -23,17 +24,20 @@ import dev.misfitlabs.kotlinguice4.KotlinModule
  */
 object SwfModule : KotlinModule() {
     override fun configure() {
-        // Avatars big swf.
-        bind<AvatarsBigSwfMovie>().toProvider<AvatarsBigSwfMovieProvider>()
-        bind<AvatarsBigSwf>().toProvider<AvatarsBigSwfProvider>()
-        // Badge editor swf.
-        bind<BadgeEditorSwfMovie>().toProvider<BadgeEditorSwfMovieProvider>()
-        bind<BadgeEditorSwf>().toProvider<BadgeEditorSwfProvider>()
-        // Habbo registration swf.
-        bind<HabboRegistrationSwfMovie>().toProvider<HabboRegistrationSwfMovieProvider>()
-        bind<HabboRegistrationSwf>().toProvider<HabboRegistrationSwfProvider>()
-        // Human body swf.
-        bind<HumanBodySwfMovie>().toProvider<HumanBodySwfMovieProvider>()
-        bind<HumanBodySwf>().toProvider<HumanBodySwfProvider>()
+        bindProvider<AvatarsBigSwfMovie, AvatarsBigSwfMovieProvider>()
+        bindProvider<AvatarsBigSwf, AvatarsBigSwfProvider>()
+
+        bindProvider<BadgeEditorSwfMovie, BadgeEditorSwfMovieProvider>()
+        bindProvider<BadgeEditorSwf, BadgeEditorSwfProvider>()
+
+        bindProvider<HabboRegistrationSwfMovie, HabboRegistrationSwfMovieProvider>()
+        bindProvider<HabboRegistrationSwf, HabboRegistrationSwfProvider>()
+
+        bindProvider<HumanBodySwfMovie, HumanBodySwfMovieProvider>()
+        bindProvider<HumanBodySwf, HumanBodySwfProvider>()
+    }
+
+    private inline fun <reified T, reified P : Provider<T>> bindProvider() {
+        bind<T>().toProvider<P>()
     }
 }
