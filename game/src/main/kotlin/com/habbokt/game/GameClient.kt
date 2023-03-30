@@ -9,14 +9,15 @@ import com.habbokt.api.packet.PacketHandler
 import com.habbokt.api.packet.ProxyPacket
 import com.habbokt.api.packet.ProxyPacketHandler
 import com.habbokt.packet.asm.handshake.clienthello.ClientHelloPacket
-import com.habbokt.packet.buf.base64
+import com.habbokt.packet.buf.getPacketBodySize
+import com.habbokt.packet.buf.getPacketId
+import com.habbokt.packet.buf.putPacketId
 import io.ktor.network.sockets.Socket
 import io.ktor.network.sockets.SocketAddress
 import io.ktor.network.sockets.isClosed
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
 import io.ktor.server.application.ApplicationEnvironment
-import io.ktor.utils.io.core.readBytes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.time.withTimeout
@@ -78,12 +79,12 @@ class GameClient constructor(
             readChannel.discard(readChannel.availableForRead.toLong())
             return null
         }
-        if (readChannel.availableForRead < HEADER_SIZE_BYTES) {
+        if (readChannel.availableForRead < 5) {
             readChannel.awaitContent()
         }
-        val header = readChannel.readPacket(HEADER_SIZE_BYTES)
+        val header = readChannel.readPacket(5)
         // The size of the packet - the 2 because the packet id is read after the size.
-        val size = (header.readBytes(BODY_SIZE_BYTES).base64() - ID_SIZE_BYTES).also {
+        val size = (header.getPacketBodySize() - 2).also {
             if (readChannel.availableForRead < it) {
                 readChannel.discard(readChannel.availableForRead.toLong())
                 header.discard(header.remaining)
@@ -91,7 +92,7 @@ class GameClient constructor(
                 return null
             }
         }
-        val id = header.readBytes(ID_SIZE_BYTES).base64()
+        val id = header.getPacketId()
         header.release()
 
         // Read a packet of the number of bytes from the buffer according to the read packet size.
@@ -131,7 +132,7 @@ class GameClient constructor(
         val assembler = assemblers[packet::class] ?: return
         try {
             writeChannelPool.apply {
-                put(assembler.id.base64()) // Put packet id.
+                putPacketId(assembler.id)
                 val position = position()
                 assembler.body.invoke(this, packet) // Put packet body.
                 val size = writeChannelPool.position() - position
@@ -175,21 +176,4 @@ class GameClient constructor(
 
     override fun connected(): Boolean = !socket.isClosed
     override fun socketAddress(): SocketAddress = remoteAddress
-
-    private companion object {
-        /**
-         * The number of bytes used to represent a packet body.
-         */
-        const val BODY_SIZE_BYTES = 3
-
-        /**
-         * The number of bytes used to represent a packet id.
-         */
-        const val ID_SIZE_BYTES = 2
-
-        /**
-         * The number of bytes used to represent a packet header.
-         */
-        const val HEADER_SIZE_BYTES = BODY_SIZE_BYTES + ID_SIZE_BYTES
-    }
 }
