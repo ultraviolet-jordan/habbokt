@@ -11,7 +11,7 @@ import com.habbokt.packet.buf.getString
 class GetInterstPacketDisassembler : PacketDisassembler<GetInterstPacket>(
     body = {
         GetInterstPacket(
-            parameter = getString(length = remaining.toInt()) // This packet reads a raw string from the buffer.
+            parameter = getString(length = it) // This packet reads a raw string from the buffer.
         )
     }
 )

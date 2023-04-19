@@ -8,7 +8,8 @@ import kotlin.math.abs
  */
 fun ByteBuffer.putPacketId(value: Int): ByteBuffer = putAsBase64(value)
 
-fun ByteBuffer.putIntHabbo(value: Int): ByteBuffer = putAsVl64(value)
+fun ByteBuffer.putIntHabbo(value: Int): ByteBuffer = putAsVl64(value.toLong())
+fun ByteBuffer.putLongHabbo(value: Long): ByteBuffer = putAsVl64(value)
 
 fun ByteBuffer.putStringHabbo(value: String): ByteBuffer {
     for (char in value) {
@@ -25,32 +26,34 @@ fun ByteBuffer.putString(value: String): ByteBuffer {
     return this
 }
 
-private fun ByteBuffer.putAsBase64(value: Int): ByteBuffer {
+private tailrec fun ByteBuffer.putAsBase64(
+    value: Int,
+    index: Int = 0
+): ByteBuffer {
     // Put 2 bytes into the buffer only.
-    for (index in 0 until 2) {
-        put((((value shr 6 * (1 - index)) and 0x3F) + 64).toByte())
-    }
-    return this
+    if (index == 2) return this
+    put((((value shr 6 * (1 - index)) and 0x3F) + 64).toByte())
+    return putAsBase64(value, index + 1)
 }
 
 private tailrec fun ByteBuffer.putAsVl64(
-    value: Int,
-    abs: Int = abs(value),
-    position: Int = position(), // The current position of this buffer used to track the prefix byte.
-    size: Int = 1 // Current number of bytes written.
+    value: Long,
+    abs: Long = abs(value),
+    prefixPosition: Int = position(), // The current position of this buffer used to track the prefix byte.
+    currentPosition: Int = 1 // Current number of bytes written.
 ): ByteBuffer {
-    if (size == 1) {
+    if (currentPosition == 1) {
         // Set prefix byte at this current position. This is only called the first iteration.
         put((64 + (abs and 3)).toByte())
     }
-    val nextByte = (abs shr 2) shr (6 * (size - 1))
-    if (nextByte != 0) {
+    val remainingBits = (abs shr 2) shr (6 * (currentPosition - 1))
+    if (remainingBits != 0L) {
         // Append a new byte to the buffer with the next 6 bits of the absolute value.
-        put((64 + (nextByte and 0x3F)).toByte())
-        return putAsVl64(value, abs, position, size + 1)
+        put((64 + (remainingBits and 0x3F)).toByte())
+        return putAsVl64(value, abs, prefixPosition, currentPosition + 1)
     }
     // Modify the prefix byte to include the size and sign of the integer.
-    val prefix = get(position).toInt()
-    put(position, (prefix or (size shl 3) or if (value >= 0) 0 else 4).toByte())
+    val prefix = get(prefixPosition).toInt()
+    put(prefixPosition, (prefix or (currentPosition shl 3) or if (value >= 0) 0 else 4).toByte())
     return this
 }

@@ -2,6 +2,7 @@ package com.habbokt.game
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import com.habbokt.api.client.Client
 import com.habbokt.api.threading.Synchronizer
 import io.ktor.server.application.ApplicationEnvironment
 import kotlinx.coroutines.CoroutineDispatcher
@@ -40,10 +41,10 @@ class GameSynchronizer @Inject constructor(
 
             val time = measureTime {
                 runBlocking(dispatcher) {
-                    // Asynchronously process all connected clients read pools.
-                    connectionPool.map { async { it.processReadPool() } }.awaitAll()
-                    // Asynchronously process all connected clients write pools.
-                    connectionPool.map { async { it.processWritePool() } }.awaitAll()
+                    if (connectionPool.isEmpty()) return@runBlocking
+                    // The dispatcher controls the parallelism.
+                    connectionPool.parallelStream().forEach(Client::processReadPool)
+                    connectionPool.parallelStream().forEach(Client::processWritePool)
                 }
             }
 

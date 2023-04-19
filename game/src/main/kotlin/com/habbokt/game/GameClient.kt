@@ -52,7 +52,8 @@ class GameClient constructor(
             writePacket(ClientHelloPacket())
             processWritePool()
             while (true) {
-                // Timeout to disconnect the client connection is nothing gets read.
+                // Timeout to disconnect the client connection if nothing gets read within 30 seconds.
+                // Suspends on awaitPacket until a packet is read from the client.
                 val packet = withTimeout(Duration.ofSeconds(30)) { awaitPacket() } ?: continue
                 // Get associated proxy handler with packet.
                 // We process proxy handlers on the client coroutine thread since these are suspended.
@@ -76,42 +77,28 @@ class GameClient constructor(
 
     override suspend fun awaitPacket(): Packet? {
         if (readChannel.isClosedForRead) {
-            readChannel.discard(readChannel.availableForRead.toLong())
             return null
         }
+        // 5 bytes are required to read a packet ID and SIZE.
         if (readChannel.availableForRead < 5) {
             readChannel.awaitContent()
         }
-        val header = readChannel.readPacket(5)
-        // The size of the packet - the 2 because the packet id is read after the size.
-        val size = (header.getPacketBodySize() - 2).also {
-            if (readChannel.availableForRead < it) {
-                readChannel.discard(readChannel.availableForRead.toLong())
-                header.discard(header.remaining)
-                header.release()
-                return null
-            }
+        val size = readChannel.getPacketBodySize() - 2
+        if (readChannel.availableForRead < size + 2) {
+            readChannel.discard(readChannel.availableForRead.toLong())
+            return null
         }
-        val id = header.getPacketId()
-        header.release()
-
-        // Read a packet of the number of bytes from the buffer according to the read packet size.
-        val body = readChannel.readPacket(size)
-
-        return disassemblers[id]
+        val packetId = readChannel.getPacketId()
+        return disassemblers[packetId]
             ?.body
-            ?.invoke(body)
+            ?.invoke(readChannel, size)
             ?.also {
-                // Require that the body was fully read from disassembler.
-                require(body.endOfInput)
-                body.release()
-                applicationEnvironment.log.info("Disassembled read packet: Id=$id, Size=$size, $it")
+                applicationEnvironment.log.info("Disassembled read packet: Id=$packetId, Size=$size, $it")
             }
             ?: run {
-                // Discard the body if the disassembler was not found for the packet.
-                body.discard(body.remaining)
-                body.release()
-                applicationEnvironment.log.info("Discarded read packet: Id=$id, Size=$size")
+                // Discard the size amount of bytes if the disassembler was not found for the packet.
+                readChannel.discard(size.toLong())
+                applicationEnvironment.log.info("Discarded read packet: Id=$packetId, Size=$size")
                 return@run null
             }
     }
@@ -131,14 +118,12 @@ class GameClient constructor(
     override fun writePacket(packet: Packet) {
         val assembler = assemblers[packet::class] ?: return
         try {
-            writeChannelPool.apply {
-                putPacketId(assembler.id)
-                val position = position()
-                assembler.body.invoke(this, packet) // Put packet body.
-                val size = writeChannelPool.position() - position
-                put(1) // Put end packet.
-                applicationEnvironment.log.info("Assembled write packet: Id=${assembler.id}, Size=$size, $packet")
-            }
+            writeChannelPool.putPacketId(assembler.id)
+            val position = writeChannelPool.position()
+            assembler.body.invoke(writeChannelPool, packet) // Put packet body.
+            val size = writeChannelPool.position() - position
+            writeChannelPool.put(1) // Put end packet.
+            applicationEnvironment.log.info("Assembled write packet: Id=${assembler.id}, Size=$size, $packet")
         } catch (exception: Exception) {
             close()
             applicationEnvironment.log.error(exception.stackTraceToString())

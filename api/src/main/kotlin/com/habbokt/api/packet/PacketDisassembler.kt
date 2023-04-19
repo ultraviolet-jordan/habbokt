@@ -1,10 +1,10 @@
 package com.habbokt.api.packet
 
-import io.ktor.utils.io.core.ByteReadPacket
+import io.ktor.utils.io.ByteReadChannel
 
 /**
  * @author Jordan Abraham
  */
 abstract class PacketDisassembler<out P : Packet>(
-    val body: ByteReadPacket.() -> @UnsafeVariance P
+    val body: suspend ByteReadChannel.(Int) -> @UnsafeVariance P
 )
