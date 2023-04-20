@@ -18,6 +18,8 @@ import io.ktor.network.sockets.isClosed
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
 import io.ktor.server.application.ApplicationEnvironment
+import io.ktor.utils.io.cancel
+import io.ktor.utils.io.close
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.time.withTimeout
@@ -40,11 +42,11 @@ class GameClient constructor(
     private val proxies: Map<KClass<*>, ProxyPacketHandler<Packet, ProxyPacket>>
 ) : Client {
     private val readChannel = socket.openReadChannel()
-    private val writeChannel = socket.openWriteChannel(autoFlush = true)
+    private val writeChannel = socket.openWriteChannel()
     private val readChannelPool = ArrayBlockingQueue<Pair<ProxyPacket, Client.(ProxyPacket) -> Unit>>(8, true)
     private val writeChannelPool = ByteBuffer.allocateDirect(4096)
     private val remoteAddress = socket.remoteAddress
-    private lateinit var connectedPlayer: Player
+    private var connectedPlayer: Player? = null
 
     override suspend fun accept() {
         try {
@@ -76,9 +78,7 @@ class GameClient constructor(
     }
 
     override suspend fun awaitPacket(): Packet? {
-        if (readChannel.isClosedForRead) {
-            return null
-        }
+        if (!connected()) return null
         // 5 bytes are required to read a packet ID and SIZE.
         if (readChannel.availableForRead < 5) {
             readChannel.awaitContent()
@@ -104,10 +104,9 @@ class GameClient constructor(
     }
 
     override fun processReadPool() {
-        if (!connected()) return
-        if (readChannelPool.isEmpty()) return
-        // Atomically removes all the elements from this queue. The queue will be empty after this call returns.
         try {
+            if (!connected() || readChannelPool.isEmpty()) return
+            // Atomically removes all the elements from this queue. The queue will be empty after this call returns.
             readChannelPool.onEach { it.second.invoke(this, it.first) }.clear()
         } catch (exception: Exception) {
             close()
@@ -116,8 +115,8 @@ class GameClient constructor(
     }
 
     override fun writePacket(packet: Packet) {
-        val assembler = assemblers[packet::class] ?: return
         try {
+            val assembler = assemblers[packet::class] ?: return
             writeChannelPool.putPacketId(assembler.id)
             val position = writeChannelPool.position()
             assembler.body.invoke(writeChannelPool, packet) // Put packet body.
@@ -131,13 +130,13 @@ class GameClient constructor(
     }
 
     override fun processWritePool() {
-        if (!connected()) return
-        if (writeChannel.isClosedForWrite) return // Don't process if the write channel is closed.
-        if (writeChannelPool.position() == 0) return // Don't process if nothing is written to the write pool.
         try {
+            if (!connected()) return
+            if (writeChannelPool.position() == 0) return // Don't process if nothing is written to the write pool.
             runBlocking(Dispatchers.IO) {
-                // Write channel auto flushes on this write call.
-                writeChannelPool.flip().also { writeChannel.writeAvailable(it) }.clear()
+                writeChannel.writeFully(writeChannelPool.flip())
+                writeChannel.flush()
+                writeChannelPool.clear()
             }
         } catch (exception: Exception) {
             close()
@@ -149,16 +148,17 @@ class GameClient constructor(
         this.connectedPlayer = GamePlayer(userId, client = this).also(Player::login)
     }
 
-    override fun player(): Player? = if (!::connectedPlayer.isInitialized) null else connectedPlayer
+    override fun player(): Player? = connectedPlayer
 
     override fun close() {
         if (!connectionPool.remove(this)) {
             applicationEnvironment.log.info("Disconnected client was not part of the connection pool: $remoteAddress")
         }
         applicationEnvironment.log.info("Disconnected client: $remoteAddress")
+        writeChannel.close()
         socket.close()
     }
 
-    override fun connected(): Boolean = !socket.isClosed
+    override fun connected(): Boolean = !socket.isClosed && !writeChannel.isClosedForWrite
     override fun socketAddress(): SocketAddress = remoteAddress
 }

@@ -9,7 +9,18 @@ import java.util.concurrent.ConcurrentHashMap
  */
 @Singleton
 class ConnectionPool : MutableSet<Client> by ConcurrentHashMap.newKeySet() {
-    private var accepting = true
-    fun dropAll(): ConnectionPool = onEach(Client::close).also { accepting = false }
-    fun accepting(): Boolean = accepting
+    /**
+     * This property is to check if this connection pool is accepting new connections or not.
+     */
+    var closed = false
+        private set
+
+    /**
+     * Close all clients inside of this connection pool and set the accepting to false so this pool no longer accepts connections.
+     */
+    fun dropAllAndCloseAndClear() {
+        onEach(Client::close)
+            .also { closed = true }
+            .clear()
+    }
 }

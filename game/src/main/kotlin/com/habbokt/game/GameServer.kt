@@ -25,7 +25,7 @@ class GameServer @Inject constructor(
 ) : Server {
     override fun bind() = runBlocking {
         applicationEnvironment.log.info("Responding at ${applicationEnvironment.config.host}:${applicationEnvironment.config.port}...")
-        while (connectionPool.accepting()) {
+        while (!connectionPool.closed) {
             val socket = serverSocket.accept()
             val client = GameClient(
                 applicationEnvironment = applicationEnvironment,
@@ -44,7 +44,7 @@ class GameServer @Inject constructor(
     }
 
     override fun close() {
-        connectionPool.dropAll().clear()
+        connectionPool.dropAllAndCloseAndClear()
         selectorManager.close()
     }
 }

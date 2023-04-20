@@ -6,8 +6,6 @@ import com.habbokt.api.client.Client
 import com.habbokt.api.threading.Synchronizer
 import io.ktor.server.application.ApplicationEnvironment
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -24,7 +22,7 @@ class GameSynchronizer @Inject constructor(
     private val connectionPool: ConnectionPool,
     private val executorService: ScheduledExecutorService
 ) : Synchronizer {
-    private var tick = 0
+    private var cycle = 0
 
     override fun start() {
         executorService.scheduleAtFixedRate(this, 500, 500, TimeUnit.MILLISECONDS)
@@ -41,16 +39,15 @@ class GameSynchronizer @Inject constructor(
 
             val time = measureTime {
                 runBlocking(dispatcher) {
-                    if (connectionPool.isEmpty()) return@runBlocking
                     // The dispatcher controls the parallelism.
                     connectionPool.parallelStream().forEach(Client::processReadPool)
                     connectionPool.parallelStream().forEach(Client::processWritePool)
                 }
             }
 
-            tick++
+            cycle++
 
-            applicationEnvironment.log.info("Game Synchronizer: Time: $time, Clients: ${connectionPool.size}, Tick: $tick")
+            applicationEnvironment.log.info("Game Synchronizer: Time: $time, Clients: ${connectionPool.size}, Cycle: $cycle")
         } catch (exception: Exception) {
             applicationEnvironment.log.error(exception.stackTraceToString())
         }
