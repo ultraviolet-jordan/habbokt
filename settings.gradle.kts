@@ -6,18 +6,18 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("deps") {
             // Dependency versions.
-            version("kotlin", "1.7.10")
-            version("ktor", "2.2.3")
-            version("versions", "0.45.0")
+            version("kotlin", "1.8.20")
+            version("ktor", "2.3.0")
+            version("versions", "0.46.0")
             version("pebble", "3.2.0")
-            version("slf4j", "2.0.6")
+            version("slf4j", "2.0.7")
             version("simplecaptcha", "1.2.2")
             version("argon2", "2.11")
             version("exposed", "0.41.1")
             version("h2database", "2.1.214")
             version("hikaricp", "5.0.1")
             version("guice", "1.6.0")
-            version("jackson", "2.14.+")
+            version("jackson", "2.14.2")
             version("flagstone", "3.0.2")
 
             // Dependency plugins
