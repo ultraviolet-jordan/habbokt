@@ -135,9 +135,9 @@ class GameClient(
             if (writeChannelQueue.position() == 0) return // Don't process if nothing is written to the write pool.
             runBlocking(Dispatchers.IO) {
                 writeChannel.writeFully(writeChannelQueue.flip())
-                writeChannel.flush()
-                writeChannelQueue.clear()
             }
+            writeChannel.flush()
+            writeChannelQueue.clear()
         } catch (exception: Exception) {
             close()
             logger.error(exception.stackTraceToString())
