@@ -21,7 +21,7 @@ private tailrec suspend fun ByteReadChannel.getAsBase64(
 ): Int = if (position == size) sum else getAsBase64(size, position + 1, sum + ((readByte() - 64) shl 6 * (size - 1 - position)))
 
 private tailrec suspend fun ByteReadChannel.getAsVl64(
-    prefix: Int/* = readByte().toInt()*/, // The prefix byte at the first position.
+    prefix: Int, // The prefix byte at the first position.
     value: Long = (prefix and 3).toLong(), // Least significant bits of the first byte
     currentPosition: Int = 1 // Position of the next byte to decode
 ): Long {
