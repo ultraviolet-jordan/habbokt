@@ -24,11 +24,12 @@ class GameServer @Inject constructor(
     private val applicationEnvironment: ApplicationEnvironment
 ) : Server {
     override fun bind() = runBlocking {
-        applicationEnvironment.log.info("Responding at ${applicationEnvironment.config.host}:${applicationEnvironment.config.port}...")
+        val logger = applicationEnvironment.log
+        logger.info("Responding at ${applicationEnvironment.config.host}:${applicationEnvironment.config.port}...")
         while (!connectionPool.closed) {
             val socket = serverSocket.accept()
             val client = GameClient(
-                applicationEnvironment = applicationEnvironment,
+                logger = logger,
                 socket = socket,
                 connectionPool = connectionPool,
                 assemblers = serverConfiguration.assemblers,
@@ -37,7 +38,7 @@ class GameServer @Inject constructor(
                 proxies = serverConfiguration.proxies
             )
             if (connectionPool.add(client)) {
-                applicationEnvironment.log.info("Connection from ${socket.remoteAddress}")
+                logger.info("Connection from ${socket.remoteAddress}")
                 launch(Dispatchers.IO) { client.accept() }
             }
         }

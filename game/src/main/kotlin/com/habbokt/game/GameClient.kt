@@ -17,7 +17,7 @@ import io.ktor.network.sockets.SocketAddress
 import io.ktor.network.sockets.isClosed
 import io.ktor.network.sockets.openReadChannel
 import io.ktor.network.sockets.openWriteChannel
-import io.ktor.server.application.ApplicationEnvironment
+import io.ktor.util.logging.Logger
 import io.ktor.utils.io.close
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -31,7 +31,7 @@ import kotlin.reflect.KClass
  * @author Jordan Abraham
  */
 class GameClient(
-    private val applicationEnvironment: ApplicationEnvironment,
+    private val logger: Logger,
     private val socket: Socket,
     private val connectionPool: ConnectionPool,
     private val assemblers: Map<KClass<*>, PacketAssembler<Packet>>,
@@ -64,12 +64,12 @@ class GameClient(
                 // Inserts the specified element at the tail of this queue if it is possible to do so immediately without exceeding the queue's capacity,
                 // returning true upon success and false if this queue is full.
                 if (!readChannelQueue.offer(proxyPacket)) {
-                    applicationEnvironment.log.warn("Read channel pool is full and unable to add incoming packet: $proxyPacket.")
+                    logger.warn("Read channel pool is full and unable to add incoming packet: $proxyPacket.")
                 }
             }
         } catch (exception: Exception) {
             close()
-            applicationEnvironment.log.error(exception.stackTraceToString())
+            logger.error(exception.stackTraceToString())
         }
     }
 
@@ -89,12 +89,12 @@ class GameClient(
             ?.body
             ?.invoke(readChannel, size)
             ?.also {
-                applicationEnvironment.log.info("Disassembled read packet: Id=$packetId, Size=$size, $it")
+                logger.info("Disassembled read packet: Id=$packetId, Size=$size, $it")
             }
             ?: run {
                 // Discard the size amount of bytes if the disassembler was not found for the packet.
                 readChannel.discard(size.toLong())
-                applicationEnvironment.log.info("Discarded read packet: Id=$packetId, Size=$size")
+                logger.info("Discarded read packet: Id=$packetId, Size=$size")
                 return@run null
             }
     }
@@ -110,7 +110,7 @@ class GameClient(
             readChannelQueue.clear()
         } catch (exception: Exception) {
             close()
-            applicationEnvironment.log.error(exception.stackTraceToString())
+            logger.error(exception.stackTraceToString())
         }
     }
 
@@ -122,10 +122,10 @@ class GameClient(
             assembler.body.invoke(writeChannelQueue, packet) // Put packet body.
             val size = writeChannelQueue.position() - position
             writeChannelQueue.put(1) // Put end packet.
-            applicationEnvironment.log.info("Assembled write packet: Id=${assembler.id}, Size=$size, $packet")
+            logger.info("Assembled write packet: Id=${assembler.id}, Size=$size, $packet")
         } catch (exception: Exception) {
             close()
-            applicationEnvironment.log.error(exception.stackTraceToString())
+            logger.error(exception.stackTraceToString())
         }
     }
 
@@ -140,7 +140,7 @@ class GameClient(
             }
         } catch (exception: Exception) {
             close()
-            applicationEnvironment.log.error(exception.stackTraceToString())
+            logger.error(exception.stackTraceToString())
         }
     }
 
@@ -152,9 +152,9 @@ class GameClient(
 
     override fun close() {
         if (!connectionPool.remove(this)) {
-            applicationEnvironment.log.info("Disconnected client was not part of the connection pool: $remoteAddress")
+            logger.info("Disconnected client was not part of the connection pool: $remoteAddress")
         }
-        applicationEnvironment.log.info("Disconnected client: $remoteAddress")
+        logger.info("Disconnected client: $remoteAddress")
         writeChannel.close()
         socket.close()
     }

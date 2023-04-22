@@ -24,7 +24,7 @@ fun main(args: Array<String>) {
         val gameSynchronizer = injector.getInstance<GameSynchronizer>()
         val database = Guice.createInjector(DatabaseModule(injector.getInstance())).getInstance<HikariDatabase>()
 
-        Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment, applicationEngine, database, gameServer, gameSynchronizer))
+        Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment.log, applicationEngine, database, gameServer, gameSynchronizer))
 
         database.connect()
         gameSynchronizer.start()
