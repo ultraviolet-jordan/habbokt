@@ -36,7 +36,7 @@ fun main(args: Array<String>) {
             installStatusPagesPlugin()
         }
 
-        Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment, applicationEngine, database))
+        Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment.log, applicationEngine, database))
 
         // This is temporary for now the web server handles creating the db.
         database.connect()
