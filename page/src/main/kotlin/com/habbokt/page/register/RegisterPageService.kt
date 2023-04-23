@@ -10,7 +10,6 @@ import com.habbokt.page.Redirect
 import com.habbokt.page.html
 import com.habbokt.page.redirect
 import com.habbokt.session.UserSession
-import com.habbokt.templating.Compiler
 import io.ktor.server.sessions.set
 import java.nio.charset.StandardCharsets
 
@@ -19,13 +18,12 @@ import java.nio.charset.StandardCharsets
  */
 @Singleton
 class RegisterPageService @Inject constructor(
-    private val compiler: Compiler,
     private val page: RegisterPage,
     private val playersService: PlayersService,
     private val argon2Service: Argon2Service
 ) : PageService<RegisterPageRequest, Html, Redirect>(
     get = {
-        page.html(this, compiler)
+        page.html(this)
     },
 
     post = {

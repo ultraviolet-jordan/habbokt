@@ -2,7 +2,6 @@ package com.habbokt.page.client
 
 import com.habbokt.dao.site.SiteDAO
 import com.habbokt.page.PageTemplate
-import com.habbokt.page.bind
 
 /**
  * @author Jordan Abraham
@@ -14,8 +13,8 @@ class ClientPageTemplate(
 ) : PageTemplate(
     path = "client.tpl",
     configuration = {
-        bind("site" to site)
-        bind("forwardRoom" to forwardRoom)
-        bind("ssoTicket" to ssoTicket)
+        site?.let { put("site", it) }
+        put("forwardRoom", forwardRoom)
+        ssoTicket?.let { put("ssoTicket", it) }
     }
 )

@@ -15,6 +15,8 @@ dependencies {
     implementation(project(":db"))
     implementation(project(":page"))
     implementation(project(":session"))
+    implementation("io.ktor:ktor-server-core-jvm:2.3.0")
+    implementation("io.ktor:ktor-server-pebble-jvm:2.3.0")
 }
 
 application {

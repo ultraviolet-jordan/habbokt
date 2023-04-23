@@ -19,7 +19,6 @@ import com.habbokt.page.security.SecurityCheckPageRouting
 import com.habbokt.page.test.TestPageRouting
 import com.habbokt.page.welcome.WelcomePageRouting
 import com.habbokt.swf.SwfModule
-import com.habbokt.templating.TemplatingModule
 import com.habbokt.xml.XMLModule
 import dev.misfitlabs.kotlinguice4.KotlinModule
 import dev.misfitlabs.kotlinguice4.multibindings.KotlinMultibinder
@@ -33,7 +32,6 @@ object PageModule : KotlinModule() {
         install(Argon2Module)
         install(DAOModule)
         install(SwfModule)
-        install(TemplatingModule)
         install(XMLModule)
 
         bind<HttpClient>().toProvider<HttpClientProvider>()

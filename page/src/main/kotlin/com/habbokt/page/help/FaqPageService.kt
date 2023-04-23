@@ -6,17 +6,15 @@ import com.habbokt.page.Html
 import com.habbokt.page.None
 import com.habbokt.page.PageService
 import com.habbokt.page.html
-import com.habbokt.templating.Compiler
 
 /**
  * @author Jordan Abraham
  */
 @Singleton
 class FaqPageService @Inject constructor(
-    private val compiler: Compiler,
     private val page: FaqPage
 ) : PageService<FaqPageRequest, Html, None>(
     get = {
-        page.html(this, compiler)
+        page.html(this)
     }
 )

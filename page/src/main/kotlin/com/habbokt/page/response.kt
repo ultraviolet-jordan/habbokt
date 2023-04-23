@@ -1,9 +1,9 @@
 package com.habbokt.page
 
-import com.habbokt.templating.Compiler
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
+import io.ktor.server.pebble.PebbleContent
 import io.ktor.server.response.header
 import io.ktor.server.response.respond
 import io.ktor.server.response.respondRedirect
@@ -18,8 +18,7 @@ internal suspend fun ApplicationCall.respondHtml(
     statusCode: HttpStatusCode,
     html: Html
 ) {
-    htmlHeader(html.string.length)
-    respond(statusCode, html.string)
+    respond(statusCode, html.content)
 }
 
 internal suspend fun ApplicationCall.respondAjax(
@@ -59,8 +58,8 @@ private fun ApplicationCall.pngHeader(contentLength: Int) {
     response.header(HttpHeaders.ContentLength, contentLength)
 }
 
-suspend inline fun <reified T : PageTemplate, reified R : PageRequest> Page<T, R>.html(request: R, compiler: Compiler): Html = template(request)
-    .let { if (it.path.isEmpty()) "" else compiler.compile(it.path, it.filterValues { v -> v != null }) }
+suspend inline fun <reified T : PageTemplate, reified R : PageRequest> Page<T, R>.html(request: R): Html = template(request)
+    .let { PebbleContent(it.path, it) }
     .let(::Html)
 
 fun BufferedImage.png(): Png = ByteArrayOutputStream()

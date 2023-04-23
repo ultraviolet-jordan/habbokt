@@ -7,6 +7,7 @@ import com.habbokt.page.PageModule
 import com.habbokt.page.PageRouting
 import com.habbokt.web.plugin.installAuthenticationPlugin
 import com.habbokt.web.plugin.installCallLoggingPlugin
+import com.habbokt.web.plugin.installPebblePlugin
 import com.habbokt.web.plugin.installSessionsPlugin
 import com.habbokt.web.plugin.installStatusPagesPlugin
 import dev.misfitlabs.kotlinguice4.findBindingsByType
@@ -34,6 +35,7 @@ fun main(args: Array<String>) {
             installSessionsPlugin()
             installAuthenticationPlugin()
             installStatusPagesPlugin()
+            installPebblePlugin()
         }
 
         Runtime.getRuntime().addShutdownHook(ShutdownHook(applicationEnvironment.log, applicationEngine, database))

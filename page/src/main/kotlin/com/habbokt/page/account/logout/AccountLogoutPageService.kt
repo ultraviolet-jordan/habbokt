@@ -7,7 +7,6 @@ import com.habbokt.page.None
 import com.habbokt.page.PageService
 import com.habbokt.page.html
 import com.habbokt.session.UserSession
-import com.habbokt.templating.Compiler
 import io.ktor.server.sessions.clear
 
 /**
@@ -15,11 +14,10 @@ import io.ktor.server.sessions.clear
  */
 @Singleton
 class AccountLogoutPageService @Inject constructor(
-    private val compiler: Compiler,
     private val page: AccountLogoutPage
 ) : PageService<AccountLogoutPageRequest, Html, None>(
     get = {
         session.clear<UserSession>()
-        page.html(this, compiler)
+        page.html(this)
     }
 )

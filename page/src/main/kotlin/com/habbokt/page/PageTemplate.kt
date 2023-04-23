@@ -6,6 +6,4 @@ package com.habbokt.page
 abstract class PageTemplate constructor(
     val path: String,
     val configuration: PageTemplate.() -> Unit
-) : MutableMap<String, Any?> by mutableMapOf()
-
-fun PageTemplate.bind(context: Pair<String, Any?>): Any? = put(context.first, context.second)
+) : MutableMap<String, Any> by mutableMapOf()

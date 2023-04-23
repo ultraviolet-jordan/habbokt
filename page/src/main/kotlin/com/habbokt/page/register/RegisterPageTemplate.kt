@@ -2,7 +2,6 @@ package com.habbokt.page.register
 
 import com.habbokt.dao.site.SiteDAO
 import com.habbokt.page.PageTemplate
-import com.habbokt.page.bind
 
 /**
  * @author Jordan Abraham
@@ -23,17 +22,17 @@ class RegisterPageTemplate(
 ) : PageTemplate(
     path = "register.tpl",
     configuration = {
-        bind("site" to site)
-        bind("randomNum" to randomNum)
-        bind("registerCaptchaInvalid" to registerCaptchaInvalid)
-        bind("registerEmailInvalid" to registerEmailInvalid)
-        bind("registerUsername" to registerUsername)
-        bind("registerShowPassword" to registerShowPassword)
-        bind("registerEmail" to registerEmail)
-        bind("registerDay" to registerDay)
-        bind("registerMonth" to registerMonth)
-        bind("registerYear" to registerYear)
-        bind("registerFigure" to registerFigure)
-        bind("registerGender" to registerGender)
+        site?.let { put("site", it) }
+        put("randomNum", randomNum)
+        registerCaptchaInvalid?.let { put("registerCaptchaInvalid", it) }
+        registerEmailInvalid?.let { put("registerEmailInvalid", it) }
+        registerUsername?.let { put("registerUsername", it) }
+        registerShowPassword?.let { put("registerShowPassword", it) }
+        registerEmail?.let { put("registerEmail", it) }
+        registerDay?.let { put("registerDay", it) }
+        registerMonth?.let { put("registerMonth", it) }
+        registerYear?.let { put("registerYear", it) }
+        registerFigure?.let { put("registerFigure", it) }
+        registerGender?.let { put("registerGender", it) }
     }
 )

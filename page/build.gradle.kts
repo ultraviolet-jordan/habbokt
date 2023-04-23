@@ -17,6 +17,5 @@ dependencies {
     implementation(project(":dao"))
     implementation(project(":session"))
     implementation(project(":swf"))
-    implementation(project(":templating"))
     implementation(project(":xml"))
 }

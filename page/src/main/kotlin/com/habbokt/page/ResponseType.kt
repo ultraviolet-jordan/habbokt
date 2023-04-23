@@ -1,12 +1,14 @@
 package com.habbokt.page
 
+import io.ktor.server.pebble.PebbleContent
+
 /**
  * @author Jordan Abraham
  */
 interface ResponseType
 
 class Html(
-    val string: String
+    val content: PebbleContent
 ) : ResponseType
 
 class Png(
