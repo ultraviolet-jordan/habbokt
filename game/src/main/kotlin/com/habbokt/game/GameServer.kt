@@ -39,7 +39,7 @@ class GameServer @Inject constructor(
             )
             if (connectionPool.add(client)) {
                 logger.info("Connection from ${socket.remoteAddress}")
-                launch(Dispatchers.IO) { client.accept() }
+                launch { client.accept() }
             }
         }
     }

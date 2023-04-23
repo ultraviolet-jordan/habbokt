@@ -155,10 +155,9 @@ class GameClient(
             logger.info("Disconnected client was not part of the connection pool: $remoteAddress")
         }
         logger.info("Disconnected client: $remoteAddress")
-        writeChannel.close()
         socket.close()
     }
 
-    override fun connected(): Boolean = !socket.isClosed && !writeChannel.isClosedForWrite
+    override fun connected(): Boolean = !socket.isClosed
     override fun socketAddress(): SocketAddress = remoteAddress
 }
