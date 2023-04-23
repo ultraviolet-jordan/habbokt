@@ -13,11 +13,17 @@ import com.habbokt.page.Page
 class FaqPage @Inject constructor(
     private val siteService: SiteService,
     private val playersService: PlayersService
-) : Page<FaqPageTemplate, FaqPageRequest>(
+) : Page<FaqPageRequest>(
+    name = "faq.tpl",
     template = {
-        FaqPageTemplate(
-            site = siteService.site(),
-            playerDetails = userId?.let { playersService.player(it) }
-        )
+        siteService.site()?.let { siteDAO ->
+            put("site", siteDAO)
+        }
+
+        it.userId
+            ?.let { userId -> playersService.player(userId) }
+            ?.let { playerDAO ->
+                put("playerDetails", playerDAO)
+            }
     }
 )

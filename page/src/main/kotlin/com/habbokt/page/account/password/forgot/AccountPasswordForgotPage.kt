@@ -11,10 +11,11 @@ import com.habbokt.page.Page
 @Singleton
 class AccountPasswordForgotPage @Inject constructor(
     private val siteService: SiteService
-) : Page<AccountPasswordForgotPageTemplate, AccountPasswordForgotPageRequest>(
+) : Page<AccountPasswordForgotPageRequest>(
+    name = "account/email/account_forgot.tpl",
     template = {
-        AccountPasswordForgotPageTemplate(
-            site = siteService.site()
-        )
+        siteService.site()?.let { siteDAO ->
+            put("site", siteDAO)
+        }
     }
 )

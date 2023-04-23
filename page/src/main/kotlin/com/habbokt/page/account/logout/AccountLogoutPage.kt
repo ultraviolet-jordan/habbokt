@@ -11,10 +11,11 @@ import com.habbokt.page.Page
 @Singleton
 class AccountLogoutPage @Inject constructor(
     private val siteService: SiteService
-) : Page<AccountLogoutPageTemplate, AccountLogoutPageRequest>(
+) : Page<AccountLogoutPageRequest>(
+    name = "account/logout.tpl",
     template = {
-        AccountLogoutPageTemplate(
-            site = siteService.site()
-        )
+        siteService.site()?.let { siteDAO ->
+            put("site", siteDAO)
+        }
     }
 )

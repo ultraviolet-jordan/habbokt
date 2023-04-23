@@ -11,10 +11,11 @@ import com.habbokt.page.Page
 @Singleton
 class WelcomePage @Inject constructor(
     private val siteService: SiteService
-) : Page<WelcomePageTemplate, WelcomePageRequest>(
+) : Page<WelcomePageRequest>(
+    name = "welcome.tpl",
     template = {
-        WelcomePageTemplate(
-            site = siteService.site()
-        )
+        siteService.site()?.let { siteDAO ->
+            put("site", siteDAO)
+        }
     }
 )

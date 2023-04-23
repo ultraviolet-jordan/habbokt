@@ -11,12 +11,17 @@ import com.habbokt.page.Page
 @Singleton
 class IndexPage @Inject constructor(
     private val siteService: SiteService
-) : Page<IndexPageTemplate, IndexPageRequest>(
+) : Page<IndexPageRequest>(
+    name = "index.tpl",
     template = {
-        IndexPageTemplate(
-            site = siteService.site(),
-            rememberMe = rememberMe,
-            username = username
-        )
+        siteService.site()?.let { siteDAO ->
+            put("site", siteDAO)
+        }
+
+        put("rememberMe", it.rememberMe)
+
+        it.username?.let { username ->
+            put("username", username)
+        }
     }
 )

@@ -15,13 +15,18 @@ import java.util.UUID
 class ClientPage @Inject constructor(
     private val siteService: SiteService,
     private val playersService: PlayersService
-) : Page<ClientPageTemplate, ClientPageRequest>(
+) : Page<ClientPageRequest>(
+    name = "client.tpl",
     template = {
-        ClientPageTemplate(
-            site = siteService.site(),
-            forwardRoom = false,
-            ssoTicket = playersService.ssoTicket(userSession)
-        )
+        siteService.site()?.let { siteDAO ->
+            put("site", siteDAO)
+        }
+
+        put("forwardRoom", false)
+
+        playersService.ssoTicket(it.userSession)?.let { ssoTicket ->
+            put("ssoTicket", ssoTicket)
+        }
     }
 )
 

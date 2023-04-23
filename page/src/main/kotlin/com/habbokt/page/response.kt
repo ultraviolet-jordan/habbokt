@@ -47,9 +47,12 @@ private fun ApplicationCall.pngHeader(contentLength: Int) {
     response.header(HttpHeaders.ContentLength, contentLength)
 }
 
-suspend inline fun <reified T : PageTemplate, reified R : PageRequest> Page<T, R>.html(request: R): Html = template(request)
-    .let { PebbleContent(it.path, it) }
-    .let(::Html)
+suspend inline fun <reified R : PageRequest> Page<R>.html(request: R): Html {
+    val map = mutableMapOf<String, Any>().apply {
+        template.invoke(this, request)
+    }
+    return Html(PebbleContent(name, map))
+}
 
 fun BufferedImage.png(): Png = ByteArrayOutputStream()
     .apply { ImageIO.write(this@png, "png", this) }
