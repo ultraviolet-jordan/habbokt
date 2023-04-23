@@ -14,33 +14,22 @@ import javax.imageio.ImageIO
 /**
  * @author Jordan Abraham
  */
-internal suspend fun ApplicationCall.respondHtml(
-    statusCode: HttpStatusCode,
-    html: Html
-) {
+internal suspend fun ApplicationCall.respondHtml(statusCode: HttpStatusCode, html: Html) {
     respond(statusCode, html.content)
 }
 
-internal suspend fun ApplicationCall.respondAjax(
-    statusCode: HttpStatusCode,
-    ajax: Ajax
-) {
+internal suspend fun ApplicationCall.respondAjax(statusCode: HttpStatusCode, ajax: Ajax) {
     xjsonHeader(ajax.json)
     htmlHeader(0)
     respond(statusCode)
 }
 
-internal suspend fun ApplicationCall.respondPng(
-    statusCode: HttpStatusCode,
-    png: Png
-) {
+internal suspend fun ApplicationCall.respondPng(statusCode: HttpStatusCode, png: Png) {
     pngHeader(png.bytes.size)
     respond(statusCode, png.bytes)
 }
 
-internal suspend fun ApplicationCall.respondRedirect(
-    redirect: Redirect
-) {
+internal suspend fun ApplicationCall.respondRedirect(redirect: Redirect) {
     respondRedirect(url = redirect.path)
 }
 
