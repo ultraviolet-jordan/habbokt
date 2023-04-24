@@ -2,6 +2,7 @@
 plugins {
     application
     alias(deps.plugins.jvm)
+    alias(deps.plugins.dokka)
 }
 
 group = "org.example"

@@ -1,6 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(deps.plugins.jvm)
+    alias(deps.plugins.dokka)
 }
 
 group = "org.example"

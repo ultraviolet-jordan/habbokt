@@ -1,3 +1,4 @@
+import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.gradle.tasks.UsesKotlinJavaToolchain
@@ -36,5 +37,9 @@ allprojects {
                 languageVersion.set(JavaLanguageVersion.of(18))
             }
         )
+    }
+
+    tasks.withType<DokkaMultiModuleTask> {
+        outputDirectory.set(projectDir.resolve("docs"))
     }
 }

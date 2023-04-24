@@ -2,7 +2,7 @@ name: Documentation
 on: [ push ]
 jobs:
   build:
-    name: Build
+    name: Build Documentation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
