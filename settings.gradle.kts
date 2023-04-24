@@ -18,10 +18,12 @@ dependencyResolutionManagement {
             version("guice", "1.6.0")
             version("jackson", "2.14.2")
             version("flagstone", "3.0.2")
+            version("dokka", "1.8.10")
 
             // Dependency plugins
             plugin("jvm", "org.jetbrains.kotlin.jvm").versionRef("kotlin")
             plugin("versions", "com.github.ben-manes.versions").versionRef("versions")
+            plugin("dokka", "org.jetbrains.dokka").versionRef("dokka")
 
             // Dependency libraries
             // Ktor Dependencies
