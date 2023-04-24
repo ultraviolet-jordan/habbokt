@@ -13,7 +13,30 @@ import io.ktor.server.sessions.get
 import io.ktor.server.sessions.sessions
 
 /**
+ * <b>Information</b>
+ *
+ * ```
+ * GET {host}/
+ * QUERY page
+ * QUERY rememberme
+ * QUERY username
+ * ```
+ *
+ * <b>Example</b>
+ *
+ * ```
+ * http://localhost/?page=submit&username=jordan&rememberme=true
+ * ```
+ *
  * @author Jordan Abraham
+ *
+ * @see IndexPage
+ * @see IndexPageRequest
+ * @see IndexPageService
+ *
+ * @constructor Injects the associated [service] for handling the request set by the [routing].
+ *
+ * @property routing The routing for this page. "/".
  */
 @Singleton
 class IndexPageRouting @Inject constructor(

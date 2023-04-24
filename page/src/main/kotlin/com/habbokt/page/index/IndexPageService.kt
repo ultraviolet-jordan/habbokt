@@ -9,6 +9,14 @@ import com.habbokt.page.html
 
 /**
  * @author Jordan Abraham
+ *
+ * @see IndexPage
+ * @see IndexPageRequest
+ * @see IndexPageRouting
+ *
+ * @constructor Injects the [page] that is used for this service.
+ *
+ * @property get The service handling for http GET requests to this [page].
  */
 @Singleton
 class IndexPageService @Inject constructor(

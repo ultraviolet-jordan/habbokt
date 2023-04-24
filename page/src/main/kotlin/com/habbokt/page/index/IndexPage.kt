@@ -7,6 +7,15 @@ import com.habbokt.page.Page
 
 /**
  * @author Jordan Abraham
+ *
+ * @see IndexPageRequest
+ * @see IndexPageRouting
+ * @see IndexPageService
+ *
+ * @constructor Injects the [siteService] for pulling the latest website information from the database for this page [template].
+ *
+ * @property name The resources name of the associated page template file.
+ * @property template The template builder for building the html of this page.
  */
 @Singleton
 class IndexPage @Inject constructor(
