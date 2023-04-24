@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>GameClient</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>habbokt</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":game:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="game::com.habbokt.game/GameClient///PointingToDeclaration//-2124257962">
+  <div class="breadcrumbs"><a href="../../index.html">game</a><span class="delimiter">/</span><a href="../index.html">com.habbokt.game</a><span class="delimiter">/</span><span class="current">GameClient</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Game</span><wbr><span><span>Client</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">GameClient</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">logger<span class="token operator">: </span><span data-unresolved-link="io.ktor.util.logging/Logger///PointingToDeclaration/">Logger</span><span class="token punctuation">, </span></span><span class="parameter ">socket<span class="token operator">: </span><span data-unresolved-link="io.ktor.network.sockets/Socket///PointingToDeclaration/">Socket</span><span class="token punctuation">, </span></span><span class="parameter ">connectionPool<span class="token operator">: </span><a href="../-connection-pool/index.html">ConnectionPool</a><span class="token punctuation">, </span></span><span class="parameter ">assemblers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet-assembler/index.html">PacketAssembler</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet/index.html">Packet</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">disassemblers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet-disassembler/index.html">PacketDisassembler</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet/index.html">Packet</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">handlers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet-handler/index.html">PacketHandler</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-proxy-packet/index.html">ProxyPacket</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">proxies<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-proxy-packet-handler/index.html">ProxyPacketHandler</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet/index.html">Packet</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-proxy-packet/index.html">ProxyPacket</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="../../../api/com.habbokt.api.client/-client/index.html">Client</a></div><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">Jordan Abraham</p></span></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-330547076%2FConstructors%2F-2124257962" anchor-label="GameClient" id="-330547076%2FConstructors%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-game-client.html"><span>Game</span><wbr><span><span>Client</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-330547076%2FConstructors%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">logger<span class="token operator">: </span><span data-unresolved-link="io.ktor.util.logging/Logger///PointingToDeclaration/">Logger</span><span class="token punctuation">, </span></span><span class="parameter ">socket<span class="token operator">: </span><span data-unresolved-link="io.ktor.network.sockets/Socket///PointingToDeclaration/">Socket</span><span class="token punctuation">, </span></span><span class="parameter ">connectionPool<span class="token operator">: </span><a href="../-connection-pool/index.html">ConnectionPool</a><span class="token punctuation">, </span></span><span class="parameter ">assemblers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet-assembler/index.html">PacketAssembler</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet/index.html">Packet</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">disassemblers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet-disassembler/index.html">PacketDisassembler</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet/index.html">Packet</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">handlers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet-handler/index.html">PacketHandler</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-proxy-packet/index.html">ProxyPacket</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">proxies<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-proxy-packet-handler/index.html">ProxyPacketHandler</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-packet/index.html">Packet</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="../../../api/com.habbokt.api.packet/-proxy-packet/index.html">ProxyPacket</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1833306500%2FFunctions%2F-2124257962" anchor-label="accept" id="1833306500%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="accept.html"><span><span>accept</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1833306500%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend override </span><span class="token keyword">fun </span><a href="accept.html"><span class="token function">accept</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="421935605%2FFunctions%2F-2124257962" anchor-label="authenticate" id="421935605%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="authenticate.html"><span><span>authenticate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="421935605%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="authenticate.html"><span class="token function">authenticate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="74300304%2FFunctions%2F-2124257962" anchor-label="awaitPacket" id="74300304%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="await-packet.html"><span>await</span><wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="74300304%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend override </span><span class="token keyword">fun </span><a href="await-packet.html"><span class="token function">awaitPacket</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../api/com.habbokt.api.packet/-packet/index.html">Packet</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="953947414%2FFunctions%2F-2124257962" anchor-label="close" id="953947414%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="close.html"><span><span>close</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="953947414%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="close.html"><span class="token function">close</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1265210533%2FFunctions%2F-2124257962" anchor-label="connected" id="1265210533%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="connected.html"><span><span>connected</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1265210533%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="connected.html"><span class="token function">connected</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1333642805%2FFunctions%2F-2124257962" anchor-label="player" id="-1333642805%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player.html"><span><span>player</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1333642805%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="player.html"><span class="token function">player</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../api/com.habbokt.api.entity.player/-player/index.html">Player</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1171305587%2FFunctions%2F-2124257962" anchor-label="processReadPool" id="-1171305587%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="process-read-pool.html"><span>process</span><wbr><span>Read</span><wbr><span><span>Pool</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1171305587%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="process-read-pool.html"><span class="token function">processReadPool</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1154054816%2FFunctions%2F-2124257962" anchor-label="processWritePool" id="-1154054816%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="process-write-pool.html"><span>process</span><wbr><span>Write</span><wbr><span><span>Pool</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1154054816%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="process-write-pool.html"><span class="token function">processWritePool</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1619231021%2FFunctions%2F-2124257962" anchor-label="socketAddress" id="1619231021%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="socket-address.html"><span>socket</span><wbr><span><span>Address</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1619231021%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="socket-address.html"><span class="token function">socketAddress</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.ktor.network.sockets/SocketAddress///PointingToDeclaration/">SocketAddress</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2025418781%2FFunctions%2F-2124257962" anchor-label="writePacket" id="2025418781%2FFunctions%2F-2124257962" data-filterable-set=":game:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":game:dokkaHtmlPartial/main" data-filterable-set=":game:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="write-packet.html"><span>write</span><wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2025418781%2FFunctions%2F-2124257962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":game:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="write-packet.html"><span class="token function">writePacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">packet<span class="token operator">: </span><a href="../../../api/com.habbokt.api.packet/-packet/index.html">Packet</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+
