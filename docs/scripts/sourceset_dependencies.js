@@ -1,1 +1,0 @@
-sourceset_dependencies = '{":game:dokkaHtmlPartial/main":[],":web:dokkaHtmlPartial/main":[],":api:dokkaHtmlPartial/main":[],":page:dokkaHtmlPartial/main":[],":packet:dokkaHtmlPartial/main":[]}'
